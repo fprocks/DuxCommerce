@@ -13,26 +13,20 @@ open OrderTaking.Common
 
 // Product validation
 
-type CheckProductCodeExists = 
-    ProductCode -> bool
+type CheckProductCodeExists = ProductCode -> bool
 
 // Address validation
-type AddressValidationError = 
-    | InvalidFormat 
-    | AddressNotFound 
+type AddressValidationError = | InvalidFormat | AddressNotFound 
 
 type CheckedAddress = CheckedAddress of UnvalidatedAddress
 
-type CheckAddressExists = 
-    UnvalidatedAddress -> AsyncResult<CheckedAddress,AddressValidationError>
+type CheckAddressExists = UnvalidatedAddress -> AsyncResult<CheckedAddress,AddressValidationError>
 
 // ---------------------------
 // Validated Order 
 // ---------------------------
 
-type PricingMethod =
-    | Standard
-    | Promotion of PromotionCode 
+type PricingMethod = | Standard  | Promotion of PromotionCode 
 
 type ValidatedOrderLine =  {
     OrderLineId : OrderLineId 
@@ -49,37 +43,22 @@ type ValidatedOrder = {
     PricingMethod : PricingMethod
     }
 
-type ValidateOrder = 
-    CheckProductCodeExists  // dependency
-     -> CheckAddressExists  // dependency
-     -> UnvalidatedOrder    // input
-     -> AsyncResult<ValidatedOrder, ValidationError> // output
+type ValidateOrder = CheckProductCodeExists  -> CheckAddressExists -> UnvalidatedOrder -> AsyncResult<ValidatedOrder, ValidationError> // output
 
 // ---------------------------
 // Pricing step
 // ---------------------------
 
+type GetProductPrice = ProductCode -> Price
 
-type GetProductPrice = 
-    ProductCode -> Price
-
-type TryGetProductPrice = 
-    ProductCode -> Price option
+type TryGetProductPrice = ProductCode -> Price option
 
 type GetPricingFunction = PricingMethod -> GetProductPrice
 
-type GetStandardPrices = 
-    // no input -> return standard prices
-    unit -> GetProductPrice
+type GetStandardPrices = unit -> GetProductPrice // no input -> return standard prices
 
-type GetPromotionPrices = 
-    // promo input -> return prices for promo, maybe
-    PromotionCode -> TryGetProductPrice 
+type GetPromotionPrices = PromotionCode -> TryGetProductPrice // promo input -> return prices for promo, maybe
 
-
-
-
-// priced state            
 type PricedOrderProductLine = {
     OrderLineId : OrderLineId 
     ProductCode : ProductCode 
@@ -101,16 +80,13 @@ type PricedOrder = {
     PricingMethod : PricingMethod
     }
 
-type PriceOrder = 
-    GetPricingFunction     // dependency
-     -> ValidatedOrder  // input
-     -> Result<PricedOrder, PricingError>  // output
+type PriceOrder =     GetPricingFunction -> ValidatedOrder -> Result<PricedOrder, PricingError>
 
 // ---------------------------
 // Shipping
 // ---------------------------
 
-type ShippingMethod = 
+type ShippingMethod =  
     | PostalService 
     | Fedex24 
     | Fedex48 
@@ -164,8 +140,7 @@ type CreateOrderAcknowledgmentLetter =
 
 type SendResult = Sent | NotSent
 
-type SendOrderAcknowledgment =
-    OrderAcknowledgment -> SendResult 
+type SendOrderAcknowledgment = OrderAcknowledgment -> SendResult 
     
 type AcknowledgeOrder = 
     CreateOrderAcknowledgmentLetter  // dependency

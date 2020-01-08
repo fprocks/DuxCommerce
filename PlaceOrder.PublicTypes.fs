@@ -50,7 +50,6 @@ type UnvalidatedOrder = {
     PromotionCode : string
     }
 
-
 // ------------------------------------
 // outputs from the workflow (success case)
 
@@ -59,8 +58,6 @@ type OrderAcknowledgmentSent = {
     OrderId : OrderId
     EmailAddress : EmailAddress 
     }
-
-
 
 /// Event to send to shipping context
 type OrderPlaced = PricedOrder
@@ -92,11 +89,8 @@ type PlaceOrderEvent =
     | BillableOrderPlaced of BillableOrderPlaced 
     | AcknowledgmentSent  of OrderAcknowledgmentSent
 
-
-
 // ------------------------------------
 // error outputs 
-
 
 /// All the things that can go wrong in this workflow
 type ValidationError = ValidationError of string
@@ -118,12 +112,10 @@ type PlaceOrderError =
     | Pricing of PricingError 
     | RemoteService of RemoteServiceError 
 
-
 // ------------------------------------
 // the workflow itself
 
-type PlaceOrder = 
-    UnvalidatedOrder -> AsyncResult<PlaceOrderEvent list,PlaceOrderError>
+type PlaceOrder = UnvalidatedOrder -> AsyncResult<PlaceOrderEvent list,PlaceOrderError>
 
 
 
