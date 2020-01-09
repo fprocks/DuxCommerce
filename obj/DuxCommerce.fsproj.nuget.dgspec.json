@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Haskell\\source\\repos\\DuxCommerce\\DuxCommerce.fsproj": {}
+    "C:\\Source\\DuxCommerce\\DuxCommerce.fsproj": {}
   },
   "projects": {
-    "C:\\Users\\Haskell\\source\\repos\\DuxCommerce\\DuxCommerce.fsproj": {
+    "C:\\Source\\DuxCommerce\\DuxCommerce.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Haskell\\source\\repos\\DuxCommerce\\DuxCommerce.fsproj",
+        "projectUniqueName": "C:\\Source\\DuxCommerce\\DuxCommerce.fsproj",
         "projectName": "DuxCommerce",
-        "projectPath": "C:\\Users\\Haskell\\source\\repos\\DuxCommerce\\DuxCommerce.fsproj",
+        "projectPath": "C:\\Source\\DuxCommerce\\DuxCommerce.fsproj",
         "packagesPath": "C:\\Users\\Haskell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Haskell\\source\\repos\\DuxCommerce\\obj\\",
+        "outputPath": "C:\\Source\\DuxCommerce\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -45,6 +45,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[12.0.3, )"
+            },
+            "SQLProvider": {
+              "target": "Package",
+              "version": "[1.1.76, )"
             }
           },
           "imports": [

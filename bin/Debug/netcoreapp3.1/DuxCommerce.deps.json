@@ -9,6 +9,7 @@
       "DuxCommerce/1.0.0": {
         "dependencies": {
           "FSharp.Core": "4.7.0",
+          "FSharp.Data": "3.3.3",
           "Newtonsoft.Json": "12.0.3"
         },
         "runtime": {
@@ -64,6 +65,17 @@
           }
         }
       },
+      "FSharp.Data/3.3.3": {
+        "dependencies": {
+          "FSharp.Core": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FSharp.Data.dll": {
+            "assemblyVersion": "3.3.3.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "Newtonsoft.Json/12.0.3": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
@@ -86,6 +98,13 @@
       "sha512": "sha512-6Bf2qzSCaJoP6tTfO+a5muUS7QbyJANqSut73zQvwQ9It5P0ITz9VKseeia2ofco30c55EQ0jA2wf2+A2gpGnw==",
       "path": "fsharp.core/4.7.0",
       "hashPath": "fsharp.core.4.7.0.nupkg.sha512"
+    },
+    "FSharp.Data/3.3.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-O+fV9oPNktESFngvTzPIQUhTdQGNX0XYXToL1l7+3jE46Y7tp8Ux4FkTMzj8wa8QV07l4sY4pJ7bBppGDi3Lsw==",
+      "path": "fsharp.data/3.3.3",
+      "hashPath": "fsharp.data.3.3.3.nupkg.sha512"
     },
     "Newtonsoft.Json/12.0.3": {
       "type": "package",
