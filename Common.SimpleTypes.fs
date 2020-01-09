@@ -289,7 +289,6 @@ module ProductCode =
             let msg = sprintf "%s: Format not recognized '%s'" fieldName code
             Error msg
 
-
 module UnitQuantity  =
 
     /// Return the value inside a UnitQuantity 

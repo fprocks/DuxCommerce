@@ -16,7 +16,9 @@ open OrderTaking.Common
 type CheckProductCodeExists = ProductCode -> bool
 
 // Address validation
-type AddressValidationError = | InvalidFormat | AddressNotFound 
+type AddressValidationError = 
+    | InvalidFormat 
+    | AddressNotFound 
 
 type CheckedAddress = CheckedAddress of UnvalidatedAddress
 
@@ -26,7 +28,9 @@ type CheckAddressExists = UnvalidatedAddress -> AsyncResult<CheckedAddress,Addre
 // Validated Order 
 // ---------------------------
 
-type PricingMethod = | Standard  | Promotion of PromotionCode 
+type PricingMethod = 
+    | Standard  
+    | Promotion of PromotionCode 
 
 type ValidatedOrderLine =  {
     OrderLineId : OrderLineId 
@@ -43,7 +47,11 @@ type ValidatedOrder = {
     PricingMethod : PricingMethod
     }
 
-type ValidateOrder = CheckProductCodeExists  -> CheckAddressExists -> UnvalidatedOrder -> AsyncResult<ValidatedOrder, ValidationError> // output
+type ValidateOrder = 
+    CheckProductCodeExists  
+     -> CheckAddressExists 
+     -> UnvalidatedOrder 
+     -> AsyncResult<ValidatedOrder, ValidationError>
 
 // ---------------------------
 // Pricing step
@@ -55,9 +63,9 @@ type TryGetProductPrice = ProductCode -> Price option
 
 type GetPricingFunction = PricingMethod -> GetProductPrice
 
-type GetStandardPrices = unit -> GetProductPrice // no input -> return standard prices
+type GetStandardPrices = unit -> GetProductPrice
 
-type GetPromotionPrices = PromotionCode -> TryGetProductPrice // promo input -> return prices for promo, maybe
+type GetPromotionPrices = PromotionCode -> TryGetProductPrice
 
 type PricedOrderProductLine = {
     OrderLineId : OrderLineId 
@@ -80,7 +88,7 @@ type PricedOrder = {
     PricingMethod : PricingMethod
     }
 
-type PriceOrder =     GetPricingFunction -> ValidatedOrder -> Result<PricedOrder, PricingError>
+type PriceOrder = GetPricingFunction -> ValidatedOrder -> Result<PricedOrder, PricingError>
 
 // ---------------------------
 // Shipping

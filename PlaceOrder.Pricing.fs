@@ -11,7 +11,6 @@ open OrderTaking.PlaceOrder.InternalTypes
 /// An internal helper module to help with pricing
 module internal PricingModule = 
 
-
     /// Create a pricing method given a promotionCode on the unvalidated order form
     /// If null -> Standard otherwise wrap in PromotionCode
     let createPricingMethod (promotionCode:string) =
@@ -24,7 +23,6 @@ module internal PricingModule =
         (standardPrices:GetStandardPrices) 
         (promoPrices:GetPromotionPrices)  
         : GetPricingFunction = 
-  
 
         // the original pricing function
         let getStandardPrice : GetProductPrice =
