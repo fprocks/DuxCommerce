@@ -1,4 +1,4 @@
-﻿module internal OrderTaking.PlaceOrder.InternalTypes
+﻿module OrderTaking.PlaceOrder.InternalTypes
 
 open OrderTaking.Common
 

@@ -1,10 +1,13 @@
-﻿// Learn more about F# at http://fsharp.org
-
-open System
+﻿open System
 open PlaceOrder
 
 [<EntryPoint>]
 let main argv =
-    insertCustomer
-    printfn "Hello World from F#!"
-    0 // return an integer exit code
+    insertProduct 2 "F#" 100M |> ignore
+
+    let products = getProduct "F#"
+    match products with
+    | [] -> printfn "nothing"
+    | head :: _  -> printf "%s" head.Name
+
+    0
