@@ -1,24 +1,24 @@
 ﻿module PlaceOrder
 
-open FSharp.Data.Sql
+open System.Data.SqlClient
+open RepoDb
 
-let [<Literal>] connStr = "Server=(local);Database=DuxCommerce;User Id=DuxAdmin;Password=Password1;"
-type DuxCommerce = SqlDataProvider<Common.DatabaseProviderTypes.MSSQLSERVER, 
-                                   ConnectionString = connStr, 
-                                   UseOptionTypes = true>
+type Product = {
+    Id : int
+    Name : string
+    Price: decimal
+}
 
-let context = DuxCommerce.GetDataContext()
-
-let insertProduct id name price = 
-    let product = context.Dbo.Products.Create()
-    product.Id <- id
-    product.Name <- name
-    product.Price <- price
-    context.SubmitUpdates
-
-let getProduct (name:string) = 
-    query {
-        for product in context.Dbo.Products do
-        where (product.Name = name)
-        select product
-    } |> Seq.toList
+type Customer = {
+    Id : int
+    Name : string
+}
+let insert connString (product:Product) (customer:Customer) =
+    using(new SqlConnection(connString)) (fun connection ->
+        connection.EnsureOpen()
+        using(connection.BeginTransaction()) (fun trans ->
+            connection.Insert<Product, int> (product, transaction = trans)
+            connection.Insert<Customer, int> (customer, transaction = trans)
+            trans.Commit()
+        )
+    )
