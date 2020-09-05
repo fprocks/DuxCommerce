@@ -7,6 +7,6 @@ let main argv =
     
     let product = {Id=12; Name="BDD"; Price=100m}
     let customer = {Id = 10; Name="Bill"}
-    insert connString product customer
+    insert1 connString product customer
 
     0
