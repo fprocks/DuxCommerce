@@ -5,8 +5,8 @@ let connString = "Server=(local);Database=DuxCommerce;User Id=DuxAdmin;Password=
 let main argv =
     RepoDb.SqlServerBootstrap.Initialize()
     
-    let product = {Id=12; Name="BDD"; Price=100m}
-    let customer = {Id = 10; Name="Bill"}
+    let product = {Id=14; Name="BDD"; Price=100m}
+    let customer = {Id = 14; Name="Bill"}
     insert1 connString product customer
 
     0
