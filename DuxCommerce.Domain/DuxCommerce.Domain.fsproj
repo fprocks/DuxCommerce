@@ -6,8 +6,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Include="Common.SimpleTypes.fs" />
       <Compile Include="Settings.PublicTypes.fs" />
-      <Compile Include="Product.PublicTypes.fs" />
+      <Compile Include="Catalogue.PublicTypes.fs" />
     </ItemGroup>
 
 </Project>

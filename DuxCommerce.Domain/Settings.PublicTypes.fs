@@ -1,2 +1,2 @@
-﻿namespace DuxCommerce.DomainModel.Setting
+﻿namespace DuxCommerce.DomainModel.Settings
 
