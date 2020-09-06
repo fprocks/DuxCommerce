@@ -1,21 +1,27 @@
 ﻿namespace DuxCommerce.DomainModel.Catalogue
 
-open System.Net.Security
 open DuxCommerce.DomainModel.Common
 
 type ProductShippable =
     | PhysicalProduct
     | DigitalProduct
     | ShipSeparately
+    
  type OutOfStockMode =
      | Remove
      | ContinueSelling
      | StopSelling
+     
+ type ProductPriceType =
+     | Price of SalePrice
+     | Retail of RetailPrice
+     | Cost of ProductCost
+     
 type Product = {
     Id : ProductId
     Name : String255
     Description : string
-    Price : ProductPrice
+    Price : SalePrice
     Retail : RetailPrice
     Cost : ProductCost
     Length : Length
