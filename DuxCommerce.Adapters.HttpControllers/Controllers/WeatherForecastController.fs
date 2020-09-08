@@ -1,9 +1,6 @@
-﻿namespace WebApi.Controllers
+﻿namespace DuxCommerce.Adapters.HttpControllers
 
 open System
-open System.Collections.Generic
-open System.Linq
-open System.Threading.Tasks
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Logging
 open WebApi
@@ -12,11 +9,10 @@ open WebApi
 [<Route("[controller]")>]
 type WeatherForecastController (logger : ILogger<WeatherForecastController>) =
     inherit ControllerBase()
-
     let summaries = [| "Freezing"; "Bracing"; "Chilly"; "Cool"; "Mild"; "Warm"; "Balmy"; "Hot"; "Sweltering"; "Scorching" |]
-
+    
     [<HttpGet>]
-    member __.Get() : WeatherForecast[] =
+    member this.Get() : WeatherForecast[] =
         let rng = System.Random()
         [|
             for index in 0..4 ->

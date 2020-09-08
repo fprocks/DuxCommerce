@@ -8,7 +8,10 @@
     <ItemGroup>
       <Compile Include="Common.SimpleTypes.fs" />
       <Compile Include="Settings.PublicTypes.fs" />
+      <Compile Include="Settings.InternalTypes.fs" />
       <Compile Include="Catalogue.PublicTypes.fs" />
+      <Compile Include="Catalogue.InternalTypes.fs" />
+      <Compile Include="Catalogue.Ports.fs" />
     </ItemGroup>
 
 </Project>

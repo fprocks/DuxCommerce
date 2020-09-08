@@ -15,7 +15,7 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DuxCommerce.Specifications.
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DuxCommerce.Specifications.Functional", "DuxCommerce.Specifications.Functional\DuxCommerce.Specifications.Functional.fsproj", "{958F10FD-27E7-4EE9-A517-5D1C50F4962F}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DuxCommerce.Adapters.Http", "DuxCommerce.Adapters.Http\DuxCommerce.Adapters.Http.fsproj", "{DFAD685F-F14F-4DA6-82F1-BEB2EE8B3CF9}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DuxCommerce.Adapters.HttpControllers", "DuxCommerce.Adapters.HttpControllers\DuxCommerce.Adapters.HttpControllers.fsproj", "{DFAD685F-F14F-4DA6-82F1-BEB2EE8B3CF9}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DuxCommerce.DatabaseMigrations", "DuxCommerce.DatabaseMigrations\DuxCommerce.DatabaseMigrations.fsproj", "{BC3D90BE-5F23-49F2-99E7-06FDDD240AC4}"
 EndProject
