@@ -2,6 +2,10 @@
 
 // https://bartoszsypytkowski.com/dealing-with-complex-dependency-injection-in-f/
 
+type User = {
+    Salt : string
+}
+
 [<Interface>]
 type ILogger =
     abstract Debug: string -> unit
@@ -38,7 +42,12 @@ type AppEnv =
     interface ILog with member _.Logger = Log.live
     interface IDb with member _.Database = Db.live
         
-module Main =    
+module Main =
+    let changePass env req =
+        let user = Db.fetchUser env 1
+        Db.updateUser env { user with Salt = "" }
+        Log.debug env "Changed password for user" 
+    
     let foo env = // env :> IDb and env :> ILog
         let user = Db.fetchUser env 123
         Log.debug env "User: %A" user
