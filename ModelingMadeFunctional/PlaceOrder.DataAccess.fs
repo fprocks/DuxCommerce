@@ -15,7 +15,7 @@ type Customer = {
     Name : string
 }
 
-let insert1 connString (product:Product) (customer:Customer) =
+let insert1 connString product customer =
     ( use connection = new SqlConnection(connString)
       connection.EnsureOpen() |> ignore
       ( use trans = connection.BeginTransaction()
@@ -24,7 +24,7 @@ let insert1 connString (product:Product) (customer:Customer) =
         trans.Commit() )
     )
     
-let insert2 connString (product:Product) (customer:Customer) =
+let insert2 connString product customer =
     using(new SqlConnection(connString)) (fun connection ->
         connection.EnsureOpen() |> ignore
         using(connection.BeginTransaction()) (fun trans ->
