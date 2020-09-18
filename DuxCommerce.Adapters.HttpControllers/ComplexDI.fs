@@ -7,12 +7,9 @@ type ILogger =
     abstract Debug: string -> unit
     abstract Error: string -> unit 
 
-[<Interface>]
-type ILog = abstract Logger: ILogger
-
 module Log =
-    let debug (env: #ILog) fmt = Printf.kprintf env.Logger.Debug fmt
-    let error (env: #ILog) fmt = Printf.kprintf env.Logger.Error fmt
+    let debug (env: #ILogger) fmt = Printf.kprintf env.Debug fmt
+    let error (env: #ILogger) fmt = Printf.kprintf env.Error fmt
     let live : ILogger = failwith "Not implemented yet"
 
 
@@ -21,19 +18,21 @@ type IDatabase =
     abstract Query: string * 'i -> 'o
     abstract Execute: string * 'i -> unit
 
-[<Interface>]
-type IDb = abstract Database: IDatabase
-
 module Db = 
-    let fetchUser (env: #IDb) userId = env.Database.Query("", {| userId = userId |})
-    let updateUser (env: #IDb) user = env.Database.Execute("", user)
+    let fetchUser (env: #IDatabase) userId = env.Query("", {| userId = userId |})
+    let updateUser (env: #IDatabase) user = env.Execute("", user)
     let live : IDatabase = failwith "Not implemented yet"
 
 
 [<Struct>]
 type AppEnv = 
-    interface ILog with member _.Logger = Log.live
-    interface IDb with member _.Database = Db.live
+    interface ILogger with
+        member this.Debug s = Log.live.Debug s
+        member this.Error s = Log.live.Error s
+        
+    interface IDatabase with
+        member this.Query (s, i) = Db.live.Query (s, i)
+        member this.Execute (s, i) = Db.live.Execute (s, i)
         
 module Main =    
     let foo env = // env :> IDb and env :> ILog
