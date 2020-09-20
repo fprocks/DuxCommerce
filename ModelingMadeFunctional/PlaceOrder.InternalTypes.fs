@@ -1,6 +1,7 @@
 ﻿module OrderTaking.PlaceOrder.InternalTypes
 
 open OrderTaking.Common
+open DuxCommerce.Common
 
 // ======================================================
 // Define each step in the PlaceOrder workflow using internal types 

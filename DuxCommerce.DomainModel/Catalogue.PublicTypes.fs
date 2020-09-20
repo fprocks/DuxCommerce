@@ -17,5 +17,8 @@ type CreateProductRequest = {
     OutOfStock : int
 }
 
+//type CreateProductResponse = {
+//}
+
 type CreateProduct = CreateProductRequest -> unit
     

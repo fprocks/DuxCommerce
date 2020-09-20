@@ -10,6 +10,7 @@
 
 
 
+open DuxCommerce.Common
 open Newtonsoft.Json
 open OrderTaking.Common
 open OrderTaking.PlaceOrder.InternalTypes

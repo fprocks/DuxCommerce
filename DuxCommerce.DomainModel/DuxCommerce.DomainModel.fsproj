@@ -11,6 +11,7 @@
       <Compile Include="Settings.InternalTypes.fs" />
       <Compile Include="Catalogue.PublicTypes.fs" />
       <Compile Include="Catalogue.InternalTypes.fs" />
+      <Compile Include="Catalogue.Dto.fs" />
       <Compile Include="Catalogue.Ports.fs" />
     </ItemGroup>
 

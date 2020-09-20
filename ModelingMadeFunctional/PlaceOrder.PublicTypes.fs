@@ -3,6 +3,7 @@
 namespace OrderTaking.PlaceOrder
 
 open OrderTaking.Common
+open DuxCommerce.Common
 
 // ==================================
 // This file contains the definitions of PUBLIC types (exposed at the boundary of the bounded context)

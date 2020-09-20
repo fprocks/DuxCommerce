@@ -4,10 +4,13 @@ open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Logging
 
 [<ApiController>]
-[<Route("[controller]")>]
-type ProductController (logger : ILogger<ProductController>) =
+[<Route("api/v1/[controller]")>]
+type ProductsController (logger : ILogger<ProductsController>) =
     inherit ControllerBase()
 
     [<HttpGet>]
     member this.Get() : string =
         "test"
+        
+//    member this.Post(): CreateProductResponse =
+//        ""

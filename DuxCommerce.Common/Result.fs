@@ -1,4 +1,4 @@
-﻿namespace global  // note use of GLOBAL namespace
+﻿namespace DuxCommerce.Common  // note use of GLOBAL namespace
 
 open System
 

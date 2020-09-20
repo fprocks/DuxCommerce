@@ -1,0 +1,2 @@
+﻿namespace DuxCommerce.DomainModel.Catalogue
+

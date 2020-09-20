@@ -2,6 +2,7 @@
 
 open OrderTaking.Common
 open OrderTaking.PlaceOrder.InternalTypes
+open DuxCommerce.Common
 
 // ======================================================
 // This file contains the final implementation for the PlaceOrderWorkflow

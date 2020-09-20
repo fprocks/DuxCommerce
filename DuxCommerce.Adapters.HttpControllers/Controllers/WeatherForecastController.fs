@@ -6,7 +6,7 @@ open Microsoft.Extensions.Logging
 open WebApi
 
 [<ApiController>]
-[<Route("[controller]")>]
+[<Route("api/v1/[controller]")>]
 type WeatherForecastController (logger : ILogger<WeatherForecastController>) =
     inherit ControllerBase()
     let summaries = [| "Freezing"; "Bracing"; "Chilly"; "Cool"; "Mild"; "Warm"; "Balmy"; "Hot"; "Sweltering"; "Scorching" |]

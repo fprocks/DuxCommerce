@@ -5,6 +5,7 @@ open System.Collections.Generic
 open OrderTaking
 open OrderTaking.Common
 open OrderTaking.PlaceOrder.InternalTypes
+open DuxCommerce.Common
 
 // ======================================================
 // This file contains the logic for working with data transfer objects (DTOs)
