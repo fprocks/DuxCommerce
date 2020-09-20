@@ -1,11 +1,7 @@
-﻿namespace DuxCommerce.DomainModel.Common
-
-type String50 = private String50 of string
-type String100 = private String100 of string
-type String255 = private String255 of string
+﻿namespace DuxCommerce.Catalogue
 
 type ProductId = private ProductId of int64
-type SalePrice = private ProductPrice of decimal
+type SalePrice = private SalePrice of decimal
 type RetailPrice = private RetailPrice of decimal
 type ProductCost = private ProductCost of decimal
 

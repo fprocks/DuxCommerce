@@ -6,13 +6,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Include="Common.SimpleTypes.fs" />
       <Compile Include="Settings.PublicTypes.fs" />
       <Compile Include="Settings.InternalTypes.fs" />
+      <Compile Include="Catalogue.SimpleTypes.fs" />
+      <Compile Include="Catalogue.DomainTypes.fs" />
       <Compile Include="Catalogue.PublicTypes.fs" />
-      <Compile Include="Catalogue.InternalTypes.fs" />
-      <Compile Include="Catalogue.Dto.fs" />
-      <Compile Include="Catalogue.Ports.fs" />
+      <Compile Include="Catalogue.UseCases.fs" />
+      <Compile Include="Catalogue.Adapters.Database.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DuxCommerce.Common\DuxCommerce.Common.fsproj" />
     </ItemGroup>
 
 </Project>

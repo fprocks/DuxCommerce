@@ -1,0 +1,2 @@
+﻿module DuxCommerce.Catalogue.Adapters
+

@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <Compile Include="Result.fs" />
+      <Compile Include="SimpleTypes.fs" />
     </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 ﻿namespace DuxCommerce.Adapters.HttpControllers
 
+open DuxCommerce.Catalogue
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Logging
 
@@ -12,5 +13,6 @@ type ProductsController (logger : ILogger<ProductsController>) =
     member this.Get() : string =
         "test"
         
-//    member this.Post(): CreateProductResponse =
-//        ""
+    member this.Post(request: CreateProductRequest): Result<int, string> =
+//        let validatedRequest = request |> 
+        Ok 100
