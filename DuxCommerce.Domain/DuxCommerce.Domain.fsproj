@@ -2,7 +2,6 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <RootNamespace>DuxCommerce.DomainModel</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -11,12 +10,17 @@
       <Compile Include="Catalogue.SimpleTypes.fs" />
       <Compile Include="Catalogue.DomainTypes.fs" />
       <Compile Include="Catalogue.PublicTypes.fs" />
-      <Compile Include="Catalogue.UseCases.fs" />
+      <Compile Include="Catalogue.Dto.fs" />
       <Compile Include="Catalogue.Adapters.Database.fs" />
+      <Compile Include="Catalogue.UseCases.fs" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\DuxCommerce.Common\DuxCommerce.Common.fsproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="RepoDb.SqlServer" Version="1.0.13" />
     </ItemGroup>
 
 </Project>

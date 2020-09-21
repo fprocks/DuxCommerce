@@ -3,6 +3,7 @@
 open DuxCommerce.Catalogue
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Logging
+open CompositionRoot
 
 [<ApiController>]
 [<Route("api/v1/[controller]")>]
@@ -13,5 +14,5 @@ type ProductsController (logger : ILogger<ProductsController>) =
     member this.Get() : string =
         "test"
         
-    member this.Post(request: CreateProductRequest): Result<Product, string> =
-        request |> CreateProductRequest.toDomain
+    member this.Post(request: CreateProductRequest): Result<unit, string> =
+        createProduct request

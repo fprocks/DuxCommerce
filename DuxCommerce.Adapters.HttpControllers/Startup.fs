@@ -4,6 +4,7 @@ open System
 open System.Collections.Generic
 open System.Linq
 open System.Threading.Tasks
+open DuxCommerce.Catalogue
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Hosting
 open Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +12,8 @@ open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Hosting
+
+open UseCases
 
 type Startup private () =
     new (configuration: IConfiguration) as this =

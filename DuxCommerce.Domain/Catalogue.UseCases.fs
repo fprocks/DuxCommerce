@@ -2,5 +2,12 @@
 
 open DuxCommerce.Common
 
-module UseCases = 
-    type CreateProduct = CreateProductRequest -> AsyncResult<int, CreateProductError>
+module UseCases =     
+    let createProduct connString request =
+        let dto = request |> CreateProductRequest.toDomain
+        match dto with
+        | Ok _ ->
+            ProductDto request 
+            |> DataAccess.createProduct connString
+        | Error m -> Error m
+    

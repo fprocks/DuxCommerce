@@ -12,8 +12,7 @@ open Microsoft.Extensions.Hosting
 open Microsoft.Extensions.Logging
 
 module Program =
-    let exitCode = 0
-
+    
     let CreateHostBuilder args =
         Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(fun webBuilder ->
@@ -22,6 +21,8 @@ module Program =
 
     [<EntryPoint>]
     let main args =
+        RepoDb.SqlServerBootstrap.Initialize()
+        
         CreateHostBuilder(args).Build().Run()
 
-        exitCode
+        0
