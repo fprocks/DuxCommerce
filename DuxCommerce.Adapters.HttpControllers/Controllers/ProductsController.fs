@@ -13,6 +13,5 @@ type ProductsController (logger : ILogger<ProductsController>) =
     member this.Get() : string =
         "test"
         
-    member this.Post(request: CreateProductRequest): Result<int, string> =
-//        let validatedRequest = request |> 
-        Ok 100
+    member this.Post(request: CreateProductRequest): Result<Product, string> =
+        request |> CreateProductRequest.toDomain

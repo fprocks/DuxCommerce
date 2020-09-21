@@ -12,7 +12,7 @@ type CreateProductRequest = {
     Width : decimal
     Height : decimal
     Weight: decimal
-    Shippable : string
+    ShippingType : string
     SKU : string
     Barcode : string
     TrackInventory : bool
@@ -31,7 +31,7 @@ module CreateProductRequest =
             let width = Width request.Width
             let height = Height request.Height
             let weight = Weight request.Weight
-            let! shippingType = ShippingType.create "ShippingType" request.Shippable
+            let! shippingType = ShippingType.create "ShippingType" request.ShippingType
             let! sku = String100.create "SKU" request.SKU
             let! barcode = String50.create "Barcode" request.Barcode
             let! outOfStockHandling = OutOfStockHandling.create "OutOfStockHandling" request.OutOfStockHandling

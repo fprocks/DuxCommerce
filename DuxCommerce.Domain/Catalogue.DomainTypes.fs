@@ -16,11 +16,11 @@ module ShippingType =
 
     let create fieldName shippingType =
         match shippingType with
-        | "physicalproduct"  -> 
+        | "PhysicalProduct"  -> 
             Ok PhysicalProduct
-        | "digitalproduct" -> 
+        | "DigitalProduct" -> 
             Ok DigitalProduct
-        | "shipseparately" -> 
+        | "ShipSeparately" -> 
             Ok ShipSeparately
         | _ -> 
             let msg = sprintf "%s: Must be one of 'PhysicalProduct', 'DigitalProduct', 'ShipSeparately'" fieldName 
