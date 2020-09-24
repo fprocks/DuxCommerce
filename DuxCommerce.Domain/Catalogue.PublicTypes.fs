@@ -16,7 +16,7 @@ type CreateProductRequest = {
     SKU : string
     Barcode : string
     TrackInventory : bool
-    OutOfStockHandling : string
+    OutOfStockRule : string
 }
 
 module CreateProductRequest =
@@ -34,7 +34,7 @@ module CreateProductRequest =
             let! shippingType = ShippingType.create "ShippingType" request.ShippingType
             let! sku = String100.create "SKU" request.SKU
             let! barcode = String50.create "Barcode" request.Barcode
-            let! outOfStockHandling = OutOfStockHandling.create "OutOfStockHandling" request.OutOfStockHandling
+            let! outOfStockHandling = OutOfStockHandling.create "OutOfStockRule" request.OutOfStockRule
             return {
                 Id = id
                 Name = name
@@ -50,7 +50,7 @@ module CreateProductRequest =
                 SKU = sku
                 Barcode = barcode
                 TrackInventory = request.TrackInventory
-                OutOfStockHandling = outOfStockHandling
+                OutOfStockRule = outOfStockHandling
                 }
             }
 
