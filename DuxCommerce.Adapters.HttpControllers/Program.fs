@@ -5,13 +5,19 @@ open System.Collections.Generic
 open System.IO
 open System.Linq
 open System.Threading.Tasks
+open DuxCommerce.Catalogue
 open Microsoft.AspNetCore
 open Microsoft.AspNetCore.Hosting
 open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.Hosting
 open Microsoft.Extensions.Logging
+open RepoDb
 
 module Program =
+    
+    let InitDb =
+        SqlServerBootstrap.Initialize()
+        FluentMapper.Entity<CreateProductDto>().Table("Product")
     
     let CreateHostBuilder args =
         Host.CreateDefaultBuilder(args)
@@ -21,7 +27,8 @@ module Program =
 
     [<EntryPoint>]
     let main args =
-        RepoDb.SqlServerBootstrap.Initialize()
+        
+        InitDb
         
         CreateHostBuilder(args).Build().Run()
 
