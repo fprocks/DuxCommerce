@@ -50,7 +50,7 @@ module OutOfStockRule =
             let msg = sprintf "%s: Must be one of 'Remove', 'ContinueSelling', 'StopSelling'" fieldName 
             Error msg        
      
-type ProductModel = {
+type Product = {
     Id : ProductId
     Name : String255
     Description : string

@@ -13,7 +13,7 @@ open RepoDb
 
 module DbSetup = 
     let InitDb =   
-//        ModelMapper.Map()
+        ModelMapper.Map()
         SqlServerBootstrap.Initialize()
 type Startup private () =
     new (configuration: IConfiguration) as this =
