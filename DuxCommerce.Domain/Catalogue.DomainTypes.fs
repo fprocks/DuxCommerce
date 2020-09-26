@@ -31,9 +31,9 @@ module ShippingType =
      | ContinueSelling
      | StopSelling
      
-module OutOfStockHandling =
-    let value stockHandling = 
-        match stockHandling with
+module OutOfStockRule =
+    let value stockRule = 
+        match stockRule with
         | Remove -> "Remove"
         | ContinueSelling -> "ContinueSelling"
         | StopSelling -> "StopSelling"
@@ -52,7 +52,7 @@ module OutOfStockHandling =
      
 type Product = {
     Id : ProductId
-    Name : String256
+    Name : String255
     Description : string
     Price : SalePrice
     Retail : RetailPrice
@@ -62,8 +62,8 @@ type Product = {
     Height : Height
     Weight: Weight
     ShippingType : ShippingType
-    SKU : String100
-    Barcode : String50
+    SKU : String255
+    Barcode : String255
     TrackInventory : bool
     OutOfStockRule : OutOfStockRule
 }

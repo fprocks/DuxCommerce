@@ -17,7 +17,7 @@ module Program =
     
     let InitDb =
         SqlServerBootstrap.Initialize()
-        FluentMapper.Entity<CreateProductDto>().Table("Product")
+        FluentMapper.Entity<CreateProductDto>().Table("Product") |> ignore
     
     let CreateHostBuilder args =
         Host.CreateDefaultBuilder(args)

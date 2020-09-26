@@ -11,11 +11,9 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Specifications.
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Adapters.HttpControllers", "DuxCommerce.Adapters.HttpControllers\DuxCommerce.Adapters.HttpControllers.fsproj", "{DFAD685F-F14F-4DA6-82F1-BEB2EE8B3CF9}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.DatabaseMigrations", "DuxCommerce.DatabaseMigrations\DuxCommerce.DatabaseMigrations.fsproj", "{BC3D90BE-5F23-49F2-99E7-06FDDD240AC4}"
-EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Common", "DuxCommerce.Common\DuxCommerce.Common.fsproj", "{15A9DAD7-A7DD-4358-BC34-4078971DD636}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DuxCommerce.Adapters.Database", "DuxCommerce.Adapters.Database\DuxCommerce.Adapters.Database.fsproj", "{22A2ABA1-52FE-4ADA-B091-AEE67A0231ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuxCommerce.DatabaseMigrations", "DuxCommerce.DatabaseMigrations\DuxCommerce.DatabaseMigrations.csproj", "{E65E2454-2F5B-4289-A40D-44FEF6C8EBFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,18 +37,14 @@ Global
 		{DFAD685F-F14F-4DA6-82F1-BEB2EE8B3CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFAD685F-F14F-4DA6-82F1-BEB2EE8B3CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFAD685F-F14F-4DA6-82F1-BEB2EE8B3CF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC3D90BE-5F23-49F2-99E7-06FDDD240AC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC3D90BE-5F23-49F2-99E7-06FDDD240AC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC3D90BE-5F23-49F2-99E7-06FDDD240AC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC3D90BE-5F23-49F2-99E7-06FDDD240AC4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{15A9DAD7-A7DD-4358-BC34-4078971DD636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15A9DAD7-A7DD-4358-BC34-4078971DD636}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15A9DAD7-A7DD-4358-BC34-4078971DD636}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15A9DAD7-A7DD-4358-BC34-4078971DD636}.Release|Any CPU.Build.0 = Release|Any CPU
-		{22A2ABA1-52FE-4ADA-B091-AEE67A0231ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{22A2ABA1-52FE-4ADA-B091-AEE67A0231ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{22A2ABA1-52FE-4ADA-B091-AEE67A0231ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{22A2ABA1-52FE-4ADA-B091-AEE67A0231ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E65E2454-2F5B-4289-A40D-44FEF6C8EBFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E65E2454-2F5B-4289-A40D-44FEF6C8EBFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E65E2454-2F5B-4289-A40D-44FEF6C8EBFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E65E2454-2F5B-4289-A40D-44FEF6C8EBFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

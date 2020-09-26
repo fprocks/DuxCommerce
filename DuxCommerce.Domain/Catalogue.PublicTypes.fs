@@ -23,7 +23,7 @@ module CreateProductRequest =
     let toDomain (request: CreateProductRequest) : Result<Product, string> =
         result {
             let id = ProductId (int64 0)
-            let! name = String256.create "Name" request.Name
+            let! name = String255.create "Name" request.Name
             let price = SalePrice request.Price
             let retail = RetailPrice request.Retail
             let cost = ProductCost request.Cost
@@ -32,9 +32,9 @@ module CreateProductRequest =
             let height = Height request.Height
             let weight = Weight request.Weight
             let! shippingType = ShippingType.create "ShippingType" request.ShippingType
-            let! sku = String100.create "SKU" request.SKU
-            let! barcode = String50.create "Barcode" request.Barcode
-            let! outOfStockHandling = OutOfStockHandling.create "OutOfStockRule" request.OutOfStockRule
+            let! sku = String255.create "SKU" request.SKU
+            let! barcode = String255.create "Barcode" request.Barcode
+            let! outOfStockRule = OutOfStockRule.create "OutOfStockRule" request.OutOfStockRule
             return {
                 Id = id
                 Name = name
@@ -50,7 +50,7 @@ module CreateProductRequest =
                 SKU = sku
                 Barcode = barcode
                 TrackInventory = request.TrackInventory
-                OutOfStockRule = outOfStockHandling
+                OutOfStockRule = outOfStockRule
                 }
             }
 

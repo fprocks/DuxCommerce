@@ -156,16 +156,16 @@ module String50 =
     let createOption fieldName str = 
         ConstrainedType.createStringOption fieldName String50 50 str
 
-type String256 = private String256 of string
+type String255 = private String255 of string
 
-module String256 =
-    let value (String256 str) = str
+module String255 =
+    let value (String255 str) = str
 
     let create fieldName str = 
-        ConstrainedType.createString fieldName String256 256 str
+        ConstrainedType.createString fieldName String255 255 str
 
     let createOption fieldName str = 
-        ConstrainedType.createStringOption fieldName String256 256 str
+        ConstrainedType.createStringOption fieldName String255 255 str
 
 type String100 = String100 of string
 
