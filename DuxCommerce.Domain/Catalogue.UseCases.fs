@@ -7,7 +7,7 @@ module UseCases =
         let dto = request |> CreateProductRequest.toDomain
         match dto with
         | Ok _ ->
-            ProductDto request 
+            request 
             |> DataAccess.createProduct connString
         | Error m -> Error m
     

@@ -1,3 +1,3 @@
 ﻿namespace DuxCommerce.Catalogue
 
-type CreateProductDto = ProductDto of CreateProductRequest
+//type CreateProductDto = ProductDto of CreateProductRequest

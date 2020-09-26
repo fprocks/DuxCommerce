@@ -7,7 +7,7 @@ namespace DuxCommerce.DatabaseMigrations
     {
         public override void Up()
         {
-            Create.Table("Product")
+            Create.Table("ProductModel")
                 .WithColumn("Id").AsInt64().PrimaryKey().Identity()
                 .WithColumn("Name").AsString(255).NotNullable()
                 .WithColumn("Description").AsString().NotNullable()
@@ -27,7 +27,7 @@ namespace DuxCommerce.DatabaseMigrations
 
         public override void Down()
         {
-            Delete.Table("Product");
+            Delete.Table("ProductModel");
         }
     }
 }

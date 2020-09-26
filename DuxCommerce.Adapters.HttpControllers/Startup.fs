@@ -9,8 +9,12 @@ open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Hosting
 open FluentMigrator.Runner
+open RepoDb
 
-
+module DbSetup = 
+    let InitDb =   
+//        ModelMapper.Map()
+        SqlServerBootstrap.Initialize()
 type Startup private () =
     new (configuration: IConfiguration) as this =
         Startup() then
@@ -21,6 +25,8 @@ type Startup private () =
         // Add framework services.
         services.AddAuthorization() |> ignore
         services.AddControllers().AddNewtonsoftJson() |> ignore
+        
+        DbSetup.InitDb
         
         services.AddFluentMigratorCore().ConfigureRunner(fun config ->
             config.AddSqlServer()

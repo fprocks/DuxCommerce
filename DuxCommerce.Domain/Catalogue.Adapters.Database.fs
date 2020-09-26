@@ -5,12 +5,12 @@ open System.Data.SqlClient
 open RepoDb
 module DataAccess =
     
-    let createProduct connString (product:CreateProductDto) =
+    let createProduct connString (product:Product) =
         try
             ( use connection = new SqlConnection(connString)
               connection.EnsureOpen() |> ignore
               ( use trans = connection.BeginTransaction()
-                connection.Insert<CreateProductDto, int> (product, transaction = trans) |> ignore
+                connection.Insert<Product, int> (product, transaction = trans) |> ignore
                 trans.Commit() )
             )
             Ok ()

@@ -14,5 +14,5 @@ type ProductsController (logger : ILogger<ProductsController>) =
     member this.Get() : string =
         "test"
         
-    member this.Post(request: CreateProductRequest): Result<unit, string> =
+    member this.Post(request: Product): Result<unit, string> =
         createProduct request
