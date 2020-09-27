@@ -10,9 +10,9 @@ open CompositionRoot
 type ProductsController (logger : ILogger<ProductsController>) =
     inherit ControllerBase()
 
-    [<HttpGet>]
-    member this.Get() : string =
-        "test"
+    [<HttpGet("{id}")>]
+    member this.Get(id : int64) =
+        getProduct id
         
     member this.Post(request: CreateProductRequest): Result<unit, string> =
         createProduct request

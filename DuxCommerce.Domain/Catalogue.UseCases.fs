@@ -11,3 +11,5 @@ module UseCases =
             |> DataAccess.createProduct connString
         | Error m -> Error m
     
+    let getProduct connString id =
+        DataAccess.getProducts connString id

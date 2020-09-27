@@ -15,6 +15,7 @@ module DbSetup =
     let InitDb =   
         ModelMapper.Map()
         SqlServerBootstrap.Initialize()
+        
 type Startup private () =
     new (configuration: IConfiguration) as this =
         Startup() then

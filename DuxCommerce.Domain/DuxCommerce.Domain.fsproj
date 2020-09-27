@@ -11,7 +11,7 @@
       <Compile Include="Catalogue.DomainTypes.fs" />
       <Compile Include="Catalogue.PublicTypes.fs" />
       <Compile Include="Catalogue.Dto.fs" />
-      <Compile Include="Catalogue.Adapters.Database.fs" />
+      <Compile Include="Catalogue.DataAccess.fs" />
       <Compile Include="Catalogue.UseCases.fs" />
     </ItemGroup>
 

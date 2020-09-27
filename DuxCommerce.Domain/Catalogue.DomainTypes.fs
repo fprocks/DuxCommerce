@@ -26,7 +26,7 @@ module ShippingType =
             let msg = sprintf "%s: Must be one of 'PhysicalProduct', 'DigitalProduct', 'ShipSeparately'" fieldName 
             Error msg
             
- type OutOfStockRule =
+type OutOfStockRule =
      | Remove
      | ContinueSelling
      | StopSelling

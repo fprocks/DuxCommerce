@@ -16,3 +16,13 @@ module DataAccess =
             Ok ()
         with
             | :? Exception as ex -> Error ex.Message
+            
+            
+    let getProducts connString id =
+        try
+            ( use connection = new SqlConnection(connString)
+              let product = connection.Query<CreateProductRequest>(fun p -> p.Id = id)
+              Ok product
+            )
+        with
+            | :? Exception as ex -> Error ex.Message

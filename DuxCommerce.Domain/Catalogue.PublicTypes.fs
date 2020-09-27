@@ -2,7 +2,9 @@
 
 open DuxCommerce.Common
 
+[<CLIMutable>]
 type CreateProductRequest = {
+    Id: int64
     Name : string
     Description : string
     Price : decimal
