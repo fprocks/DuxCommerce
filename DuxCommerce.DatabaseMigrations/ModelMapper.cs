@@ -7,7 +7,7 @@ namespace DuxCommerce.DatabaseMigrations
     {
         public static void Map()
         {
-            FluentMapper.Entity<CreateProductRequest>()
+            FluentMapper.Entity<ProductInfo>()
                 .Table("[dbo].[Product]");
         }
     }

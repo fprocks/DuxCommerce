@@ -7,7 +7,7 @@ namespace DuxCommerce.DatabaseMigrations
     {
         public override void Up()
         {
-            Create.Table("ProductModel")
+            Create.Table("Product")
                 .WithColumn("Id").AsInt64().PrimaryKey().Identity()
                 .WithColumn("Name").AsString(255).NotNullable()
                 .WithColumn("Description").AsString().NotNullable()
@@ -19,7 +19,7 @@ namespace DuxCommerce.DatabaseMigrations
                 .WithColumn("Height").AsDecimal().NotNullable()
                 .WithColumn("Weight").AsDecimal().NotNullable()
                 .WithColumn("ShippingType").AsString(50).NotNullable()
-                .WithColumn("SKU").AsString(255).NotNullable()
+                .WithColumn("Sku").AsString(255).NotNullable()
                 .WithColumn("Barcode").AsString(255).NotNullable()
                 .WithColumn("TrackInventory").AsBoolean().NotNullable()
                 .WithColumn("OutOfStockRule").AsString(50).NotNullable();
@@ -27,7 +27,7 @@ namespace DuxCommerce.DatabaseMigrations
 
         public override void Down()
         {
-            Delete.Table("ProductModel");
+            Delete.Table("Product");
         }
     }
 }

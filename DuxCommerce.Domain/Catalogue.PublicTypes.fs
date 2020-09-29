@@ -3,7 +3,7 @@
 open DuxCommerce.Common
 
 [<CLIMutable>]
-type CreateProductRequest = {
+type ProductInfo = {
     Id: int64
     Name : string
     Description : string
@@ -22,7 +22,7 @@ type CreateProductRequest = {
 }
 
 module CreateProductRequest =
-    let toDomain (request: CreateProductRequest) : Result<Product, string> =
+    let toDomain (request: ProductInfo) : Result<Product, string> =
         result {
             let id = ProductId (int64 0)
             let! name = String255.create "Name" request.Name
