@@ -5,7 +5,7 @@ open System.Data.SqlClient
 open RepoDb
 module DataAccess =
     
-    let createProduct connString (product:ProductInfo) =
+    let createProduct connString product =
         try
             ( use connection = new SqlConnection(connString)
               connection.EnsureOpen() |> ignore
@@ -18,11 +18,20 @@ module DataAccess =
             | :? Exception as ex -> Error ex.Message
             
             
-    let getProducts connString id =
+    let getProduct connString id =
         try
             ( use connection = new SqlConnection(connString)
               let product = connection.Query<ProductInfo>(fun p -> p.Id = id)
               Ok product
             )
         with
-            | :? Exception as ex -> Error ex.Message
+            | :? Exception as ex -> Error ex.Message                       
+            
+    let updateProduct connString product =
+        try
+            ( use connection = new SqlConnection(connString)
+              let product = connection.Update<ProductInfo>(product)
+              Ok ()
+            )
+        with
+            | :? Exception as ex -> Error ex.Message            

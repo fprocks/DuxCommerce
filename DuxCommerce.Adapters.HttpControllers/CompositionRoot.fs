@@ -8,3 +8,5 @@ module CompositionRoot =
     let createProduct = createProduct connString
     
     let getProduct = getProduct connString
+    
+    let updateProduct = updateProduct connString
