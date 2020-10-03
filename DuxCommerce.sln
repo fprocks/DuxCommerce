@@ -5,15 +5,15 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Domain", "DuxCommerce.Domain\DuxCommerce.Domain.fsproj", "{A053EC2A-776F-4EFA-83F2-4D9DDADF5FA5}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Specifications.UseCases", "DuxCommerce.Specifications.UseCases\DuxCommerce.Specifications.UseCases.fsproj", "{3E27237F-BB49-48DF-9AD3-C202720C2549}"
-EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Specifications.Functional", "DuxCommerce.Specifications.Functional\DuxCommerce.Specifications.Functional.fsproj", "{958F10FD-27E7-4EE9-A517-5D1C50F4962F}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Adapters.HttpControllers", "DuxCommerce.Adapters.HttpControllers\DuxCommerce.Adapters.HttpControllers.fsproj", "{DFAD685F-F14F-4DA6-82F1-BEB2EE8B3CF9}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Common", "DuxCommerce.Common\DuxCommerce.Common.fsproj", "{15A9DAD7-A7DD-4358-BC34-4078971DD636}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuxCommerce.DatabaseMigrations", "DuxCommerce.DatabaseMigrations\DuxCommerce.DatabaseMigrations.csproj", "{E65E2454-2F5B-4289-A40D-44FEF6C8EBFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DuxCommerce.DatabaseMigrations", "DuxCommerce.DatabaseMigrations\DuxCommerce.DatabaseMigrations.csproj", "{E65E2454-2F5B-4289-A40D-44FEF6C8EBFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuxCommerce.Specifications.UseCases", "DuxCommerce.Specifications.UseCases\DuxCommerce.Specifications.UseCases.csproj", "{8AD75569-4675-4F4F-89D8-DB23BCDE631A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,6 @@ Global
 		{A053EC2A-776F-4EFA-83F2-4D9DDADF5FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A053EC2A-776F-4EFA-83F2-4D9DDADF5FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A053EC2A-776F-4EFA-83F2-4D9DDADF5FA5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E27237F-BB49-48DF-9AD3-C202720C2549}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E27237F-BB49-48DF-9AD3-C202720C2549}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E27237F-BB49-48DF-9AD3-C202720C2549}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E27237F-BB49-48DF-9AD3-C202720C2549}.Release|Any CPU.Build.0 = Release|Any CPU
 		{958F10FD-27E7-4EE9-A517-5D1C50F4962F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{958F10FD-27E7-4EE9-A517-5D1C50F4962F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{958F10FD-27E7-4EE9-A517-5D1C50F4962F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{E65E2454-2F5B-4289-A40D-44FEF6C8EBFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E65E2454-2F5B-4289-A40D-44FEF6C8EBFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E65E2454-2F5B-4289-A40D-44FEF6C8EBFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AD75569-4675-4F4F-89D8-DB23BCDE631A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AD75569-4675-4F4F-89D8-DB23BCDE631A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AD75569-4675-4F4F-89D8-DB23BCDE631A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AD75569-4675-4F4F-89D8-DB23BCDE631A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
