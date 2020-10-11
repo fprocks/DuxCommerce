@@ -6,12 +6,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
-    <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.4.133" />
+    <PackageReference Include="Respawn" Version="3.3.0" />
+    <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.4.192" />
 
     
-    <PackageReference Include="SpecRun.SpecFlow" Version="3.4.19" />
-    
 
+    
+    <PackageReference Include="SpecFlow.xUnit" Version="3.4.14" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
     
 
     
@@ -21,7 +24,6 @@
 
   <ItemGroup>
     <Folder Include="Drivers\" />
-    <Folder Include="Hooks\" />
   </ItemGroup>
 
 </Project>
