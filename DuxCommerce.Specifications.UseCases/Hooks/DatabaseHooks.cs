@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 namespace DuxCommerce.Specifications.UseCases.Hooks
 {
     [Binding]
-    public sealed class DbHooks
+    public sealed class DatabaseHooks
     {
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
 
