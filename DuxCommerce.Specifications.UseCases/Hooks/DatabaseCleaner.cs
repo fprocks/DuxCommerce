@@ -17,7 +17,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
             {
                 TablesToIgnore = new[]
                 {
-                    "SchemaVersion",
+                    "VersionInfo",
                 }
             };
 

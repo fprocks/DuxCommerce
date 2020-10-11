@@ -8,9 +8,7 @@
     <ItemGroup>
         <Compile Include="CompositionRoot.fs" />
         <Compile Include="ComplexDI.fs" />
-        <Compile Include="WeatherForecast.fs" />
         <Compile Include="Controllers\ProductsController.fs" />
-        <Compile Include="Controllers\WeatherForecastController.fs" />
         <Compile Include="Startup.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
