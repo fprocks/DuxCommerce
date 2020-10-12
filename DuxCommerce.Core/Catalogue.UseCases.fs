@@ -1,7 +1,5 @@
 ﻿namespace DuxCommerce.Catalogue
 
-open DuxCommerce.Common
-
 module UseCases =     
     let createProduct connString product =
         let dto = product |> CreateProductRequest.toDomain

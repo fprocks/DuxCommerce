@@ -10,7 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DuxCommerce.Domain\DuxCommerce.Domain.fsproj" />
+      <ProjectReference Include="..\DuxCommerce.Core\DuxCommerce.Core.fsproj" />
     </ItemGroup>
 
 </Project>

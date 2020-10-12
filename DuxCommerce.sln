@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Domain", "DuxCommerce.Domain\DuxCommerce.Domain.fsproj", "{A053EC2A-776F-4EFA-83F2-4D9DDADF5FA5}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Core", "DuxCommerce.Core\DuxCommerce.Core.fsproj", "{A053EC2A-776F-4EFA-83F2-4D9DDADF5FA5}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Specifications.Functional", "DuxCommerce.Specifications.Functional\DuxCommerce.Specifications.Functional.fsproj", "{958F10FD-27E7-4EE9-A517-5D1C50F4962F}"
 EndProject
