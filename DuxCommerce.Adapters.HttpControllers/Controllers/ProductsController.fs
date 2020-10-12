@@ -14,8 +14,10 @@ type ProductsController (logger : ILogger<ProductsController>) =
     member this.Get(id : int64) =
         getProduct id
         
+    [<HttpPost>]
     member this.Post(request: ProductInfo): Result<unit, string> =
         createProduct request
-//        
-//    member this.Put(request: ProductInfo): Result<unit, string> =
-//        updateProduct request
+        
+    [<HttpPut>]
+    member this.Put(request: ProductInfo): Result<unit, string> =
+        updateProduct request
