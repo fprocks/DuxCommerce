@@ -32,14 +32,14 @@ type OutOfStockRule =
      | StopSelling
      
 module OutOfStockRule =
-    let value stockRule = 
-        match stockRule with
+    let value outofstockRule = 
+        match outofstockRule with
         | Remove -> "Remove"
         | ContinueSelling -> "ContinueSelling"
         | StopSelling -> "StopSelling"
 
-    let create fieldName stockHandling =
-        match stockHandling with
+    let create fieldName outofstockRule =
+        match outofstockRule with
         | "Remove"  -> 
             Ok Remove
         | "ContinueSelling" -> 
