@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 namespace DuxCommerce.Specifications.UseCases.Hooks
 {
     [Binding]
-    public sealed class DatabaseHooks
+    public sealed class DatabaseSetup
     {
         [BeforeScenario]
         public void BeforeScenario()

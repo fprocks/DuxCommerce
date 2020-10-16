@@ -1,6 +1,5 @@
 ﻿using DuxCommerce.Catalogue;
-using DuxCommerce.Specifications.UseCases.Helpers;
-using System;
+using DuxCommerce.Specifications.UseCases.Hooks;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -13,7 +12,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
         public ProductSteps(MyScenarioContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         [Given(@"Tom enters the following product information:")]
@@ -22,5 +21,24 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var products = table.CreateSet<ProductInfo>();
             _context.ProductInfoList.AddRange(products);
         }
+
+        [When(@"Tom saves the products")]
+        public void WhenTomSavesTheProducts()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"Tom should receive success result")]
+        public void ThenTomShouldReceiveSuccessResult()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the products should be created as follow:")]
+        public void ThenTheProductsShouldBeCreatedAsFollow(Table table)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
     }
 }
