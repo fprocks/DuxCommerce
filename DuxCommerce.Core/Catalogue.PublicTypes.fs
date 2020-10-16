@@ -33,10 +33,10 @@ module CreateProductRequest =
             let width = Width request.Width
             let height = Height request.Height
             let weight = Weight request.Weight
-            let! shippingType = ShippingType.create "ShippingType" request.ShippingType
+            let! shippingType = ShippingType.create request.ShippingType
             let! sku = String255.create "SKU" request.SKU
             let! barcode = String255.create "Barcode" request.Barcode
-            let! outOfStockRule = OutOfStockRule.create "OutOfStockRule" request.OutOfStockRule
+            let! outOfStockRule = OutOfStockRule.create request.OutOfStockRule
             return {
                 Id = id
                 Name = name

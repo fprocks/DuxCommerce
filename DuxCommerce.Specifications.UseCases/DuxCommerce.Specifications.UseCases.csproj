@@ -3,6 +3,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="FSharp.Core" Version="4.7.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="Respawn" Version="3.3.0" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.4.192" />
@@ -12,5 +13,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Drivers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DuxCommerce.Core">
+      <HintPath>..\DuxCommerce.Core\bin\Debug\netcoreapp3.1\DuxCommerce.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

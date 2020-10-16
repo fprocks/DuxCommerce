@@ -14,7 +14,7 @@ module ShippingType =
         | DigitalProduct -> "DigitalProduct"
         | ShipSeparately -> "ShipSeparately"
 
-    let create fieldName shippingType =
+    let create shippingType =
         match shippingType with
         | "PhysicalProduct"  -> 
             Ok PhysicalProduct
@@ -23,7 +23,7 @@ module ShippingType =
         | "ShipSeparately" -> 
             Ok ShipSeparately
         | _ -> 
-            let msg = sprintf "%s: Must be one of 'PhysicalProduct', 'DigitalProduct', 'ShipSeparately'" fieldName 
+            let msg = "ShippingType must be one of 'PhysicalProduct', 'DigitalProduct', 'ShipSeparately'" 
             Error msg
             
 type OutOfStockRule =
@@ -38,7 +38,7 @@ module OutOfStockRule =
         | ContinueSelling -> "ContinueSelling"
         | StopSelling -> "StopSelling"
 
-    let create fieldName outofstockRule =
+    let create outofstockRule =
         match outofstockRule with
         | "Remove"  -> 
             Ok Remove
@@ -47,7 +47,7 @@ module OutOfStockRule =
         | "StopSelling" -> 
             Ok StopSelling
         | _ -> 
-            let msg = sprintf "%s: Must be one of 'Remove', 'ContinueSelling', 'StopSelling'" fieldName 
+            let msg = "OutOfStockRule must be one of 'Remove', 'ContinueSelling', 'StopSelling'" 
             Error msg        
      
 type Product = {
