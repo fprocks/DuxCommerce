@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using TechTalk.SpecFlow;
@@ -14,6 +15,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
     public class HostSetup
     {
         private readonly IObjectContainer _objectContainer;
+        private static HttpClient _httpClient;
 
         public HostSetup(IObjectContainer objectContainer)
         {
@@ -21,12 +23,18 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
         }
 
         [BeforeTestRun]
-        public void BeforeTestRun()
+        public static void BeforeTestRun()
         {
             InitHttpWebServer();
         }
 
-        private void InitHttpWebServer()
+        [BeforeScenario]
+        public void BeforeScenario()
+        {
+            RegisterDependencies();
+        }
+
+        private static void InitHttpWebServer()
         {
             var hostConfig = new ConfigurationBuilder()
                 .AddJsonFile("host-settings.json")
@@ -36,9 +44,13 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
                 .UseStartup<WebApi.Startup>();
 
             var server = new TestServer(hostBuilder);
-            var client = server.CreateClient();
+            _httpClient = server.CreateClient();
+        }
 
-            _objectContainer.RegisterInstanceAs(client);
+        private void RegisterDependencies()
+        {
+            _objectContainer.RegisterInstanceAs(_httpClient);
+            _objectContainer.RegisterTypeAs<ApiClient, IApiClient>();
         }
     }
 }

@@ -13,7 +13,7 @@ module DataAccess =
                 connection.Insert<ProductInfo, int64> (product, transaction = trans) |> ignore
                 trans.Commit() )
             )
-            Ok ()
+            Ok product
         with
             | :? Exception as ex -> Error ex.Message
             
@@ -30,8 +30,8 @@ module DataAccess =
     let updateProduct connString product =
         try
             ( use connection = new SqlConnection(connString)
-              let product = connection.Update<ProductInfo>(product)
-              Ok ()
+              connection.Update<ProductInfo>(product) |> ignore
+              Ok product
             )
         with
             | :? Exception as ex -> Error ex.Message            

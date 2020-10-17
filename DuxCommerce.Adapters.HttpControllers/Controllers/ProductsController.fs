@@ -6,7 +6,7 @@ open Microsoft.Extensions.Logging
 open CompositionRoot
 
 [<ApiController>]
-[<Route("api/v1/[controller]")>]
+[<Route("api/[controller]")>]
 type ProductsController (logger : ILogger<ProductsController>) =
     inherit ControllerBase()
 
@@ -15,9 +15,9 @@ type ProductsController (logger : ILogger<ProductsController>) =
         getProduct id
         
     [<HttpPost>]
-    member this.Post(request: ProductInfo): Result<unit, string> =
+    member this.Post(request: ProductInfo): Result<ProductInfo, string> =
         createProduct request
         
     [<HttpPut>]
-    member this.Put(request: ProductInfo): Result<unit, string> =
+    member this.Put(request: ProductInfo): Result<ProductInfo, string> =
         updateProduct request
