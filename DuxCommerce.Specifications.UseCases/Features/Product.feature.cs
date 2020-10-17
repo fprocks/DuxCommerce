@@ -139,7 +139,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "ShipSeparately",
                             "ddd-book",
                             "1234567890111",
-                            "Yes",
+                            "True",
                             "Remove"});
                 table1.AddRow(new string[] {
                             "2",
@@ -155,7 +155,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "PhysicalProduct",
                             "bdd-book",
                             "1234567890222",
-                            "No",
+                            "False",
                             "ContinueSelling"});
                 table1.AddRow(new string[] {
                             "3",
@@ -171,7 +171,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "DigitalProduct",
                             "tdd-book",
                             "1234567890333",
-                            "Yes",
+                            "True",
                             "StopSelling"});
 #line 7
  testRunner.Given("Tom enters the following product information:", ((string)(null)), table1, "Given ");

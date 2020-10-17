@@ -2,6 +2,7 @@
 using DuxCommerce.Specifications.UseCases.Hooks;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -27,13 +28,13 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [When(@"Tom saves the products")]
-        public void WhenTomSavesTheProducts()
+        public async Task WhenTomSavesTheProductsAsync()
         {
             var result = new List<object>();
             var productRequests = _context.ProductRequests;
             foreach(var request in productRequests)
             {
-                var response = _apiClient.PostAsync("api/products", productRequests);
+                var response = await _apiClient.PostAsync("api/products", request);
                 result.Add(response);
             }
         }
