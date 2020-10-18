@@ -180,7 +180,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Tom saves the products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
- testRunner.Then("Tom should receive success result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "Index",
@@ -212,7 +212,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "ShipSeparately",
                             "ddd-book",
                             "1234567890111",
-                            "Yes",
+                            "True",
                             "Remove"});
                 table2.AddRow(new string[] {
                             "2",
@@ -228,7 +228,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "PhysicalProduct",
                             "bdd-book",
                             "1234567890222",
-                            "No",
+                            "False",
                             "ContinueSelling"});
                 table2.AddRow(new string[] {
                             "3",
@@ -244,7 +244,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "DigitalProduct",
                             "tdd-book",
                             "1234567890333",
-                            "Yes",
+                            "True",
                             "StopSelling"});
 #line 14
  testRunner.And("the products should be created as follow:", ((string)(null)), table2, "And ");
@@ -339,7 +339,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Tom saves the products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 26
- testRunner.Then("Tom should receive failure result", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

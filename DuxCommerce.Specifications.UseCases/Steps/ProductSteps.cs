@@ -1,10 +1,14 @@
 ﻿using DuxCommerce.Catalogue;
 using DuxCommerce.Specifications.UseCases.Hooks;
+using FluentAssertions;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using Xunit;
 
 namespace DuxCommerce.Specifications.UseCases.Steps
 {
@@ -35,21 +39,33 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             foreach(var request in productRequests)
             {
                 var response = await _apiClient.PostAsync("api/products", request);
-                result.Add(response);
+                _context.ApiResults.Add(response);
             }
         }
 
-        [Then(@"Tom should receive success result")]
-        public void ThenTomShouldReceiveSuccessResult()
+        [Then(@"Tom should receive status codes (.*)")]
+        public void ThenTomShouldReceiveSuccessResult(HttpStatusCode code)
         {
-            TechTalk.SpecFlow.ScenarioContext.Current.Pending();
+            var allOk = _context.ApiResults.All(x => x.StatusCode == code);
+            allOk.Should().BeTrue();
         }
 
         [Then(@"the products should be created as follow:")]
-        public void ThenTheProductsShouldBeCreatedAsFollow(Table table)
+        public async Task ThenTheProductsShouldBeCreatedAsFollowAsync(Table table)
         {
-            TechTalk.SpecFlow.ScenarioContext.Current.Pending();
-        }
+            var expected = table.CreateSet<ProductInfo>();
 
+            var actual = new List<ProductInfo>();
+
+            foreach(var response in _context.ApiResults)
+            {
+                var productStr = await response.Content.ReadAsStringAsync();
+                var product = JsonConvert.DeserializeObject<ProductInfo>(productStr);
+                actual.Add(product);
+            }
+
+            actual.Count().Should().Be(expected.Count());
+            actual.EqualTo(expected.ToList());
+        }
     }
 }

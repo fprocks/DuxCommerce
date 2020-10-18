@@ -11,22 +11,22 @@ type ProductsController (logger : ILogger<ProductsController>) =
     inherit ControllerBase()
 
     [<HttpGet("{id}")>]
-    member this.Get(id : int64) =
+    member this.Get(id : int64) : IActionResult=
         let result = getProduct id
         match result with
-        | Ok p -> ActionResult<IActionResult>(base.Ok(p))
-        | Error m -> ActionResult<IActionResult>(base.BadRequest(m))
+        | Ok p -> base.Ok(p) :> _
+        | Error m -> base.BadRequest(m) :> _
         
     [<HttpPost>]
-    member this.Post(request: ProductInfo) =
+    member this.Post(request: ProductInfo) : IActionResult =
         let result = createProduct request
         match result with
-        | Ok p -> ActionResult<IActionResult>(base.Ok(p))
-        | Error m -> ActionResult<IActionResult>(base.BadRequest(m))
+        | Ok p -> base.Ok(p) :> _
+        | Error m -> base.BadRequest(m) :> _
         
     [<HttpPut>]
-    member this.Put(request: ProductInfo) =
+    member this.Put(request: ProductInfo) : IActionResult=
         let result = updateProduct request
         match result with
-        | Ok p -> ActionResult<IActionResult>(base.Ok(p))
-        | Error m -> ActionResult<IActionResult>(base.BadRequest(m))
+        | Ok p -> base.Ok(p) :> _
+        | Error m -> base.BadRequest(m) :> _
