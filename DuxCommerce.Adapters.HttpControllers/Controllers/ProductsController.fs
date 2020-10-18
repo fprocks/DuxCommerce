@@ -12,12 +12,21 @@ type ProductsController (logger : ILogger<ProductsController>) =
 
     [<HttpGet("{id}")>]
     member this.Get(id : int64) =
-        getProduct id
+        let result = getProduct id
+        match result with
+        | Ok p -> ActionResult<IActionResult>(base.Ok(p))
+        | Error m -> ActionResult<IActionResult>(base.BadRequest(m))
         
     [<HttpPost>]
-    member this.Post(request: ProductInfo): Result<ProductInfo, string> =
-        createProduct request
+    member this.Post(request: ProductInfo) =
+        let result = createProduct request
+        match result with
+        | Ok p -> ActionResult<IActionResult>(base.Ok(p))
+        | Error m -> ActionResult<IActionResult>(base.BadRequest(m))
         
     [<HttpPut>]
-    member this.Put(request: ProductInfo): Result<ProductInfo, string> =
-        updateProduct request
+    member this.Put(request: ProductInfo) =
+        let result = updateProduct request
+        match result with
+        | Ok p -> ActionResult<IActionResult>(base.Ok(p))
+        | Error m -> ActionResult<IActionResult>(base.BadRequest(m))
