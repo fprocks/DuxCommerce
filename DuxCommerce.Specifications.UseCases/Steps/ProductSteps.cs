@@ -24,6 +24,16 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _apiClient = apiClient;
         }
 
+        [Given(@"Tom already created the following products:")]
+        public async Task GivenTomAlreadyCreatedTheFollowingProductsAsync(Table table)
+        {
+            var requests = table.CreateSet<ProductInfo>();
+            foreach (var request in requests)
+            {
+                await _apiClient.PostAsync("api/products", request);
+            }
+        }
+
         [Given(@"Tom enters the following product information:")]
         public void GivenTomEntersTheFollowingProductInformation(Table table)
         {
@@ -34,11 +44,21 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [When(@"Tom saves the products")]
         public async Task WhenTomSavesTheProductsAsync()
         {
-            var result = new List<object>();
             var productRequests = _context.ProductRequests;
             foreach(var request in productRequests)
             {
                 var response = await _apiClient.PostAsync("api/products", request);
+                _context.ApiResults.Add(response);
+            }
+        }
+
+        [When(@"Tom updates the products")]
+        public async Task WhenTomUpdatesTheProductsAsync()
+        {
+            var productRequests = _context.ProductRequests;
+            foreach (var request in productRequests)
+            {
+                var response = await _apiClient.PutAsync("api/products", request);
                 _context.ApiResults.Add(response);
             }
         }
@@ -51,6 +71,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [Then(@"the products should be created as follow:")]
+        [Then(@"the products should be updated as follow:")]
         public async Task ThenTheProductsShouldBeCreatedAsFollowAsync(Table table)
         {
             var expected = table.CreateSet<ProductInfo>();

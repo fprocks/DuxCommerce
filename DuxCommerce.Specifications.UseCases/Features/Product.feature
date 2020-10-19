@@ -36,7 +36,7 @@ Scenario: Update products - green path
 	| 1     | DDD Lite | DDD Desc    | 90    | 110    | 70   | 4      | 3     | 2      | 1      | DigitalProduct  | ddd-lite | 1234567890123 | True           | StopSelling     |
 	| 2     | BDD Lite | BDD Desc    | 80    | 100    | 60   | 5      | 4     | 3      | 2      | ShipSeparately  | bdd-lite | 1234567890234 | True           | Remove          |
 	| 3     | TDD Lite | TDD Desc    | 70    | 90     | 50   | 6      | 5     | 4      | 3      | PhysicalProduct | tdd-lite | 1234567890345 | False          | ContinueSelling |
-	When Tom upates the products
+	When Tom updates the products
 	Then Tom should receive status codes OK
 	And the products should be updated as follow:
 	| Index | Name | Description     | Price | Retail | Cost | Length | Width | Height | Weight | ShippingType    | Sku      | Barcode       | TrackInventory | OutOfStockRule  |
@@ -53,5 +53,5 @@ Scenario: Update products - red path
 	| Index | Name     | Description | Price | Retail | Cost | Length | Width | Height | Weight | ShippingType    | Sku      | Barcode       | TrackInventory | OutOfStockRule | Comment                 |
 	| 1     | DDD Lite | DDD Desc    | 90    | 110    | 70   | 4      | 3     | 2      | 1      | DigitalProduct  | ddd-lite | 1234567890123 | True           | Stop Selling   | Invalid OutOfStock Rule |
 	| 2     | BDD Lite | BDD Desc    | 80    | 100    | 60   | 5      | 4     | 3      | 2      | Ship Separately | bdd-lite | 1234567890234 | True           | Remove         | Invalid ShippingType    |
-	When Tom upates the products
+	When Tom updates the products
 	Then Tom should receive status codes BadRequest

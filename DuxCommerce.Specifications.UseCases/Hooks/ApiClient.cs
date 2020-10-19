@@ -9,6 +9,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
     {
         Task<HttpResponseMessage> GetAsync(string url);
         Task<HttpResponseMessage> PostAsync(string url, object payload);
+        Task<HttpResponseMessage> PutAsync(string url, object payload);
     }
 
     public class ApiClient : IApiClient
@@ -28,15 +29,28 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
 
         public async Task<HttpResponseMessage> PostAsync(string url, object payload)
         {
+            var method = "POST";
+            return await SendRequest(url, payload, method);
+        }
+
+        public async Task<HttpResponseMessage> PutAsync(string url, object payload)
+        {
+            var method = "PUT"; 
+            return await SendRequest(url, payload, method);
+        }
+
+        private async Task<HttpResponseMessage> SendRequest(string url, object payload, string method)
+        {
             var json = JsonConvert.SerializeObject(payload);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var request = new HttpRequestMessage(new HttpMethod("POST"), url) { Content = content };
+            var request = new HttpRequestMessage(new HttpMethod(method), url) { Content = content };
 
             return await SendRequestAsync(request);
         }
 
         private async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request)
         {
+            // Todo: add cross cutting concern here
             return await _httpClient.SendAsync(request);
         }
     }
