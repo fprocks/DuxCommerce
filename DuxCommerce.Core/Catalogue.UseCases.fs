@@ -2,8 +2,8 @@
 
 module UseCases =     
     let createProduct connString product =
-        let dto = product |> CreateProductRequest.toDomain
-        match dto with
+        let model = product |> CreateProductRequest.toDomain
+        match model with
         | Ok _ ->
             product 
             |> DataAccess.createProduct connString
@@ -12,11 +12,11 @@ module UseCases =
     let getProduct connString id =
         DataAccess.getProduct connString id
         
-    let updateProduct connString product =
-        let dto = product |> CreateProductRequest.toDomain
-        match dto with
+    let updateProduct connString id product =
+        let model = product |> CreateProductRequest.toDomain
+        match model with
         | Ok _ ->
             product 
-            |> DataAccess.updateProduct connString
+            |> DataAccess.updateProduct connString id
         | Error m -> Error m
         

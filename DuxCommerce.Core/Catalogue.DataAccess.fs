@@ -3,6 +3,8 @@
 open System
 open System.Data.SqlClient
 open RepoDb
+open System.Linq
+
 module DataAccess =
     
     let createProduct connString product =
@@ -17,21 +19,20 @@ module DataAccess =
         with
             | :? Exception as ex -> Error ex.Message
             
-            
     let getProduct connString id =
         try
             ( use connection = new SqlConnection(connString)
-              let product = connection.Query<ProductInfo>(fun p -> p.Id = id)
+              let product = connection.Query<ProductInfo>(fun p -> p.Id = id).FirstOrDefault()
               Ok product
             )
         with
             | :? Exception as ex -> Error ex.Message                       
             
-    let updateProduct connString product =
+    let updateProduct connString (id:int64) product =
         try
             ( use connection = new SqlConnection(connString)
-              connection.Update<ProductInfo>(product) |> ignore
-              Ok product
+              connection.Update<ProductInfo>(product, id) |> ignore
+              Ok ()
             )
         with
             | :? Exception as ex -> Error ex.Message            

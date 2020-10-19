@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -30,7 +31,9 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var requests = table.CreateSet<ProductInfo>();
             foreach (var request in requests)
             {
-                await _apiClient.PostAsync("api/products", request);
+                var apiResult = await _apiClient.PostAsync("api/products", request);
+                var product = await GetProduct(apiResult);
+                _context.CreatedProducts.Add(product);
             }
         }
 
@@ -55,10 +58,11 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [When(@"Tom updates the products")]
         public async Task WhenTomUpdatesTheProductsAsync()
         {
-            var productRequests = _context.ProductRequests;
-            foreach (var request in productRequests)
+            var requests = _context.ProductRequests;
+            for (var index = 0; index < requests.Count; index ++)
             {
-                var response = await _apiClient.PutAsync("api/products", request);
+                var id = _context.CreatedProducts[index].Id;
+                var response = await _apiClient.PutAsync($"api/products/{id}", requests[index]);
                 _context.ApiResults.Add(response);
             }
         }
@@ -71,22 +75,57 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [Then(@"the products should be created as follow:")]
-        [Then(@"the products should be updated as follow:")]
         public async Task ThenTheProductsShouldBeCreatedAsFollowAsync(Table table)
         {
+            var idsOfCreated = await GetCreatedProductIds();
+            await CompareProducts(table, idsOfCreated);
+        }
+
+        [Then(@"the products should be updated as follow:")]
+        public async Task ThenTheProductsShouldBeUpdatedAsFollowAsync(Table table)
+        {
+            var idsOfUpdated = _context.CreatedProducts.Select(x => x.Id);
+            await CompareProducts(table, idsOfUpdated);
+        }
+
+        private async Task CompareProducts(Table table, IEnumerable<long> productIds)
+        {
             var expected = table.CreateSet<ProductInfo>();
-
-            var actual = new List<ProductInfo>();
-
-            foreach(var response in _context.ApiResults)
-            {
-                var productStr = await response.Content.ReadAsStringAsync();
-                var product = JsonConvert.DeserializeObject<ProductInfo>(productStr);
-                actual.Add(product);
-            }
+            var actual = await GetProducts(productIds);
 
             actual.Count().Should().Be(expected.Count());
             actual.EqualTo(expected.ToList());
+        }
+
+        private async Task<List<long>> GetCreatedProductIds()
+        {
+            var productIds = new List<long>();
+            foreach (var apiResult in _context.ApiResults)
+            {
+                var product = await GetProduct(apiResult);
+                productIds.Add(product.Id);
+            }
+
+            return productIds;
+        }
+
+        private async Task<List<ProductInfo>> GetProducts(IEnumerable<long> productIds)
+        {
+            var actual = new List<ProductInfo>();
+            foreach (var id in productIds)
+            {
+                var response = await _apiClient.GetAsync($"api/products/{id}");
+                var product = await GetProduct(response);
+                actual.Add(product);
+            }
+
+            return actual;
+        }
+
+        private async Task<ProductInfo> GetProduct(HttpResponseMessage apiResult)
+        {
+            var resultStr = await apiResult.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<ProductInfo>(resultStr);
         }
     }
 }

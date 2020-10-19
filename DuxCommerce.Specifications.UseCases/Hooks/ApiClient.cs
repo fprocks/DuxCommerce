@@ -50,7 +50,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
 
         private async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request)
         {
-            // Todo: add cross cutting concern here
+            // Todo: handle cross-cutting concerns here
             return await _httpClient.SendAsync(request);
         }
     }
