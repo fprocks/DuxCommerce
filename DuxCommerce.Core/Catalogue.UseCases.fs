@@ -13,4 +13,10 @@ module UseCases =
         DataAccess.getProduct connString id
         
     let updateProduct connString product =
-        DataAccess.updateProduct connString product
+        let dto = product |> CreateProductRequest.toDomain
+        match dto with
+        | Ok _ ->
+            product 
+            |> DataAccess.updateProduct connString
+        | Error m -> Error m
+        

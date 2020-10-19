@@ -718,7 +718,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Tom enters the following product information:", ((string)(null)), table8, "And ");
 #line hidden
 #line 56
- testRunner.When("Tom upates the products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Tom updates the products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 57
  testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

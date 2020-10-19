@@ -8,7 +8,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
     {
         public static void CleanUp()
         {
-            var connString = "data source=(local); initial catalog=DuxCommerce; user id=sa; password=p@ssw0rd";
+            var connString = "Server=(local);Database=DuxCommerce;User Id=DuxAdmin;Password=Password1;";
             //var connString = ConfigurationManager.ConnectionStrings["DuxCommerce"].ConnectionString;
 
             var connection = new SqlConnection(connString);
