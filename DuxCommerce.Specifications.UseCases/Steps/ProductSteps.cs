@@ -70,28 +70,38 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Then(@"Tom should receive status codes (.*)")]
         public void ThenTomShouldReceiveSuccessResult(HttpStatusCode code)
         {
-            var allOk = _context.ApiResults.All(x => x.StatusCode == code);
-            allOk.Should().BeTrue();
+            var codesMatch = _context.ApiResults.All(x => x.StatusCode == code);
+            codesMatch.Should().BeTrue();
         }
 
         [Then(@"the products should be created as follow:")]
         public async Task ThenTheProductsShouldBeCreatedAsFollowAsync(Table table)
         {
-            var idsOfCreated = await GetCreatedProductIds();
-            await CompareProducts(table, idsOfCreated);
+            var createdProducts = await GetCreateProducts();
+            CompareProducts(table, createdProducts);
         }
 
         [Then(@"the products should be updated as follow:")]
         public async Task ThenTheProductsShouldBeUpdatedAsFollowAsync(Table table)
         {
-            var idsOfUpdated = _context.CreatedProducts.Select(x => x.Id);
-            await CompareProducts(table, idsOfUpdated);
+            var updatedProducts = await GetUpdatedProductsAsync();
+            CompareProducts(table, updatedProducts);
         }
 
-        private async Task CompareProducts(Table table, IEnumerable<long> productIds)
+        private async Task<List<ProductInfo>> GetCreateProducts()
+        {
+            var ids = await GetCreatedProductIds();
+            return await GetProducts(ids);
+        }
+        private async Task<List<ProductInfo>> GetUpdatedProductsAsync()
+        {
+            var ids = _context.CreatedProducts.Select(x => x.Id);
+            return await GetProducts(ids);
+        }
+
+        private void CompareProducts(Table table, List<ProductInfo> actual)
         {
             var expected = table.CreateSet<ProductInfo>();
-            var actual = await GetProducts(productIds);
 
             actual.Count().Should().Be(expected.Count());
             actual.EqualTo(expected.ToList());
