@@ -38,6 +38,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [Given(@"Tom enters the following product information:")]
+        [Given(@"the following products are already created:")]
         public void GivenTomEntersTheFollowingProductInformation(Table table)
         {
             var products = table.CreateSet<ProductInfo>();
