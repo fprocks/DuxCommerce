@@ -18,4 +18,4 @@ Scenario: Add to cart
 	| Name | Price | Quantity | subtotal |
 	| DDD  | 100   | 2        | 200      |
 	| BDD  | 50    | 8        | 400      |
-	And the order total is $600
+	And the cart total is $600
