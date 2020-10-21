@@ -32,6 +32,7 @@ module DataAccess =
         try
             ( use connection = new SqlConnection(connString)
               connection.Update<ProductInfo>(product, id) |> ignore
+              // Todo: how to return updated product
               Ok ()
             )
         with

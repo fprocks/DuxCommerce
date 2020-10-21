@@ -85,6 +85,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Then(@"the products should be updated as follow:")]
         public async Task ThenTheProductsShouldBeUpdatedAsFollowAsync(Table table)
         {
+            // Todo: Merge create and update when Update endpoint returns updated product
             var updatedProducts = await GetUpdatedProductsAsync();
             CompareProducts(table, updatedProducts);
         }
