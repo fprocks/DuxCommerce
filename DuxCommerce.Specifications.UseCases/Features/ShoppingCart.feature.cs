@@ -40,8 +40,8 @@ namespace DuxCommerce.Specifications.UseCases.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "ShoppingCart", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
-                    "f two numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "ShoppingCart", "\tIn order to place an order\r\n\tAs a customer\r\n\tI want to add products to my shoppi" +
+                    "ng cart", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -81,17 +81,15 @@ namespace DuxCommerce.Specifications.UseCases.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Add two numbers")]
+        [Xunit.SkippableFactAttribute(DisplayName="Add to cart")]
         [Xunit.TraitAttribute("FeatureTitle", "ShoppingCart")]
-        [Xunit.TraitAttribute("Description", "Add two numbers")]
-        [Xunit.TraitAttribute("Category", "mytag")]
-        public virtual void AddTwoNumbers()
+        [Xunit.TraitAttribute("Description", "Add to cart")]
+        public virtual void AddToCart()
         {
-            string[] tagsOfScenario = new string[] {
-                    "mytag"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add to cart", null, tagsOfScenario, argumentsOfScenario);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -111,17 +109,115 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given("the first number is 50", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Index",
+                            "Name",
+                            "Description",
+                            "Price",
+                            "Retail",
+                            "Cost",
+                            "Length",
+                            "Width",
+                            "Height",
+                            "Weight",
+                            "ShippingType",
+                            "Sku",
+                            "Barcode",
+                            "TrackInventory",
+                            "OutOfStockRule"});
+                table9.AddRow(new string[] {
+                            "1",
+                            "DDD",
+                            "DDD Description",
+                            "100",
+                            "120",
+                            "80",
+                            "1",
+                            "2",
+                            "3",
+                            "4",
+                            "ShipSeparately",
+                            "ddd-book",
+                            "1234567890111",
+                            "True",
+                            "Remove"});
+                table9.AddRow(new string[] {
+                            "2",
+                            "BDD",
+                            "BDD Description",
+                            "50",
+                            "110",
+                            "70",
+                            "2",
+                            "3",
+                            "4",
+                            "5",
+                            "PhysicalProduct",
+                            "bdd-book",
+                            "1234567890222",
+                            "False",
+                            "ContinueSelling"});
+                table9.AddRow(new string[] {
+                            "3",
+                            "TDD",
+                            "TDD Description",
+                            "80",
+                            "100",
+                            "60",
+                            "3",
+                            "4",
+                            "5",
+                            "6",
+                            "DigitalProduct",
+                            "tdd-book",
+                            "1234567890333",
+                            "True",
+                            "StopSelling"});
+#line 7
+ testRunner.Given("the following products are already created:", ((string)(null)), table9, "Given ");
 #line hidden
-#line 9
- testRunner.And("the second number is 70", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Product",
+                            "Name",
+                            "Quantity"});
+                table10.AddRow(new string[] {
+                            "1",
+                            "DDD",
+                            "1"});
+                table10.AddRow(new string[] {
+                            "1",
+                            "DDD",
+                            "1"});
+                table10.AddRow(new string[] {
+                            "2",
+                            "BDD",
+                            "8"});
+#line 12
+ testRunner.When("Amy adds the following products to her cart:", ((string)(null)), table10, "When ");
 #line hidden
-#line 10
- testRunner.When("the two numbers are added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Product",
+                            "Name",
+                            "Price",
+                            "Quantity",
+                            "subtotal"});
+                table11.AddRow(new string[] {
+                            "1",
+                            "DDD",
+                            "100",
+                            "2",
+                            "200"});
+                table11.AddRow(new string[] {
+                            "2",
+                            "BDD",
+                            "50",
+                            "8",
+                            "400"});
+#line 17
+ testRunner.Then("the shopping cart details should look like following:", ((string)(null)), table11, "Then ");
 #line hidden
-#line 11
- testRunner.Then("the result should be 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 21
+ testRunner.And("the cart total is $600", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

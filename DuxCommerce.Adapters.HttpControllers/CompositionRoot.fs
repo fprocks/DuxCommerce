@@ -1,6 +1,7 @@
 ﻿namespace DuxCommerce.Adapters.HttpControllers
 
 open DuxCommerce.Catalogue
+open DuxCommerce.ShoppingCarts
 open UseCases
 
 module CompositionRoot =
@@ -9,3 +10,6 @@ module CompositionRoot =
     let createProduct = createProduct connString    
     let getProduct = getProduct connString
     let updateProduct = updateProduct connString
+    
+    
+    let addCartItem = addCartItem connString

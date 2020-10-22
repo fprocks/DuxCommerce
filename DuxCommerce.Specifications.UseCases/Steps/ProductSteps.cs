@@ -26,6 +26,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [Given(@"Tom already created the following products:")]
+        [Given(@"the following products are already created:")]
         public async Task GivenTomAlreadyCreatedTheFollowingProductsAsync(Table table)
         {
             var requests = table.CreateSet<ProductInfo>();
@@ -38,7 +39,6 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [Given(@"Tom enters the following product information:")]
-        [Given(@"the following products are already created:")]
         public void GivenTomEntersTheFollowingProductInformation(Table table)
         {
             var products = table.CreateSet<ProductInfo>();

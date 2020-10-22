@@ -19,7 +19,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class AddAProductFeature : object, Xunit.IClassFixture<AddAProductFeature.FixtureData>, System.IDisposable
+    public partial class CreateAProductFeature : object, Xunit.IClassFixture<CreateAProductFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
 #line 1 "Product.feature"
 #line hidden
         
-        public AddAProductFeature(AddAProductFeature.FixtureData fixtureData, DuxCommerce_Specifications_UseCases_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CreateAProductFeature(CreateAProductFeature.FixtureData fixtureData, DuxCommerce_Specifications_UseCases_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Add a product", "\tIn order to sell products online\r\n\tAs a store admin\r\n\tI want to add proucts to m" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Create a product", "\tIn order to sell products online\r\n\tAs a store admin\r\n\tI want to add proucts to m" +
                     "y store first", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -81,14 +81,14 @@ namespace DuxCommerce.Specifications.UseCases.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Add products - green path")]
-        [Xunit.TraitAttribute("FeatureTitle", "Add a product")]
-        [Xunit.TraitAttribute("Description", "Add products - green path")]
-        public virtual void AddProducts_GreenPath()
+        [Xunit.SkippableFactAttribute(DisplayName="Create products - green path")]
+        [Xunit.TraitAttribute("FeatureTitle", "Create a product")]
+        [Xunit.TraitAttribute("Description", "Create products - green path")]
+        public virtual void CreateProducts_GreenPath()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add products - green path", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create products - green path", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -253,14 +253,14 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Add products - red path")]
-        [Xunit.TraitAttribute("FeatureTitle", "Add a product")]
-        [Xunit.TraitAttribute("Description", "Add products - red path")]
-        public virtual void AddProducts_RedPath()
+        [Xunit.SkippableFactAttribute(DisplayName="Create products - red path")]
+        [Xunit.TraitAttribute("FeatureTitle", "Create a product")]
+        [Xunit.TraitAttribute("Description", "Create products - red path")]
+        public virtual void CreateProducts_RedPath()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add products - red path", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create products - red path", null, tagsOfScenario, argumentsOfScenario);
 #line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -346,7 +346,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Update products - green path")]
-        [Xunit.TraitAttribute("FeatureTitle", "Add a product")]
+        [Xunit.TraitAttribute("FeatureTitle", "Create a product")]
         [Xunit.TraitAttribute("Description", "Update products - green path")]
         public virtual void UpdateProducts_GreenPath()
         {
@@ -585,7 +585,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Update products - red path")]
-        [Xunit.TraitAttribute("FeatureTitle", "Add a product")]
+        [Xunit.TraitAttribute("FeatureTitle", "Create a product")]
         [Xunit.TraitAttribute("Description", "Update products - red path")]
         public virtual void UpdateProducts_RedPath()
         {
@@ -734,12 +734,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                AddAProductFeature.FeatureSetup();
+                CreateAProductFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                AddAProductFeature.FeatureTearDown();
+                CreateAProductFeature.FeatureTearDown();
             }
         }
     }

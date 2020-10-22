@@ -13,6 +13,11 @@
       <Compile Include="Catalogue.Dto.fs" />
       <Compile Include="Catalogue.DataAccess.fs" />
       <Compile Include="Catalogue.UseCases.fs" />
+      <Compile Include="ShoppingCarts.SimpleTypes.fs" />
+      <Compile Include="ShoppingCarts.PublicTypes.fs" />
+      <Compile Include="ShoppingCarts.DomainTypes.fs" />
+      <Compile Include="ShoppingCarts.DataAccess.fs" />
+      <Compile Include="ShoppingCarts.UseCases.fs" />
     </ItemGroup>
 
     <ItemGroup>
