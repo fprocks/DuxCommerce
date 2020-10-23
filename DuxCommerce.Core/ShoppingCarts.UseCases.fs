@@ -2,7 +2,7 @@
 
 module UseCases =
 
-    let addCartItem connString (shopperId:int64) request =
+    let addCartItem connString shopperId request =
         
         // Todo: retrieve shopper cart
         let cart : CartInfo = {

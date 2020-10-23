@@ -1,5 +1,7 @@
 ﻿namespace DuxCommerce.ShoppingCarts
 
+open DuxCommerce.Common
+
 type AddCartItemRequest = {
     ProductId : int64
     Quantity: decimal
@@ -19,3 +21,5 @@ type CartItemInfo = {
     Quantity: decimal
     ItemTotal: decimal
 }
+
+type AddCartItem = int64 -> AddCartItemRequest -> Result<CartItemInfo, string>
