@@ -1,26 +1,19 @@
 ﻿namespace DuxCommerce.ShoppingCarts
 
+open DuxCommerce.Common
 module UseCases =
 
-    let addCartItem connString shopperId request =
+    let addCartItem
+        getShopperCart
+        getProduct
+        recalculateCart
+        saveCart
+        : AddCartItem =
         
-        // Todo: retrieve shopper cart
-        let cart : CartInfo = {
-            Id = 0L
-            ShopperId = shopperId
-            CartTotal = 0.0M
+        fun addCartItemRequest ->
+            result {
+                let! shopperCart = getShopperCart
+                let! product = getProduct addCartItemRequest
+                let updatedCart = recalculateCart shopperCart addCartItemRequest product
+                return! saveCart updatedCart
             }
-        
-        // Todo: retrieve product using request
-        
-        // Todo: convert request to cart item
-        let cartItem : CartItemInfo = {
-            Id = 0L
-            CartId = 0L
-            ProductName = ""
-            Price = 0.0M
-            Quantity = 0.0M
-            ItemTotal = 0.0M
-            }
-                    
-        DataAccess.addCartItem connString cart cartItem

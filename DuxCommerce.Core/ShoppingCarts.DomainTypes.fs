@@ -3,12 +3,6 @@
 open DuxCommerce.Catalogue
 open DuxCommerce.Common
 
-type Cart = {
-    Id : CartId
-    ShopperId : ShopperId
-    CartTotal: CartTotal
-}
-
 type CartItem = {
     Id: CartItemId
     CartId: CartId
@@ -16,4 +10,11 @@ type CartItem = {
     Price: SalePrice
     Quantity: ItemQuantity
     ItemTotal: ItemTotal
+}
+
+type Cart = {
+    Id : CartId
+    ShopperId : ShopperId
+    LineItems: CartItem list
+    CartTotal: CartTotal
 }

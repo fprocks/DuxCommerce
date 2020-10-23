@@ -3,7 +3,7 @@
 open DuxCommerce.Catalogue
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Logging
-open CompositionRoot
+open CatalogueComposition
 
 [<ApiController>]
 [<Route("api/[controller]")>]

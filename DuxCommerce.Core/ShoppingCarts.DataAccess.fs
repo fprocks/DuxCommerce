@@ -4,17 +4,24 @@ open System
 open System.Data.SqlClient
 open RepoDb
 
-module DataAccess =
+module ShoppingCartDb =
     
-    let addCartItem connString cart cartItem :Result<CartItemInfo, string> =        
+    let saveCartItem (connection:SqlConnection) (cartItem:CartItemInfo) =
+        if cartItem.Id > 0L then
+            connection.Update<CartItemInfo>(cartItem, cartItem.Id) |> ignore
+        else
+            connection.Insert<CartItemInfo, int64>(cartItem) |> ignore
+            
+    let saveCart connString (cartInfo:CartInfo):Result<CartInfo, string> =        
         try
             ( use connection = new SqlConnection(connString)
               connection.EnsureOpen() |> ignore
               ( use trans = connection.BeginTransaction()
-                connection.Update<CartInfo>(cart, id) |> ignore
-                connection.Insert<CartItemInfo, int64> (cartItem, transaction = trans) |> ignore
+                connection.Update<CartInfo>(cartInfo, cartInfo.Id) |> ignore
+                cartInfo.LineItems |> List.map (saveCartItem connection)
                 trans.Commit() )
             )
-            Ok cartItem
+            Ok cartInfo
         with
             | :? Exception as ex -> Error ex.Message
+            

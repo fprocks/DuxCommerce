@@ -7,12 +7,6 @@ type AddCartItemRequest = {
     Quantity: decimal
 }
 
-type CartInfo = {
-    Id: int64
-    ShopperId: int64
-    CartTotal: decimal
-}
-
 type CartItemInfo = {
     Id: int64
     CartId: int64
@@ -22,4 +16,11 @@ type CartItemInfo = {
     ItemTotal: decimal
 }
 
-type AddCartItem = int64 -> AddCartItemRequest -> Result<CartItemInfo, string>
+type CartInfo = {
+    Id: int64
+    ShopperId: int64
+    LineItems: CartItemInfo list
+    CartTotal: decimal
+}
+
+type AddCartItem = AddCartItemRequest -> Result<CartItemInfo, string>

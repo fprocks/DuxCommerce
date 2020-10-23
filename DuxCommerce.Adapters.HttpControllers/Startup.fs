@@ -31,7 +31,7 @@ type Startup private () =
         
         services.AddFluentMigratorCore().ConfigureRunner(fun config ->
             config.AddSqlServer()
-                .WithGlobalConnectionString(CompositionRoot.connString)
+                .WithGlobalConnectionString(Constants.connString)
                 .ScanIn(Assembly.Load("DuxCommerce.DatabaseMigrations")).For.All() |> ignore
             ).AddLogging(fun config -> config.AddFluentMigratorConsole() |> ignore) |> ignore
 

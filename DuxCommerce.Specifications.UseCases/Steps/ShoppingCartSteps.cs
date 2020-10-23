@@ -44,14 +44,14 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         {
         }
 
-        private List<AddToCartRequest> CreateRequests(List<AddToCartInput> inputs)
+        private List<AddCartItemRequest> CreateRequests(List<AddToCartInput> inputs)
         {
-            var requests = new List<AddToCartRequest>();
+            var requests = new List<AddCartItemRequest>();
             var products = _context.CreatedProducts;
             for(var index = 0; index < products.Count; index ++) {
                 var productId = products[index].Id;
                 var quantity = inputs[index].Quantity;
-                var request = new AddToCartRequest(productId, quantity);
+                var request = new AddCartItemRequest(productId, quantity);
 
                 requests.Add(request);
             }

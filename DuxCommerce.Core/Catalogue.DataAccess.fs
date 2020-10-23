@@ -5,7 +5,7 @@ open System.Data.SqlClient
 open RepoDb
 open System.Linq
 
-module DataAccess =
+module CatalogueDb =
     
     let createProduct connString product =
         try

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="CompositionRoot.fs" />
+        <Compile Include="Compositions.fs" />
         <Compile Include="ComplexDI.fs" />
         <Compile Include="Controllers\ShoppingCartController.fs" />
         <Compile Include="Controllers\ProductsController.fs" />
