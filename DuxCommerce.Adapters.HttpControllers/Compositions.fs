@@ -16,3 +16,4 @@ module CatalogueComposition =
 module ShoppingCartComposition =
     let getProduct : GetProduct  = getProduct Constants.connString    
     let insertCartItem : InsertCartItem= insertCartItem Constants.connString
+    let getShoppingCart: GetShopperCart = getShoppingCart Constants.connString

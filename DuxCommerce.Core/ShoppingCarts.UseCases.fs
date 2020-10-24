@@ -1,6 +1,5 @@
 ﻿namespace DuxCommerce.ShoppingCarts
 
-open DuxCommerce.Catalogue
 open DuxCommerce.Common
 module UseCases =
 

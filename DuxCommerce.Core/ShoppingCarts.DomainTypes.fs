@@ -1,7 +1,8 @@
-﻿namespace DuxCommerce.ShoppingCarts
+﻿namespace DuxCommerce.ShoppingCarts.DomainTypes
 
 open DuxCommerce.Catalogue
 open DuxCommerce.Common
+open DuxCommerce.ShoppingCarts
 
 type CartItem = {
     Id: CartItemId

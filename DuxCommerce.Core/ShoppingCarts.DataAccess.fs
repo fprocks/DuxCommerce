@@ -3,6 +3,7 @@
 open System
 open System.Data.SqlClient
 open RepoDb
+open System.Linq
 
 module ShoppingCartDb =
     
@@ -20,6 +21,21 @@ module ShoppingCartDb =
                 trans.Commit() )
             )
             Ok ()
+        with
+            | :? Exception as ex -> Error ex.Message
+            
+    let getShoppingCart connString shopperId : Result<CartInfo, string> =
+        try
+            ( use connection = new SqlConnection(connString)
+              connection.EnsureOpen() |> ignore
+              let cartInfo = connection.Query<CartInfo>(fun c -> c.ShopperId = shopperId).FirstOrDefault()
+              match box cartInfo with
+              | null -> Ok cartInfo
+              | _ ->
+                    let newCart: CartInfo = {Id = 0L; ShopperId = shopperId; LineItems = []; CartTotal = 0.0M}
+                    connection.Insert<CartInfo, int64>(newCart) |> ignore
+                    Ok newCart
+            )
         with
             | :? Exception as ex -> Error ex.Message
             
