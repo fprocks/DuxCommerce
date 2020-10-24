@@ -1,5 +1,6 @@
 ﻿namespace DuxCommerce.ShoppingCarts
 
+open DuxCommerce.Catalogue
 open DuxCommerce.Common
 module UseCases =
 
@@ -7,13 +8,13 @@ module UseCases =
         getShopperCart
         getProduct
         recalculateCart
-        saveCart
+        insertCartItem
         : AddCartItem =
         
         fun addCartItemRequest ->
             result {
                 let! shopperCart = getShopperCart
-                let! product = getProduct addCartItemRequest
+                let! product = getProduct addCartItemRequest.ProductId
                 let updatedCart = recalculateCart shopperCart addCartItemRequest product
-                return! saveCart updatedCart
+                return! insertCartItem updatedCart
             }

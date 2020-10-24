@@ -8,4 +8,4 @@ type GetShopperCart = Result<CartInfo, string>
 
 type GetProduct =  int64 -> Result<ProductInfo, string>
 
-type SaveCart = Cart -> Result<CartInfo, string> 
+type InsertCartItem = CartInfo -> Result<unit, string> 

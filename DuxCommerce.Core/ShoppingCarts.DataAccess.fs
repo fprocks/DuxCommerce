@@ -6,22 +6,20 @@ open RepoDb
 
 module ShoppingCartDb =
     
-    let saveCartItem (connection:SqlConnection) (cartItem:CartItemInfo) =
-        if cartItem.Id > 0L then
-            connection.Update<CartItemInfo>(cartItem, cartItem.Id) |> ignore
-        else
+    let internal insertLineItem (connection:SqlConnection) (cartItem:CartItemInfo) =
+        if cartItem.Id = 0L then
             connection.Insert<CartItemInfo, int64>(cartItem) |> ignore
             
-    let saveCart connString (cartInfo:CartInfo):Result<CartInfo, string> =        
+    let insertCartItem connString (cartInfo:CartInfo):Result<unit, string> =        
         try
             ( use connection = new SqlConnection(connString)
               connection.EnsureOpen() |> ignore
               ( use trans = connection.BeginTransaction()
                 connection.Update<CartInfo>(cartInfo, cartInfo.Id) |> ignore
-                cartInfo.LineItems |> List.map (saveCartItem connection)
+                cartInfo.LineItems |> List.map (insertLineItem connection)
                 trans.Commit() )
             )
-            Ok cartInfo
+            Ok ()
         with
             | :? Exception as ex -> Error ex.Message
             
