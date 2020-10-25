@@ -12,7 +12,8 @@ type ProductsController (logger : ILogger<ProductsController>) =
 
     [<HttpGet("{id}")>]
     member this.Get(id : int64) : IActionResult=
-        let result = getProduct id
+        let productId = ProductId.create id
+        let result = getProduct productId
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.BadRequest(m) :> _

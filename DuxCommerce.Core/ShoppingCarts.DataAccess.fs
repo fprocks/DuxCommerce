@@ -24,8 +24,9 @@ module ShoppingCartDb =
         with
             | :? Exception as ex -> Error ex.Message
             
-    let getShoppingCart connString shopperId : Result<CartInfo, string> =
+    let getShoppingCart connString (shopperId:ShopperId) : Result<CartInfo, string> =
         try
+            let shopperId = ShopperId.value shopperId
             ( use connection = new SqlConnection(connString)
               connection.EnsureOpen() |> ignore
               let cartInfo = connection.Query<CartInfo>(fun c -> c.ShopperId = shopperId).FirstOrDefault()

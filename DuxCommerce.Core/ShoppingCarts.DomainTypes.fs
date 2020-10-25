@@ -3,6 +3,7 @@
 open DuxCommerce.Catalogue
 open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts
+open DuxCommerce.ShoppingCarts.Dto
 
 type CartItem = {
     Id: CartItemId

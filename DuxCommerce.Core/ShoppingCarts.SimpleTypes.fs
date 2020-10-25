@@ -3,6 +3,10 @@
 open DuxCommerce.Catalogue
 
 type ShopperId = private ShopperId of int64
+module ShopperId =
+    let value (ShopperId id) = id
+    let create id = ShopperId id
+    
 type CartId = private CartId of int64
 type CartItemId = private CartItemId of int64
 module CartItemId =

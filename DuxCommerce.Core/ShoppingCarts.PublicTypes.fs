@@ -7,18 +7,6 @@ type AddCartItemRequest = {
     Quantity: decimal
 }
 
-type ValidatedAddItemRequest = {
-    ProductId : ProductId
-    Quantity: ItemQuantity
-}
-
-module AddCartItemRequest =
-    let validate (request:AddCartItemRequest) :Result<ValidatedAddItemRequest, string> =
-        Ok {
-            ProductId = ProductId.create request.ProductId
-            Quantity = ItemQuantity.create request.Quantity
-            }
-
 type CartItemInfo = {
     Id: int64
     CartId: int64

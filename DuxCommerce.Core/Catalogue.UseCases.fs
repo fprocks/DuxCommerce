@@ -10,7 +10,7 @@ module UseCases =
         | Error m -> Error m
     
     let getProduct connString id =
-        CatalogueDb.getProduct connString id
+        CatalogueDb.getProduct connString (ProductId.value id)
         
     let updateProduct connString id product =
         let model = product |> CreateProductRequest.toDomain

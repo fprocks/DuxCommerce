@@ -1,6 +1,7 @@
 ﻿namespace DuxCommerce.ShoppingCarts
 
 open DuxCommerce.Common
+open DuxCommerce.ShoppingCarts.Dto
 
 type AddItemUseCase = AddCartItemRequest -> Result<CartItemInfo, string>
 
