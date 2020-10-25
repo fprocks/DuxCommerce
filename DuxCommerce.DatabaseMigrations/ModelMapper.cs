@@ -1,4 +1,5 @@
 ﻿using DuxCommerce.Catalogue;
+using DuxCommerce.ShoppingCarts;
 using RepoDb;
 
 namespace DuxCommerce.DatabaseMigrations
@@ -9,6 +10,12 @@ namespace DuxCommerce.DatabaseMigrations
         {
             FluentMapper.Entity<ProductInfo>()
                 .Table("[dbo].[Product]");
+            
+            FluentMapper.Entity<CartInfo>()
+                .Table("[dbo].[ShoppingCart]");
+            
+            FluentMapper.Entity<CartItemInfo>()
+                .Table("[dbo].[ShoppingCartItem]");
         }
     }
 }
