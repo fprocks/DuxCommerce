@@ -1,7 +1,18 @@
 ﻿namespace DuxCommerce.Catalogue
 
 type ProductId = private ProductId of int64
-type SalePrice = private SalePrice of decimal
+module ProductId =
+    let value (ProductId id) = id    
+    let create id = ProductId id
+
+type SalePrice = SalePrice of decimal
+module SalePrice =
+    let value (SalePrice price) = price
+    let create price = SalePrice price
+    
+    let multiply qty (SalePrice p) =
+        create (qty * p)
+    
 type RetailPrice = private RetailPrice of decimal
 type ProductCost = private ProductCost of decimal
 

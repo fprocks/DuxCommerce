@@ -1,19 +1,23 @@
 ﻿namespace DuxCommerce.ShoppingCarts
 
 open DuxCommerce.Common
+
+type AddItemUseCase = AddCartItemRequest -> Result<CartItemInfo, string>
+
 module UseCases =
 
     let addCartItem
         getShopperCart
         getProduct
-        recalculateCart
-        insertCartItem
-        : AddCartItem =
+        addCartItem
+        saveCartItem
+        : AddItemUseCase =
         
-        fun addCartItemRequest ->
+        fun request ->
             result {
+                let! validatedRequest = AddCartItemRequest.validate request
                 let! shopperCart = getShopperCart
-                let! product = getProduct addCartItemRequest.ProductId
-                let updatedCart = recalculateCart shopperCart addCartItemRequest product
-                return! insertCartItem updatedCart
+                let! product = getProduct validatedRequest.ProductId
+                let updatedCart = addCartItem shopperCart product validatedRequest
+                return! saveCartItem updatedCart
             }

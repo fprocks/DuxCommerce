@@ -1,12 +1,37 @@
 ﻿namespace DuxCommerce.ShoppingCarts
 
+open DuxCommerce.Catalogue
+
 type ShopperId = private ShopperId of int64
 type CartId = private CartId of int64
 type CartItemId = private CartItemId of int64
-
-type CartTotal = private CartTotal of decimal
-type ItemTotal = private ItemTotal of decimal
+module CartItemId =
+    let value (CartItemId id) = id
+    let create id = CartItemId id
 
 type ItemQuantity = private ItemQuantity of decimal
+module ItemQuantity =
+    let value (ItemQuantity quantity) = quantity
+    let create quantity = ItemQuantity quantity
+    let add (ItemQuantity quantity) (ItemQuantity qty) =
+        let newQty = quantity + qty
+        create newQty
+
+type ItemTotal = private ItemTotal of decimal
+module ItemTotal =
+    let value (ItemTotal total) = total
+    let create total = ItemTotal total
+    let calculate (SalePrice price) (ItemQuantity qty) =
+        let total = price * qty
+        create total    
+    
+type CartTotal = private CartTotal of decimal
+module CartTotal =
+    let value (CartTotal total) = total
+    let create total = CartTotal total
+    
+    let addItemTotal (CartTotal cartTotal) (ItemTotal itemTotal) =
+        let newTotal = cartTotal + itemTotal
+        create newTotal
 
 

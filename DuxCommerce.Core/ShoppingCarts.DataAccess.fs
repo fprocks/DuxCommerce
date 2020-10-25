@@ -11,13 +11,13 @@ module ShoppingCartDb =
         if cartItem.Id = 0L then
             connection.Insert<CartItemInfo, int64>(cartItem) |> ignore
             
-    let insertCartItem connString (cartInfo:CartInfo):Result<unit, string> =        
+    let saveCartItem connString cartInfo:Result<unit, string> =        
         try
             ( use connection = new SqlConnection(connString)
               connection.EnsureOpen() |> ignore
               ( use trans = connection.BeginTransaction()
                 connection.Update<CartInfo>(cartInfo, cartInfo.Id) |> ignore
-                cartInfo.LineItems |> List.map (insertLineItem connection)
+                cartInfo.LineItems |> List.map (insertLineItem connection) |> ignore
                 trans.Commit() )
             )
             Ok ()
