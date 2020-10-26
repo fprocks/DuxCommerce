@@ -23,6 +23,7 @@ module CatalogueDb =
         try
             ( use connection = new SqlConnection(connString)
               let product = connection.Query<ProductInfo>(fun p -> p.Id = id).FirstOrDefault()
+              // Todo: improve to handle null value
               Ok product
             )
         with
