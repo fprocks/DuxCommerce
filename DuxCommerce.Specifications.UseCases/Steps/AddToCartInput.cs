@@ -2,7 +2,7 @@
 {
     public class AddToCartInput
     {
-        public long ProductId { get; set; }
+        public int Product { get; set; }
         public decimal Quantity { get; set; }
     }
 }

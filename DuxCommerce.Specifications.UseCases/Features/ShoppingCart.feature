@@ -12,10 +12,10 @@ Scenario: Add to cart
 	When Amy adds the following products to her cart:
 	| Product | Name | Quantity |
 	| 1       | DDD  | 1        |
-	| 1       | DDD  | 1        |
+	| 1       | DDD  | 2        |
 	| 2       | BDD  | 8        |
 	Then the shopping cart details should look like following:
 	| Product | Name | Price | Quantity | subtotal |
-	| 1       | DDD  | 100   | 2        | 200      |
+	| 1       | DDD  | 100   | 3        | 300      |
 	| 2       | BDD  | 50    | 8        | 400      |
-	And the cart total is $600
+	And the cart total is $700

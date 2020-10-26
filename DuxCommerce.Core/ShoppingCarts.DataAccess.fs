@@ -38,7 +38,10 @@ module ShoppingCartDb =
                         let newCart: CartInfo = {Id = 0L; ShopperId = id; LineItems = []; CartTotal = 0.0M}
                         connection.Insert<CartInfo, int64>(newCart) |> ignore
                         Ok newCart
-              | _ -> Ok cartInfo
+              | _ -> 
+                        let items = connection.Query<CartItemInfo>(fun c -> c.CartId = cartInfo.Id)
+                        let newCart = { cartInfo with LineItems = (List.ofSeq items)}
+                        Ok newCart
                     
             )
         with

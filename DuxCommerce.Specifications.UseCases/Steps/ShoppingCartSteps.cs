@@ -48,8 +48,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         {
             var requests = new List<AddCartItemRequest>();
             var products = _context.CreatedProducts;
-            for(var index = 0; index < products.Count; index ++) {
-                var productId = products[index].Id;
+            for(var index = 0; index < inputs.Count; index ++) {
+                var productId = products[inputs[index].Product].Id;
                 var quantity = inputs[index].Quantity;
                 var request = new AddCartItemRequest(productId, quantity);
 

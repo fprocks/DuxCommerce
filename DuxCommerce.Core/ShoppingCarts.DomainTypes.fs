@@ -57,9 +57,9 @@ module ShoppingCart =
                 Quantity = request.Quantity
                 ItemTotal = ItemTotal.calculate product.Price request.Quantity     
             }
-            let cartTotal = CartTotal.addItemTotal cart.CartTotal newCartItem.ItemTotal
-            let items = newCartItem :: cart.LineItems
-            let newCart = { cart with LineItems = items; CartTotal = cartTotal }
+            let newTotal = CartTotal.addItemTotal cart.CartTotal newCartItem.ItemTotal
+            let newItems = newCartItem :: cart.LineItems
+            let newCart = { cart with LineItems = newItems; CartTotal = newTotal }
             newCart
         | _ ->            
             let newItems = cart.LineItems |> List.map (update request)

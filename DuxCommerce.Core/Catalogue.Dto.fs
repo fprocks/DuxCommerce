@@ -12,7 +12,7 @@ module Product =
             let! barcode = String255.create "Barcode" productInfo.Barcode
             let! outOfStockRule = OutOfStockRule.create productInfo.OutOfStockRule
             return {
-                Id = ProductId (int64 0)
+                Id = ProductId productInfo.Id
                 Name = name
                 Description = productInfo.Description
                 Price = SalePrice productInfo.Price
