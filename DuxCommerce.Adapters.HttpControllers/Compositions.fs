@@ -16,7 +16,6 @@ module CatalogueComposition =
     let updateProduct = updateProduct Constants.connString
     
 module ShoppingCartComposition =
- 
     // Todo: pass in ShopperId from shopper context
     let getShoppingCart : GetShopperCart = getShoppingCart Constants.connString (ShopperId.create 100L)
     let getProduct : GetProduct  = getProduct Constants.connString    

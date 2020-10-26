@@ -28,7 +28,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
             foreach(var request in requests)
             {
-                var response = await _apiClient.PostAsync("api/shoppingcart", request);
+                var response = await _apiClient.PostAsync("api/shoppingcart/items", request);
                 _context.ApiResults.Add(response);
             }
         }
