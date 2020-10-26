@@ -30,7 +30,7 @@ type AddCartItem = Cart -> Product -> ValidatedAddItemRequest -> Cart
 
 
 module ShoppingCart =
-    let internal update (itemRequest:ValidatedAddItemRequest) cartItem  =
+    let internal update (itemRequest:ValidatedAddItemRequest) cartItem =
         let update item quantity = 
             let newQuantity = ItemQuantity.add item.Quantity quantity
             let newTotal = ItemTotal.calculate item.Price newQuantity

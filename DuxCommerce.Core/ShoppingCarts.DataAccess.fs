@@ -10,8 +10,9 @@ open System.Linq
 module ShoppingCartDb =
     
     let internal insertLineItem (connection:SqlConnection) (trans:SqlTransaction) (cartItem:CartItemInfo) =
-        if cartItem.Id = 0L then
-            connection.Insert<CartItemInfo, int64>(cartItem, transaction = trans) |> ignore
+        if cartItem.Id = 0L 
+        then connection.Insert<CartItemInfo, int64>(cartItem, transaction = trans) |> ignore
+        else connection.Update<CartItemInfo>(cartItem, cartItem.Id, transaction = trans) |>ignore
             
     let saveCartItem connString (cart:DomainTypes.Cart) :Result<unit, string> =        
         try

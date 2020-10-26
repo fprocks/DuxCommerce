@@ -10,16 +10,16 @@ type AddItemUseCase = AddCartItemRequest -> Result<unit, string>
 module UseCases =
 
     let addCartItem
-        (getShopperCart:GetShopperCart)
-        (getProduct:GetProduct)
+        getShopperCart
+        getProduct
         addCartItem
-        (saveCartItem:SaveCartItem)
+        saveCartItem
         : AddItemUseCase =
         
         fun request ->
             result {
                 let! validatedRequest = AddCartItemRequest.validate request
-                let! cartInfo = getShopperCart
+                let! cartInfo = getShopperCart (ShopperId.create 100L)
                 let! productInfo = getProduct validatedRequest.ProductId
                 let cart = ShoppingCart.toDomain cartInfo
                 let! product = Product.toDomain productInfo

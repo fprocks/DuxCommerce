@@ -17,5 +17,5 @@ Scenario: Add to cart
 	Then the shopping cart details should look like following:
 	| Product | Name | Price | Quantity | subtotal |
 	| 1       | DDD  | 100   | 3        | 300      |
-	| 2       | BDD  | 50    | 8        | 400      |
-	And the cart total is $700
+	| 2       | BDD  | 80    | 8        | 640      |
+	And the cart total is $940
