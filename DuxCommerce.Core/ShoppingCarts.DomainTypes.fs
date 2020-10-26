@@ -59,10 +59,10 @@ module ShoppingCart =
             }
             let newTotal = CartTotal.addItemTotal cart.CartTotal newCartItem.ItemTotal
             let newItems = newCartItem :: cart.LineItems
-            let newCart = { cart with LineItems = newItems; CartTotal = newTotal }
-            newCart
+            { cart with LineItems = newItems; CartTotal = newTotal }
+
         | _ ->            
             let newItems = cart.LineItems |> List.map (update request)
-            let newCart = {cart with LineItems = newItems}
+            let newCart = { cart with LineItems = newItems }
             let newTotal = CartTotal.create (calculate newCart)
-            {newCart with CartTotal = newTotal}
+            { newCart with CartTotal = newTotal }

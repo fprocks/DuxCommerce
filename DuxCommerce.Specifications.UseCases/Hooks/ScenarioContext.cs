@@ -1,4 +1,5 @@
 ﻿using DuxCommerce.Catalogue;
+using DuxCommerce.ShoppingCarts;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -19,5 +20,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
         public List<HttpResponseMessage> ApiResults { get; set; }
 
         public List<ProductInfo> CreatedProducts { get; set; }
+
+        public CartInfo ShoppingCart { get; set; }
     }
 }

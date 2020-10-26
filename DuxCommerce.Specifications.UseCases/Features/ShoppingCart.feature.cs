@@ -200,7 +200,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Name",
                             "Price",
                             "Quantity",
-                            "subtotal"});
+                            "ItemTotal"});
                 table11.AddRow(new string[] {
                             "1",
                             "DDD",
@@ -210,14 +210,14 @@ this.ScenarioInitialize(scenarioInfo);
                 table11.AddRow(new string[] {
                             "2",
                             "BDD",
-                            "80",
+                            "50",
                             "8",
-                            "640"});
+                            "400"});
 #line 17
  testRunner.Then("the shopping cart details should look like following:", ((string)(null)), table11, "Then ");
 #line hidden
 #line 21
- testRunner.And("the cart total is $940", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the cart total is $700", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

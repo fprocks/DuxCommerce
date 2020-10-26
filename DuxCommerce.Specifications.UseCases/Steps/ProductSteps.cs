@@ -101,12 +101,12 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             return await GetProducts(ids);
         }
 
-        private void CompareProducts(Table table, List<ProductInfo> actual)
+        private void CompareProducts(Table table, List<ProductInfo> actualProducts)
         {
-            var expected = table.CreateSet<ProductInfo>();
+            var expectedProducts = table.CreateSet<ProductInfo>();
 
-            actual.Count().Should().Be(expected.Count());
-            actual.EqualTo(expected.ToList());
+            actualProducts.Count().Should().Be(expectedProducts.Count());
+            actualProducts.EqualTo(expectedProducts.ToList());
         }
 
         private async Task<List<long>> GetCreatedProductIds()

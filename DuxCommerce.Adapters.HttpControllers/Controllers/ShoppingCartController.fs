@@ -14,6 +14,6 @@ type ShoppingCartController (logger : ILogger<ShoppingCartController>) =
     member this.Post(request: AddCartItemRequest) : IActionResult =
         let result = addCartItem request
         match result with
-        | Ok p -> base.Ok(p) :> _
+        | Ok c -> base.Ok(c) :> _
         | Error m -> base.BadRequest(m) :> _
   

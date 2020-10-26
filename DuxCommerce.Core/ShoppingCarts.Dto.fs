@@ -34,6 +34,7 @@ module CartItem =
             Quantity = ItemQuantity.create itemInfo.Quantity
             ItemTotal = ItemTotal.create itemInfo.ItemTotal
         }
+
 module ShoppingCart =                
     let fromDomain (cart:Cart) :CartInfo =
         {

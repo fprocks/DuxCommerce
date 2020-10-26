@@ -5,7 +5,7 @@ open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts.Dto
 open DuxCommerce.ShoppingCarts.DomainTypes
 
-type AddItemUseCase = AddCartItemRequest -> Result<unit, string>
+type AddItemUseCase = AddCartItemRequest -> Result<CartInfo, string>
 
 module UseCases =
 
@@ -14,7 +14,7 @@ module UseCases =
         getProduct
         addCartItem
         saveCartItem
-        : AddItemUseCase =
+        :AddItemUseCase =
         
         fun request ->
             result {
@@ -24,5 +24,6 @@ module UseCases =
                 let cart = ShoppingCart.toDomain cartInfo
                 let! product = Product.toDomain productInfo
                 let updatedCart = addCartItem cart product validatedRequest
-                return! saveCartItem updatedCart
+                do! saveCartItem updatedCart
+                return! getShopperCart updatedCart.ShopperId
             }

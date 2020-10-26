@@ -5,33 +5,33 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 {
     public static class ProductExtensions
     {
-        public static bool EqualTo(this List<ProductInfo> actual, List<ProductInfo> expected)
+        public static bool EqualTo(this List<ProductInfo> expected, List<ProductInfo> actual)
         {
-            for (var index = 0; index < actual.Count; index++)
+            for (var index = 0; index < expected.Count; index++)
             {
-                if (!actual[index].EqualTo(expected[index]))
+                if (!actual[index].EqualTo(actual[index]))
                     return false;
             }
 
             return true;
         }
 
-        public static bool EqualTo(this ProductInfo product1, ProductInfo product2)
+        private static bool EqualTo(this ProductInfo expected, ProductInfo actual)
         {
-            return product1.Name == product2.Name &&
-                product1.Description == product2.Description &&
-                product1.Price == product2.Price &&
-                product1.Retail == product2.Retail &&
-                product1.Cost == product2.Cost &&
-                product1.Length == product2.Length &&
-                product1.Width == product2.Width &&
-                product1.Height == product2.Height &&
-                product1.Weight == product2.Weight &&
-                product1.ShippingType == product2.ShippingType &&
-                product1.SKU == product2.SKU &&
-                product1.Barcode == product2.Barcode &&
-                product1.TrackInventory == product2.TrackInventory &&
-                product1.OutOfStockRule == product2.OutOfStockRule;
+            return expected.Name == actual.Name &&
+                expected.Description == actual.Description &&
+                expected.Price == actual.Price &&
+                expected.Retail == actual.Retail &&
+                expected.Cost == actual.Cost &&
+                expected.Length == actual.Length &&
+                expected.Width == actual.Width &&
+                expected.Height == actual.Height &&
+                expected.Weight == actual.Weight &&
+                expected.ShippingType == actual.ShippingType &&
+                expected.SKU == actual.SKU &&
+                expected.Barcode == actual.Barcode &&
+                expected.TrackInventory == actual.TrackInventory &&
+                expected.OutOfStockRule == actual.OutOfStockRule;
         }
     }
 }

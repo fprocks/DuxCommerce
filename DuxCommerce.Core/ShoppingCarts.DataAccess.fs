@@ -42,8 +42,7 @@ module ShoppingCartDb =
               | _ -> 
                         let items = connection.Query<CartItemInfo>(fun c -> c.CartId = cartInfo.Id)
                         let newCart = { cartInfo with LineItems = (List.ofSeq items)}
-                        Ok newCart
-                    
+                        Ok newCart                    
             )
         with
             | :? Exception as ex -> Error ex.Message
