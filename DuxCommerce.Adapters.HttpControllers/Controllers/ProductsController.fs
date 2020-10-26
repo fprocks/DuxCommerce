@@ -29,5 +29,5 @@ type ProductsController (logger : ILogger<ProductsController>) =
     member this.Put(id: int64, request: ProductInfo) : IActionResult=
         let result = updateProduct id request
         match result with
-        | Ok _ -> base.Ok() :> _
+        | Ok p -> base.Ok(p) :> _
         | Error m -> base.BadRequest(m) :> _

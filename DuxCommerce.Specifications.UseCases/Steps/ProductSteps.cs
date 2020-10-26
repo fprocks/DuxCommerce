@@ -9,7 +9,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using Xunit;
 
 namespace DuxCommerce.Specifications.UseCases.Steps
 {
@@ -78,27 +77,26 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Then(@"the products should be created as follow:")]
         public async Task ThenTheProductsShouldBeCreatedAsFollowAsync(Table table)
         {
-            var createdProducts = await GetCreateProducts();
+            var createdProducts = await GetProducts();
             CompareProducts(table, createdProducts);
         }
 
         [Then(@"the products should be updated as follow:")]
         public async Task ThenTheProductsShouldBeUpdatedAsFollowAsync(Table table)
         {
-            // Todo: Merge create and update when Update endpoint returns updated product
-            var updatedProducts = await GetUpdatedProductsAsync();
+            var updatedProducts = await GetProducts();
             CompareProducts(table, updatedProducts);
         }
 
-        private async Task<List<ProductInfo>> GetCreateProducts()
+        private async Task<List<ProductInfo>> GetProducts()
         {
-            var ids = await GetCreatedProductIds();
-            return await GetProducts(ids);
-        }
-        private async Task<List<ProductInfo>> GetUpdatedProductsAsync()
-        {
-            var ids = _context.CreatedProducts.Select(x => x.Id);
-            return await GetProducts(ids);
+            var products = new List<ProductInfo>();
+            foreach(var apiResult in _context.ApiResults)
+            {
+                var product = await GetProduct(apiResult);
+                products.Add(product);
+            }
+            return products;
         }
 
         private void CompareProducts(Table table, List<ProductInfo> actualProducts)
@@ -107,31 +105,6 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
             actualProducts.Count().Should().Be(expectedProducts.Count());
             actualProducts.EqualTo(expectedProducts.ToList());
-        }
-
-        private async Task<List<long>> GetCreatedProductIds()
-        {
-            var productIds = new List<long>();
-            foreach (var apiResult in _context.ApiResults)
-            {
-                var product = await GetProduct(apiResult);
-                productIds.Add(product.Id);
-            }
-
-            return productIds;
-        }
-
-        private async Task<List<ProductInfo>> GetProducts(IEnumerable<long> productIds)
-        {
-            var actual = new List<ProductInfo>();
-            foreach (var id in productIds)
-            {
-                var response = await _apiClient.GetAsync($"api/products/{id}");
-                var product = await GetProduct(response);
-                actual.Add(product);
-            }
-
-            return actual;
         }
 
         private async Task<ProductInfo> GetProduct(HttpResponseMessage apiResult)
