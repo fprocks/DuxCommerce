@@ -156,7 +156,7 @@ module String50 =
     let createOption fieldName str = 
         ConstrainedType.createStringOption fieldName String50 50 str
 
-type String255 = private String255 of string
+type String255 = String255 of string
 
 module String255 =
     let value (String255 str) = str

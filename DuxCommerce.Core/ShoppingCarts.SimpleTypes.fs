@@ -1,5 +1,6 @@
 ﻿namespace DuxCommerce.ShoppingCarts
 
+open System.Reflection.Metadata
 open DuxCommerce.Catalogue
 
 type ShopperId = private ShopperId of int64
@@ -8,6 +9,10 @@ module ShopperId =
     let create id = ShopperId id
     
 type CartId = private CartId of int64
+module CartId =
+    let value (CartId id) = id
+    let create id = CartId id
+
 type CartItemId = private CartItemId of int64
 module CartItemId =
     let value (CartItemId id) = id

@@ -3,7 +3,11 @@
 open DuxCommerce.Catalogue
 open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts
-open DuxCommerce.ShoppingCarts.Dto
+
+type ValidatedAddItemRequest = {
+    ProductId : ProductId
+    Quantity: ItemQuantity
+}
 
 type CartItem = {
     Id: CartItemId
@@ -21,6 +25,9 @@ type Cart = {
     LineItems: CartItem list
     CartTotal: CartTotal
 }
+
+type AddCartItem = Cart -> Product -> ValidatedAddItemRequest -> Cart
+
 
 module ShoppingCart =
     let internal update (itemRequest:ValidatedAddItemRequest) cartItem  =

@@ -1,8 +1,10 @@
 ﻿namespace DuxCommerce.Catalogue
 
+open DuxCommerce.Catalogue.Dto
+
 module UseCases =     
     let createProduct connString product =
-        let model = product |> CreateProductRequest.toDomain
+        let model = product |> Product.toDomain
         match model with
         | Ok _ ->
             product 
@@ -13,7 +15,7 @@ module UseCases =
         CatalogueDb.getProduct connString (ProductId.value id)
         
     let updateProduct connString id product =
-        let model = product |> CreateProductRequest.toDomain
+        let model = product |> Product.toDomain
         match model with
         | Ok _ ->
             product 

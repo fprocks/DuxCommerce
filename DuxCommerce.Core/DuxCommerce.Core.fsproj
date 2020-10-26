@@ -15,8 +15,8 @@
       <Compile Include="Catalogue.UseCases.fs" />
       <Compile Include="ShoppingCarts.SimpleTypes.fs" />
       <Compile Include="ShoppingCarts.PublicTypes.fs" />
-      <Compile Include="ShoppingCarts.Dto.fs" />
       <Compile Include="ShoppingCarts.DomainTypes.fs" />
+      <Compile Include="ShoppingCarts.Dto.fs" />
       <Compile Include="ShoppingCarts.Ports.fs" />
       <Compile Include="ShoppingCarts.DataAccess.fs" />
       <Compile Include="ShoppingCarts.UseCases.fs" />

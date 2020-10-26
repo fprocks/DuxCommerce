@@ -1,12 +1,11 @@
 ﻿namespace DuxCommerce.ShoppingCarts
 
-open DuxCommerce.Catalogue
-
 type AddCartItemRequest = {
     ProductId : int64
     Quantity: decimal
 }
 
+[<CLIMutable>]
 type CartItemInfo = {
     Id: int64
     CartId: int64
@@ -17,6 +16,7 @@ type CartItemInfo = {
     ItemTotal: decimal
 }
 
+[<CLIMutable>]
 type CartInfo = {
     Id: int64
     ShopperId: int64

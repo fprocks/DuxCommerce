@@ -2,6 +2,8 @@
 
 open System
 open System.Data.SqlClient
+open DuxCommerce.ShoppingCarts
+open DuxCommerce.ShoppingCarts.Dto
 open RepoDb
 open System.Linq
 
@@ -11,8 +13,9 @@ module ShoppingCartDb =
         if cartItem.Id = 0L then
             connection.Insert<CartItemInfo, int64>(cartItem) |> ignore
             
-    let saveCartItem connString cartInfo:Result<unit, string> =        
+    let saveCartItem connString (cart:DomainTypes.Cart) :Result<unit, string> =        
         try
+            let cartInfo = ShoppingCart.fromDomain cart
             ( use connection = new SqlConnection(connString)
               connection.EnsureOpen() |> ignore
               ( use trans = connection.BeginTransaction()
@@ -26,14 +29,14 @@ module ShoppingCartDb =
             
     let getShoppingCart connString (shopperId:ShopperId) : Result<CartInfo, string> =
         try
-            let shopperId = ShopperId.value shopperId
+            let id = ShopperId.value shopperId
             ( use connection = new SqlConnection(connString)
               connection.EnsureOpen() |> ignore
-              let cartInfo = connection.Query<CartInfo>(fun c -> c.ShopperId = shopperId).FirstOrDefault()
+              let cartInfo = connection.Query<CartInfo>(fun c -> c.ShopperId = id).FirstOrDefault()
               match box cartInfo with
               | null -> Ok cartInfo
               | _ ->
-                    let newCart: CartInfo = {Id = 0L; ShopperId = shopperId; LineItems = []; CartTotal = 0.0M}
+                    let newCart: CartInfo = {Id = 0L; ShopperId = id; LineItems = []; CartTotal = 0.0M}
                     connection.Insert<CartInfo, int64>(newCart) |> ignore
                     Ok newCart
             )
