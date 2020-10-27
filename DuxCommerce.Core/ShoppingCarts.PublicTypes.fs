@@ -5,6 +5,15 @@ type AddCartItemRequest = {
     Quantity: decimal
 }
 
+type UpdateCartItemRequest = {
+    ProductId : int64
+    Quantity: decimal
+}
+
+type UpdateCartRequest = {
+    CartItems: UpdateCartItemRequest seq
+}
+
 [<CLIMutable>]
 type CartItemInfo = {
     Id: int64

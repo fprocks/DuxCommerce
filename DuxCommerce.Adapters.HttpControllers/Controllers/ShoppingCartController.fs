@@ -16,4 +16,12 @@ type ShoppingCartController (logger : ILogger<ShoppingCartController>) =
         match result with
         | Ok c -> base.Ok(c) :> _
         | Error m -> base.BadRequest(m) :> _
+
+    [<HttpPut("")>]
+    member this.Put(request: UpdateCartRequest) : IActionResult =
+        //let result = updateCart request
+        //match result with
+        //| Ok c -> base.Ok(c) :> _
+        //| Error m -> base.BadRequest(m) :> _
+        base.Ok(request) :> _
   

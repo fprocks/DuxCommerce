@@ -28,7 +28,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         public async System.Threading.Tasks.Task WhenAmyAddsTheFollowingProductsToHerShoppingCartAsync(Table table)
         {
             var inputs = table.CreateSet<AddToCartInput>();
-            var requests = CreateRequests(inputs.ToList());
+            var requests = CreateAddToCartRequests(inputs.ToList());
 
             foreach (var request in requests)
             {
@@ -37,6 +37,21 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             }
 
             var lastApiResult = _context.ApiResults[_context.ApiResults.Count - 1];
+            var resultStr = await lastApiResult.Content.ReadAsStringAsync();
+            var shoppingCart = JsonConvert.DeserializeObject<CartInfo>(resultStr);
+            _context.ShoppingCart = shoppingCart;
+        }
+
+        [When(@"Amy updates her shopping cart as follow:")]
+        public async System.Threading.Tasks.Task WhenAmyUpdatesHerShoppingCartAsFollowAsync(Table table)
+        {
+            var inputs = table.CreateSet<UpdateCartItemInput>();
+            var request = CreateUpdateCartRequest(inputs.ToList());
+
+            var response = await _apiClient.PutAsync("api/shoppingcart", request);
+            _context.ApiResults.Add(response);
+
+            var lastApiResult = _context.ApiResults[0];
             var resultStr = await lastApiResult.Content.ReadAsStringAsync();
             var shoppingCart = JsonConvert.DeserializeObject<CartInfo>(resultStr);
             _context.ShoppingCart = shoppingCart;
@@ -68,19 +83,36 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             expectedItems.EqualTo(lineItems).Should().BeTrue();
         }
 
-        private List<AddCartItemRequest> CreateRequests(List<AddToCartInput> inputs)
+        private List<AddCartItemRequest> CreateAddToCartRequests(List<AddToCartInput> inputs)
         {
             var requests = new List<AddCartItemRequest>();
             var products = _context.CreatedProducts;
-            for(var index = 0; index < inputs.Count; index ++) {
+            for(var index = 0; index < inputs.Count; index ++) 
+            {
                 var productIndex = inputs[index].Product - 1;
                 var productId = products[productIndex].Id;
                 var quantity = inputs[index].Quantity;
-                var request = new AddCartItemRequest(productId, quantity);
 
-                requests.Add(request);
+                requests.Add(new AddCartItemRequest(productId, quantity));
             }
             return requests;
+        }
+
+        private UpdateCartRequest CreateUpdateCartRequest(List<UpdateCartItemInput> inputs)
+        {
+            var cartItemRequests = new List<UpdateCartItemRequest>();
+            var products = _context.CreatedProducts;
+
+            for(var index = 0; index < inputs.Count; index ++)
+            {
+                var productIndex = inputs[index].Product - 1;
+                var productId = products[productIndex].Id;
+                var quantity = inputs[index].Quantity;
+
+                cartItemRequests.Add(new UpdateCartItemRequest(productId, quantity));
+            }
+
+            return new UpdateCartRequest(cartItemRequests);
         }
     }
 }

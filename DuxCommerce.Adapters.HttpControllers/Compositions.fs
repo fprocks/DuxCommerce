@@ -19,5 +19,7 @@ module ShoppingCartComposition =
     // Todo: pass in ShopperId from shopper context
     let getShoppingCart : GetShopperCart = getShoppingCart Constants.connString
     let getProduct : GetProduct  = getProduct Constants.connString    
-    let saveCartItem : SaveCartItem = saveCartItem Constants.connString    
-    let addCartItem = UseCases.addCartItem getShoppingCart getProduct addCartItem saveCartItem    
+    let saveCartItem : SaveCartItem = saveCartItem Constants.connString   
+    
+    let addCartItem = UseCases.addCartItem getShoppingCart getProduct addCartItem saveCartItem   
+    
