@@ -23,13 +23,14 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _apiClient = apiClient;
         }
 
-        [When(@"Amy adds the following products to her cart:")]
-        public async System.Threading.Tasks.Task WhenAmyAddsTheFollowingProductsToHerCartAsync(Table table)
+        [When(@"Amy adds the following products to her shopping cart:")]
+        [Given(@"Amy adds the following products to her shopping cart:")]
+        public async System.Threading.Tasks.Task WhenAmyAddsTheFollowingProductsToHerShoppingCartAsync(Table table)
         {
             var inputs = table.CreateSet<AddToCartInput>();
             var requests = CreateRequests(inputs.ToList());
 
-            foreach(var request in requests)
+            foreach (var request in requests)
             {
                 var response = await _apiClient.PostAsync("api/shoppingcart/items", request);
                 _context.ApiResults.Add(response);
@@ -41,13 +42,12 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _context.ShoppingCart = shoppingCart;
         }
 
-
-        [Then(@"the shopping cart details should look like following:")]
-        public void ThenTheShoppingCartDetailsShouldLookLikeFollowing(Table table)
+        [Then(@"her cart details should look as follow:")]
+        public void ThenHerCartDetailsShouldLookAsFollow(Table table)
         {
             var expectedItems = table.CreateSet<ExpectedCartItem>();
             var products = _context.CreatedProducts;
-            foreach(var item in expectedItems)
+            foreach (var item in expectedItems)
             {
                 var index = item.Product - 1;
                 item.ProductId = products[index].Id;
