@@ -28,7 +28,6 @@ type Cart = {
 
 type AddCartItem = Cart -> Product -> AddItemCmd -> Cart
 
-
 module ShoppingCart =
     let internal update (addItemCmd:AddItemCmd) cartItem =
         let update item quantity :CartItem= 
@@ -44,27 +43,29 @@ module ShoppingCart =
         cart.LineItems 
         |> List.sumBy (fun l -> ItemTotal.value l.ItemTotal)
         |> CartTotal.create
+
+    let internal createItem cartId (product:Product) (quantity:ItemQuantity) :CartItem=
+        {
+            Id = CartItemId.create 0L
+            CartId = cartId
+            ProductId = product.Id
+            ProductName = product.Name
+            Price = product.Price
+            Quantity = quantity
+            ItemTotal = ItemTotal.calculate product.Price quantity     
+        }
          
-    let addCartItem (cart:Cart) (product:Product) (request:AddItemCmd) =
-        let f = fun l -> l.ProductId = request.ProductId
+    let addCartItem (cart:Cart) (product:Product) (cmd:AddItemCmd) =
+        let f = fun l -> l.ProductId = cmd.ProductId
         let items = cart.LineItems |> List.filter f
         match items with
         | [] ->
-            let newCartItem = {
-                Id = CartItemId.create 0L
-                CartId = cart.Id
-                ProductId = product.Id
-                ProductName = product.Name
-                Price = product.Price
-                Quantity = request.Quantity
-                ItemTotal = ItemTotal.calculate product.Price request.Quantity     
-            }
-            let newTotal = CartTotal.addItemTotal cart.CartTotal newCartItem.ItemTotal
-            let newItems = newCartItem :: cart.LineItems
+            let newItem = createItem cart.Id product cmd.Quantity
+            let newTotal = CartTotal.addItemTotal cart.CartTotal newItem.ItemTotal
+            let newItems = newItem :: cart.LineItems
             { cart with LineItems = newItems; CartTotal = newTotal }
-
         | _ ->            
-            let newItems = cart.LineItems |> List.map (update request)
+            let newItems = cart.LineItems |> List.map (update cmd)
             let newCart = { cart with LineItems = newItems }
             let newTotal = calculate newCart
             { newCart with CartTotal = newTotal }
