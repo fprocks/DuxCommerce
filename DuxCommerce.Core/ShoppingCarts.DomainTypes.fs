@@ -29,7 +29,7 @@ type Cart = {
 type AddCartItem = Cart -> Product -> AddItemCmd -> Cart
 
 module ShoppingCart =
-    let internal update (addItemCmd:AddItemCmd) cartItem =
+    let internal updateItem (addItemCmd:AddItemCmd) cartItem =
         let update item quantity :CartItem= 
             let newQuantity = ItemQuantity.add item.Quantity quantity
             let newTotal = ItemTotal.calculate item.Price newQuantity
@@ -65,7 +65,7 @@ module ShoppingCart =
             let newItems = newItem :: cart.LineItems
             { cart with LineItems = newItems; CartTotal = newTotal }
         | _ ->            
-            let newItems = cart.LineItems |> List.map (update cmd)
+            let newItems = cart.LineItems |> List.map (updateItem cmd)
             let newCart = { cart with LineItems = newItems }
             let newTotal = calculate newCart
             { newCart with CartTotal = newTotal }
