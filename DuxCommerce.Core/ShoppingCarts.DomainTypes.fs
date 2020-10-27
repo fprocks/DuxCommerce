@@ -4,7 +4,7 @@ open DuxCommerce.Catalogue
 open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts
 
-type ValidatedAddItemRequest = {
+type AddItemCmd = {
     ProductId : ProductId
     Quantity: ItemQuantity
 }
@@ -26,24 +26,26 @@ type Cart = {
     CartTotal: CartTotal
 }
 
-type AddCartItem = Cart -> Product -> ValidatedAddItemRequest -> Cart
+type AddCartItem = Cart -> Product -> AddItemCmd -> Cart
 
 
 module ShoppingCart =
-    let internal update (itemRequest:ValidatedAddItemRequest) cartItem =
-        let update item quantity = 
+    let internal update (addItemCmd:AddItemCmd) cartItem =
+        let update item quantity :CartItem= 
             let newQuantity = ItemQuantity.add item.Quantity quantity
             let newTotal = ItemTotal.calculate item.Price newQuantity
             { cartItem with Quantity = newQuantity; ItemTotal = newTotal }
         
-        if cartItem.ProductId = itemRequest.ProductId
-        then update cartItem itemRequest.Quantity
+        if cartItem.ProductId = addItemCmd.ProductId
+        then update cartItem addItemCmd.Quantity
         else cartItem
         
     let internal calculate cart =
-        cart.LineItems |> List.sumBy (fun l -> ItemTotal.value l.ItemTotal)
+        cart.LineItems 
+        |> List.sumBy (fun l -> ItemTotal.value l.ItemTotal)
+        |> CartTotal.create
          
-    let addCartItem (cart:Cart) (product:Product) (request:ValidatedAddItemRequest) =
+    let addCartItem (cart:Cart) (product:Product) (request:AddItemCmd) =
         let f = fun l -> l.ProductId = request.ProductId
         let items = cart.LineItems |> List.filter f
         match items with
@@ -64,5 +66,5 @@ module ShoppingCart =
         | _ ->            
             let newItems = cart.LineItems |> List.map (update request)
             let newCart = { cart with LineItems = newItems }
-            let newTotal = CartTotal.create (calculate newCart)
+            let newTotal = calculate newCart
             { newCart with CartTotal = newTotal }
