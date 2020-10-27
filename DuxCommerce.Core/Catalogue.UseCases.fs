@@ -4,19 +4,21 @@ open DuxCommerce.Catalogue.Dto
 open DuxCommerce.Common
 
 module UseCases =     
-    let createProduct connString productInfo =
+    let createProduct connString info =
         result {
-            let! model = productInfo |> Product.toDomain
-            let! product = productInfo |> CatalogueDb.createProduct connString
-            return! CatalogueDb.getProduct connString product.Id
+            let! product = info |> ProductInfo.toDomain
+            let! info = product |> CatalogueDb.createProduct connString
+            return! CatalogueDb.getProduct connString (ProductId.create info.Id) 
         }
     
-    let getProduct connString id =
-        CatalogueDb.getProduct connString (ProductId.value id)
+    let getProduct connString productId =
+        // Todo: improve to handle null value
+        CatalogueDb.getProduct connString productId
         
-    let updateProduct connString id productInfo =
+    let updateProduct connString id info =
         result {
-            let! product = productInfo |> Product.toDomain
-            do! CatalogueDb.updateProduct connString id productInfo
-            return! CatalogueDb.getProduct connString id
+            let! product = info |> ProductInfo.toDomain
+            let productId = ProductId.create id
+            do! CatalogueDb.updateProduct connString productId product
+            return! CatalogueDb.getProduct connString productId
         }

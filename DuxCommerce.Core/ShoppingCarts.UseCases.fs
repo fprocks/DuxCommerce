@@ -8,7 +8,6 @@ open DuxCommerce.ShoppingCarts.DomainTypes
 type AddItemUseCase = AddCartItemRequest -> Result<CartInfo, string>
 
 module UseCases =
-
     let addCartItem
         getShopperCart
         getProduct
@@ -22,7 +21,7 @@ module UseCases =
                 let! cartInfo = getShopperCart (ShopperId.create 100L)
                 let! productInfo = getProduct validatedRequest.ProductId
                 let cart = ShoppingCart.toDomain cartInfo
-                let! product = Product.toDomain productInfo
+                let! product = ProductInfo.toDomain productInfo
                 let updatedCart = addCartItem cart product validatedRequest
                 do! saveCartItem updatedCart
                 return! getShopperCart updatedCart.ShopperId

@@ -24,11 +24,6 @@
     <ProjectReference Include="..\DuxCommerce.Adapters.HttpControllers\DuxCommerce.Adapters.HttpControllers.fsproj" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DuxCommerce.Core">
-      <HintPath>..\DuxCommerce.Core\bin\Debug\netcoreapp3.1\DuxCommerce.Core.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <None Update="host-settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

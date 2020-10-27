@@ -29,14 +29,14 @@ type Cart = {
 type AddCartItem = Cart -> Product -> AddItemCmd -> Cart
 
 module ShoppingCart =
-    let internal updateItem (addItemCmd:AddItemCmd) cartItem =
+    let internal updateItem (cmd:AddItemCmd) cartItem =
         let update item quantity :CartItem= 
             let newQuantity = ItemQuantity.add item.Quantity quantity
             let newTotal = ItemTotal.calculate item.Price newQuantity
             { cartItem with Quantity = newQuantity; ItemTotal = newTotal }
         
-        if cartItem.ProductId = addItemCmd.ProductId
-        then update cartItem addItemCmd.Quantity
+        if cartItem.ProductId = cmd.ProductId
+        then update cartItem cmd.Quantity
         else cartItem
         
     let internal calculate cart =
@@ -44,7 +44,7 @@ module ShoppingCart =
         |> List.sumBy (fun l -> ItemTotal.value l.ItemTotal)
         |> CartTotal.create
 
-    let internal createItem cartId (product:Product) (quantity:ItemQuantity) :CartItem=
+    let internal createItem cartId (product:Product) quantity :CartItem=
         {
             Id = CartItemId.create 0L
             CartId = cartId
@@ -55,7 +55,7 @@ module ShoppingCart =
             ItemTotal = ItemTotal.calculate product.Price quantity     
         }
          
-    let addCartItem (cart:Cart) (product:Product) (cmd:AddItemCmd) =
+    let addCartItem cart product (cmd:AddItemCmd) =
         let f = fun l -> l.ProductId = cmd.ProductId
         let items = cart.LineItems |> List.filter f
         match items with

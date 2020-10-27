@@ -3,7 +3,7 @@
 open DuxCommerce.Catalogue
 open DuxCommerce.Common
 
-module Product =
+module ProductInfo =
     let toDomain (productInfo: ProductInfo) :Result<Product, string> =
         result {
             let! name = String255.create "Name" productInfo.Name
@@ -29,3 +29,23 @@ module Product =
                 OutOfStockRule = outOfStockRule
                 }
             }
+        
+    let fromDomain (product:Product) :ProductInfo =
+        {
+            Id = ProductId.value product.Id
+            Name = String255.value product.Name
+            Description = product.Description
+            Price = SalePrice.value product.Price
+            Retail = RetailPrice.value product.Retail
+            Cost = ProductCost.value product.Cost
+            Length = Length.value product.Length
+            Width = Width.value product.Width
+            Height = Height.value product.Height
+            Weight = Weight.value product.Weight
+            ShippingType = ShippingType.value product.ShippingType
+            SKU = String255.value product.SKU
+            Barcode = String255.value product.Barcode
+            TrackInventory = product.TrackInventory
+            OutOfStockRule = OutOfStockRule.value product.OutOfStockRule
+        }        
+ 

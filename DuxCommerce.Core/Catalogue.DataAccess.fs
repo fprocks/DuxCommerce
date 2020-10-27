@@ -2,6 +2,7 @@
 
 open System
 open System.Data.SqlClient
+open DuxCommerce.Catalogue.Dto
 open RepoDb
 open System.Linq
 
@@ -9,30 +10,33 @@ module CatalogueDb =
     
     let createProduct connString product =
         try
+            let info = ProductInfo.fromDomain product
             ( use connection = new SqlConnection(connString)
               connection.EnsureOpen() |> ignore
               ( use trans = connection.BeginTransaction()
-                connection.Insert<ProductInfo, int64> (product, transaction = trans) |> ignore
+                connection.Insert<ProductInfo, int64> (info, transaction = trans) |> ignore
                 trans.Commit() )
             )
-            Ok product
+            Ok info
         with
             | :? Exception as ex -> Error ex.Message
             
-    let getProduct connString id =
+    let getProduct connString productId =
         try
+            let id = ProductId.value productId
             ( use connection = new SqlConnection(connString)
               let product = connection.Query<ProductInfo>(fun p -> p.Id = id).FirstOrDefault()
-              // Todo: improve to handle null value
               Ok product
             )
         with
             | :? Exception as ex -> Error ex.Message                       
             
-    let updateProduct connString (id:int64) product =
+    let updateProduct connString productId product =
         try
+            let info = ProductInfo.fromDomain product
+            let id = ProductId.value productId
             ( use connection = new SqlConnection(connString)
-              connection.Update<ProductInfo>(product, id) |> ignore
+              connection.Update<ProductInfo>(info, id) |> ignore
               Ok ()
             )
         with
