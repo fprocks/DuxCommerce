@@ -6,7 +6,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 {
     public static class CartItemExtensions
     {
-        public static bool EqualTo(this List<ExpectedCartItem> expectedItems, FSharpList<CartItemInfo> actualItems)
+        public static bool EqualTo(this List<ExpectedCartItem> expectedItems, List<CartItemInfo> actualItems)
         {
             for (var index = 0; index < expectedItems.Count; index ++)
             {

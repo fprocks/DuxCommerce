@@ -29,6 +29,6 @@ type CartItemInfo = {
 type CartInfo = {
     Id: int64
     ShopperId: int64
-    LineItems: CartItemInfo list
+    LineItems: CartItemInfo seq
     CartTotal: decimal
 }

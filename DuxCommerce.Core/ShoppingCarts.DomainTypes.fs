@@ -15,7 +15,7 @@ type UpdateCartItemCmd = {
 }
 
 type UpdateCartCmd = {
-    CartItemCmds: UpdateCartItemCmd seq
+    UpdateItems: UpdateCartItemCmd seq
 }
 
 type CartItem = {
@@ -31,7 +31,7 @@ type CartItem = {
 type Cart = {
     Id : CartId
     ShopperId : ShopperId
-    LineItems: CartItem list
+    LineItems: CartItem seq
     CartTotal: CartTotal
 }
 
@@ -41,7 +41,7 @@ module CartItem =
         let newTotal = ItemTotal.calculate cartItem.Price newQuantity
         { cartItem with Quantity = newQuantity; ItemTotal = newTotal }
         
-    let internal updateItem (cmd:AddCartItemCmd) cartItem =        
+    let internal updateIf (cmd:AddCartItemCmd) cartItem =        
         if cartItem.ProductId = cmd.ProductId
         then update cartItem cmd.Quantity
         else cartItem            
@@ -57,25 +57,31 @@ module CartItem =
             ItemTotal = ItemTotal.calculate product.Price quantity     
         }
 module ShoppingCart =    
-    let internal calcTotal cart =
+    let internal calculateTotal cart =
         cart.LineItems 
-        |> List.sumBy (fun l -> ItemTotal.value l.ItemTotal)
+        |> Seq.sumBy (fun l -> ItemTotal.value l.ItemTotal)
         |> CartTotal.create
          
     let addCartItem cart product (cmd:AddCartItemCmd) =
-        let f = fun item -> item.ProductId = cmd.ProductId
-        let items = cart.LineItems |> List.filter f
-        match items with
-        | [] ->
+        let checkId = fun item -> item.ProductId = cmd.ProductId
+        let itemOption = cart.LineItems |> Seq.tryFind checkId
+        match itemOption with
+        | Some _ ->            
+            let lineItems = cart.LineItems |> Seq.map (CartItem.updateIf cmd)
+            let updatedCart = { cart with LineItems = lineItems }
+            let cartTotal = calculateTotal updatedCart
+            { updatedCart with CartTotal = cartTotal }
+        | None ->
             let newItem = CartItem.createItem cart.Id product cmd.Quantity
-            let newTotal = CartTotal.addItemTotal cart.CartTotal newItem.ItemTotal
-            let newItems = newItem :: cart.LineItems
-            { cart with LineItems = newItems; CartTotal = newTotal }
-        | _ ->            
-            let newItems = cart.LineItems |> List.map (CartItem.updateItem cmd)
-            let newCart = { cart with LineItems = newItems }
-            let newTotal = calcTotal newCart
-            { newCart with CartTotal = newTotal }
+            let cartTotal = CartTotal.addItemTotal cart.CartTotal newItem.ItemTotal
+            let cartItems = Seq.append cart.LineItems [newItem]
+            { cart with LineItems = cartItems; CartTotal = cartTotal }
 
     let updateCart cart (cmd:UpdateCartCmd) =
+//        let update item cmd =
+//            if cmd.ProductId  cartItem.ProductId
+//            then {CartItem.update item cmd.Quantity}
+//            else {}
+//        let updateItem (cmds:UpdateCartItemCmd seq) cartItem =
+//            cmds |> Seq.map f
         cart

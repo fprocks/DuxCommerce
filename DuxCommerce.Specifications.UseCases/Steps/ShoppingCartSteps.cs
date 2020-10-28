@@ -68,7 +68,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
                 item.ProductId = products[index].Id;
             }
 
-            CompareCartItems(expectedItems.ToList(), _context.ShoppingCart.LineItems);
+            CompareCartItems(expectedItems.ToList(), _context.ShoppingCart.LineItems.ToList());
         }
 
         [Then(@"the cart total is \$(.*)")]
@@ -77,9 +77,9 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _context.ShoppingCart.CartTotal.Should().Be(total);
         }
 
-        private void CompareCartItems(List<ExpectedCartItem> expectedItems, FSharpList<CartItemInfo> lineItems)
+        private void CompareCartItems(List<ExpectedCartItem> expectedItems, List<CartItemInfo> lineItems)
         {
-            expectedItems.Count().Should().Be(lineItems.Length);
+            expectedItems.Count().Should().Be(lineItems.Count());
             expectedItems.EqualTo(lineItems).Should().BeTrue();
         }
 

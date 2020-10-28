@@ -20,7 +20,7 @@ module UpdateCartRequest =
                 Quantity = ItemQuantity.create request.Quantity
             }
         Ok {
-            CartItemCmds = request.CartItems |> Seq.map createItemCmd
+            UpdateItems = request.CartItems |> Seq.map createItemCmd
             }
         
 module CartItem =        
@@ -51,7 +51,7 @@ module ShoppingCart =
         {
             Id = CartId.value cart.Id
             ShopperId = ShopperId.value cart.ShopperId
-            LineItems = cart.LineItems |> List.map CartItem.fromDomain
+            LineItems = cart.LineItems |> Seq.map CartItem.fromDomain
             CartTotal = CartTotal.value cart.CartTotal
         }
         
@@ -59,6 +59,6 @@ module ShoppingCart =
         {
             Id = CartId.create cartInfo.Id
             ShopperId = ShopperId.create cartInfo.ShopperId
-            LineItems = cartInfo.LineItems |> List.map CartItem.toDomain
+            LineItems = cartInfo.LineItems |> Seq.map CartItem.toDomain
             CartTotal = CartTotal.create cartInfo.CartTotal
         }

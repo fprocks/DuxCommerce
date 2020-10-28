@@ -9,10 +9,10 @@ open System.Linq
 
 module ShoppingCartDb =
     
-    let internal insertLineItem (connection:SqlConnection) (trans:SqlTransaction) (cartItem:CartItemInfo) =
-        if cartItem.Id = 0L 
-        then connection.Insert<CartItemInfo, int64>(cartItem, transaction = trans) |> ignore
-        else connection.Update<CartItemInfo>(cartItem, cartItem.Id, transaction = trans) |>ignore
+    let internal insertLineItem (connection:SqlConnection) (trans:SqlTransaction) (itemInfo:CartItemInfo) =
+        if itemInfo.Id = 0L 
+        then connection.Insert<CartItemInfo, int64>(itemInfo, transaction = trans) |> ignore
+        else connection.Update<CartItemInfo>(itemInfo, itemInfo.Id, transaction = trans) |>ignore
             
     let saveCart connString (cart:DomainTypes.Cart) :Result<unit, string> =        
         try
@@ -21,7 +21,9 @@ module ShoppingCartDb =
               connection.EnsureOpen() |> ignore
               ( use trans = connection.BeginTransaction()
                 connection.Update<CartInfo>(cartInfo, cartInfo.Id, transaction = trans) |> ignore
-                cartInfo.LineItems |> List.map (insertLineItem connection trans) |> ignore
+
+                // Question: Why will LineItems not be saved when changing Seq.iter to Seq.map
+                cartInfo.LineItems |> Seq.iter (insertLineItem connection trans) |> ignore
                 trans.Commit() )
             )
             Ok ()
@@ -41,7 +43,7 @@ module ShoppingCartDb =
                         Ok newCart
               | _ -> 
                         let items = connection.Query<CartItemInfo>(fun c -> c.CartId = cartInfo.Id)
-                        let newCart = { cartInfo with LineItems = (List.ofSeq items)}
+                        let newCart = { cartInfo with LineItems = items}
                         Ok newCart                    
             )
         with
