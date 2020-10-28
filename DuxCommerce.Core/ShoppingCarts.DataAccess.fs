@@ -14,7 +14,7 @@ module ShoppingCartDb =
         then connection.Insert<CartItemInfo, int64>(cartItem, transaction = trans) |> ignore
         else connection.Update<CartItemInfo>(cartItem, cartItem.Id, transaction = trans) |>ignore
             
-    let saveCartItem connString (cart:DomainTypes.Cart) :Result<unit, string> =        
+    let saveCart connString (cart:DomainTypes.Cart) :Result<unit, string> =        
         try
             let cartInfo = ShoppingCart.fromDomain cart
             ( use connection = new SqlConnection(connString)
@@ -28,7 +28,7 @@ module ShoppingCartDb =
         with
             | :? Exception as ex -> Error ex.Message
             
-    let getShoppingCart connString (shopperId:ShopperId) : Result<CartInfo, string> =
+    let getShoppingCart connString (shopperId:ShopperId) :Result<CartInfo, string> =
         try
             let id = ShopperId.value shopperId
             ( use connection = new SqlConnection(connString)

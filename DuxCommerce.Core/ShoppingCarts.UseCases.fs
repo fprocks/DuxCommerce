@@ -6,23 +6,44 @@ open DuxCommerce.ShoppingCarts.Dto
 open DuxCommerce.ShoppingCarts.DomainTypes
 
 type AddItemUseCase = AddCartItemRequest -> Result<CartInfo, string>
+type UpdateCartUseCase = UpdateCartRequest -> Result<CartInfo, string>
 
 module UseCases =
     let addCartItem
         getShopperCart
         getProduct
-        addCartItem
-        saveCartItem
+        saveCart
         :AddItemUseCase =
         
         fun request ->
             result {
-                let! validatedRequest = AddCartItemRequest.validate request
+                let! cmd = AddCartItemRequest.validate request
+
                 let! cartInfo = getShopperCart (ShopperId.create 100L)
-                let! productInfo = getProduct validatedRequest.ProductId
                 let cart = ShoppingCart.toDomain cartInfo
+
+                let! productInfo = getProduct cmd.ProductId
                 let! product = ProductInfo.toDomain productInfo
-                let updatedCart = addCartItem cart product validatedRequest
-                do! saveCartItem updatedCart
+
+                // Question: should this be passed in as dependency?
+                let updatedCart = ShoppingCart.addCartItem cart product cmd
+                do! saveCart updatedCart
+                return! getShopperCart updatedCart.ShopperId
+            }
+
+    let updateCart
+        getShopperCart
+        saveCart
+        :UpdateCartUseCase =
+
+        fun request ->
+            result {
+                let! cmd = UpdateCartRequest.validate request
+
+                let! cartInfo = getShopperCart (ShopperId.create 100L)
+                let cart = ShoppingCart.toDomain cartInfo
+
+                let updatedCart = ShoppingCart.updateCart cart cmd
+                do! saveCart updatedCart
                 return! getShopperCart updatedCart.ShopperId
             }

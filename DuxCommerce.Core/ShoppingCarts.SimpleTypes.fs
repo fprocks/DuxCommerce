@@ -22,8 +22,8 @@ type ItemQuantity = private ItemQuantity of decimal
 module ItemQuantity =
     let value (ItemQuantity quantity) = quantity
     let create quantity = ItemQuantity quantity
-    let add (ItemQuantity quantity) (ItemQuantity qty) =
-        let newQty = quantity + qty
+    let add (ItemQuantity qty1) (ItemQuantity qty2) =
+        let newQty = qty1 + qty2
         create newQty
 
 type ItemTotal = private ItemTotal of decimal

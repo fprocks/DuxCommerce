@@ -6,10 +6,21 @@ open DuxCommerce.ShoppingCarts
 open DuxCommerce.ShoppingCarts.DomainTypes
 
 module AddCartItemRequest =
-    let validate (request:AddCartItemRequest) :Result<AddItemCmd, string> =
+    let validate (request:AddCartItemRequest) :Result<AddCartItemCmd, string> =
         Ok {
             ProductId = ProductId.create request.ProductId
             Quantity = ItemQuantity.create request.Quantity
+        }
+
+module UpdateCartRequest =
+    let validate (request:UpdateCartRequest) :Result<UpdateCartCmd, string> =
+        let createItemCmd (request:UpdateCartItemRequest) :UpdateCartItemCmd=
+            {
+                ProductId = ProductId.create request.ProductId
+                Quantity = ItemQuantity.create request.Quantity
+            }
+        Ok {
+            CartItemCmds = request.CartItems |> Seq.map createItemCmd
             }
         
 module CartItem =        

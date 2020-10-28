@@ -1,12 +1,12 @@
 ﻿namespace DuxCommerce.ShoppingCarts
 
 type AddCartItemRequest = {
-    ProductId : int64
+    ProductId: int64
     Quantity: decimal
 }
 
 type UpdateCartItemRequest = {
-    ProductId : int64
+    ProductId: int64
     Quantity: decimal
 }
 

@@ -4,9 +4,18 @@ open DuxCommerce.Catalogue
 open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts
 
-type AddItemCmd = {
+type AddCartItemCmd = {
     ProductId : ProductId
     Quantity: ItemQuantity
+}
+
+type UpdateCartItemCmd = {
+    ProductId : ProductId
+    Quantity: ItemQuantity
+}
+
+type UpdateCartCmd = {
+    CartItemCmds: UpdateCartItemCmd seq
 }
 
 type CartItem = {
@@ -26,24 +35,17 @@ type Cart = {
     CartTotal: CartTotal
 }
 
-type AddCartItem = Cart -> Product -> AddItemCmd -> Cart
-
-module ShoppingCart =
-    let internal updateItem (cmd:AddItemCmd) cartItem =
-        let update item quantity :CartItem= 
-            let newQuantity = ItemQuantity.add item.Quantity quantity
-            let newTotal = ItemTotal.calculate item.Price newQuantity
-            { cartItem with Quantity = newQuantity; ItemTotal = newTotal }
+module CartItem =
+    let internal update cartItem quantity= 
+        let newQuantity = ItemQuantity.add cartItem.Quantity quantity
+        let newTotal = ItemTotal.calculate cartItem.Price newQuantity
+        { cartItem with Quantity = newQuantity; ItemTotal = newTotal }
         
+    let internal updateItem (cmd:AddCartItemCmd) cartItem =        
         if cartItem.ProductId = cmd.ProductId
         then update cartItem cmd.Quantity
-        else cartItem
+        else cartItem            
         
-    let internal calculate cart =
-        cart.LineItems 
-        |> List.sumBy (fun l -> ItemTotal.value l.ItemTotal)
-        |> CartTotal.create
-
     let internal createItem cartId (product:Product) quantity :CartItem=
         {
             Id = CartItemId.create 0L
@@ -54,18 +56,26 @@ module ShoppingCart =
             Quantity = quantity
             ItemTotal = ItemTotal.calculate product.Price quantity     
         }
+module ShoppingCart =    
+    let internal calcTotal cart =
+        cart.LineItems 
+        |> List.sumBy (fun l -> ItemTotal.value l.ItemTotal)
+        |> CartTotal.create
          
-    let addCartItem cart product (cmd:AddItemCmd) =
-        let f = fun l -> l.ProductId = cmd.ProductId
+    let addCartItem cart product (cmd:AddCartItemCmd) =
+        let f = fun item -> item.ProductId = cmd.ProductId
         let items = cart.LineItems |> List.filter f
         match items with
         | [] ->
-            let newItem = createItem cart.Id product cmd.Quantity
+            let newItem = CartItem.createItem cart.Id product cmd.Quantity
             let newTotal = CartTotal.addItemTotal cart.CartTotal newItem.ItemTotal
             let newItems = newItem :: cart.LineItems
             { cart with LineItems = newItems; CartTotal = newTotal }
         | _ ->            
-            let newItems = cart.LineItems |> List.map (updateItem cmd)
+            let newItems = cart.LineItems |> List.map (CartItem.updateItem cmd)
             let newCart = { cart with LineItems = newItems }
-            let newTotal = calculate newCart
+            let newTotal = calcTotal newCart
             { newCart with CartTotal = newTotal }
+
+    let updateCart cart (cmd:UpdateCartCmd) =
+        cart
