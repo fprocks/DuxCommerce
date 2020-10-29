@@ -8,6 +8,7 @@ type ShippingType =
     | ShipSeparately
     
 module ShippingType =
+
     let value shippingType = 
         match shippingType with
         | PhysicalProduct -> "PhysicalProduct"
@@ -32,6 +33,7 @@ type OutOfStockRule =
      | StopSelling
      
 module OutOfStockRule =
+
     let value outofstockRule = 
         match outofstockRule with
         | Remove -> "Remove"

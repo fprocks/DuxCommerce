@@ -36,12 +36,13 @@ type Cart = {
 }
 
 module CartItem =
-    let internal addQuantity cartItem quantity= 
+
+    let internal addQuantity cartItem quantity = 
         let newQuantity = ItemQuantity.add cartItem.Quantity quantity
         let newTotal = ItemTotal.calculate cartItem.Price newQuantity
         { cartItem with Quantity = newQuantity; ItemTotal = newTotal }
         
-    let internal updateQuantity cartItem quantity= 
+    let internal updateQuantity cartItem quantity = 
         let newTotal = ItemTotal.calculate cartItem.Price quantity
         { cartItem with Quantity = quantity; ItemTotal = newTotal }
         
@@ -60,7 +61,9 @@ module CartItem =
             Quantity = quantity
             ItemTotal = ItemTotal.calculate product.Price quantity     
         }
-module ShoppingCart =    
+
+module ShoppingCart =   
+
     let internal calculateTotal cart =
         cart.LineItems 
         |> Seq.sumBy (fun l -> ItemTotal.value l.ItemTotal)
@@ -82,6 +85,7 @@ module ShoppingCart =
             { cart with LineItems = cartItems; CartTotal = cartTotal }
 
     let updateCart cart (cmd:UpdateCartCmd) =
+
         let update item (itemCmd:UpdateCartItemCmd) =
             if itemCmd.ProductId = item.ProductId
             then seq {CartItem.updateQuantity item itemCmd.Quantity}
