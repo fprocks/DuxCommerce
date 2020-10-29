@@ -1,13 +1,12 @@
-﻿using System;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using DuxCommerce.ShoppingCarts;
 using System.Collections.Generic;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using System.Linq;
 using Newtonsoft.Json;
-using Microsoft.FSharp.Collections;
 using FluentAssertions;
+using System.Net.Http;
 
 namespace DuxCommerce.Specifications.UseCases.Steps
 {
@@ -30,13 +29,13 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var inputs = table.CreateSet<AddToCartInput>();
             var requests = CreateAddToCartRequests(inputs.ToList());
 
+            HttpResponseMessage lastApiResult = null;
+
             foreach (var request in requests)
             {
-                var response = await _apiClient.PostAsync("api/shoppingcart/items", request);
-                _context.ApiResults.Add(response);
+                lastApiResult = await _apiClient.PostAsync("api/shoppingcart/items", request);
             }
 
-            var lastApiResult = _context.ApiResults[_context.ApiResults.Count - 1];
             var resultStr = await lastApiResult.Content.ReadAsStringAsync();
             var shoppingCart = JsonConvert.DeserializeObject<CartInfo>(resultStr);
             _context.ShoppingCart = shoppingCart;
@@ -48,11 +47,9 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var inputs = table.CreateSet<UpdateCartItemInput>();
             var request = CreateUpdateCartRequest(inputs.ToList());
 
-            var response = await _apiClient.PutAsync("api/shoppingcart", request);
-            _context.ApiResults.Add(response);
+            var apiResult = await _apiClient.PutAsync("api/shoppingcart", request);
 
-            var lastApiResult = _context.ApiResults[0];
-            var resultStr = await lastApiResult.Content.ReadAsStringAsync();
+            var resultStr = await apiResult.Content.ReadAsStringAsync();
             var shoppingCart = JsonConvert.DeserializeObject<CartInfo>(resultStr);
             _context.ShoppingCart = shoppingCart;
         }
@@ -100,19 +97,18 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
         private UpdateCartRequest CreateUpdateCartRequest(List<UpdateCartItemInput> inputs)
         {
-            var cartItemRequests = new List<UpdateCartItemRequest>();
+            var requests = new List<UpdateCartItemRequest>();
             var products = _context.CreatedProducts;
-
             for(var index = 0; index < inputs.Count; index ++)
             {
                 var productIndex = inputs[index].Product - 1;
                 var productId = products[productIndex].Id;
                 var quantity = inputs[index].Quantity;
 
-                cartItemRequests.Add(new UpdateCartItemRequest(productId, quantity));
+                requests.Add(new UpdateCartItemRequest(productId, quantity));
             }
 
-            return new UpdateCartRequest(cartItemRequests);
+            return new UpdateCartRequest(requests);
         }
     }
 }
