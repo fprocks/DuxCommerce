@@ -31,9 +31,10 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
             HttpResponseMessage lastApiResult = null;
 
+            var url = $"api/shoppingcart/items/{_context.ShopperId}";
             foreach (var request in requests)
             {
-                lastApiResult = await _apiClient.PostAsync("api/shoppingcart/items", request);
+                lastApiResult = await _apiClient.PostAsync(url, request);
             }
 
             var resultStr = await lastApiResult.Content.ReadAsStringAsync();
@@ -47,7 +48,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var inputs = table.CreateSet<UpdateCartItemInput>();
             var request = CreateUpdateCartRequest(inputs.ToList());
 
-            var apiResult = await _apiClient.PutAsync("api/shoppingcart", request);
+            var url = $"api/shoppingcart/{_context.ShopperId}";
+            var apiResult = await _apiClient.PutAsync(url, request);
 
             var resultStr = await apiResult.Content.ReadAsStringAsync();
             var shoppingCart = JsonConvert.DeserializeObject<CartInfo>(resultStr);

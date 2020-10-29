@@ -13,13 +13,14 @@ module UseCases =
         getShopperCart
         getProduct
         saveCart
+        shopperId
         :AddItemUseCase =
         
         fun request ->
             result {
                 let! cmd = AddCartItemRequest.validate request
 
-                let! cartInfo = getShopperCart (ShopperId.create 100L)
+                let! cartInfo = getShopperCart (ShopperId.create shopperId)
                 let cart = ShoppingCart.toDomain cartInfo
 
                 let! productInfo = getProduct cmd.ProductId
@@ -34,13 +35,14 @@ module UseCases =
     let updateCart
         getShopperCart
         saveCart
+        shopperId
         :UpdateCartUseCase =
 
         fun request ->
             result {
                 let! cmd = UpdateCartRequest.validate request
 
-                let! cartInfo = getShopperCart (ShopperId.create 100L)
+                let! cartInfo = getShopperCart (ShopperId.create shopperId)
                 let cart = ShoppingCart.toDomain cartInfo
 
                 let updatedCart = ShoppingCart.updateCart cart cmd

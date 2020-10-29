@@ -10,16 +10,17 @@ open ShoppingCartComposition
 type ShoppingCartController (logger : ILogger<ShoppingCartController>) =
     inherit ControllerBase()
 
-    [<HttpPost("items")>]
-    member this.Post(request: AddCartItemRequest) : IActionResult =
-        let result = addCartItem request
+    // Todo: pass in shopperId from front end before we can read it from ShopperContext
+    [<HttpPost("items/{shopperId}")>]
+    member this.Post(shopperId: int64, request: AddCartItemRequest) : IActionResult =
+        let result = addCartItem shopperId request
         match result with
         | Ok c -> base.Ok(c) :> _
         | Error m -> base.BadRequest(m) :> _
 
-    [<HttpPut("")>]
-    member this.Put(request: UpdateCartRequest) : IActionResult =
-        let result = updateCart request
+    [<HttpPut("{shopperId}")>]
+    member this.Put(shopperId: int64, request: UpdateCartRequest) : IActionResult =
+        let result = updateCart shopperId request
         match result with
         | Ok c -> base.Ok(c) :> _
         | Error m -> base.BadRequest(m) :> _

@@ -13,6 +13,9 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
             ProductRequests = new List<ProductInfo>();
             ApiResults = new List<HttpResponseMessage>();
             CreatedProducts = new List<ProductInfo>();
+
+            // Todo: generate shopperId from front end before we can read it from ShopperContext
+            ShopperId = new Random().Next();
         }
 
         public List<ProductInfo> ProductRequests { get; set; }
@@ -22,5 +25,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
         public List<ProductInfo> CreatedProducts { get; set; }
 
         public CartInfo ShoppingCart { get; set; }
+
+        public long ShopperId { get; set; }
     }
 }
