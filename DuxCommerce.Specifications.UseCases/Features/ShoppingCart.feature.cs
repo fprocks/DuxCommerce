@@ -76,6 +76,79 @@ namespace DuxCommerce.Specifications.UseCases.Features
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 6
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Index",
+                        "Name",
+                        "Description",
+                        "Price",
+                        "Retail",
+                        "Cost",
+                        "Length",
+                        "Width",
+                        "Height",
+                        "Weight",
+                        "ShippingType",
+                        "Sku",
+                        "Barcode",
+                        "TrackInventory",
+                        "OutOfStockRule"});
+            table4.AddRow(new string[] {
+                        "1",
+                        "DDD",
+                        "DDD Description",
+                        "100",
+                        "120",
+                        "80",
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "ShipSeparately",
+                        "ddd-book",
+                        "1234567890111",
+                        "True",
+                        "Remove"});
+            table4.AddRow(new string[] {
+                        "2",
+                        "BDD",
+                        "BDD Description",
+                        "50",
+                        "110",
+                        "70",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "PhysicalProduct",
+                        "bdd-book",
+                        "1234567890222",
+                        "False",
+                        "ContinueSelling"});
+            table4.AddRow(new string[] {
+                        "3",
+                        "TDD",
+                        "TDD Description",
+                        "80",
+                        "100",
+                        "60",
+                        "3",
+                        "4",
+                        "5",
+                        "6",
+                        "DigitalProduct",
+                        "tdd-book",
+                        "1234567890333",
+                        "True",
+                        "StopSelling"});
+#line 7
+ testRunner.Given("the following products are already created:", ((string)(null)), table4, "Given ");
+#line hidden
+        }
+        
         void System.IDisposable.Dispose()
         {
             this.TestTearDown();
@@ -89,7 +162,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add to cart", null, tagsOfScenario, argumentsOfScenario);
-#line 6
+#line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -109,114 +182,50 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Index",
-                            "Name",
-                            "Description",
-                            "Price",
-                            "Retail",
-                            "Cost",
-                            "Length",
-                            "Width",
-                            "Height",
-                            "Weight",
-                            "ShippingType",
-                            "Sku",
-                            "Barcode",
-                            "TrackInventory",
-                            "OutOfStockRule"});
-                table9.AddRow(new string[] {
-                            "1",
-                            "DDD",
-                            "DDD Description",
-                            "100",
-                            "120",
-                            "80",
-                            "1",
-                            "2",
-                            "3",
-                            "4",
-                            "ShipSeparately",
-                            "ddd-book",
-                            "1234567890111",
-                            "True",
-                            "Remove"});
-                table9.AddRow(new string[] {
-                            "2",
-                            "BDD",
-                            "BDD Description",
-                            "50",
-                            "110",
-                            "70",
-                            "2",
-                            "3",
-                            "4",
-                            "5",
-                            "PhysicalProduct",
-                            "bdd-book",
-                            "1234567890222",
-                            "False",
-                            "ContinueSelling"});
-                table9.AddRow(new string[] {
-                            "3",
-                            "TDD",
-                            "TDD Description",
-                            "80",
-                            "100",
-                            "60",
-                            "3",
-                            "4",
-                            "5",
-                            "6",
-                            "DigitalProduct",
-                            "tdd-book",
-                            "1234567890333",
-                            "True",
-                            "StopSelling"});
-#line 7
- testRunner.Given("the following products are already created:", ((string)(null)), table9, "Given ");
+#line 6
+this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
                             "Name",
                             "Quantity"});
-                table10.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "1",
                             "DDD",
                             "1"});
-                table10.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "1",
                             "DDD",
                             "2"});
-                table10.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "2",
                             "BDD",
                             "8"});
-#line 12
- testRunner.When("Amy adds the following products to her shopping cart:", ((string)(null)), table10, "When ");
+#line 14
+ testRunner.When("Amy adds the following products to her shopping cart:", ((string)(null)), table5, "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
                             "Name",
                             "Price",
                             "Quantity",
                             "ItemTotal"});
-                table11.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "1",
                             "DDD",
                             "100",
                             "3",
                             "300"});
-                table11.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "2",
                             "BDD",
                             "50",
                             "8",
                             "400"});
-#line 17
- testRunner.Then("her cart details should look as follow:", ((string)(null)), table11, "Then ");
+#line 19
+ testRunner.Then("her cart details should look as follow:", ((string)(null)), table6, "Then ");
 #line hidden
-#line 21
+#line 23
  testRunner.And("the cart total is $700", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -231,7 +240,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update cart", null, tagsOfScenario, argumentsOfScenario);
-#line 23
+#line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -251,125 +260,61 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Index",
-                            "Name",
-                            "Description",
-                            "Price",
-                            "Retail",
-                            "Cost",
-                            "Length",
-                            "Width",
-                            "Height",
-                            "Weight",
-                            "ShippingType",
-                            "Sku",
-                            "Barcode",
-                            "TrackInventory",
-                            "OutOfStockRule"});
-                table12.AddRow(new string[] {
-                            "1",
-                            "DDD",
-                            "DDD Description",
-                            "100",
-                            "120",
-                            "80",
-                            "1",
-                            "2",
-                            "3",
-                            "4",
-                            "ShipSeparately",
-                            "ddd-book",
-                            "1234567890111",
-                            "True",
-                            "Remove"});
-                table12.AddRow(new string[] {
-                            "2",
-                            "BDD",
-                            "BDD Description",
-                            "50",
-                            "110",
-                            "70",
-                            "2",
-                            "3",
-                            "4",
-                            "5",
-                            "PhysicalProduct",
-                            "bdd-book",
-                            "1234567890222",
-                            "False",
-                            "ContinueSelling"});
-                table12.AddRow(new string[] {
-                            "3",
-                            "TDD",
-                            "TDD Description",
-                            "80",
-                            "100",
-                            "60",
-                            "3",
-                            "4",
-                            "5",
-                            "6",
-                            "DigitalProduct",
-                            "tdd-book",
-                            "1234567890333",
-                            "True",
-                            "StopSelling"});
-#line 24
- testRunner.Given("the following products are already created:", ((string)(null)), table12, "Given ");
+#line 6
+this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
                             "Name",
                             "Quantity"});
-                table13.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "1",
                             "DDD",
                             "4"});
-                table13.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "2",
                             "BDD",
                             "8"});
-#line 29
- testRunner.And("Amy adds the following products to her shopping cart:", ((string)(null)), table13, "And ");
+#line 26
+ testRunner.And("Amy adds the following products to her shopping cart:", ((string)(null)), table7, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
                             "Name",
                             "Quantity"});
-                table14.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "1",
                             "DDD",
                             "10"});
-                table14.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "2",
                             "BDD",
                             "20"});
-#line 33
- testRunner.When("Amy updates her shopping cart as follow:", ((string)(null)), table14, "When ");
+#line 30
+ testRunner.When("Amy updates her shopping cart as follow:", ((string)(null)), table8, "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
                             "Name",
                             "Price",
                             "Quantity",
                             "ItemTotal"});
-                table15.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "1",
                             "DDD",
                             "100",
                             "10",
                             "1000"});
-                table15.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "2",
                             "BDD",
                             "50",
                             "20",
                             "1000"});
-#line 37
- testRunner.Then("her cart details should look as follow:", ((string)(null)), table15, "Then ");
+#line 34
+ testRunner.Then("her cart details should look as follow:", ((string)(null)), table9, "Then ");
 #line hidden
-#line 41
+#line 38
  testRunner.And("the cart total is $2000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
