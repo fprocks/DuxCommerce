@@ -37,18 +37,18 @@ type Cart = {
 
 module CartItem =
 
-    let internal addQuantity cartItem quantity = 
+    let internal addQty cartItem quantity = 
         let newQuantity = ItemQuantity.add cartItem.Quantity quantity
         let newTotal = ItemTotal.calculate cartItem.Price newQuantity
         { cartItem with Quantity = newQuantity; ItemTotal = newTotal }
         
-    let internal updateQuantity cartItem quantity = 
+    let internal updateQty cartItem quantity = 
         let newTotal = ItemTotal.calculate cartItem.Price quantity
         { cartItem with Quantity = quantity; ItemTotal = newTotal }
         
-    let internal addQuantityIf (cmd:AddCartItemCmd) cartItem =        
+    let internal addQtyIf (cmd:AddCartItemCmd) cartItem =        
         if cartItem.ProductId = cmd.ProductId
-        then addQuantity cartItem cmd.Quantity
+        then addQty cartItem cmd.Quantity
         else cartItem            
         
     let internal createItem cartId (product:Product) quantity :CartItem=
@@ -74,7 +74,7 @@ module ShoppingCart =
         let itemOption = cart.LineItems |> Seq.tryFind checkId
         match itemOption with
         | Some _ ->            
-            let lineItems = cart.LineItems |> Seq.map (CartItem.addQuantityIf cmd)
+            let lineItems = cart.LineItems |> Seq.map (CartItem.addQtyIf cmd)
             let updatedCart = { cart with LineItems = lineItems }
             let cartTotal = calculateTotal updatedCart
             { updatedCart with CartTotal = cartTotal }
@@ -86,19 +86,19 @@ module ShoppingCart =
 
     let updateCart cart (cmd:UpdateCartCmd) =
 
-        let update item (itemCmd:UpdateCartItemCmd) =
+        let updateQtyIf item (itemCmd:UpdateCartItemCmd) =
             if itemCmd.ProductId = item.ProductId
-            then seq {CartItem.updateQuantity item itemCmd.Quantity}
+            then seq {CartItem.updateQty item itemCmd.Quantity}
             else Seq.empty
             
-        let updateItem (itemCmds:UpdateCartItemCmd seq) cartItem =
+        let update (itemCmds:UpdateCartItemCmd seq) cartItem =
             itemCmds
-            |> Seq.map (update cartItem)
+            |> Seq.map (updateQtyIf cartItem)
             |> Seq.concat
             
         let lineItems =
             cart.LineItems
-            |> Seq.map (updateItem cmd.UpdateItems)
+            |> Seq.map (update cmd.UpdateItems)
             |> Seq.concat
             
         let updatedCart = { cart with LineItems = lineItems }
