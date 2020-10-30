@@ -46,7 +46,7 @@ module CartItem =
         let newTotal = ItemTotal.calculate cartItem.Price newQuantity
         { cartItem with Quantity = newQuantity; ItemTotal = newTotal }
         
-    let internal updateQty cartItem quantity = 
+    let internal update cartItem quantity = 
         let newTotal = ItemTotal.calculate cartItem.Price quantity
         { cartItem with Quantity = quantity; ItemTotal = newTotal }
         
@@ -92,7 +92,7 @@ module ShoppingCart =
 
         let updateQtyIf item (itemCmd:UpdateCartItemCmd) =
             if itemCmd.ProductId = item.ProductId
-            then seq {CartItem.updateQty item itemCmd.Quantity}
+            then seq {CartItem.update item itemCmd.Quantity}
             else Seq.empty
             
         let update (itemCmds:UpdateCartItemCmd seq) cartItem =
