@@ -39,8 +39,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
                 lastApiResult = await _apiClient.PostAsync(url, request);
             }
 
-            var resultStr = await lastApiResult.Content.ReadAsStringAsync();
-            var shoppingCart = JsonConvert.DeserializeObject<CartInfo>(resultStr);
+            var shoppingCart = await GetShoppingCart(lastApiResult);
             _context.ShoppingCart = shoppingCart;
         }
 
@@ -53,8 +52,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var url = $"api/shoppingcart/{_context.ShopperId}";
             var apiResult = await _apiClient.PutAsync(url, request);
 
-            var resultStr = await apiResult.Content.ReadAsStringAsync();
-            var shoppingCart = JsonConvert.DeserializeObject<CartInfo>(resultStr);
+            var shoppingCart = await GetShoppingCart(apiResult);
             _context.ShoppingCart = shoppingCart;
         }
 
@@ -71,8 +69,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
                 lastApiResult = await _apiClient.DeleteAsync(url, request);
             }
 
-            var resultStr = await lastApiResult.Content.ReadAsStringAsync();
-            var shoppingCart = JsonConvert.DeserializeObject<CartInfo>(resultStr);
+            var shoppingCart = await GetShoppingCart(lastApiResult);
             _context.ShoppingCart = shoppingCart;
         }
 
@@ -105,6 +102,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         private List<AddCartItemRequest> CreateAddToCartRequests(List<AddToCartForm> inputs)
         {
             var requests = new List<AddCartItemRequest>();
+
             var products = _context.CreatedProducts;
             for(var index = 0; index < inputs.Count; index ++) 
             {
@@ -114,6 +112,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
                 requests.Add(new AddCartItemRequest(productId, quantity));
             }
+
             return requests;
         }
 
@@ -136,6 +135,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         private List<DeleteCartItemRequest> CreateDeleteCartItemRequests(List<DeleteCartItemForm> inputs)
         {
             var requests = new List<DeleteCartItemRequest>();
+
             var products = _context.CreatedProducts;
             for (var index = 0; index < inputs.Count; index++)
             {
@@ -144,7 +144,15 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
                 requests.Add(new DeleteCartItemRequest(productId));
             }
+
             return requests;
+        }
+
+        private static async Task<CartInfo> GetShoppingCart(HttpResponseMessage lastApiResult)
+        {
+            var resultStr = await lastApiResult.Content.ReadAsStringAsync();
+            var shoppingCart = JsonConvert.DeserializeObject<CartInfo>(resultStr);
+            return shoppingCart;
         }
     }
 }
