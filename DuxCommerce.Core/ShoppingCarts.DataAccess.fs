@@ -2,6 +2,7 @@
 
 open System
 open System.Data.SqlClient
+open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts
 open DuxCommerce.ShoppingCarts.Dto
 open RepoDb
@@ -48,4 +49,24 @@ module ShoppingCartDb =
             )
         with
             | :? Exception as ex -> Error ex.Message
+    
+    let deleteItem connString (updatedCart, deletedItems: DomainTypes.CartItem seq) :Result<unit, string> =        
+        try
+            let cartInfo = ShoppingCart.fromDomain updatedCart
+            ( use connection = new SqlConnection(connString)
+              connection.EnsureOpen() |> ignore
+              ( use trans = connection.BeginTransaction()
+                connection.Update<CartInfo>(cartInfo, cartInfo.Id, transaction = trans) |> ignore
+                                
+                deletedItems
+                |> Seq.map CartItem.fromDomain
+                |> Seq.map (fun l -> l.Id)
+                |> Seq.iter (fun id -> connection.Delete<CartItemInfo>(id, transaction = trans) |> ignore)
+                |> ignore
+                
+                trans.Commit() )
+            )
+            Ok ()
+        with
+            | :? Exception as ex -> Error ex.Message            
             

@@ -10,6 +10,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
         Task<HttpResponseMessage> GetAsync(string url);
         Task<HttpResponseMessage> PostAsync(string url, object payload);
         Task<HttpResponseMessage> PutAsync(string url, object payload);
+        Task<HttpResponseMessage> DeleteAsync(string url, object payload);
     }
 
     public class ApiClient : IApiClient
@@ -36,6 +37,12 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
         public async Task<HttpResponseMessage> PutAsync(string url, object payload)
         {
             var method = "PUT"; 
+            return await SendRequest(url, payload, method);
+        }
+
+        public async Task<HttpResponseMessage> DeleteAsync(string url, object payload)
+        {
+            var method = "DELETE";
             return await SendRequest(url, payload, method);
         }
 

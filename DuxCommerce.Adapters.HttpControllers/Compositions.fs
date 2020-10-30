@@ -17,10 +17,12 @@ module CatalogueComposition =
     
 module ShoppingCartComposition =
     // Todo: pass in ShopperId from shopper context
-    let getShoppingCart : GetShopperCart = getShoppingCart Constants.connString
-    let getProduct : GetProduct  = getProduct Constants.connString    
-    let saveCart : SaveCart = saveCart Constants.connString   
+    let getShoppingCart  = getShoppingCart Constants.connString
+    let getProduct   = getProduct Constants.connString    
+    let saveCart  = saveCart Constants.connString    
+    let deleteItem   = deleteItem Constants.connString
     
     let addCartItem = UseCases.addCartItem getShoppingCart getProduct saveCart   
     let updateCart = UseCases.updateCart getShoppingCart saveCart
+    let deleteCartItem = UseCases.deleteCartItem getShoppingCart deleteItem
     

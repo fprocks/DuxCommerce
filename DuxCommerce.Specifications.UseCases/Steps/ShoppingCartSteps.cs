@@ -7,6 +7,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using FluentAssertions;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace DuxCommerce.Specifications.UseCases.Steps
 {
@@ -24,14 +25,13 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
         [When(@"Amy adds the following products to her shopping cart:")]
         [Given(@"Amy adds the following products to her shopping cart:")]
-        public async System.Threading.Tasks.Task WhenAmyAddsTheFollowingProductsToHerShoppingCartAsync(Table table)
+        public async Task WhenAmyAddsTheFollowingProductsToHerShoppingCartAsync(Table table)
         {
             var inputs = table.CreateSet<AddToCartInput>();
             var requests = CreateAddToCartRequests(inputs.ToList());
 
             HttpResponseMessage lastApiResult = null;
-
-            var url = $"api/shoppingcart/items/{_context.ShopperId}";
+            var url = $"api/shoppingcart/{_context.ShopperId}/items";
             foreach (var request in requests)
             {
                 lastApiResult = await _apiClient.PostAsync(url, request);
@@ -43,7 +43,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [When(@"Amy updates her shopping cart as follow:")]
-        public async System.Threading.Tasks.Task WhenAmyUpdatesHerShoppingCartAsFollowAsync(Table table)
+        public async Task WhenAmyUpdatesHerShoppingCartAsFollowAsync(Table table)
         {
             var inputs = table.CreateSet<UpdateCartItemInput>();
             var request = CreateUpdateCartRequest(inputs.ToList());
@@ -52,6 +52,24 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var apiResult = await _apiClient.PutAsync(url, request);
 
             var resultStr = await apiResult.Content.ReadAsStringAsync();
+            var shoppingCart = JsonConvert.DeserializeObject<CartInfo>(resultStr);
+            _context.ShoppingCart = shoppingCart;
+        }
+
+        [When(@"Amy deletes the following cart items:")]
+        public async void WhenAmyDeletesTheFollowingCartItemsAsync(Table table)
+        {
+            var inputs = table.CreateSet<DeleteCartItemInput>();
+            var requests = CreateDeleteCartItemRequests(inputs.ToList());
+
+            HttpResponseMessage lastApiResult = null;
+            var url = $"api/shoppingcart/{_context.ShopperId}/items";
+            foreach (var request in requests)
+            {
+                lastApiResult = await _apiClient.DeleteAsync(url, request);
+            }
+
+            var resultStr = await lastApiResult.Content.ReadAsStringAsync();
             var shoppingCart = JsonConvert.DeserializeObject<CartInfo>(resultStr);
             _context.ShoppingCart = shoppingCart;
         }
@@ -111,6 +129,20 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             }
 
             return new UpdateCartRequest(requests);
+        }
+
+        private List<DeleteCartItemRequest> CreateDeleteCartItemRequests(List<DeleteCartItemInput> inputs)
+        {
+            var requests = new List<DeleteCartItemRequest>();
+            var products = _context.CreatedProducts;
+            for (var index = 0; index < inputs.Count; index++)
+            {
+                var productIndex = inputs[index].Product - 1;
+                var productId = products[productIndex].Id;
+
+                requests.Add(new DeleteCartItemRequest(productId));
+            }
+            return requests;
         }
     }
 }

@@ -22,6 +22,12 @@ module UpdateCartRequest =
         Ok {
             UpdateItems = request.CartItems |> Seq.map createItemCmd
             }
+
+module DeleteCartItemRequest =
+    let validate (request:DeleteCartItemRequest) :Result<DeleteCartItemCmd, string> =
+        Ok {
+            ProductId = ProductId.create request.ProductId
+        }
         
 module CartItem =        
     let fromDomain (cartItem:CartItem) :CartItemInfo =

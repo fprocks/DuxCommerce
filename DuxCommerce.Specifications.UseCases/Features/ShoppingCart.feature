@@ -36,3 +36,18 @@ Scenario: Update cart
 	| 1       | DDD  | 100   | 10       | 1000      |
 	| 2       | BDD  | 50    | 20       | 1000      |
 	And the cart total is $2000
+
+Scenario: Delete cart item
+	And Amy adds the following products to her shopping cart:
+	| Product | Name | Quantity |
+	| 1       | DDD  | 2        |
+	| 2       | BDD  | 4        |
+	| 3       | TDD  | 6        |
+	When Amy deletes the following cart items: 
+	| Product | Name |
+	| 1       | DDD  |
+	| 3       | TDD  |
+	Then her cart details should look as follow:
+	| Product | Name | Price | Quantity | ItemTotal |
+	| 2       | BDD  | 50    | 4        | 200       |
+	And the cart total is $200

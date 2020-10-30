@@ -14,6 +14,10 @@ type UpdateCartRequest = {
     CartItems: UpdateCartItemRequest seq
 }
 
+type DeleteCartItemRequest = {
+    ProductId: int64
+}
+
 [<CLIMutable>]
 type CartItemInfo = {
     Id: int64

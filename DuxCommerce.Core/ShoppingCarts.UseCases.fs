@@ -7,6 +7,7 @@ open DuxCommerce.ShoppingCarts.DomainTypes
 
 type AddItemUseCase = AddCartItemRequest -> Result<CartInfo, string>
 type UpdateCartUseCase = UpdateCartRequest -> Result<CartInfo, string>
+type DeleteCartItemUseCase = DeleteCartItemRequest -> Result<CartInfo, string>
 
 module UseCases =
     let addCartItem
@@ -48,4 +49,22 @@ module UseCases =
                 let updatedCart = ShoppingCart.updateCart cart cmd
                 do! saveCart updatedCart
                 return! getShopperCart updatedCart.ShopperId
+            }
+
+    let deleteCartItem
+        getShopperCart
+        deleteCartItem
+        shopperId
+        :DeleteCartItemUseCase =
+
+        fun request ->
+            result {
+                let! cmd = DeleteCartItemRequest.validate request
+
+                let! cartInfo = getShopperCart (ShopperId.create shopperId)
+                let cart = ShoppingCart.toDomain cartInfo
+
+                let carts = ShoppingCart.deleteCartItem cart cmd
+                do! deleteCartItem carts
+                return! getShopperCart cart.ShopperId
             }

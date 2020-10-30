@@ -18,6 +18,10 @@ type UpdateCartCmd = {
     UpdateItems: UpdateCartItemCmd seq
 }
 
+type DeleteCartItemCmd = {
+    ProductId: ProductId
+}
+
 type CartItem = {
     Id: CartItemId
     CartId: CartId
@@ -104,4 +108,20 @@ module ShoppingCart =
         let updatedCart = { cart with LineItems = lineItems }
         let cartTotal = calculateTotal updatedCart
         { updatedCart with CartTotal = cartTotal }
-        
+
+    let deleteCartItem cart (cmd:DeleteCartItemCmd) =
+
+        let deleteIf (itemCmd:DeleteCartItemCmd) item =
+            if itemCmd.ProductId = item.ProductId
+            then Seq.empty
+            else seq {item}
+
+        let remainingItems = 
+            cart.LineItems 
+            |> Seq.map (deleteIf cmd)
+            |> Seq.concat
+
+        let updatedCart = { cart with LineItems = remainingItems }
+        let cartTotal = calculateTotal updatedCart
+        let deletedItems = Seq.except remainingItems cart.LineItems 
+        { updatedCart with CartTotal = cartTotal }, deletedItems

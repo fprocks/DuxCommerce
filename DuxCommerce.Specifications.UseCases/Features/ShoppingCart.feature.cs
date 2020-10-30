@@ -321,6 +321,90 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
+        [Xunit.SkippableFactAttribute(DisplayName="Delete cart item")]
+        [Xunit.TraitAttribute("FeatureTitle", "ShoppingCart")]
+        [Xunit.TraitAttribute("Description", "Delete cart item")]
+        public virtual void DeleteCartItem()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete cart item", null, tagsOfScenario, argumentsOfScenario);
+#line 40
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 6
+this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Product",
+                            "Name",
+                            "Quantity"});
+                table10.AddRow(new string[] {
+                            "1",
+                            "DDD",
+                            "2"});
+                table10.AddRow(new string[] {
+                            "2",
+                            "BDD",
+                            "4"});
+                table10.AddRow(new string[] {
+                            "3",
+                            "TDD",
+                            "6"});
+#line 41
+ testRunner.And("Amy adds the following products to her shopping cart:", ((string)(null)), table10, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Product",
+                            "Name"});
+                table11.AddRow(new string[] {
+                            "1",
+                            "DDD"});
+                table11.AddRow(new string[] {
+                            "3",
+                            "TDD"});
+#line 46
+ testRunner.When("Amy deletes the following cart items:", ((string)(null)), table11, "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Product",
+                            "Name",
+                            "Price",
+                            "Quantity",
+                            "ItemTotal"});
+                table12.AddRow(new string[] {
+                            "2",
+                            "BDD",
+                            "50",
+                            "4",
+                            "200"});
+#line 50
+ testRunner.Then("her cart details should look as follow:", ((string)(null)), table12, "Then ");
+#line hidden
+#line 53
+ testRunner.And("the cart total is $200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.4.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable
