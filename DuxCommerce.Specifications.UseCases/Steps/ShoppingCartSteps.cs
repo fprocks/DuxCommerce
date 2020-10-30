@@ -57,7 +57,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [When(@"Amy deletes the following cart items:")]
-        public async void WhenAmyDeletesTheFollowingCartItemsAsync(Table table)
+        public async Task WhenAmyDeletesTheFollowingCartItemsAsync(Table table)
         {
             var inputs = table.CreateSet<DeleteCartItemInput>();
             var requests = CreateDeleteCartItemRequests(inputs.ToList());
