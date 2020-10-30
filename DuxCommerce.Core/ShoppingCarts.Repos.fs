@@ -7,7 +7,7 @@ open DuxCommerce.ShoppingCarts.Dto
 open RepoDb
 open System.Linq
 
-module ShoppingCartDb =
+module CartRepo =
     
     let internal insertLineItem (connection:SqlConnection) (trans:SqlTransaction) (itemInfo:CartItemInfo) =
         if itemInfo.Id = 0L 

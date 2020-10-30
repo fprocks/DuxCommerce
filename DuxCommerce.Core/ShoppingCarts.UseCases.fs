@@ -19,7 +19,7 @@ module UseCases =
         
         fun request ->
             result {
-                let! cmd = AddCartItemRequest.validate request
+                let! cmd = AddCartItemRequest.toCommand request
 
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)
                 let cart = ShoppingCart.toDomain cartInfo
@@ -41,7 +41,7 @@ module UseCases =
 
         fun request ->
             result {
-                let! cmd = UpdateCartRequest.validate request
+                let! cmd = UpdateCartRequest.toCommand request
 
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)
                 let cart = ShoppingCart.toDomain cartInfo
@@ -59,7 +59,7 @@ module UseCases =
 
         fun request ->
             result {
-                let! cmd = DeleteCartItemRequest.validate request
+                let! cmd = DeleteCartItemRequest.toCommand request
 
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)
                 let cart = ShoppingCart.toDomain cartInfo

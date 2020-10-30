@@ -3,7 +3,7 @@
 open DuxCommerce.Catalogue
 open DuxCommerce.ShoppingCarts
 open UseCases
-open ShoppingCartDb
+open ProductRepo
 
 module Constants =
     let connString = "Server=(local);Database=DuxCommerce;User Id=DuxAdmin;Password=Password1;"

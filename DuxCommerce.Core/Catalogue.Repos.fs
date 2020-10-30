@@ -6,7 +6,7 @@ open DuxCommerce.Catalogue.Dto
 open RepoDb
 open System.Linq
 
-module CatalogueDb =
+module ProductRepo =
     
     let createProduct connString product =
         try

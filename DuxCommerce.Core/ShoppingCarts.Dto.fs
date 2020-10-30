@@ -6,14 +6,14 @@ open DuxCommerce.ShoppingCarts
 open DuxCommerce.ShoppingCarts.InternalTypes
 
 module AddCartItemRequest =
-    let validate (request:AddCartItemRequest) :Result<AddCartItemCmd, string> =
+    let toCommand (request:AddCartItemRequest) :Result<AddCartItemCmd, string> =
         Ok {
             ProductId = ProductId.create request.ProductId
             Quantity = ItemQuantity.create request.Quantity
         }
 
 module UpdateCartRequest =
-    let validate (request:UpdateCartRequest) :Result<UpdateCartCmd, string> =
+    let toCommand (request:UpdateCartRequest) :Result<UpdateCartCmd, string> =
         let createItemCmd (request:UpdateCartItemRequest) :UpdateCartItemCmd=
             {
                 ProductId = ProductId.create request.ProductId
@@ -24,7 +24,7 @@ module UpdateCartRequest =
             }
 
 module DeleteCartItemRequest =
-    let validate (request:DeleteCartItemRequest) :Result<DeleteCartItemCmd, string> =
+    let toCommand (request:DeleteCartItemRequest) :Result<DeleteCartItemCmd, string> =
         Ok {
             ProductId = ProductId.create request.ProductId
         }
