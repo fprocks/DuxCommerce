@@ -1,6 +1,7 @@
-﻿namespace DuxCommerce.ShoppingCarts.DomainTypes
+﻿namespace DuxCommerce.ShoppingCarts.InternalTypes
 
 open DuxCommerce.Catalogue
+open DuxCommerce.Catalogue.InternalTypes
 open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts
 

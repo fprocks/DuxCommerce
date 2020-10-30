@@ -2,10 +2,8 @@
 
 open DuxCommerce.Catalogue
 open DuxCommerce.ShoppingCarts
-open DuxCommerce.ShoppingCarts.DomainTypes
 open UseCases
 open ShoppingCartDb
-open ShoppingCart
 
 module Constants =
     let connString = "Server=(local);Database=DuxCommerce;User Id=DuxAdmin;Password=Password1;"

@@ -3,7 +3,7 @@
 open DuxCommerce.Catalogue.Dto
 open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts.Dto
-open DuxCommerce.ShoppingCarts.DomainTypes
+open DuxCommerce.ShoppingCarts.InternalTypes
 
 type AddItemUseCase = AddCartItemRequest -> Result<CartInfo, string>
 type UpdateCartUseCase = UpdateCartRequest -> Result<CartInfo, string>

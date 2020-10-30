@@ -3,7 +3,7 @@
 open DuxCommerce.Catalogue
 open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts
-open DuxCommerce.ShoppingCarts.DomainTypes
+open DuxCommerce.ShoppingCarts.InternalTypes
 
 module AddCartItemRequest =
     let validate (request:AddCartItemRequest) :Result<AddCartItemCmd, string> =

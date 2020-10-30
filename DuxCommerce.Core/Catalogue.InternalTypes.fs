@@ -1,5 +1,6 @@
-﻿namespace DuxCommerce.Catalogue
+﻿namespace DuxCommerce.Catalogue.InternalTypes
 
+open DuxCommerce.Catalogue
 open DuxCommerce.Common
 
 type ShippingType =

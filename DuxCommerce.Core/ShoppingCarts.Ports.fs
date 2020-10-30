@@ -1,7 +1,7 @@
 ﻿namespace DuxCommerce.ShoppingCarts
 
 open DuxCommerce.Catalogue
-open DuxCommerce.ShoppingCarts.DomainTypes
+open DuxCommerce.ShoppingCarts.InternalTypes
 
 type GetProduct =  ProductId -> Result<ProductInfo, string>
 type GetShopperCart = ShopperId -> Result<CartInfo, string>

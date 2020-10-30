@@ -1,6 +1,7 @@
 ﻿namespace DuxCommerce.Catalogue.Dto
 
 open DuxCommerce.Catalogue
+open DuxCommerce.Catalogue.InternalTypes
 open DuxCommerce.Common
 
 module ProductInfo =
