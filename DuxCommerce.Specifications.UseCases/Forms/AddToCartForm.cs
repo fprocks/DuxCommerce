@@ -1,6 +1,6 @@
-﻿namespace DuxCommerce.Specifications.UseCases.Steps
+﻿namespace DuxCommerce.Specifications.UseCases.Forms
 {
-    public class AddToCartInput
+    public class AddToCartForm
     {
         public int Product { get; set; }
         public decimal Quantity { get; set; }

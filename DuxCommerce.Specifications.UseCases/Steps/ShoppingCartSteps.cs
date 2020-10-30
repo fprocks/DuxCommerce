@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 using FluentAssertions;
 using System.Net.Http;
 using System.Threading.Tasks;
+using DuxCommerce.Specifications.UseCases.Extensions;
+using DuxCommerce.Specifications.UseCases.Forms;
 
 namespace DuxCommerce.Specifications.UseCases.Steps
 {
@@ -27,7 +29,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Given(@"Amy adds the following products to her shopping cart:")]
         public async Task WhenAmyAddsTheFollowingProductsToHerShoppingCartAsync(Table table)
         {
-            var inputs = table.CreateSet<AddToCartInput>();
+            var inputs = table.CreateSet<AddToCartForm>();
             var requests = CreateAddToCartRequests(inputs.ToList());
 
             HttpResponseMessage lastApiResult = null;
@@ -45,7 +47,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [When(@"Amy updates her shopping cart as follow:")]
         public async Task WhenAmyUpdatesHerShoppingCartAsFollowAsync(Table table)
         {
-            var inputs = table.CreateSet<UpdateCartItemInput>();
+            var inputs = table.CreateSet<UpdateCartItemForm>();
             var request = CreateUpdateCartRequest(inputs.ToList());
 
             var url = $"api/shoppingcart/{_context.ShopperId}";
@@ -59,7 +61,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [When(@"Amy deletes the following cart items:")]
         public async Task WhenAmyDeletesTheFollowingCartItemsAsync(Table table)
         {
-            var inputs = table.CreateSet<DeleteCartItemInput>();
+            var inputs = table.CreateSet<DeleteCartItemForm>();
             var requests = CreateDeleteCartItemRequests(inputs.ToList());
 
             HttpResponseMessage lastApiResult = null;
@@ -100,7 +102,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             expectedItems.EqualTo(lineItems).Should().BeTrue();
         }
 
-        private List<AddCartItemRequest> CreateAddToCartRequests(List<AddToCartInput> inputs)
+        private List<AddCartItemRequest> CreateAddToCartRequests(List<AddToCartForm> inputs)
         {
             var requests = new List<AddCartItemRequest>();
             var products = _context.CreatedProducts;
@@ -115,7 +117,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             return requests;
         }
 
-        private UpdateCartRequest CreateUpdateCartRequest(List<UpdateCartItemInput> inputs)
+        private UpdateCartRequest CreateUpdateCartRequest(List<UpdateCartItemForm> inputs)
         {
             var requests = new List<UpdateCartItemRequest>();
             var products = _context.CreatedProducts;
@@ -131,7 +133,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             return new UpdateCartRequest(requests);
         }
 
-        private List<DeleteCartItemRequest> CreateDeleteCartItemRequests(List<DeleteCartItemInput> inputs)
+        private List<DeleteCartItemRequest> CreateDeleteCartItemRequests(List<DeleteCartItemForm> inputs)
         {
             var requests = new List<DeleteCartItemRequest>();
             var products = _context.CreatedProducts;

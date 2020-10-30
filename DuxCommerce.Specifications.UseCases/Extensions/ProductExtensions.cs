@@ -1,7 +1,7 @@
 ﻿using DuxCommerce.Catalogue;
 using System.Collections.Generic;
 
-namespace DuxCommerce.Specifications.UseCases.Steps
+namespace DuxCommerce.Specifications.UseCases.Extensions
 {
     public static class ProductExtensions
     {

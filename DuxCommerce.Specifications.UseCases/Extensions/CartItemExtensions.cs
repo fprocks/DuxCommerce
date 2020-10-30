@@ -1,14 +1,15 @@
 ﻿using DuxCommerce.ShoppingCarts;
+using DuxCommerce.Specifications.UseCases.Steps;
 using Microsoft.FSharp.Collections;
 using System.Collections.Generic;
 
-namespace DuxCommerce.Specifications.UseCases.Steps
+namespace DuxCommerce.Specifications.UseCases.Extensions
 {
     public static class CartItemExtensions
     {
         public static bool EqualTo(this List<ExpectedCartItem> expectedItems, List<CartItemInfo> actualItems)
         {
-            for (var index = 0; index < expectedItems.Count; index ++)
+            for (var index = 0; index < expectedItems.Count; index++)
             {
                 if (!expectedItems[index].EqualTo(actualItems[index]))
                     return false;
