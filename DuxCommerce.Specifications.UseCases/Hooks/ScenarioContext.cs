@@ -1,5 +1,5 @@
 ﻿using DuxCommerce.Catalogue;
-using DuxCommerce.ShoppingCarts;
+using DuxCommerce.ShoppingCarts.PublicTypes;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;

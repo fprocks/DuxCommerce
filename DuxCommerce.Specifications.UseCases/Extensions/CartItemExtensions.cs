@@ -1,4 +1,5 @@
 ﻿using DuxCommerce.ShoppingCarts;
+using DuxCommerce.ShoppingCarts.PublicTypes;
 using DuxCommerce.Specifications.UseCases.Steps;
 using Microsoft.FSharp.Collections;
 using System.Collections.Generic;

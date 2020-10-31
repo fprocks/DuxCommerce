@@ -3,7 +3,7 @@
 open DuxCommerce.Catalogue
 open DuxCommerce.Catalogue.InternalTypes
 open DuxCommerce.Common
-open DuxCommerce.ShoppingCarts
+open DuxCommerce.ShoppingCarts.SimpleTypes
 
 type AddCartItemCmd = {
     ProductId : ProductId

@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using DuxCommerce.Specifications.UseCases.Extensions;
 using DuxCommerce.Specifications.UseCases.Forms;
+using DuxCommerce.ShoppingCarts.PublicTypes;
 
 namespace DuxCommerce.Specifications.UseCases.Steps
 {

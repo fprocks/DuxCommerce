@@ -4,6 +4,7 @@ open DuxCommerce.ShoppingCarts
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Logging
 open ShoppingCartComposition
+open DuxCommerce.ShoppingCarts.PublicTypes
 
 [<ApiController>]
 [<Route("api/[controller]")>]

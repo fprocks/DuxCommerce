@@ -6,6 +6,8 @@ open DuxCommerce.ShoppingCarts
 open DuxCommerce.ShoppingCarts.Dto
 open RepoDb
 open System.Linq
+open DuxCommerce.ShoppingCarts.SimpleTypes
+open DuxCommerce.ShoppingCarts.PublicTypes
 
 module CartRepo =
     

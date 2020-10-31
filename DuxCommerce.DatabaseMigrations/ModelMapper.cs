@@ -1,5 +1,6 @@
 ﻿using DuxCommerce.Catalogue;
 using DuxCommerce.ShoppingCarts;
+using DuxCommerce.ShoppingCarts.PublicTypes;
 using RepoDb;
 
 namespace DuxCommerce.DatabaseMigrations

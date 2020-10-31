@@ -4,6 +4,8 @@ open DuxCommerce.Catalogue.Dto
 open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts.Dto
 open DuxCommerce.ShoppingCarts.InternalTypes
+open DuxCommerce.ShoppingCarts.SimpleTypes
+open DuxCommerce.ShoppingCarts.PublicTypes
 
 type AddItemUseCase = AddCartItemRequest -> Result<CartInfo, string>
 type UpdateCartUseCase = UpdateCartRequest -> Result<CartInfo, string>
@@ -20,10 +22,8 @@ module UseCases =
         fun request ->
             result {
                 let! cmd = AddCartItemRequest.toCommand request
-
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)
                 let cart = ShoppingCart.toDomain cartInfo
-
                 let! productInfo = getProduct cmd.ProductId
                 let! product = ProductInfo.toDomain productInfo
 
@@ -42,10 +42,8 @@ module UseCases =
         fun request ->
             result {
                 let! cmd = UpdateCartRequest.toCommand request
-
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)
                 let cart = ShoppingCart.toDomain cartInfo
-
                 let updatedCart = ShoppingCart.updateCart cart cmd
                 do! saveCart updatedCart
                 return! getShopperCart updatedCart.ShopperId
@@ -60,10 +58,8 @@ module UseCases =
         fun request ->
             result {
                 let! cmd = DeleteCartItemRequest.toCommand request
-
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)
                 let cart = ShoppingCart.toDomain cartInfo
-
                 let carts = ShoppingCart.deleteCartItem cart cmd
                 do! deleteCartItem carts
                 return! getShopperCart cart.ShopperId

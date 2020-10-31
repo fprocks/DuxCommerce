@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.ShoppingCarts
+﻿namespace DuxCommerce.ShoppingCarts.PublicTypes
 
 type AddCartItemRequest = {
     ProductId: int64

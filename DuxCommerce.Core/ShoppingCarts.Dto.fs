@@ -2,8 +2,9 @@
 
 open DuxCommerce.Catalogue
 open DuxCommerce.Common
-open DuxCommerce.ShoppingCarts
 open DuxCommerce.ShoppingCarts.InternalTypes
+open DuxCommerce.ShoppingCarts.SimpleTypes
+open DuxCommerce.ShoppingCarts.PublicTypes
 
 module AddCartItemRequest =
     let toCommand (request:AddCartItemRequest) :Result<AddCartItemCmd, string> =

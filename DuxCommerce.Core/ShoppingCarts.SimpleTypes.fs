@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.ShoppingCarts
+﻿namespace DuxCommerce.ShoppingCarts.SimpleTypes
 
 open DuxCommerce.Catalogue
 
