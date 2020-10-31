@@ -9,7 +9,7 @@ open System.Linq
 
 module CartRepo =
     
-    let internal insertLineItem (connection:SqlConnection) (trans:SqlTransaction) (itemInfo:CartItemInfo) =
+    let internal insertOrUpdate (connection:SqlConnection) (trans:SqlTransaction) (itemInfo:CartItemInfo) =
         if itemInfo.Id = 0L 
         then connection.Insert<CartItemInfo, int64>(itemInfo, transaction = trans) |> ignore
         else connection.Update<CartItemInfo>(itemInfo, itemInfo.Id, transaction = trans) |>ignore
@@ -21,9 +21,9 @@ module CartRepo =
               connection.EnsureOpen() |> ignore
               ( use trans = connection.BeginTransaction()
                 connection.Update<CartInfo>(cartInfo, cartInfo.Id, transaction = trans) |> ignore
-
+                
                 // Question: Why will LineItems not be saved when changing Seq.iter to Seq.map
-                cartInfo.LineItems |> Seq.iter (insertLineItem connection trans) |> ignore
+                cartInfo.LineItems |> Seq.iter (insertOrUpdate connection trans) |> ignore
                 trans.Commit() )
             )
             Ok ()
@@ -59,8 +59,7 @@ module CartRepo =
                                 
                 deletedItems
                 |> Seq.map CartItem.fromDomain
-                |> Seq.map (fun l -> l.Id)
-                |> Seq.iter (fun id -> connection.Delete<CartItemInfo>(id, transaction = trans) |> ignore)
+                |> Seq.iter (fun item -> connection.Delete<CartItemInfo>(item.Id, transaction = trans) |> ignore)
                 |> ignore
                 
                 trans.Commit() )

@@ -2,16 +2,16 @@
 
 open DuxCommerce.Catalogue
 open DuxCommerce.ShoppingCarts
-open UseCases
 open ProductRepo
+open CartRepo
 
 module Constants =
     let connString = "Server=(local);Database=DuxCommerce;User Id=DuxAdmin;Password=Password1;"
 
 module CatalogueComposition =
-    let createProduct = createProduct Constants.connString    
-    let getProduct = getProduct Constants.connString
-    let updateProduct = updateProduct Constants.connString
+    let createProduct = UseCases.createProduct Constants.connString    
+    let getProduct = UseCases.getProduct Constants.connString
+    let updateProduct = UseCases.updateProduct Constants.connString
     
 module ShoppingCartComposition =
     // Todo: pass in ShopperId from shopper context
