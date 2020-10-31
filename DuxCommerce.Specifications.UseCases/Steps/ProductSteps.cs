@@ -1,4 +1,4 @@
-﻿using DuxCommerce.Catalogue;
+﻿using DuxCommerce.Catalogue.PublicTypes;
 using DuxCommerce.Specifications.UseCases.Extensions;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using FluentAssertions;

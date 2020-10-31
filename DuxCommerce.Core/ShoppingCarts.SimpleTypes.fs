@@ -1,6 +1,6 @@
 ﻿namespace DuxCommerce.ShoppingCarts.SimpleTypes
 
-open DuxCommerce.Catalogue
+open DuxCommerce.Catalogue.SimpleTypes
 
 type ShopperId = private ShopperId of int64
 

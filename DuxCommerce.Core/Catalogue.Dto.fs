@@ -1,8 +1,9 @@
 ﻿namespace DuxCommerce.Catalogue.Dto
 
-open DuxCommerce.Catalogue
 open DuxCommerce.Catalogue.InternalTypes
 open DuxCommerce.Common
+open DuxCommerce.Catalogue.SimpleTypes
+open DuxCommerce.Catalogue.PublicTypes
 
 module ProductInfo =
     let toDomain (productInfo: ProductInfo) :Result<Product, string> =

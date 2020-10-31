@@ -1,7 +1,7 @@
 ﻿namespace DuxCommerce.Catalogue.InternalTypes
 
-open DuxCommerce.Catalogue
 open DuxCommerce.Common
+open DuxCommerce.Catalogue.SimpleTypes
 
 type ShippingType =
     | PhysicalProduct

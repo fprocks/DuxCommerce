@@ -1,6 +1,6 @@
-﻿namespace DuxCommerce.Catalogue
+﻿namespace DuxCommerce.Catalogue.SimpleTypes
 
-type ProductId = private ProductId of int64
+type ProductId = ProductId of int64
 module ProductId =
     let value (ProductId id) = id    
     let create id = ProductId id

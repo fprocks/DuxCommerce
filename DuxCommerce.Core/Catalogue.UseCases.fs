@@ -2,6 +2,7 @@
 
 open DuxCommerce.Catalogue.Dto
 open DuxCommerce.Common
+open DuxCommerce.Catalogue.SimpleTypes
 
 module UseCases =     
     let createProduct connString info =

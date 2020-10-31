@@ -5,6 +5,8 @@ open System.Data.SqlClient
 open DuxCommerce.Catalogue.Dto
 open RepoDb
 open System.Linq
+open DuxCommerce.Catalogue.SimpleTypes
+open DuxCommerce.Catalogue.PublicTypes
 
 module ProductRepo =
     

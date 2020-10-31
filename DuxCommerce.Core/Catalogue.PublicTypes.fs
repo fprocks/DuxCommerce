@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.Catalogue
+﻿namespace DuxCommerce.Catalogue.PublicTypes
 
 [<CLIMutable>]
 type ProductInfo = {
