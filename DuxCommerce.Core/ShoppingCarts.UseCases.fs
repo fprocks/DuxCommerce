@@ -17,8 +17,7 @@ module UseCases =
         getProduct
         saveCart
         shopperId
-        :AddItemUseCase =
-        
+        :AddItemUseCase =        
         fun request ->
             result {
                 let! cmd = AddCartItemRequest.toCommand request
@@ -38,12 +37,13 @@ module UseCases =
         saveCart
         shopperId
         :UpdateCartUseCase =
-
         fun request ->
             result {
                 let! cmd = UpdateCartRequest.toCommand request
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)
                 let cart = ShoppingCart.toDomain cartInfo
+                
+                // Question: should this be passed in as dependency?
                 let updatedCart = ShoppingCart.updateCart cart cmd
                 do! saveCart updatedCart
                 return! getShopperCart updatedCart.ShopperId
@@ -54,12 +54,13 @@ module UseCases =
         deleteCartItem
         shopperId
         :DeleteCartItemUseCase =
-
         fun request ->
             result {
                 let! cmd = DeleteCartItemRequest.toCommand request
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)
                 let cart = ShoppingCart.toDomain cartInfo
+
+                // Question: should this be passed in as dependency?                                
                 let carts = ShoppingCart.deleteCartItem cart cmd
                 do! deleteCartItem carts
                 return! getShopperCart cart.ShopperId
