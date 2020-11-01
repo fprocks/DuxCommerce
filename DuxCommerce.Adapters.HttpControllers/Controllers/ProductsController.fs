@@ -1,10 +1,8 @@
 ﻿namespace DuxCommerce.Adapters.HttpControllers
 
-open DuxCommerce.Catalogue
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Logging
-open CatalogueComposition
-open DuxCommerce.Catalogue.SimpleTypes
+open Composition
 open DuxCommerce.Catalogue.PublicTypes
 
 [<ApiController>]

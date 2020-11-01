@@ -1,7 +1,6 @@
 ﻿namespace DuxCommerce.Catalogue
 
 open DuxCommerce.Catalogue.Dto
-open DuxCommerce.Catalogue.InternalTypes
 open DuxCommerce.Catalogue.PublicTypes
 open DuxCommerce.Common
 open DuxCommerce.Catalogue.SimpleTypes
