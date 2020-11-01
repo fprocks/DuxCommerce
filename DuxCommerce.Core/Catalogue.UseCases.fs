@@ -10,7 +10,7 @@ type GetProductUseCase = int64 -> Result<ProductInfo, string>
 type UpdateProductUseCase = int64 -> ProductInfo -> Result<ProductInfo, string>
 
 module UseCases =     
-    let createProduct createProduct getProduct :CreateProductUseCase =            
+    let createProduct' createProduct getProduct :CreateProductUseCase =            
         fun info ->
             result {
                 let! product = info |> ProductInfo.toDomain
@@ -19,7 +19,7 @@ module UseCases =
                 return! getProduct productId 
             }
     
-    let getProduct getProduct :GetProductUseCase =
+    let getProduct' getProduct :GetProductUseCase =
         fun id ->
             result {
                 let productId = ProductId.create id
@@ -28,7 +28,7 @@ module UseCases =
                 return! getProduct productId
             }
         
-    let updateProduct updateProduct getProduct :UpdateProductUseCase =
+    let updateProduct' updateProduct getProduct :UpdateProductUseCase =
         fun id info ->
             result {
                 let! product = info |> ProductInfo.toDomain

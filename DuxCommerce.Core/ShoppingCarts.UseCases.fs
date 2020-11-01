@@ -7,18 +7,17 @@ open DuxCommerce.ShoppingCarts.InternalTypes
 open DuxCommerce.ShoppingCarts.SimpleTypes
 open DuxCommerce.ShoppingCarts.PublicTypes
 
-type AddItemUseCase = AddCartItemRequest -> Result<CartInfo, string>
-type UpdateCartUseCase = UpdateCartRequest -> Result<CartInfo, string>
-type DeleteCartItemUseCase = DeleteCartItemRequest -> Result<CartInfo, string>
+type AddItemUseCase = int64 -> AddCartItemRequest -> Result<CartInfo, string>
+type UpdateCartUseCase = int64 -> UpdateCartRequest -> Result<CartInfo, string>
+type DeleteCartItemUseCase = int64 -> DeleteCartItemRequest -> Result<CartInfo, string>
 
 module UseCases =
     let addCartItem
         getShopperCart
         getProduct
-        saveCart
-        shopperId
+        saveCart        
         :AddItemUseCase =        
-        fun request ->
+        fun shopperId request ->
             result {
                 let! cmd = AddCartItemRequest.toCommand request
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)
@@ -34,10 +33,9 @@ module UseCases =
 
     let updateCart
         getShopperCart
-        saveCart
-        shopperId
+        saveCart        
         :UpdateCartUseCase =
-        fun request ->
+        fun shopperId request ->
             result {
                 let! cmd = UpdateCartRequest.toCommand request
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)
@@ -51,10 +49,9 @@ module UseCases =
 
     let deleteCartItem
         getShopperCart
-        deleteCartItem
-        shopperId
+        deleteCartItem        
         :DeleteCartItemUseCase =
-        fun request ->
+        fun shopperId request ->
             result {
                 let! cmd = DeleteCartItemRequest.toCommand request
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)

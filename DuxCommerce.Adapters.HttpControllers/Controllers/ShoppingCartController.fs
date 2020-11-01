@@ -2,7 +2,7 @@
 
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Logging
-open Composition
+open Compositions
 open DuxCommerce.ShoppingCarts.PublicTypes
 
 [<ApiController>]
