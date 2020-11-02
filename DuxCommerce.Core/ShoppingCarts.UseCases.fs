@@ -12,53 +12,43 @@ type UpdateCartUseCase = int64 -> UpdateCartRequest -> Result<CartInfo, string>
 type DeleteCartItemUseCase = int64 -> DeleteCartItemRequest -> Result<CartInfo, string>
 
 module UseCases =
-    let addCartItem
-        getShopperCart
-        getProduct
-        saveCart        
-        :AddItemUseCase =        
+    let addCartItem getShopperCart getProduct saveCart :AddItemUseCase =        
         fun shopperId request ->
             result {
-                let! cmd = AddCartItemRequest.toCommand request
+                let! cmd = AddCartItemRequest.toCommand request // pure
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)
-                let cart = ShoppingCart.toDomain cartInfo
+                let cart = ShoppingCart.toDomain cartInfo // pure
                 let! productInfo = getProduct cmd.ProductId
-                let! product = ProductInfo.toDomain productInfo
+                let! product = ProductInfo.toDomain productInfo // pure
 
-                // Question: should this be passed in as dependency?
-                let updatedCart = ShoppingCart.addCartItem cart product cmd
+                // Todo: should this be passed in as dependency?
+                let updatedCart = ShoppingCart.addCartItem cart product cmd // pure
                 do! saveCart updatedCart
                 return! getShopperCart updatedCart.ShopperId
             }
 
-    let updateCart
-        getShopperCart
-        saveCart        
-        :UpdateCartUseCase =
+    let updateCart getShopperCart saveCart :UpdateCartUseCase =
         fun shopperId request ->
             result {
-                let! cmd = UpdateCartRequest.toCommand request
+                let! cmd = UpdateCartRequest.toCommand request // pure
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)
-                let cart = ShoppingCart.toDomain cartInfo
+                let cart = ShoppingCart.toDomain cartInfo // pure
                 
-                // Question: should this be passed in as dependency?
-                let updatedCart = ShoppingCart.updateCart cart cmd
+                // Todo: should this be passed in as dependency?
+                let updatedCart = ShoppingCart.updateCart cart cmd // pure
                 do! saveCart updatedCart
                 return! getShopperCart updatedCart.ShopperId
             }
 
-    let deleteCartItem
-        getShopperCart
-        deleteCartItem        
-        :DeleteCartItemUseCase =
+    let deleteCartItem getShopperCart deleteCartItem :DeleteCartItemUseCase =
         fun shopperId request ->
             result {
-                let! cmd = DeleteCartItemRequest.toCommand request
+                let! cmd = DeleteCartItemRequest.toCommand request // pure
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)
-                let cart = ShoppingCart.toDomain cartInfo
+                let cart = ShoppingCart.toDomain cartInfo // pure
 
-                // Question: should this be passed in as dependency?                                
-                let carts = ShoppingCart.deleteCartItem cart cmd
+                // Todo: should this be passed in as dependency?                                
+                let carts = ShoppingCart.deleteCartItem cart cmd // pure
                 do! deleteCartItem carts
                 return! getShopperCart cart.ShopperId
             }

@@ -24,7 +24,7 @@ module CartRepo =
               ( use trans = connection.BeginTransaction()
                 connection.Update<CartInfo>(cartInfo, cartInfo.Id, transaction = trans) |> ignore
                 
-                // Question: Why will LineItems not be saved when changing Seq.iter to Seq.map
+                // Todo: why will LineItems not be saved when changing Seq.iter to Seq.map
                 cartInfo.LineItems |> Seq.iter (insertOrUpdate connection trans) |> ignore
                 trans.Commit() )
             )
