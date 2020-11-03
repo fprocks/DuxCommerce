@@ -7,7 +7,7 @@
     <ItemGroup>
       <Compile Include="Result.fs" />
       <Compile Include="SimpleTypes.fs" />
-      <Compile Include="ErrorTypes.fs" />
+      <Compile Include="CustomError.fs" />
     </ItemGroup>
 
 </Project>

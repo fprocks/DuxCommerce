@@ -121,7 +121,8 @@ module ShoppingCart =
             cart.LineItems 
             |> Seq.map (deleteIf cmd)
             |> Seq.concat
-
+            
+        // Todo: how to avoid updating cart twice
         let updatedCart = { cart with LineItems = remainingItems }
         let cartTotal = calculateTotal updatedCart
         let deletedItems = Seq.except remainingItems cart.LineItems 
