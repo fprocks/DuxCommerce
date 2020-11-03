@@ -8,14 +8,14 @@ open DuxCommerce.ShoppingCarts.PublicTypes
 open DuxCommerce.Catalogue.SimpleTypes
 
 module AddCartItemRequest =
-    let toCommand (request:AddCartItemRequest) :Result<AddCartItemCmd, string> =
+    let toCommand (request:AddCartItemRequest) :Result<AddCartItemCmd, CustomError> =
         Ok {
             ProductId = ProductId.create request.ProductId
             Quantity = ItemQuantity.create request.Quantity
         }
 
 module UpdateCartRequest =
-    let toCommand (request:UpdateCartRequest) :Result<UpdateCartCmd, string> =
+    let toCommand (request:UpdateCartRequest) :Result<UpdateCartCmd, CustomError> =
         let createItemCmd (request:UpdateCartItemRequest) :UpdateCartItemCmd=
             {
                 ProductId = ProductId.create request.ProductId
@@ -26,7 +26,7 @@ module UpdateCartRequest =
             }
 
 module DeleteCartItemRequest =
-    let toCommand (request:DeleteCartItemRequest) :Result<DeleteCartItemCmd, string> =
+    let toCommand (request:DeleteCartItemRequest) :Result<DeleteCartItemCmd, CustomError> =
         Ok {
             ProductId = ProductId.create request.ProductId
         }

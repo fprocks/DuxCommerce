@@ -2,6 +2,7 @@
 
 open System
 open System.Data.SqlClient
+open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts
 open DuxCommerce.ShoppingCarts.Dto
 open RepoDb
@@ -16,7 +17,7 @@ module CartRepo =
         then connection.Insert<CartItemInfo, int64>(itemInfo, transaction = trans) |> ignore
         else connection.Update<CartItemInfo>(itemInfo, itemInfo.Id, transaction = trans) |>ignore
             
-    let saveCart connString (cart:InternalTypes.Cart) :Result<unit, string> =        
+    let saveCart connString (cart:InternalTypes.Cart) :Result<unit, CustomError> =        
         try
             let cartInfo = ShoppingCart.fromDomain cart
             ( use connection = new SqlConnection(connString)
@@ -30,9 +31,9 @@ module CartRepo =
             )
             Ok ()
         with
-            | :? Exception as ex -> Error ex.Message
+            | :? Exception as ex -> Error ex |> CustomError.mapInternalServer
             
-    let getShoppingCart connString (shopperId:ShopperId) :Result<CartInfo, string> =
+    let getShoppingCart connString (shopperId:ShopperId) :Result<CartInfo, CustomError> =
         try
             let id = ShopperId.value shopperId
             ( use connection = new SqlConnection(connString)
@@ -49,9 +50,9 @@ module CartRepo =
                         Ok newCart                    
             )
         with
-            | :? Exception as ex -> Error ex.Message
+            | :? Exception as ex -> Error ex |> CustomError.mapInternalServer
     
-    let deleteItem connString (updatedCart, deletedItems: InternalTypes.CartItem seq) :Result<unit, string> =        
+    let deleteItem connString (updatedCart, deletedItems: InternalTypes.CartItem seq) :Result<unit, CustomError> =        
         try
             let cartInfo = ShoppingCart.fromDomain updatedCart
             ( use connection = new SqlConnection(connString)
@@ -68,5 +69,4 @@ module CartRepo =
             )
             Ok ()
         with
-            | :? Exception as ex -> Error ex.Message            
-            
+            | :? Exception as ex -> Error ex |> CustomError.mapInternalServer

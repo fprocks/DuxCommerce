@@ -5,9 +5,9 @@ open DuxCommerce.Catalogue.PublicTypes
 open DuxCommerce.Common
 open DuxCommerce.Catalogue.SimpleTypes
 
-type CreateProductUseCase = ProductInfo -> Result<ProductInfo, string>
-type GetProductUseCase = int64 -> Result<ProductInfo, string>
-type UpdateProductUseCase = int64 -> ProductInfo -> Result<ProductInfo, string>
+type CreateProductUseCase = ProductInfo -> Result<ProductInfo, CustomError>
+type GetProductUseCase = int64 -> Result<ProductInfo, CustomError>
+type UpdateProductUseCase = int64 -> ProductInfo -> Result<ProductInfo, CustomError>
 
 module UseCases =     
     let createProduct' createProduct getProduct :CreateProductUseCase =            

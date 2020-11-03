@@ -7,9 +7,9 @@ open DuxCommerce.ShoppingCarts.InternalTypes
 open DuxCommerce.ShoppingCarts.SimpleTypes
 open DuxCommerce.ShoppingCarts.PublicTypes
 
-type AddItemUseCase = int64 -> AddCartItemRequest -> Result<CartInfo, string>
-type UpdateCartUseCase = int64 -> UpdateCartRequest -> Result<CartInfo, string>
-type DeleteCartItemUseCase = int64 -> DeleteCartItemRequest -> Result<CartInfo, string>
+type AddItemUseCase = int64 -> AddCartItemRequest -> Result<CartInfo, CustomError>
+type UpdateCartUseCase = int64 -> UpdateCartRequest -> Result<CartInfo, CustomError>
+type DeleteCartItemUseCase = int64 -> DeleteCartItemRequest -> Result<CartInfo, CustomError>
 
 module UseCases =
     let addCartItem getShopperCart getProduct saveCart :AddItemUseCase =        

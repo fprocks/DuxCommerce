@@ -6,7 +6,7 @@ open DuxCommerce.Catalogue.SimpleTypes
 open DuxCommerce.Catalogue.PublicTypes
 
 module ProductInfo =
-    let toDomain (productInfo: ProductInfo) :Result<Product, string> =
+    let internal toDomain' (productInfo: ProductInfo) :Result<Product, string> =
         result {
             let! name = String255.create "Name" productInfo.Name
             let! shippingType = ShippingType.create productInfo.ShippingType
@@ -31,6 +31,9 @@ module ProductInfo =
                 OutOfStockRule = outOfStockRule
                 }
             }
+
+    let toDomain (productInfo: ProductInfo) :Result<Product, CustomError> =
+        toDomain' productInfo |> CustomError.mapValidation
         
     let fromDomain (product:Product) :ProductInfo =
         {
