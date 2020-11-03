@@ -8,7 +8,5 @@ type DuxControllerBase () =
     
     member this.Convert(error: CustomError) : IActionResult =
         match error.Error with
-        | Validation e -> base.BadRequest() :> _
-        | DataIntegrity e -> base.Problem() :> _
-        | InternalServer e -> base.Problem() :> _
-        | RemoteService e -> base.Problem() :> _
+        | Validation (ValidationError m) -> base.BadRequest(m) :> _
+        | _ -> base.Problem() :> _
