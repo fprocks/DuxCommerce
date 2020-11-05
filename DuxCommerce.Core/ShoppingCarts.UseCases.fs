@@ -4,12 +4,8 @@ open DuxCommerce.Catalogue.Dto
 open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts.Dto
 open DuxCommerce.ShoppingCarts.InternalTypes
+open DuxCommerce.ShoppingCarts.Ports
 open DuxCommerce.ShoppingCarts.SimpleTypes
-open DuxCommerce.ShoppingCarts.PublicTypes
-
-type AddItemUseCase = int64 -> AddCartItemRequest -> Result<CartInfo, CustomError>
-type UpdateCartUseCase = int64 -> UpdateCartRequest -> Result<CartInfo, CustomError>
-type DeleteCartItemUseCase = int64 -> DeleteCartItemRequest -> Result<CartInfo, CustomError>
 
 module UseCases =
     let addCartItem getShopperCart getProduct saveCart :AddItemUseCase =        
@@ -48,7 +44,7 @@ module UseCases =
                 let cart = ShoppingCart.toDomain cartInfo // pure
 
                 // Todo: should this be passed in as dependency?                                
-                let carts = ShoppingCart.deleteCartItem cart cmd // pure
-                do! deleteCartItem carts
+                let cartAndItems = ShoppingCart.deleteCartItem cart cmd // pure
+                do! deleteCartItem cartAndItems
                 return! getShopperCart cart.ShopperId
             }

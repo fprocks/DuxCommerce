@@ -52,15 +52,15 @@ module CartRepo =
         with
             | :? Exception as ex -> Error ex |> CustomError.mapInternalServer
     
-    let deleteItem connString (updatedCart, deletedItems: InternalTypes.CartItem seq) :Result<unit, CustomError> =        
+    let deleteItem connString (cartToUpdate, itemsToDelete: InternalTypes.CartItem seq) :Result<unit, CustomError> =        
         try
-            let cartInfo = ShoppingCart.fromDomain updatedCart
+            let cartInfo = ShoppingCart.fromDomain cartToUpdate
             ( use connection = new SqlConnection(connString)
               connection.EnsureOpen() |> ignore
               ( use trans = connection.BeginTransaction()
                 connection.Update<CartInfo>(cartInfo, cartInfo.Id, transaction = trans) |> ignore
                                 
-                deletedItems
+                itemsToDelete
                 |> Seq.map CartItem.fromDomain
                 |> Seq.iter (fun item -> connection.Delete<CartItemInfo>(item.Id, transaction = trans) |> ignore)
                 |> ignore

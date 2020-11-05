@@ -77,17 +77,17 @@ module ShoppingCart =
     let addCartItem cart product (cmd:AddCartItemCmd) =
         let checkId = fun item -> item.ProductId = cmd.ProductId
         let itemOption = cart.LineItems |> Seq.tryFind checkId
-        match itemOption with
-        | Some _ ->            
-            let lineItems = cart.LineItems |> Seq.map (CartItem.addQtyIf cmd)
-            let updatedCart = { cart with LineItems = lineItems }
-            let cartTotal = calculateTotal updatedCart
-            { updatedCart with CartTotal = cartTotal }
-        | None ->
-            let newItem = CartItem.createItem cart.Id product cmd.Quantity
-            let cartTotal = CartTotal.addItemTotal cart.CartTotal newItem.ItemTotal
-            let cartItems = Seq.append cart.LineItems [newItem]
-            { cart with LineItems = cartItems; CartTotal = cartTotal }
+        let lineItems =
+            match itemOption with
+            | Some _ ->
+                cart.LineItems |> Seq.map (CartItem.addQtyIf cmd)
+            | None ->
+                let newItem = CartItem.createItem cart.Id product cmd.Quantity
+                Seq.append cart.LineItems [newItem]
+
+        let updatedCart = { cart with LineItems = lineItems }
+        let cartTotal = calculateTotal updatedCart
+        { updatedCart with CartTotal = cartTotal }
 
     let updateCart cart (cmd:UpdateCartCmd) =
 
