@@ -9,6 +9,8 @@ open System.Linq
 open DuxCommerce.Catalogue.SimpleTypes
 open DuxCommerce.Catalogue.PublicTypes
 
+
+
 module ProductRepo =
     
     let createProduct connString product :Result<ProductInfo, CustomError> =

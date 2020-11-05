@@ -11,6 +11,7 @@
       <Compile Include="Catalogue.InternalTypes.fs" />
       <Compile Include="Catalogue.PublicTypes.fs" />
       <Compile Include="Catalogue.Dto.fs" />
+      <Compile Include="Catalogue.Ports.fs" />
       <Compile Include="Catalogue.Repos.fs" />
       <Compile Include="Catalogue.UseCases.fs" />
       <Compile Include="ShoppingCarts.SimpleTypes.fs" />
