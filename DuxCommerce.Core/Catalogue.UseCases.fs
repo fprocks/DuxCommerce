@@ -12,8 +12,8 @@ module UseCases =
         fun info ->
             result {
                 let! product = info |> ProductInfo.toDomain
-                let! info = product |> createProduct
-                let productId = ProductId.create info.Id
+                let! id = product |> createProduct
+                let productId = ProductId.create id
                 return! getProduct productId 
             }
     

@@ -5,18 +5,18 @@ open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts.SimpleTypes
 open DuxCommerce.Catalogue.SimpleTypes
 
-type AddCartItemCmd = {
+type AddCartItemCommand = {
     ProductId : ProductId
     Quantity: ItemQuantity
 }
 
-type UpdateCartItemCmd = {
+type UpdateCartItemCommand = {
     ProductId : ProductId
     Quantity: ItemQuantity
 }
 
-type UpdateCartCmd = {
-    UpdateItems: UpdateCartItemCmd seq
+type UpdateCartCommand = {
+    UpdateItems: UpdateCartItemCommand seq
 }
 
 type DeleteCartItemCmd = {
@@ -47,7 +47,7 @@ module CartItem =
         let newTotal = ItemTotal.calculate cartItem.Price newQuantity
         { cartItem with Quantity = newQuantity; ItemTotal = newTotal }
         
-    let internal addQtyIf (cmd:AddCartItemCmd) cartItem =        
+    let internal addQtyIf (cmd:AddCartItemCommand) cartItem =        
         if cartItem.ProductId = cmd.ProductId
         then addQty cartItem cmd.Quantity
         else cartItem            
@@ -74,7 +74,7 @@ module ShoppingCart =
         |> Seq.sumBy (fun l -> ItemTotal.value l.ItemTotal)
         |> CartTotal.create
          
-    let addCartItem cart product (cmd:AddCartItemCmd) =
+    let addCartItem cart product (cmd:AddCartItemCommand) =
         let checkId = fun item -> item.ProductId = cmd.ProductId
         let itemOption = cart.LineItems |> Seq.tryFind checkId
         let lineItems =
@@ -89,14 +89,14 @@ module ShoppingCart =
         let cartTotal = calculateTotal updatedCart
         { updatedCart with CartTotal = cartTotal }
 
-    let updateCart cart (cmd:UpdateCartCmd) =
+    let updateCart cart (cmd:UpdateCartCommand) =
 
-        let updateQtyIf item (itemCmd:UpdateCartItemCmd) =
+        let updateQtyIf item (itemCmd:UpdateCartItemCommand) =
             if itemCmd.ProductId = item.ProductId
             then seq {CartItem.update item itemCmd.Quantity}
             else Seq.empty
             
-        let update (itemCmds:UpdateCartItemCmd seq) cartItem =
+        let update (itemCmds:UpdateCartItemCommand seq) cartItem =
             itemCmds
             |> Seq.map (updateQtyIf cartItem)
             |> Seq.concat

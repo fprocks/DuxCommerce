@@ -8,15 +8,15 @@ open DuxCommerce.ShoppingCarts.PublicTypes
 open DuxCommerce.Catalogue.SimpleTypes
 
 module AddCartItemRequest =
-    let toCommand (request:AddCartItemRequest) :Result<AddCartItemCmd, CustomError> =
+    let toCommand (request:AddCartItemRequest) :Result<AddCartItemCommand, CustomError> =
         Ok {
             ProductId = ProductId.create request.ProductId
             Quantity = ItemQuantity.create request.Quantity
         }
 
 module UpdateCartRequest =
-    let toCommand (request:UpdateCartRequest) :Result<UpdateCartCmd, CustomError> =
-        let createItemCmd (request:UpdateCartItemRequest) :UpdateCartItemCmd=
+    let toCommand (request:UpdateCartRequest) :Result<UpdateCartCommand, CustomError> =
+        let createItemCmd (request:UpdateCartItemRequest) :UpdateCartItemCommand=
             {
                 ProductId = ProductId.create request.ProductId
                 Quantity = ItemQuantity.create request.Quantity

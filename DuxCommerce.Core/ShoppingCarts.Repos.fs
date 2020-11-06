@@ -19,24 +19,22 @@ module CartRepo =
             
     let saveShoppingCart connString :SaveShoppingCart =
         fun cart ->       
-            try
+            let save cart =
                 let cartInfo = ShoppingCart.fromDomain cart
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
                   ( use trans = connection.BeginTransaction()
-                    connection.Update<CartInfo>(cartInfo, cartInfo.Id, transaction = trans) |> ignore
-                
+                    connection.Update<CartInfo>(cartInfo, cartInfo.Id, transaction = trans) |> ignore                
                     // Todo: why will LineItems not be saved when changing Seq.iter to Seq.map
                     cartInfo.LineItems |> Seq.iter (insertOrUpdate connection trans) |> ignore
                     trans.Commit() )
                 )
-                Ok ()
-            with
-                | :? Exception as ex -> Error ex |> CustomError.mapInternalServer
+                
+            RepoAdapter.repoAdapter1 save cart
             
     let getShoppingCart connString :GetShoppingCart = 
         fun shopperId ->
-            try
+            let get shopperId =
                 let id = ShopperId.value shopperId
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
@@ -45,18 +43,17 @@ module CartRepo =
                   | null -> 
                       let newCart: CartInfo = {Id = 0L; ShopperId = id; LineItems = []; CartTotal = 0.0M}
                       connection.Insert<CartInfo, int64>(newCart) |> ignore
-                      Ok newCart
+                      newCart
                   | _ -> 
                       let items = connection.Query<CartItemInfo>(fun c -> c.CartId = cartInfo.Id)
-                      let newCart = { cartInfo with LineItems = items}
-                      Ok newCart                    
+                      { cartInfo with LineItems = items}
                 )
-            with
-                | :? Exception as ex -> Error ex |> CustomError.mapInternalServer
+                
+            RepoAdapter.repoAdapter1 get shopperId
     
     let deleteCartItem connString =
         fun (cartToUpdate, itemsToDelete) ->        
-            try
+            let delete (cartToUpdate, itemsToDelete) =
                 let cartInfo = ShoppingCart.fromDomain cartToUpdate
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
@@ -70,6 +67,5 @@ module CartRepo =
                 
                     trans.Commit() )
                 )
-                Ok ()
-            with
-                | :? Exception as ex -> Error ex |> CustomError.mapInternalServer
+                
+            RepoAdapter.repoAdapter1 delete (cartToUpdate, itemsToDelete)
