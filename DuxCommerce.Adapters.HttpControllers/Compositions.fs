@@ -2,9 +2,7 @@
 
 open DuxCommerce.Catalogue
 open DuxCommerce.Catalogue.Ports
-open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts
-open DuxCommerce.ShoppingCarts.InternalTypes
 open DuxCommerce.ShoppingCarts.Ports
 
 module Constants =
@@ -20,10 +18,10 @@ module Compositions =
     let private getShoppingCart :GetShoppingCart = CartRepo.getShoppingCart Constants.connString
     let private saveCart :SaveCart = CartRepo.saveCart Constants.connString
     
-    type DeleteCartItem = Cart * (CartItem seq) -> Result<uint, CustomError>
     let private deleteItem  = CartRepo.deleteItem Constants.connString
+    //let private deleteItem :DeleteCartItem  = CartRepo.deleteItem Constants.connString
     
-    let createProduct' = UseCases.createProduct' createProduct getProduct    
+    let createProduct' = UseCases.createProduct' createProduct getProduct  
     let getProduct' = UseCases.getProduct' getProduct
     let updateProduct' = UseCases.updateProduct' updateProduct getProduct
     

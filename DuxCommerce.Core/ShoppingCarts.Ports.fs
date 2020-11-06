@@ -13,3 +13,4 @@ type DeleteCartItemUseCase = int64 -> DeleteCartItemRequest -> Result<CartInfo, 
 // Output port
 type GetShoppingCart = ShopperId -> Result<CartInfo, CustomError>
 type SaveCart = Cart -> Result<unit, CustomError>
+type DeleteCartItem = Cart * (CartItem seq) -> Result<uint, CustomError>
