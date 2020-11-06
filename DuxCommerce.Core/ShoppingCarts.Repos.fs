@@ -17,7 +17,7 @@ module CartRepo =
         then connection.Insert<CartItemInfo, int64>(itemInfo, transaction = trans) |> ignore
         else connection.Update<CartItemInfo>(itemInfo, itemInfo.Id, transaction = trans) |>ignore
             
-    let saveCart connString :SaveCart =
+    let saveShoppingCart connString :SaveShoppingCart =
         fun cart ->       
             try
                 let cartInfo = ShoppingCart.fromDomain cart
@@ -54,7 +54,7 @@ module CartRepo =
             with
                 | :? Exception as ex -> Error ex |> CustomError.mapInternalServer
     
-    let deleteItem connString =
+    let deleteCartItem connString =
         fun (cartToUpdate, itemsToDelete) ->        
             try
                 let cartInfo = ShoppingCart.fromDomain cartToUpdate

@@ -8,7 +8,8 @@ open DuxCommerce.ShoppingCarts.Ports
 open DuxCommerce.ShoppingCarts.SimpleTypes
 
 module UseCases =
-    let addCartItem getShopperCart getProduct saveCart :AddItemUseCase =        
+
+    let addCartItem getShopperCart getProduct saveCart :AddCartItemUseCase =        
         fun shopperId request ->
             result {
                 let! cmd = AddCartItemRequest.toCommand request // pure

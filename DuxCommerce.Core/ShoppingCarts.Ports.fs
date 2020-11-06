@@ -6,11 +6,11 @@ open DuxCommerce.ShoppingCarts.SimpleTypes
 open DuxCommerce.ShoppingCarts.PublicTypes
 
 // Input port
-type AddItemUseCase = int64 -> AddCartItemRequest -> Result<CartInfo, CustomError>
+type AddCartItemUseCase = int64 -> AddCartItemRequest -> Result<CartInfo, CustomError>
 type UpdateCartUseCase = int64 -> UpdateCartRequest -> Result<CartInfo, CustomError>
 type DeleteCartItemUseCase = int64 -> DeleteCartItemRequest -> Result<CartInfo, CustomError>
 
 // Output port
 type GetShoppingCart = ShopperId -> Result<CartInfo, CustomError>
-type SaveCart = Cart -> Result<unit, CustomError>
+type SaveShoppingCart = Cart -> Result<unit, CustomError>
 type DeleteCartItem = Cart * (CartItem seq) -> Result<uint, CustomError>

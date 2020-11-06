@@ -13,21 +13,21 @@ type ShoppingCartController (logger : ILogger<ShoppingCartController>) =
     // Todo: pass in shopperId from front end before we can read it from ShopperContext
     [<HttpPost("{shopperId}/items")>]
     member this.Post(shopperId: int64, request: AddCartItemRequest) : IActionResult =
-        let result = addCartItem' shopperId request
+        let result = addCartItemUseCase shopperId request
         match result with
         | Ok c -> base.Ok(c) :> _
         | Error m -> base.BadRequest(m) :> _
 
     [<HttpPut("{shopperId}")>]
     member this.Put(shopperId: int64, request: UpdateCartRequest) : IActionResult =
-        let result = updateCart' shopperId request
+        let result = updateCartUseCase shopperId request
         match result with
         | Ok c -> base.Ok(c) :> _
         | Error m -> base.BadRequest(m) :> _
 
     [<HttpDelete("{shopperId}/items")>]
     member this.Delete(shopperId: int64, request: DeleteCartItemRequest) : IActionResult =
-        let result = deleteCartItem' shopperId request
+        let result = deleteCartItemUseCase shopperId request
         match result with
         | Ok c -> base.Ok(c) :> _
         | Error m -> base.BadRequest(m) :> _
