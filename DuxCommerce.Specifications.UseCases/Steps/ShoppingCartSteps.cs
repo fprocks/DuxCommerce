@@ -1,6 +1,5 @@
 ﻿using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using DuxCommerce.ShoppingCarts;
 using System.Collections.Generic;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using System.Linq;
@@ -11,6 +10,7 @@ using System.Threading.Tasks;
 using DuxCommerce.Specifications.UseCases.Extensions;
 using DuxCommerce.Specifications.UseCases.Forms;
 using DuxCommerce.ShoppingCarts.PublicTypes;
+using System.Net;
 
 namespace DuxCommerce.Specifications.UseCases.Steps
 {
@@ -26,50 +26,33 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _apiClient = apiClient;
         }
 
-        [When(@"Amy adds the following products to her shopping cart:")]
         [Given(@"Amy adds the following products to her shopping cart:")]
+        public async Task GivenAmyAddsTheFollowingProductsToHerShoppingCartAsync(Table table)
+        {
+            var lastApiResult = await AddCartItems(table);
+            _context.ShoppingCart = await GetShoppingCart(lastApiResult);
+        }
+
+        [When(@"Amy adds the following products to her shopping cart:")]
         public async Task WhenAmyAddsTheFollowingProductsToHerShoppingCartAsync(Table table)
         {
-            var inputs = table.CreateSet<AddToCartForm>();
-            var requests = CreateAddToCartRequests(inputs.ToList());
-
-            HttpResponseMessage lastApiResult = null;
-            var url = $"api/shoppingcart/{_context.ShopperId}/items";
-            foreach (var request in requests)
-            {
-                lastApiResult = await _apiClient.PostAsync(url, request);
-            }
-
-            var shoppingCart = await GetShoppingCart(lastApiResult);
-            _context.ShoppingCart = shoppingCart;
+            var lastApiResult = await AddCartItems(table);
+            _context.ShoppingCart = await GetShoppingCart(lastApiResult);
+            _context.ApiResults.Add(lastApiResult);
         }
 
         [When(@"Amy updates her shopping cart as follow:")]
         public async Task WhenAmyUpdatesHerShoppingCartAsFollowAsync(Table table)
         {
-            var inputs = table.CreateSet<UpdateCartItemForm>();
-            var request = CreateUpdateCartRequest(inputs.ToList());
-
-            var url = $"api/shoppingcart/{_context.ShopperId}";
-            var apiResult = await _apiClient.PutAsync(url, request);
-
-            var shoppingCart = await GetShoppingCart(apiResult);
-            _context.ShoppingCart = shoppingCart;
+            HttpResponseMessage apiResult = await UpdateShoppingCart(table);
+            _context.ShoppingCart = await GetShoppingCart(apiResult);
+            _context.ApiResults.Add(apiResult);
         }
 
         [When(@"Amy deletes the following cart items:")]
         public async Task WhenAmyDeletesTheFollowingCartItemsAsync(Table table)
         {
-            var inputs = table.CreateSet<DeleteCartItemForm>();
-            var requests = CreateDeleteCartItemRequests(inputs.ToList());
-
-            HttpResponseMessage lastApiResult = null;
-            var url = $"api/shoppingcart/{_context.ShopperId}/items";
-            foreach (var request in requests)
-            {
-                lastApiResult = await _apiClient.DeleteAsync(url, request);
-            }
-
+            var lastApiResult = await DeleteCartItems(table);
             var shoppingCart = await GetShoppingCart(lastApiResult);
             _context.ShoppingCart = shoppingCart;
         }
@@ -77,6 +60,9 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Then(@"her cart details should look as follow:")]
         public void ThenHerCartDetailsShouldLookAsFollow(Table table)
         {
+            var statusOK = _context.ApiResults.All(x => x.StatusCode == HttpStatusCode.OK);
+            statusOK.Should().BeTrue();
+
             var expectedItems = table.CreateSet<ExpectedCartItem>();
             var products = _context.CreatedProducts;
             foreach (var item in expectedItems)
@@ -94,13 +80,54 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _context.ShoppingCart.CartTotal.Should().Be(total);
         }
 
+        private async Task<HttpResponseMessage> AddCartItems(Table table)
+        {
+            var inputs = table.CreateSet<AddToCartForm>();
+            var requests = CreateAddCartItemRequests(inputs.ToList());
+
+            HttpResponseMessage lastApiResult = null;
+            var url = $"api/shoppingcart/{_context.ShopperId}/items";
+            foreach (var request in requests)
+            {
+                lastApiResult = await _apiClient.PostAsync(url, request);
+            }
+
+            return lastApiResult;
+        }
+
+        private async Task<HttpResponseMessage> UpdateShoppingCart(Table table)
+        {
+            var inputs = table.CreateSet<UpdateCartItemForm>();
+            var request = CreateUpdateCartRequest(inputs.ToList());
+
+            var url = $"api/shoppingcart/{_context.ShopperId}";
+            var apiResult = await _apiClient.PutAsync(url, request);
+            return apiResult;
+        }
+
+        private async Task<HttpResponseMessage> DeleteCartItems(Table table)
+        {
+            var inputs = table.CreateSet<DeleteCartItemForm>();
+            var requests = CreateDeleteCartItemRequests(inputs.ToList());
+
+            HttpResponseMessage lastApiResult = null;
+            var url = $"api/shoppingcart/{_context.ShopperId}/items";
+            foreach (var request in requests)
+            {
+                lastApiResult = await _apiClient.DeleteAsync(url, request);
+                _context.ApiResults.Add(lastApiResult);
+            }
+
+            return lastApiResult;
+        }
+
         private void CompareCartItems(List<ExpectedCartItem> expectedItems, List<CartItemInfo> lineItems)
         {
             expectedItems.Count().Should().Be(lineItems.Count());
             expectedItems.EqualTo(lineItems).Should().BeTrue();
         }
 
-        private List<AddCartItemRequest> CreateAddToCartRequests(List<AddToCartForm> inputs)
+        private List<AddCartItemRequest> CreateAddCartItemRequests(List<AddToCartForm> inputs)
         {
             var requests = new List<AddCartItemRequest>();
 

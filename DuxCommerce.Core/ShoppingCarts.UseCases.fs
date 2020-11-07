@@ -30,7 +30,7 @@ module UseCases =
                 let! cmd = UpdateCartRequest.toCommand request // pure
                 let! cartInfo = getShopperCart (ShopperId.create shopperId)
                 let cart = ShoppingCart.toDomain cartInfo // pure
-                
+                 
                 // Todo: should this be passed in as dependency?
                 let updatedCart = ShoppingCart.updateCart cart cmd // pure
                 do! saveCart updatedCart

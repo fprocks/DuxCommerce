@@ -16,19 +16,19 @@ type ShoppingCartController (logger : ILogger<ShoppingCartController>) =
         let result = addCartItemUseCase shopperId request
         match result with
         | Ok c -> base.Ok(c) :> _
-        | Error m -> base.BadRequest(m) :> _
+        | Error m -> base.Convert(m)
 
     [<HttpPut("{shopperId}")>]
     member this.Put(shopperId: int64, request: UpdateCartRequest) : IActionResult =
         let result = updateCartUseCase shopperId request
         match result with
         | Ok c -> base.Ok(c) :> _
-        | Error m -> base.BadRequest(m) :> _
+        | Error m -> base.Convert(m)
 
     [<HttpDelete("{shopperId}/items")>]
     member this.Delete(shopperId: int64, request: DeleteCartItemRequest) : IActionResult =
         let result = deleteCartItemUseCase shopperId request
         match result with
         | Ok c -> base.Ok(c) :> _
-        | Error m -> base.BadRequest(m) :> _
+        | Error m -> base.Convert(m)
   
