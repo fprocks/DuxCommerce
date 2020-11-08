@@ -1,7 +1,6 @@
 ﻿namespace DuxCommerce.Catalogue
 
 open DuxCommerce.Catalogue.Ports
-open DuxCommerce.Catalogue.PublicTypes
 open DuxCommerce.Common
 open DuxCommerce.Catalogue.Dto
 

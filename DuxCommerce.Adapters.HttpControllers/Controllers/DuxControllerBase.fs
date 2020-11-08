@@ -9,4 +9,4 @@ type DuxControllerBase () =
     member this.Convert(error: CustomError) : IActionResult =
         match error.Error with
         | Validation (ValidationError m) -> base.BadRequest(m) :> _
-        | _ -> base.Problem() :> _
+        | _ -> base.Problem() :> _ 
