@@ -8,7 +8,6 @@
       <Compile Include="Result.fs" />
       <Compile Include="SimpleTypes.fs" />
       <Compile Include="CustomError.fs" />
-      <Compile Include="RepoAdapter.fs" />
     </ItemGroup>
 
 </Project>

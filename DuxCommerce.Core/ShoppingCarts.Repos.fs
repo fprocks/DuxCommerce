@@ -1,7 +1,7 @@
 ﻿namespace DuxCommerce.ShoppingCarts
 
 open System.Data.SqlClient
-open DuxCommerce.Common
+open DuxCommerce.Core.Common
 open DuxCommerce.ShoppingCarts.Ports
 open RepoDb
 open System.Linq
@@ -16,49 +16,42 @@ module CartRepo =
             
     let saveShoppingCart connString :SaveShoppingCart =
         fun cartInfo ->       
-            let save cartInfo =
-                ( use connection = new SqlConnection(connString)
-                  connection.EnsureOpen() |> ignore
-                  ( use trans = connection.BeginTransaction()
-                    connection.Update<CartInfo>(cartInfo, cartInfo.Id, transaction = trans) |> ignore                
-                    // Todo: why will LineItems not be saved when changing Seq.iter to Seq.map
-                    cartInfo.LineItems |> Seq.iter (insertOrUpdate connection trans) |> ignore
-                    trans.Commit() )
-                )
-                
-            RepoAdapter.repoAdapter1 save cartInfo
+            let save (connection:SqlConnection) cartInfo =
+                ( use trans = connection.BeginTransaction()
+                  connection.Update<CartInfo>(cartInfo, cartInfo.Id, transaction = trans) |> ignore
+
+                  cartInfo.LineItems 
+                  |> Seq.iter (insertOrUpdate connection trans) 
+                  |> ignore
+
+                  trans.Commit())
+            RepoAdapter.repoAdapter1 connString save cartInfo
             
     let getShoppingCart connString :GetShoppingCart = 
         fun shopperId ->
-            let get shopperId =
-                ( use connection = new SqlConnection(connString)
-                  connection.EnsureOpen() |> ignore
-                  let cartInfo = connection.Query<CartInfo>(fun c -> c.ShopperId = shopperId).FirstOrDefault()
-                  match box cartInfo with
-                  | null -> 
-                      let newCart: CartInfo = {Id = 0L; ShopperId = shopperId; LineItems = []; CartTotal = 0.0M}
-                      connection.Insert<CartInfo, int64>(newCart) |> ignore
-                      newCart
-                  | _ -> 
-                      let items = connection.Query<CartItemInfo>(fun c -> c.CartId = cartInfo.Id)
-                      { cartInfo with LineItems = items}
-                )
+            let get (connection:SqlConnection) shopperId =
+                let cartInfo = connection.Query<CartInfo>(fun c -> c.ShopperId = shopperId).FirstOrDefault()
+                match box cartInfo with
+                | null -> 
+                    let newCart: CartInfo = {Id = 0L; ShopperId = shopperId; LineItems = []; CartTotal = 0.0M}
+                    connection.Insert<CartInfo, int64>(newCart) |> ignore
+                    newCart
+                | _ -> 
+                    let items = connection.Query<CartItemInfo>(fun c -> c.CartId = cartInfo.Id)
+                    { cartInfo with LineItems = items}
                 
-            RepoAdapter.repoAdapter1 get shopperId
+            RepoAdapter.repoAdapter1 connString get shopperId
     
     let deleteCartItem connString =
         fun (cartToUpdate, itemsToDelete: CartItemInfo seq) ->        
-            let delete (cartToUpdate, itemsToDelete : CartItemInfo seq) =
-                ( use connection = new SqlConnection(connString)
-                  connection.EnsureOpen() |> ignore
-                  ( use trans = connection.BeginTransaction()
-                    connection.Update<CartInfo>(cartToUpdate, cartToUpdate.Id, transaction = trans) |> ignore
-                                
-                    itemsToDelete
-                    |> Seq.iter (fun item -> connection.Delete<CartItemInfo>(item.Id, transaction = trans) |> ignore)
-                    |> ignore
+            let delete (connection:SqlConnection) (cartToUpdate, itemsToDelete : CartItemInfo seq) =
+                ( use trans = connection.BeginTransaction()
+                  connection.Update<CartInfo>(cartToUpdate, cartToUpdate.Id, transaction = trans) |> ignore
+                                  
+                  itemsToDelete
+                  |> Seq.iter (fun item -> connection.Delete<CartItemInfo>(item.Id, transaction = trans) |> ignore)
+                  |> ignore
+                  
+                  trans.Commit() )
                 
-                    trans.Commit() )
-                )
-                
-            RepoAdapter.repoAdapter1 delete (cartToUpdate, itemsToDelete)
+            RepoAdapter.repoAdapter1 connString delete (cartToUpdate, itemsToDelete)
