@@ -9,8 +9,8 @@
       <Compile Include="Settings.PublicTypes.fs" />
       <Compile Include="Settings.InternalTypes.fs" />
       <Compile Include="Catalogue.SimpleTypes.fs" />
-      <Compile Include="Catalogue.InternalTypes.fs" />
       <Compile Include="Catalogue.PublicTypes.fs" />
+      <Compile Include="Catalogue.InternalTypes.fs" />
       <Compile Include="Catalogue.Dto.fs" />
       <Compile Include="Catalogue.Ports.fs" />
       <Compile Include="Catalogue.Repos.fs" />
@@ -19,7 +19,6 @@
       <Compile Include="ShoppingCarts.PublicTypes.fs" />
       <Compile Include="ShoppingCarts.Commands.fs" />
       <Compile Include="ShoppingCarts.InternalTypes.fs" />
-      <Compile Include="ShoppingCarts.Dto.fs" />
       <Compile Include="ShoppingCarts.Ports.fs" />
       <Compile Include="ShoppingCarts.Repos.fs" />
       <Compile Include="ShoppingCarts.UseCases.fs" />

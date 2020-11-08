@@ -12,7 +12,9 @@ module UseCases =
             result {
                 let! cartDto = CartRepo.getShoppingCart connString shopperId
                 let! productDto = ProductRepo.getProduct connString request.ProductId
+                
                 let! updatedCart = ShoppingCart.addCartItem cartDto productDto request // pure
+                
                 do! CartRepo.saveShoppingCart connString updatedCart
                 return! CartRepo.getShoppingCart connString shopperId
             }
@@ -21,7 +23,9 @@ module UseCases =
         fun shopperId request ->
             result {
                 let! cartDto = CartRepo.getShoppingCart connString shopperId
+                
                 let! updatedCart = ShoppingCart.updateCart cartDto request // pure
+                
                 do! CartRepo.saveShoppingCart connString updatedCart
                 return! CartRepo.getShoppingCart connString shopperId
             }
@@ -30,7 +34,9 @@ module UseCases =
         fun shopperId request ->
             result {
                 let! cartDto = CartRepo.getShoppingCart connString shopperId
+                
                 let! cartAndItems = ShoppingCart.deleteCartItem cartDto request // pure
+                
                 do! CartRepo.deleteCartItem connString cartAndItems
                 return! CartRepo.getShoppingCart connString shopperId
             }
