@@ -6,25 +6,25 @@ open DuxCommerce.Catalogue.Dto
 
 module UseCases =     
 
-    let createProduct createProduct getProduct :CreateProductUseCase   =            
+    let createProduct connString :CreateProductUseCase   =            
         fun info ->
             result {
                 let! product = info |> ProductInfo.toDomain
-                let! id = info |> createProduct
-                return! getProduct id 
+                let! id = info |> ProductRepo.createProduct connString
+                return! ProductRepo.getProduct connString id 
             }
     
-    let getProduct getProduct :GetProductUseCase =
+    let getProduct connString :GetProductUseCase =
         fun id ->
             result {                
                 // Todo: improve to handle null value
-                return! getProduct id
+                return! ProductRepo.getProduct connString id
             }
         
-    let updateProduct updateProduct getProduct :UpdateProductUseCase =
+    let updateProduct connString :UpdateProductUseCase =
         fun id info ->
             result {
                 let! product = info |> ProductInfo.toDomain
-                do! updateProduct id info
-                return! getProduct id
+                do! ProductRepo.updateProduct connString id info
+                return! ProductRepo.getProduct connString id
             }
