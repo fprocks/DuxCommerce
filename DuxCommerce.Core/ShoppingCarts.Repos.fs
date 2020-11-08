@@ -10,45 +10,45 @@ open DuxCommerce.ShoppingCarts.PublicTypes
 module CartRepo =
                 
     let saveShoppingCart connString :SaveShoppingCart =
-        fun cartInfo ->      
+        fun cartDto ->      
 
-            let insertOrUpdate (connection:SqlConnection) (itemInfo:CartItemInfo) =
-                if itemInfo.Id = 0L 
-                then connection.Insert<CartItemInfo, int64>(itemInfo) |> ignore
-                else connection.Update<CartItemInfo>(itemInfo, itemInfo.Id) |>ignore
+            let insertOrUpdate (connection:SqlConnection) (cartItemDto:CartItemDto) =
+                if cartItemDto.Id = 0L 
+                then connection.Insert<CartItemDto, int64>(cartItemDto) |> ignore
+                else connection.Update<CartItemDto>(cartItemDto, cartItemDto.Id) |>ignore
                 
-            let save (connection:SqlConnection) cartInfo =
-                connection.Update<CartInfo>(cartInfo, cartInfo.Id) |> ignore
+            let save (connection:SqlConnection) cartDto =
+                connection.Update<ShoppingCartDto>(cartDto, cartDto.Id) |> ignore
 
-                cartInfo.LineItems 
+                cartDto.LineItems 
                 |> Seq.iter (insertOrUpdate connection) 
                 |> ignore
 
-            RepoAdapter.repoAdapter1 connString save cartInfo
+            RepoAdapter.repoAdapter1 connString save cartDto
             
     let getShoppingCart connString :GetShoppingCart = 
         fun shopperId ->
             let get (connection:SqlConnection) shopperId =
-                let cartInfo = connection.Query<CartInfo>(fun c -> c.ShopperId = shopperId).FirstOrDefault()
-                match box cartInfo with
+                let cartDto = connection.Query<ShoppingCartDto>(fun c -> c.ShopperId = shopperId).FirstOrDefault()
+                match box cartDto with
                 | null -> 
-                    let newCart: CartInfo = {Id = 0L; ShopperId = shopperId; LineItems = []; CartTotal = 0.0M}
-                    connection.Insert<CartInfo, int64>(newCart) |> ignore
+                    let newCart: ShoppingCartDto = {Id = 0L; ShopperId = shopperId; LineItems = []; CartTotal = 0.0M}
+                    connection.Insert<ShoppingCartDto, int64>(newCart) |> ignore
                     newCart
                 | _ -> 
-                    let items = connection.Query<CartItemInfo>(fun c -> c.CartId = cartInfo.Id)
-                    { cartInfo with LineItems = items}
+                    let items = connection.Query<CartItemDto>(fun c -> c.CartId = cartDto.Id)
+                    { cartDto with LineItems = items}
                 
             RepoAdapter.repoAdapter1 connString get shopperId
     
     let deleteCartItem connString =
-        fun (cartToUpdate, itemsToDelete: CartItemInfo seq) ->        
-            let delete (connection:SqlConnection) (cartToUpdate, itemsToDelete : CartItemInfo seq) =
+        fun (cartToUpdate, itemsToDelete: CartItemDto seq) ->        
+            let delete (connection:SqlConnection) (cartToUpdate, itemsToDelete : CartItemDto seq) =
                 ( use trans = connection.BeginTransaction()
-                  connection.Update<CartInfo>(cartToUpdate, cartToUpdate.Id, transaction = trans) |> ignore
+                  connection.Update<ShoppingCartDto>(cartToUpdate, cartToUpdate.Id, transaction = trans) |> ignore
                                   
                   itemsToDelete
-                  |> Seq.iter (fun item -> connection.Delete<CartItemInfo>(item.Id, transaction = trans) |> ignore)
+                  |> Seq.iter (fun item -> connection.Delete<CartItemDto>(item.Id, transaction = trans) |> ignore)
                   |> ignore
                   
                   trans.Commit() )

@@ -4,11 +4,11 @@ open DuxCommerce.Common
 open DuxCommerce.ShoppingCarts.PublicTypes
 
 // Input port
-type AddCartItemUseCase = int64 -> AddCartItemRequest -> Result<CartInfo, CustomError>
-type UpdateCartUseCase = int64 -> UpdateCartRequest -> Result<CartInfo, CustomError>
-type DeleteCartItemUseCase = int64 -> DeleteCartItemRequest -> Result<CartInfo, CustomError>
+type AddCartItemUseCase = int64 -> AddCartItemRequest -> Result<ShoppingCartDto, CustomError>
+type UpdateCartUseCase = int64 -> UpdateCartRequest -> Result<ShoppingCartDto, CustomError>
+type DeleteCartItemUseCase = int64 -> DeleteCartItemRequest -> Result<ShoppingCartDto, CustomError>
 
 // Output port
-type GetShoppingCart = int64 -> Result<CartInfo, CustomError>
-type SaveShoppingCart = CartInfo -> Result<unit, CustomError>
-type DeleteCartItem = CartInfo * (CartItemInfo seq) -> Result<uint, CustomError>
+type GetShoppingCart = int64 -> Result<ShoppingCartDto, CustomError>
+type SaveShoppingCart = ShoppingCartDto -> Result<unit, CustomError>
+type DeleteCartItem = ShoppingCartDto * (CartItemDto seq) -> Result<uint, CustomError>

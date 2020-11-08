@@ -1,7 +1,7 @@
 ﻿namespace DuxCommerce.Catalogue.PublicTypes
 
 [<CLIMutable>]
-type ProductInfo = {
+type ProductDto = {
     Id: int64
     Name : string
     Description : string

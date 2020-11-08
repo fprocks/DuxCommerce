@@ -121,7 +121,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             return lastApiResult;
         }
 
-        private void CompareCartItems(List<ExpectedCartItem> expectedItems, List<CartItemInfo> lineItems)
+        private void CompareCartItems(List<ExpectedCartItem> expectedItems, List<CartItemDto> lineItems)
         {
             expectedItems.Count().Should().Be(lineItems.Count());
             expectedItems.EqualTo(lineItems).Should().BeTrue();
@@ -176,10 +176,10 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             return requests;
         }
 
-        private static async Task<CartInfo> GetShoppingCart(HttpResponseMessage lastApiResult)
+        private static async Task<ShoppingCartDto> GetShoppingCart(HttpResponseMessage lastApiResult)
         {
             var resultStr = await lastApiResult.Content.ReadAsStringAsync();
-            var shoppingCart = JsonConvert.DeserializeObject<CartInfo>(resultStr);
+            var shoppingCart = JsonConvert.DeserializeObject<ShoppingCartDto>(resultStr);
             return shoppingCart;
         }
     }

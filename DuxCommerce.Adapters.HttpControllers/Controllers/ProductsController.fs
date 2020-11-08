@@ -18,14 +18,14 @@ type ProductsController (logger : ILogger<ProductsController>) =
         | Error m -> base.Convert(m)
         
     [<HttpPost>]
-    member this.Post(request: ProductInfo) : IActionResult =
+    member this.Post(request: ProductDto) : IActionResult =
         let result = createProductUseCase request
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.Convert(m)
         
     [<HttpPut("{id}")>]
-    member this.Put(id: int64, request: ProductInfo) : IActionResult=
+    member this.Put(id: int64, request: ProductDto) : IActionResult=
         let result = updateProductUseCase id request
         match result with
         | Ok p -> base.Ok(p) :> _

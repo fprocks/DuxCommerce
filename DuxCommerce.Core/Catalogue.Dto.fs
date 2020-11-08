@@ -5,38 +5,38 @@ open DuxCommerce.Common
 open DuxCommerce.Catalogue.SimpleTypes
 open DuxCommerce.Catalogue.PublicTypes
 
-module ProductInfo =
+module ProductDto =
 
-    let internal toDomain' (productInfo: ProductInfo) :Result<Product, string> =
+    let internal toDomain' (productDto: ProductDto) :Result<Product, string> =
         result {
-            let! name = String255.create "Name" productInfo.Name
-            let! shippingType = ShippingType.create productInfo.ShippingType
-            let! sku = String255.create "SKU" productInfo.SKU
-            let! barcode = String255.create "Barcode" productInfo.Barcode
-            let! outOfStockRule = OutOfStockRule.create productInfo.OutOfStockRule
+            let! name = String255.create "Name" productDto.Name
+            let! shippingType = ShippingType.create productDto.ShippingType
+            let! sku = String255.create "SKU" productDto.SKU
+            let! barcode = String255.create "Barcode" productDto.Barcode
+            let! outOfStockRule = OutOfStockRule.create productDto.OutOfStockRule
             return {
-                Id = ProductId productInfo.Id
+                Id = ProductId productDto.Id
                 Name = name
-                Description = productInfo.Description
-                Price = SalePrice productInfo.Price
-                Retail = RetailPrice productInfo.Retail
-                Cost = ProductCost productInfo.Cost
-                Length = Length productInfo.Length
-                Width = Width productInfo.Width
-                Height = Height productInfo.Height
-                Weight = Weight productInfo.Weight
+                Description = productDto.Description
+                Price = SalePrice productDto.Price
+                Retail = RetailPrice productDto.Retail
+                Cost = ProductCost productDto.Cost
+                Length = Length productDto.Length
+                Width = Width productDto.Width
+                Height = Height productDto.Height
+                Weight = Weight productDto.Weight
                 ShippingType = shippingType
                 SKU = sku
                 Barcode = barcode
-                TrackInventory = productInfo.TrackInventory
+                TrackInventory = productDto.TrackInventory
                 OutOfStockRule = outOfStockRule
               }
         }
 
-    let toDomain (productInfo: ProductInfo) :Result<Product, CustomError> =
-        toDomain' productInfo |> CustomError.mapValidation
+    let toDomain (productDto: ProductDto) :Result<Product, CustomError> =
+        toDomain' productDto |> CustomError.mapValidation
         
-    let fromDomain (product:Product) :ProductInfo =
+    let fromDomain (product:Product) :ProductDto =
         {
             Id = ProductId.value product.Id
             Name = String255.value product.Name

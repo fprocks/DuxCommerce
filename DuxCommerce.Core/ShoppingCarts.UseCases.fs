@@ -10,9 +10,9 @@ module UseCases =
     let addCartItem connString :AddCartItemUseCase =        
         fun shopperId request ->
             result {
-                let! cartInfo = CartRepo.getShoppingCart connString shopperId
-                let! productInfo = ProductRepo.getProduct connString request.ProductId
-                let! updatedCart = ShoppingCart.addCartItem cartInfo productInfo request // pure
+                let! cartDto = CartRepo.getShoppingCart connString shopperId
+                let! productDto = ProductRepo.getProduct connString request.ProductId
+                let! updatedCart = ShoppingCart.addCartItem cartDto productDto request // pure
                 do! CartRepo.saveShoppingCart connString updatedCart
                 return! CartRepo.getShoppingCart connString shopperId
             }
@@ -20,8 +20,8 @@ module UseCases =
     let updateCart connString :UpdateCartUseCase =
         fun shopperId request ->
             result {
-                let! cartInfo = CartRepo.getShoppingCart connString shopperId
-                let! updatedCart = ShoppingCart.updateCart cartInfo request // pure
+                let! cartDto = CartRepo.getShoppingCart connString shopperId
+                let! updatedCart = ShoppingCart.updateCart cartDto request // pure
                 do! CartRepo.saveShoppingCart connString updatedCart
                 return! CartRepo.getShoppingCart connString shopperId
             }
@@ -29,8 +29,8 @@ module UseCases =
     let deleteCartItem connString :DeleteCartItemUseCase =
         fun shopperId request ->
             result {
-                let! cartInfo = CartRepo.getShoppingCart connString shopperId
-                let! cartAndItems = ShoppingCart.deleteCartItem cartInfo request // pure
+                let! cartDto = CartRepo.getShoppingCart connString shopperId
+                let! cartAndItems = ShoppingCart.deleteCartItem cartDto request // pure
                 do! CartRepo.deleteCartItem connString cartAndItems
                 return! CartRepo.getShoppingCart connString shopperId
             }

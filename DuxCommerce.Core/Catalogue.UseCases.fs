@@ -6,11 +6,11 @@ open DuxCommerce.Catalogue.Dto
 
 module UseCases =     
 
-    let createProduct connString :CreateProductUseCase   =            
-        fun info ->
+    let createProduct connString :CreateProductUseCase =            
+        fun productDto ->
             result {
-                let! product = info |> ProductInfo.toDomain
-                let! id = info |> ProductRepo.createProduct connString
+                let! product = productDto |> ProductDto.toDomain
+                let! id = productDto |> ProductRepo.createProduct connString
                 return! ProductRepo.getProduct connString id 
             }
     
@@ -22,9 +22,9 @@ module UseCases =
             }
         
     let updateProduct connString :UpdateProductUseCase =
-        fun id info ->
+        fun id productDto ->
             result {
-                let! product = info |> ProductInfo.toDomain
-                do! ProductRepo.updateProduct connString id info
+                let! product = productDto |> ProductDto.toDomain
+                do! ProductRepo.updateProduct connString id productDto
                 return! ProductRepo.getProduct connString id
             }

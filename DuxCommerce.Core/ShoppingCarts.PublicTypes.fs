@@ -19,7 +19,7 @@ type DeleteCartItemRequest = {
 }
 
 [<CLIMutable>]
-type CartItemInfo = {
+type CartItemDto = {
     Id: int64
     CartId: int64
     ProductId: int64
@@ -30,9 +30,9 @@ type CartItemInfo = {
 }
 
 [<CLIMutable>]
-type CartInfo = {
+type ShoppingCartDto = {
     Id: int64
     ShopperId: int64
-    LineItems: CartItemInfo seq
+    LineItems: CartItemDto seq
     CartTotal: decimal
 }

@@ -1,17 +1,15 @@
 ﻿namespace DuxCommerce.Catalogue.Ports
 
-open DuxCommerce.Catalogue.InternalTypes
 open DuxCommerce.Catalogue.PublicTypes
-open DuxCommerce.Catalogue.SimpleTypes
 open DuxCommerce.Common
 
 // Input port
-type CreateProductUseCase = ProductInfo -> Result<ProductInfo, CustomError>
-type GetProductUseCase = int64 -> Result<ProductInfo, CustomError>
-type UpdateProductUseCase = int64 -> ProductInfo -> Result<ProductInfo, CustomError>
+type CreateProductUseCase = ProductDto -> Result<ProductDto, CustomError>
+type GetProductUseCase = int64 -> Result<ProductDto, CustomError>
+type UpdateProductUseCase = int64 -> ProductDto -> Result<ProductDto, CustomError>
 
 
 // Output port
-type CreateProduct = ProductInfo -> Result<int64, CustomError>
-type GetProduct = int64 -> Result<ProductInfo, CustomError>
-type UpdateProduct = int64 -> ProductInfo -> Result<unit, CustomError>  
+type CreateProduct = ProductDto -> Result<int64, CustomError>
+type GetProduct = int64 -> Result<ProductDto, CustomError>
+type UpdateProduct = int64 -> ProductDto -> Result<unit, CustomError>  

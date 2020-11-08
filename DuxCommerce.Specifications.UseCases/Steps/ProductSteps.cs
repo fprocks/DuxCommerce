@@ -29,7 +29,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Given(@"the following products are already created:")]
         public async Task GivenTomAlreadyCreatedTheFollowingProductsAsync(Table table)
         {
-            var requests = table.CreateSet<ProductInfo>();
+            var requests = table.CreateSet<ProductDto>();
             foreach (var request in requests)
             {
                 var apiResult = await _apiClient.PostAsync("api/products", request);
@@ -41,7 +41,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Given(@"Tom enters the following product information:")]
         public void GivenTomEntersTheFollowingProductInformation(Table table)
         {
-            var products = table.CreateSet<ProductInfo>();
+            var products = table.CreateSet<ProductDto>();
             _context.ProductRequests.AddRange(products);
         }
 
@@ -89,9 +89,9 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             CompareProducts(table, updatedProducts);
         }
 
-        private async Task<List<ProductInfo>> GetProducts()
+        private async Task<List<ProductDto>> GetProducts()
         {
-            var products = new List<ProductInfo>();
+            var products = new List<ProductDto>();
             foreach(var apiResult in _context.ApiResults)
             {
                 var product = await GetProduct(apiResult);
@@ -100,18 +100,18 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             return products;
         }
 
-        private void CompareProducts(Table table, List<ProductInfo> actualProducts)
+        private void CompareProducts(Table table, List<ProductDto> actualProducts)
         {
-            var expectedProducts = table.CreateSet<ProductInfo>();
+            var expectedProducts = table.CreateSet<ProductDto>();
 
             actualProducts.Count().Should().Be(expectedProducts.Count());
             actualProducts.EqualTo(expectedProducts.ToList());
         }
 
-        private async Task<ProductInfo> GetProduct(HttpResponseMessage apiResult)
+        private async Task<ProductDto> GetProduct(HttpResponseMessage apiResult)
         {
             var resultStr = await apiResult.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<ProductInfo>(resultStr);
+            return JsonConvert.DeserializeObject<ProductDto>(resultStr);
         }
     }
 }
