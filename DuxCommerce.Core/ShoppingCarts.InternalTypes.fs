@@ -7,6 +7,7 @@ open DuxCommerce.ShoppingCarts.PublicTypes
 open DuxCommerce.ShoppingCarts.SimpleTypes
 open DuxCommerce.Catalogue.SimpleTypes
 open DuxCommerce.Catalogue.Dto
+open DuxCommerce.ShoppingCarts.Commands
 
 type CartItem = {
     Id: CartItemId
