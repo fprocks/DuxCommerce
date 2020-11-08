@@ -1,13 +1,10 @@
 ﻿namespace DuxCommerce.ShoppingCarts
 
-open System
 open System.Data.SqlClient
 open DuxCommerce.Common
-open DuxCommerce.ShoppingCarts.Dto
 open DuxCommerce.ShoppingCarts.Ports
 open RepoDb
 open System.Linq
-open DuxCommerce.ShoppingCarts.SimpleTypes
 open DuxCommerce.ShoppingCarts.PublicTypes
 
 module CartRepo =
@@ -18,9 +15,8 @@ module CartRepo =
         else connection.Update<CartItemInfo>(itemInfo, itemInfo.Id, transaction = trans) |>ignore
             
     let saveShoppingCart connString :SaveShoppingCart =
-        fun cart ->       
-            let save cart =
-                let cartInfo = ShoppingCart.fromDomain cart
+        fun cartInfo ->       
+            let save cartInfo =
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
                   ( use trans = connection.BeginTransaction()
@@ -30,18 +26,17 @@ module CartRepo =
                     trans.Commit() )
                 )
                 
-            RepoAdapter.repoAdapter1 save cart
+            RepoAdapter.repoAdapter1 save cartInfo
             
     let getShoppingCart connString :GetShoppingCart = 
         fun shopperId ->
             let get shopperId =
-                let id = ShopperId.value shopperId
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
-                  let cartInfo = connection.Query<CartInfo>(fun c -> c.ShopperId = id).FirstOrDefault()
+                  let cartInfo = connection.Query<CartInfo>(fun c -> c.ShopperId = shopperId).FirstOrDefault()
                   match box cartInfo with
                   | null -> 
-                      let newCart: CartInfo = {Id = 0L; ShopperId = id; LineItems = []; CartTotal = 0.0M}
+                      let newCart: CartInfo = {Id = 0L; ShopperId = shopperId; LineItems = []; CartTotal = 0.0M}
                       connection.Insert<CartInfo, int64>(newCart) |> ignore
                       newCart
                   | _ -> 
@@ -52,16 +47,14 @@ module CartRepo =
             RepoAdapter.repoAdapter1 get shopperId
     
     let deleteCartItem connString =
-        fun (cartToUpdate, itemsToDelete) ->        
-            let delete (cartToUpdate, itemsToDelete) =
-                let cartInfo = ShoppingCart.fromDomain cartToUpdate
+        fun (cartToUpdate, itemsToDelete: CartItemInfo seq) ->        
+            let delete (cartToUpdate, itemsToDelete : CartItemInfo seq) =
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
                   ( use trans = connection.BeginTransaction()
-                    connection.Update<CartInfo>(cartInfo, cartInfo.Id, transaction = trans) |> ignore
+                    connection.Update<CartInfo>(cartToUpdate, cartToUpdate.Id, transaction = trans) |> ignore
                                 
                     itemsToDelete
-                    |> Seq.map CartItem.fromDomain
                     |> Seq.iter (fun item -> connection.Delete<CartItemInfo>(item.Id, transaction = trans) |> ignore)
                     |> ignore
                 

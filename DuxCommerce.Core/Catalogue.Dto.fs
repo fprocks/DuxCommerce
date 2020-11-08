@@ -6,6 +6,7 @@ open DuxCommerce.Catalogue.SimpleTypes
 open DuxCommerce.Catalogue.PublicTypes
 
 module ProductInfo =
+
     let internal toDomain' (productInfo: ProductInfo) :Result<Product, string> =
         result {
             let! name = String255.create "Name" productInfo.Name
@@ -29,8 +30,8 @@ module ProductInfo =
                 Barcode = barcode
                 TrackInventory = productInfo.TrackInventory
                 OutOfStockRule = outOfStockRule
-                }
-            }
+              }
+        }
 
     let toDomain (productInfo: ProductInfo) :Result<Product, CustomError> =
         toDomain' productInfo |> CustomError.mapValidation

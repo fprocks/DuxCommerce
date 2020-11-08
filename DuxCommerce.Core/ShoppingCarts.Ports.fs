@@ -11,6 +11,6 @@ type UpdateCartUseCase = int64 -> UpdateCartRequest -> Result<CartInfo, CustomEr
 type DeleteCartItemUseCase = int64 -> DeleteCartItemRequest -> Result<CartInfo, CustomError>
 
 // Output port
-type GetShoppingCart = ShopperId -> Result<CartInfo, CustomError>
-type SaveShoppingCart = Cart -> Result<unit, CustomError>
-type DeleteCartItem = Cart * (CartItem seq) -> Result<uint, CustomError>
+type GetShoppingCart = int64 -> Result<CartInfo, CustomError>
+type SaveShoppingCart = CartInfo -> Result<unit, CustomError>
+type DeleteCartItem = CartInfo * (CartItemInfo seq) -> Result<uint, CustomError>

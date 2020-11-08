@@ -1,47 +1,41 @@
 ﻿namespace DuxCommerce.Catalogue
 
 open System.Data.SqlClient
-open DuxCommerce.Catalogue.Dto
 open DuxCommerce.Common
 open RepoDb
 open System.Linq
-open DuxCommerce.Catalogue.SimpleTypes
 open DuxCommerce.Catalogue.PublicTypes
 open DuxCommerce.Catalogue.Ports
 
 module ProductRepo =
     
     let createProduct connString :CreateProduct =
-        fun product ->
-            let create product = 
-                let info = ProductInfo.fromDomain product
+        fun productInfo ->
+            let create productInfo = 
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
-                  connection.Insert<ProductInfo, int64>(info) |> ignore
+                  connection.Insert<ProductInfo, int64>(productInfo) |> ignore
                 )
-                info.Id
+                productInfo.Id
                 
-            RepoAdapter.repoAdapter1 create product
+            RepoAdapter.repoAdapter1 create productInfo
             
     let getProduct connString :GetProduct =
-        fun productId ->
-            let get productId =
-                let id = ProductId.value productId
+        fun id ->
+            let get id =
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
                   connection.Query<ProductInfo>(fun p -> p.Id = id).FirstOrDefault()
                 )
                 
-            RepoAdapter.repoAdapter1 get productId            
+            RepoAdapter.repoAdapter1 get id            
             
     let updateProduct connString :UpdateProduct =
-        fun productId product ->
-            let update productId product =
-                let info = ProductInfo.fromDomain product
-                let id = ProductId.value productId
+        fun id productInfo ->
+            let update (id:int64) productInfo =
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
-                  connection.Update<ProductInfo>(info, id) |> ignore
+                  connection.Update<ProductInfo>(productInfo, id) |> ignore
                 )
                 
-            RepoAdapter.repoAdapter2 update productId product
+            RepoAdapter.repoAdapter2 update id productInfo

@@ -12,6 +12,6 @@ type UpdateProductUseCase = int64 -> ProductInfo -> Result<ProductInfo, CustomEr
 
 
 // Output port
-type CreateProduct = Product -> Result<int64, CustomError>
-type GetProduct = ProductId -> Result<ProductInfo, CustomError>
-type UpdateProduct = ProductId -> Product -> Result<unit, CustomError>  
+type CreateProduct = ProductInfo -> Result<int64, CustomError>
+type GetProduct = int64 -> Result<ProductInfo, CustomError>
+type UpdateProduct = int64 -> ProductInfo -> Result<unit, CustomError>  
