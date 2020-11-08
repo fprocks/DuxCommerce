@@ -8,23 +8,22 @@ open System.Linq
 open DuxCommerce.ShoppingCarts.PublicTypes
 
 module CartRepo =
-    
-    let internal insertOrUpdate (connection:SqlConnection) (trans:SqlTransaction) (itemInfo:CartItemInfo) =
-        if itemInfo.Id = 0L 
-        then connection.Insert<CartItemInfo, int64>(itemInfo, transaction = trans) |> ignore
-        else connection.Update<CartItemInfo>(itemInfo, itemInfo.Id, transaction = trans) |>ignore
-            
+                
     let saveShoppingCart connString :SaveShoppingCart =
-        fun cartInfo ->       
+        fun cartInfo ->      
+
+            let insertOrUpdate (connection:SqlConnection) (itemInfo:CartItemInfo) =
+                if itemInfo.Id = 0L 
+                then connection.Insert<CartItemInfo, int64>(itemInfo) |> ignore
+                else connection.Update<CartItemInfo>(itemInfo, itemInfo.Id) |>ignore
+                
             let save (connection:SqlConnection) cartInfo =
-                ( use trans = connection.BeginTransaction()
-                  connection.Update<CartInfo>(cartInfo, cartInfo.Id, transaction = trans) |> ignore
+                connection.Update<CartInfo>(cartInfo, cartInfo.Id) |> ignore
 
-                  cartInfo.LineItems 
-                  |> Seq.iter (insertOrUpdate connection trans) 
-                  |> ignore
+                cartInfo.LineItems 
+                |> Seq.iter (insertOrUpdate connection) 
+                |> ignore
 
-                  trans.Commit())
             RepoAdapter.repoAdapter1 connString save cartInfo
             
     let getShoppingCart connString :GetShoppingCart = 
