@@ -17,18 +17,19 @@ module CartRepo =
                 then connection.Insert<CartItemDto, int64>(cartItemDto) |> ignore
                 else connection.Update<CartItemDto>(cartItemDto, cartItemDto.Id) |>ignore
                 
-            let save (connection:SqlConnection) cartDto =
+            let save (connection:SqlConnection) =
                 connection.Update<ShoppingCartDto>(cartDto, cartDto.Id) |> ignore
 
                 cartDto.LineItems 
                 |> Seq.iter (insertOrUpdate connection) 
                 |> ignore
 
-            RepoAdapter.repoAdapter1 save cartDto
+            RepoAdapter.repoAdapter save
             
     let getShoppingCart :GetShoppingCart = 
         fun shopperId ->
-            let get (connection:SqlConnection) shopperId =
+            
+            let get (connection:SqlConnection) =
                 let cartDto = connection.Query<ShoppingCartDto>(fun c -> c.ShopperId = shopperId).FirstOrDefault()
                 match box cartDto with
                 | null -> 
@@ -39,11 +40,12 @@ module CartRepo =
                     let items = connection.Query<CartItemDto>(fun c -> c.CartId = cartDto.Id)
                     { cartDto with LineItems = items}
                 
-            RepoAdapter.repoAdapter1 get shopperId
+            RepoAdapter.repoAdapter get
     
     let deleteCartItem =
-        fun (cartToUpdate, itemsToDelete: CartItemDto seq) ->        
-            let delete (connection:SqlConnection) (cartToUpdate, itemsToDelete : CartItemDto seq) =
+        fun (cartToUpdate, itemsToDelete: CartItemDto seq) ->
+            
+            let delete (connection:SqlConnection) =
                 ( use trans = connection.BeginTransaction()
                   connection.Update<ShoppingCartDto>(cartToUpdate, cartToUpdate.Id, transaction = trans) |> ignore
                                   
@@ -53,4 +55,4 @@ module CartRepo =
                   
                   trans.Commit() )
                 
-            RepoAdapter.repoAdapter1 delete (cartToUpdate, itemsToDelete)
+            RepoAdapter.repoAdapter delete 

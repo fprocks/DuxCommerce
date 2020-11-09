@@ -31,5 +31,6 @@ module ConfigReader =
             runReader (f x) appConfig 
         ConfigReader newFunc
 
-    let execute configReader = 
-        runReader configReader AppConfig.Instance 
+    let execute configReader =
+        let config = AppConfig()
+        runReader configReader config 

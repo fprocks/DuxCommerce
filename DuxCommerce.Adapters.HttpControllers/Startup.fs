@@ -58,6 +58,6 @@ type Startup private () =
 
     member this.ReadAppConfig() =
         let config = { ConnectionString = "Server=(local);Database=DuxCommerce;User Id=DuxAdmin;Password=Password1;" }        
-        AppConfig.Instance.initialize(config)
+        AppConfig().initialize(config)
 
     member val Configuration : IConfiguration = null with get, set

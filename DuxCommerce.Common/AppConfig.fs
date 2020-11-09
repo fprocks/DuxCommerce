@@ -4,13 +4,11 @@ type Config = {
     ConnectionString : string
 }
 
-type AppConfig private() =
-    let mutable config = {ConnectionString = ""}
-    static let instance = AppConfig()
-    
-    static member Instance = instance
+type AppConfig () =
+    static let mutable config = {ConnectionString = ""}    
     member this.ConnectionString = 
-        config.ConnectionString        
+        config.ConnectionString
+        
     member this.initialize (value:Config) = 
         config <- value
         
