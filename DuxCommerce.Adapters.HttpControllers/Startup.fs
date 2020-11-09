@@ -10,6 +10,8 @@ open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Hosting
 open FluentMigrator.Runner
 open RepoDb
+open DuxCommerce.Common.ConfigReader
+open DuxCommerce.Common
 
 module DbSetup = 
     let InitDb =   
@@ -28,6 +30,13 @@ type Startup private () =
         services.AddControllers().AddNewtonsoftJson() |> ignore
         
         DbSetup.InitDb
+
+        let config:AppConfig = {
+            ConnectionString = "Server=(local);Database=DuxCommerce;User Id=DuxAdmin;Password=Password1;"
+        }
+        
+        let configClient = new ConfigClient()
+        configClient.Set(config)
         
         services.AddFluentMigratorCore().ConfigureRunner(fun config ->
             config.AddSqlServer()

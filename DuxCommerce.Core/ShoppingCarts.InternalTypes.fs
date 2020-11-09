@@ -3,6 +3,7 @@
 open DuxCommerce.Catalogue.InternalTypes
 open DuxCommerce.Catalogue.PublicTypes
 open DuxCommerce.Common
+open DuxCommerce.Common.ConfigReader
 open DuxCommerce.ShoppingCarts.PublicTypes
 open DuxCommerce.ShoppingCarts.SimpleTypes
 open DuxCommerce.Catalogue.SimpleTypes
@@ -129,7 +130,7 @@ module ShoppingCart =
                     
             let updatedCart = updateCartItems cart lineItems            
             return ShoppingCartDto.fromDomain updatedCart
-        }
+        } |> ConfigReader.retn
 
     let updateCart cartDto (request:UpdateCartRequest) =
         result {
@@ -153,7 +154,7 @@ module ShoppingCart =
                 
             let updatedCart = updateCartItems cart lineItems            
             return ShoppingCartDto.fromDomain updatedCart
-        }
+        } |> ConfigReader.retn
 
     let deleteCartItem cartDto (request:DeleteCartItemRequest) =
         result {
@@ -179,4 +180,4 @@ module ShoppingCart =
                 |> Seq.map CartItemDto.fromDomain
                 
             return cartDto, deletedItems'
-        }
+        } |> ConfigReader.retn

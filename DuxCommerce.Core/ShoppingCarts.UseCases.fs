@@ -7,36 +7,36 @@ open DuxCommerce.Catalogue
 
 module UseCases =
 
-    let addCartItem connString :AddCartItemUseCase =        
+    let addCartItem :AddCartItemUseCase =        
         fun shopperId request ->
-            result {
-                let! cartDto = CartRepo.getShoppingCart connString shopperId
-                let! productDto = ProductRepo.getProduct connString request.ProductId
+            readerResult {
+                let! cartDto = CartRepo.getShoppingCart shopperId
+                let! productDto = ProductRepo.getProduct request.ProductId
                 
                 let! updatedCart = ShoppingCart.addCartItem cartDto productDto request // pure
                 
-                do! CartRepo.saveShoppingCart connString updatedCart
-                return! CartRepo.getShoppingCart connString shopperId
+                do! CartRepo.saveShoppingCart updatedCart
+                return! CartRepo.getShoppingCart shopperId
             }
 
-    let updateCart connString :UpdateCartUseCase =
-        fun shopperId request ->
-            result {
-                let! cartDto = CartRepo.getShoppingCart connString shopperId
+    let updateCart :UpdateCartUseCase =
+        fun shopperId request -> 
+            readerResult {
+                let! cartDto = CartRepo.getShoppingCart shopperId
                 
                 let! updatedCart = ShoppingCart.updateCart cartDto request // pure
                 
-                do! CartRepo.saveShoppingCart connString updatedCart
-                return! CartRepo.getShoppingCart connString shopperId
+                do! CartRepo.saveShoppingCart updatedCart
+                return! CartRepo.getShoppingCart shopperId
             }
 
-    let deleteCartItem connString :DeleteCartItemUseCase =
+    let deleteCartItem :DeleteCartItemUseCase =
         fun shopperId request ->
-            result {
-                let! cartDto = CartRepo.getShoppingCart connString shopperId
+            readerResult {
+                let! cartDto = CartRepo.getShoppingCart shopperId
                 
                 let! cartAndItems = ShoppingCart.deleteCartItem cartDto request // pure
                 
-                do! CartRepo.deleteCartItem connString cartAndItems
-                return! CartRepo.getShoppingCart connString shopperId
+                do! CartRepo.deleteCartItem cartAndItems
+                return! CartRepo.getShoppingCart shopperId
             }

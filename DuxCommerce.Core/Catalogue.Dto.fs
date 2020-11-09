@@ -4,6 +4,7 @@ open DuxCommerce.Catalogue.InternalTypes
 open DuxCommerce.Common
 open DuxCommerce.Catalogue.SimpleTypes
 open DuxCommerce.Catalogue.PublicTypes
+open DuxCommerce.Common.ConfigReader
 
 module ProductDto =
 
@@ -34,7 +35,8 @@ module ProductDto =
         }
 
     let toDomain (productDto: ProductDto) :Result<Product, CustomError> =
-        toDomain' productDto |> CustomError.mapValidation
+        toDomain' productDto
+        |> CustomError.mapValidation
         
     let fromDomain (product:Product) :ProductDto =
         {

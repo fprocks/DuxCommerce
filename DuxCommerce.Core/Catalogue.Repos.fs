@@ -9,24 +9,24 @@ open DuxCommerce.Catalogue.Ports
 
 module ProductRepo =
     
-    let createProduct connString :CreateProduct =
+    let createProduct :CreateProduct =
         fun productDto ->
             let create (connection:SqlConnection) productDto = 
                 connection.Insert<ProductDto, int64>(productDto) |> ignore
                 productDto.Id
                 
-            RepoAdapter.repoAdapter1 connString create productDto
+            RepoAdapter.repoAdapter1 create productDto
             
-    let getProduct connString :GetProduct =
+    let getProduct :GetProduct =
         fun id ->
             let get (connection:SqlConnection) id =
                 connection.Query<ProductDto>(fun p -> p.Id = id).FirstOrDefault()
                 
-            RepoAdapter.repoAdapter1 connString get id            
+            RepoAdapter.repoAdapter1 get id            
             
-    let updateProduct connString :UpdateProduct =
+    let updateProduct :UpdateProduct =
         fun id productDto ->
             let update (connection:SqlConnection) (id:int64) productDto =
                 connection.Update<ProductDto>(productDto, id) |> ignore
                 
-            RepoAdapter.repoAdapter2 connString update id productDto
+            RepoAdapter.repoAdapter2 update id productDto

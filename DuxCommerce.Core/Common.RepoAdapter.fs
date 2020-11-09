@@ -7,29 +7,50 @@ open RepoDb
 
 module RepoAdapter = 
 
-    let repoAdapter1 connString repoFn x =
+    let repoAdapter1 repoFn x =
         try
-            ( use connection = new SqlConnection(connString)
-              connection.EnsureOpen() |> ignore
-              Ok (repoFn connection x)
-            )
+            let action (configClient:ConfigReader.ConfigClient) =
+                let connString = configClient.ConnectionString
+                ( use connection = new SqlConnection(connString)
+                  connection.EnsureOpen() |> ignore
+                  Ok (repoFn connection x)
+                )
+                
+            ConfigReader.ConfigReader action
         with
-            | :? Exception as ex -> Error ex |> CustomError.mapInternalServer
+            | :? Exception as ex ->
+                Error ex
+                |> CustomError.mapInternalServer
+                |> ConfigReader.retn
             
-    let repoAdapter2 connString repoFn x y =
+    let repoAdapter2 repoFn x y =
         try
-            ( use connection = new SqlConnection(connString)
-              connection.EnsureOpen() |> ignore
-              Ok (repoFn connection x y)
-            )            
+            let action (configClient:ConfigReader.ConfigClient) =
+                let connString = configClient.ConnectionString
+                ( use connection = new SqlConnection(connString)
+                  connection.EnsureOpen() |> ignore
+                  Ok (repoFn connection x y)
+                )
+                
+            ConfigReader.ConfigReader action
         with
-            | :? Exception as ex -> Error ex |> CustomError.mapInternalServer
+            | :? Exception as ex ->
+                Error ex
+                |> CustomError.mapInternalServer
+                |> ConfigReader.retn
             
-    let repoAdapter3 connString repoFn x y z =
+    let repoAdapter3 repoFn x y z =
         try
-            ( use connection = new SqlConnection(connString)
-              connection.EnsureOpen() |> ignore
-              Ok (repoFn connection x y z)
-            )    
+            let action (configClient:ConfigReader.ConfigClient) =
+                let connString = configClient.ConnectionString
+                ( use connection = new SqlConnection(connString)
+                  connection.EnsureOpen() |> ignore
+                  Ok (repoFn connection x y z)
+                )
+                
+            ConfigReader.ConfigReader action
         with
-            | :? Exception as ex -> Error ex |> CustomError.mapInternalServer                
+            | :? Exception as ex ->
+                Error ex
+                |> CustomError.mapInternalServer
+                |> ConfigReader.retn           

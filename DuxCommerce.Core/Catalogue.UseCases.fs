@@ -3,28 +3,29 @@
 open DuxCommerce.Catalogue.Ports
 open DuxCommerce.Common
 open DuxCommerce.Catalogue.Dto
+open DuxCommerce.Common.ConfigReader
 
 module UseCases =     
 
-    let createProduct connString :CreateProductUseCase =            
+    let createProduct :CreateProductUseCase =            
         fun productDto ->
-            result {
-                let! product = productDto |> ProductDto.toDomain
-                let! id = productDto |> ProductRepo.createProduct connString
-                return! ProductRepo.getProduct connString id 
+            readerResult {
+                let! product = productDto |> ProductDto.toDomain |> ConfigReader.retn
+                let! id = productDto |> ProductRepo.createProduct
+                return! ProductRepo.getProduct id 
             }
     
-    let getProduct connString :GetProductUseCase =
+    let getProduct :GetProductUseCase =
         fun id ->
-            result {                
+            readerResult {                
                 // Todo: improve to handle null value
-                return! ProductRepo.getProduct connString id
+                return! ProductRepo.getProduct id
             }
         
-    let updateProduct connString :UpdateProductUseCase =
+    let updateProduct :UpdateProductUseCase =
         fun id productDto ->
-            result {
-                let! product = productDto |> ProductDto.toDomain
-                do! ProductRepo.updateProduct connString id productDto
-                return! ProductRepo.getProduct connString id
+            readerResult {
+                let! product = productDto |> ProductDto.toDomain |> ConfigReader.retn
+                do! ProductRepo.updateProduct id productDto
+                return! ProductRepo.getProduct id
             }

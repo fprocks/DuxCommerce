@@ -9,7 +9,7 @@ open DuxCommerce.ShoppingCarts.PublicTypes
 
 module CartRepo =
                 
-    let saveShoppingCart connString :SaveShoppingCart =
+    let saveShoppingCart :SaveShoppingCart =
         fun cartDto ->      
 
             let insertOrUpdate (connection:SqlConnection) (cartItemDto:CartItemDto) =
@@ -24,9 +24,9 @@ module CartRepo =
                 |> Seq.iter (insertOrUpdate connection) 
                 |> ignore
 
-            RepoAdapter.repoAdapter1 connString save cartDto
+            RepoAdapter.repoAdapter1 save cartDto
             
-    let getShoppingCart connString :GetShoppingCart = 
+    let getShoppingCart :GetShoppingCart = 
         fun shopperId ->
             let get (connection:SqlConnection) shopperId =
                 let cartDto = connection.Query<ShoppingCartDto>(fun c -> c.ShopperId = shopperId).FirstOrDefault()
@@ -39,9 +39,9 @@ module CartRepo =
                     let items = connection.Query<CartItemDto>(fun c -> c.CartId = cartDto.Id)
                     { cartDto with LineItems = items}
                 
-            RepoAdapter.repoAdapter1 connString get shopperId
+            RepoAdapter.repoAdapter1 get shopperId
     
-    let deleteCartItem connString =
+    let deleteCartItem =
         fun (cartToUpdate, itemsToDelete: CartItemDto seq) ->        
             let delete (connection:SqlConnection) (cartToUpdate, itemsToDelete : CartItemDto seq) =
                 ( use trans = connection.BeginTransaction()
@@ -53,4 +53,4 @@ module CartRepo =
                   
                   trans.Commit() )
                 
-            RepoAdapter.repoAdapter1 connString delete (cartToUpdate, itemsToDelete)
+            RepoAdapter.repoAdapter1 delete (cartToUpdate, itemsToDelete)

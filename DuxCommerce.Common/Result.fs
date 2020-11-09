@@ -56,6 +56,7 @@ module Result =
     let map = Result.map
     let mapError = Result.mapError
     let bind = Result.bind
+    let retn = Result.Ok
 
     // Like `map` but with a unit-returning function
     let iter (f : _ -> unit) result = 
