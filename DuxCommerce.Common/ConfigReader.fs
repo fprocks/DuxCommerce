@@ -4,34 +4,32 @@ type ConfigReader<'a> = ConfigReader of (AppConfig -> 'a)
     
 module ConfigReader =
 
-    let runReader (ConfigReader action) appConfig =
-        let resultOfAction = action appConfig
-        resultOfAction
+    let runReader (ConfigReader func) appConfig =
+        func appConfig
 
     let map f reader = 
-        let newAction appConfig = 
+        let newFunc appConfig = 
             let x = runReader reader appConfig 
             f x
-        ConfigReader newAction
+        ConfigReader newFunc
 
     let retn x =
-        let newAction appConfig =
+        let newFunc appConfig =
             x
-        ConfigReader newAction
+        ConfigReader newFunc
 
     let apply fReader xReader =
-        let newAction appConfig =  
+        let newFunc appConfig =  
             let f = runReader fReader appConfig
             let x = runReader xReader appConfig
             f x
-        ConfigReader newAction
+        ConfigReader newFunc
 
     let bind f xAction = 
-        let newAction appConfig = 
+        let newFunc appConfig = 
             let x = runReader xAction appConfig 
             runReader (f x) appConfig 
-        ConfigReader newAction
+        ConfigReader newFunc
 
     let execute configReader = 
-        let appConfig = AppConfig()
-        runReader configReader appConfig 
+        runReader configReader AppConfig.Instance 

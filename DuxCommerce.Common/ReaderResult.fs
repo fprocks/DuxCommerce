@@ -1,40 +1,38 @@
 ﻿namespace DuxCommerce.Common
 
-open DuxCommerce.Common.ConfigReader
-
 type ReaderResult<'Success, 'Failure> = ConfigReader<Result<'Success,'Failure>>
 
 module ReaderResult = 
     let map f =
-        map (Result.map f)
+        ConfigReader.map (Result.map f)
         
     let retn x =
-        retn (Result.retn x)
+        ConfigReader.retn (Result.retn x)
         
     let mapError f (x:ReaderResult<_,_>) : ReaderResult<_,_> =
         ConfigReader.map (Result.mapError f) x
         
     let apply fReaderResult xReaderResult =
-        let newAction appConfig =
-            let fResult = runReader fReaderResult appConfig 
-            let xResult = runReader xReaderResult appConfig 
+        let newFunc appConfig =
+            let fResult = ConfigReader.runReader fReaderResult appConfig 
+            let xResult = ConfigReader.runReader xReaderResult appConfig 
             Result.apply fResult xResult
             
-        ConfigReader newAction
+        ConfigReader newFunc
 
-    let bind f xActionResult = 
-        let newAction appConfig = 
-            let xResult = runReader xActionResult appConfig 
-            let yAction = 
+    let bind f xReaderResult = 
+        let newFunc appConfig = 
+            let xResult = ConfigReader.runReader xReaderResult appConfig 
+            let yReaderResult = 
                 match xResult with
                 | Result.Ok x ->
                     f x
                 | Result.Error errs ->
                     (Result.Error errs) |> ConfigReader.retn
                     
-            runReader yAction appConfig 
+            ConfigReader.runReader yReaderResult appConfig 
             
-        ConfigReader newAction
+        ConfigReader newFunc
         
 [<AutoOpen>]
 module ReaderResultComputationExpression = 

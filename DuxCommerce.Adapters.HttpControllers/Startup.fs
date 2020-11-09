@@ -10,7 +10,6 @@ open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Hosting
 open FluentMigrator.Runner
 open RepoDb
-open DuxCommerce.Common.ConfigReader
 open DuxCommerce.Common
 
 module DbSetup = 
@@ -59,6 +58,6 @@ type Startup private () =
 
     member this.ReadAppConfig() =
         let config = { ConnectionString = "Server=(local);Database=DuxCommerce;User Id=DuxAdmin;Password=Password1;" }        
-        AppConfig().initialize(config)
+        AppConfig.Instance.initialize(config)
 
     member val Configuration : IConfiguration = null with get, set

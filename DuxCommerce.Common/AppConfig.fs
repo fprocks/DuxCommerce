@@ -1,16 +1,16 @@
 ﻿namespace DuxCommerce.Common
 
-type ConfigInfo = {
+type Config = {
     ConnectionString : string
 }
 
-type AppConfig () =
-    static let mutable appConfig = {
-        ConnectionString = ""
-    }        
+type AppConfig private() =
+    let mutable config = {ConnectionString = ""}
+    static let instance = AppConfig()
+    
+    static member Instance = instance
     member this.ConnectionString = 
-        appConfig.ConnectionString
-        
-    member this.initialize (value:ConfigInfo) = 
-        appConfig <- value
+        config.ConnectionString        
+    member this.initialize (value:Config) = 
+        config <- value
         
