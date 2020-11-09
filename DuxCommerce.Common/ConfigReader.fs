@@ -1,26 +1,30 @@
 ﻿namespace DuxCommerce.Common
 
-module ConfigReader =
+type AppConfig = {
+    ConnectionString : string
+}
+
+type ConfigClient () =
+    static let mutable appConfig = {
+        ConnectionString = ""
+    }        
+    member this.ConnectionString = 
+        appConfig.ConnectionString
+        
+    member this.Init (value:AppConfig) = 
+        appConfig <- value
+        
+type ConfigReader<'a> = ConfigReader of (ConfigClient -> 'a)
     
-    type ConfigClient() =
-        static let mutable appConfig = {
-            ConnectionString = ""
-        }        
-        member this.ConnectionString = 
-            appConfig.ConnectionString
-            
-        member this.Set (value:AppConfig) = 
-            appConfig <- value          
+module ConfigReader =
 
-    type ConfigReader<'a> = ConfigReader of (ConfigClient -> 'a)
-
-    let run configClient (ConfigReader action) =
+    let runReader (ConfigReader action) configClient =
         let resultOfAction = action configClient
         resultOfAction
 
-    let map f action = 
+    let map f reader = 
         let newAction configClient = 
-            let x = run configClient action
+            let x = runReader reader configClient 
             f x
         ConfigReader newAction
 
@@ -29,19 +33,19 @@ module ConfigReader =
             x
         ConfigReader newAction
 
-    let apply fAction xAction =
-        let newAction configClient = 
-            let f = run configClient fAction
-            let x = run configClient xAction
+    let apply fReader xReader =
+        let newAction configClient =  
+            let f = runReader fReader configClient
+            let x = runReader xReader configClient
             f x
         ConfigReader newAction
 
     let bind f xAction = 
         let newAction configClient = 
-            let x = run configClient xAction
-            run configClient (f x)
+            let x = runReader xAction configClient 
+            runReader (f x) configClient 
         ConfigReader newAction
 
     let execute configReader = 
         let configClient = ConfigClient()
-        run configClient configReader
+        runReader configReader configClient 

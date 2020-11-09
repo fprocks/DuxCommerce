@@ -6,25 +6,25 @@ type ReaderResult<'Success, 'Failure> = ConfigReader<Result<'Success,'Failure>>
 
 module ReaderResult = 
     let map f =
-        ConfigReader.map (Result.map f)
+        map (Result.map f)
         
     let retn x =
-        ConfigReader.retn (Result.retn x)
+        retn (Result.retn x)
         
     let mapError f (x:ReaderResult<_,_>) : ReaderResult<_,_> =
         ConfigReader.map (Result.mapError f) x
         
     let apply fReaderResult xReaderResult =
         let newAction configClient =
-            let fResult = ConfigReader.run configClient fReaderResult
-            let xResult = ConfigReader.run configClient xReaderResult
+            let fResult = runReader fReaderResult configClient 
+            let xResult = runReader xReaderResult configClient 
             Result.apply fResult xResult
             
-        ConfigReader.ConfigReader newAction
+        ConfigReader newAction
 
     let bind f xActionResult = 
         let newAction configClient = 
-            let xResult = ConfigReader.run configClient xActionResult
+            let xResult = runReader xActionResult configClient 
             let yAction = 
                 match xResult with
                 | Result.Ok x ->
@@ -32,9 +32,9 @@ module ReaderResult =
                 | Result.Error errs ->
                     (Result.Error errs) |> ConfigReader.retn
                     
-            ConfigReader.run configClient yAction
+            runReader yAction configClient 
             
-        ConfigReader.ConfigReader newAction
+        ConfigReader newAction
         
 [<AutoOpen>]
 module ReaderResultComputationExpression = 
