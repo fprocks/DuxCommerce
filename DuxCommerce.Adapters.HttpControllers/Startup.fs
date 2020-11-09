@@ -29,8 +29,7 @@ type Startup private () =
         services.AddAuthorization() |> ignore
         services.AddControllers().AddNewtonsoftJson() |> ignore
         
-        DbSetup.InitDb
-        
+        DbSetup.InitDb        
         this.ReadAppConfig()
         
         services.AddFluentMigratorCore().ConfigureRunner(fun config ->
@@ -60,6 +59,6 @@ type Startup private () =
 
     member this.ReadAppConfig() =
         let config = { ConnectionString = "Server=(local);Database=DuxCommerce;User Id=DuxAdmin;Password=Password1;" }        
-        ConfigClient().Init(config)
+        AppConfig().initialize(config)
 
     member val Configuration : IConfiguration = null with get, set

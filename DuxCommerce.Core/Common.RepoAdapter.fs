@@ -9,8 +9,8 @@ module RepoAdapter =
 
     let repoAdapter1 repoFn x =
         try
-            let action (configClient:ConfigClient) =
-                let connString = configClient.ConnectionString
+            let action (appConfig:AppConfig) =
+                let connString = appConfig.ConnectionString
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
                   Ok (repoFn connection x)
@@ -25,8 +25,8 @@ module RepoAdapter =
             
     let repoAdapter2 repoFn x y =
         try
-            let action (configClient:ConfigClient) =
-                let connString = configClient.ConnectionString
+            let action (appConfig:AppConfig) =
+                let connString = appConfig.ConnectionString
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
                   Ok (repoFn connection x y)
@@ -41,8 +41,8 @@ module RepoAdapter =
             
     let repoAdapter3 repoFn x y z =
         try
-            let action (configClient:ConfigClient) =
-                let connString = configClient.ConnectionString
+            let action (appConfig:AppConfig) =
+                let connString = appConfig.ConnectionString
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
                   Ok (repoFn connection x y z)

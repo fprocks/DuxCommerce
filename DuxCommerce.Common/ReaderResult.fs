@@ -15,16 +15,16 @@ module ReaderResult =
         ConfigReader.map (Result.mapError f) x
         
     let apply fReaderResult xReaderResult =
-        let newAction configClient =
-            let fResult = runReader fReaderResult configClient 
-            let xResult = runReader xReaderResult configClient 
+        let newAction appConfig =
+            let fResult = runReader fReaderResult appConfig 
+            let xResult = runReader xReaderResult appConfig 
             Result.apply fResult xResult
             
         ConfigReader newAction
 
     let bind f xActionResult = 
-        let newAction configClient = 
-            let xResult = runReader xActionResult configClient 
+        let newAction appConfig = 
+            let xResult = runReader xActionResult appConfig 
             let yAction = 
                 match xResult with
                 | Result.Ok x ->
@@ -32,7 +32,7 @@ module ReaderResult =
                 | Result.Error errs ->
                     (Result.Error errs) |> ConfigReader.retn
                     
-            runReader yAction configClient 
+            runReader yAction appConfig 
             
         ConfigReader newAction
         
