@@ -9,14 +9,14 @@ module RepoAdapter =
 
     let repoAdapter1 repoFn x =
         try
-            let action (appConfig:AppConfig) =
+            let func (appConfig:AppConfig) =
                 let connString = appConfig.ConnectionString
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
                   Ok (repoFn connection x)
                 )
                 
-            ConfigReader.ConfigReader action
+            ConfigReader.ConfigReader func
         with
             | :? Exception as ex ->
                 Error ex
@@ -25,14 +25,14 @@ module RepoAdapter =
             
     let repoAdapter2 repoFn x y =
         try
-            let action (appConfig:AppConfig) =
+            let func (appConfig:AppConfig) =
                 let connString = appConfig.ConnectionString
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
                   Ok (repoFn connection x y)
                 )
                 
-            ConfigReader.ConfigReader action
+            ConfigReader.ConfigReader func
         with
             | :? Exception as ex ->
                 Error ex
@@ -41,14 +41,14 @@ module RepoAdapter =
             
     let repoAdapter3 repoFn x y z =
         try
-            let action (appConfig:AppConfig) =
+            let func (appConfig:AppConfig) =
                 let connString = appConfig.ConnectionString
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
                   Ok (repoFn connection x y z)
                 )
                 
-            ConfigReader.ConfigReader action
+            ConfigReader.ConfigReader func
         with
             | :? Exception as ex ->
                 Error ex
