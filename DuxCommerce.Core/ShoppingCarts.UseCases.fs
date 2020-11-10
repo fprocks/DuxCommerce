@@ -13,7 +13,9 @@ module UseCases =
                 let! cartDto = CartRepo.getShoppingCart shopperId
                 let! productDto = ProductRepo.getProduct request.ProductId
                 
-                let! updatedCart = ShoppingCart.addCartItem cartDto productDto request // pure
+                let! updatedCart = 
+                    ShoppingCart.addCartItem cartDto productDto request 
+                    |> ConfigReader.retn
                 
                 do! CartRepo.saveShoppingCart updatedCart
                 return! CartRepo.getShoppingCart shopperId
@@ -24,7 +26,9 @@ module UseCases =
             readerResult {
                 let! cartDto = CartRepo.getShoppingCart shopperId
                 
-                let! updatedCart = ShoppingCart.updateCart cartDto request // pure
+                let! updatedCart = 
+                    ShoppingCart.updateCart cartDto request
+                    |> ConfigReader.retn
                 
                 do! CartRepo.saveShoppingCart updatedCart
                 return! CartRepo.getShoppingCart shopperId
@@ -35,7 +39,9 @@ module UseCases =
             readerResult {
                 let! cartDto = CartRepo.getShoppingCart shopperId
                 
-                let! cartAndItems = ShoppingCart.deleteCartItem cartDto request // pure
+                let! cartAndItems = 
+                    ShoppingCart.deleteCartItem cartDto request
+                    |> ConfigReader.retn
                 
                 do! CartRepo.deleteCartItem cartAndItems
                 return! CartRepo.getShoppingCart shopperId
