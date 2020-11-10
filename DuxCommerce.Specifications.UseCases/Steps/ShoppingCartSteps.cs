@@ -60,9 +60,6 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Then(@"her cart details should look as follow:")]
         public void ThenHerCartDetailsShouldLookAsFollow(Table table)
         {
-            var statusOK = _context.ApiResults.All(x => x.StatusCode == HttpStatusCode.OK);
-            statusOK.Should().BeTrue();
-
             var expectedItems = table.CreateSet<ExpectedCartItem>();
             var products = _context.CreatedProducts;
             foreach (var item in expectedItems)

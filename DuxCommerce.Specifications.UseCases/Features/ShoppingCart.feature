@@ -16,7 +16,8 @@ Scenario: Add to cart
 	| 1       | DDD  | 1        |
 	| 1       | DDD  | 2        |
 	| 2       | BDD  | 8        |
-	Then her cart details should look as follow:
+	Then she should receive status codes OK
+	And her cart details should look as follow:
 	| Product | Name | Price | Quantity | ItemTotal |
 	| 1       | DDD  | 100   | 3        | 300       |
 	| 2       | BDD  | 50    | 8        | 400       |
@@ -31,7 +32,8 @@ Scenario: Update cart
 	| Product | Name | Quantity |
 	| 1       | DDD  | 10       |
 	| 2       | BDD  | 20       |
-	Then her cart details should look as follow:
+	Then she should receive status codes OK
+	And her cart details should look as follow:
 	| Product | Name | Price | Quantity | ItemTotal |
 	| 1       | DDD  | 100   | 10       | 1000      |
 	| 2       | BDD  | 50    | 20       | 1000      |
@@ -47,7 +49,8 @@ Scenario: Delete cart item
 	| Product | Name |
 	| 1       | DDD  |
 	| 3       | TDD  |
-	Then her cart details should look as follow:
+	Then she should receive status codes OK
+	And her cart details should look as follow:
 	| Product | Name | Price | Quantity | ItemTotal |
 	| 2       | BDD  | 50    | 4        | 200       |
 	And the cart total is $200

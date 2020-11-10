@@ -69,7 +69,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [Then(@"Tom should receive status codes (.*)")]
-        public void ThenTomShouldReceiveSuccessResult(HttpStatusCode code)
+        [Then(@"she should receive status codes (.*)")]
+        public void ThenTomShouldReceiveSuccessResult(HttpStatusCode code)-
         {
             var codesMatch = _context.ApiResults.All(x => x.StatusCode == code);
             codesMatch.Should().BeTrue();

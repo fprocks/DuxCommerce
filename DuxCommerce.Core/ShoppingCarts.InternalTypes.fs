@@ -3,7 +3,6 @@
 open DuxCommerce.Catalogue.InternalTypes
 open DuxCommerce.Catalogue.PublicTypes
 open DuxCommerce.Common
-open DuxCommerce.Common.ConfigReader
 open DuxCommerce.ShoppingCarts.PublicTypes
 open DuxCommerce.ShoppingCarts.SimpleTypes
 open DuxCommerce.Catalogue.SimpleTypes

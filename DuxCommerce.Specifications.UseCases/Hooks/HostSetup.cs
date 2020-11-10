@@ -2,11 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace DuxCommerce.Specifications.UseCases.Hooks
