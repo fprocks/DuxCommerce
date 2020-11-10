@@ -68,27 +68,27 @@ module ShoppingCartDto =
         }
         
 module internal CartItem =
-        
-    let addQty cartItem quantity = 
-        let newQuantity = ItemQuantity.add cartItem.Quantity quantity
-        let newTotal = ItemTotal.calculate cartItem.Price newQuantity
-        {cartItem with Quantity = newQuantity; ItemTotal = newTotal}
-        
+                
     let addQtyIf (cmd:AddCartItemCommand) cartItem =        
+        let addQty cartItem quantity = 
+            let newQuantity = ItemQuantity.add cartItem.Quantity quantity
+            let newTotal = ItemTotal.calculate cartItem.Price newQuantity
+            {cartItem with Quantity = newQuantity; ItemTotal = newTotal}
+
         if cartItem.ProductId = cmd.ProductId
         then addQty cartItem cmd.Quantity
         else cartItem            
-        
-    let updateQty cartItem quantity = 
-        let newTotal = ItemTotal.calculate cartItem.Price quantity
-        {cartItem with Quantity = quantity; ItemTotal = newTotal}
-
-    let updateQtyIf cartItem (itemCmd:UpdateCartItemCommand) =
-        if itemCmd.ProductId = cartItem.ProductId
-        then seq {updateQty cartItem itemCmd.Quantity}
-        else Seq.empty
     
     let update (cmds:UpdateCartItemCommand seq) cartItem =
+        let updateQty cartItem quantity = 
+            let newTotal = ItemTotal.calculate cartItem.Price quantity
+            {cartItem with Quantity = quantity; ItemTotal = newTotal}
+
+        let updateQtyIf cartItem (itemCmd:UpdateCartItemCommand) =
+            if itemCmd.ProductId = cartItem.ProductId
+            then seq {updateQty cartItem itemCmd.Quantity}
+            else Seq.empty
+
         cmds
         |> Seq.map (updateQtyIf cartItem)
         |> Seq.concat
@@ -106,21 +106,22 @@ module internal CartItem =
 
 module ShoppingCart =
         
-    let internal calculateTotal cart =
+    let internal cartTotal cart =
         cart.LineItems 
         |> Seq.sumBy (fun l -> ItemTotal.value l.ItemTotal)
         |> CartTotal.create 
 
     let internal updateItems (cart:ShoppingCart) lineItems = 
-        // Todo: how to avoid updating cart twice
         let updatedCart = {cart with LineItems = lineItems}            
-        let cartTotal = calculateTotal updatedCart
+        let cartTotal = cartTotal updatedCart
         {updatedCart with CartTotal = cartTotal}
 
     let internal addItem cart product (cmd:AddCartItemCommand) =        
         let lineItems = 
-            let check cartItem = cartItem.ProductId = cmd.ProductId              
-            match cart.LineItems |> Seq.tryFind check with
+            let check cartItem = cartItem.ProductId = cmd.ProductId
+
+            let itemFound = cart.LineItems |> Seq.tryFind check
+            match itemFound with
             | Some _ ->
                 cart.LineItems |> Seq.map (CartItem.addQtyIf cmd)
             | None ->
