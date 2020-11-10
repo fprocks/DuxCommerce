@@ -37,6 +37,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
                 .Build();
 
             var hostBuilder = new WebHostBuilder()
+                .UseConfiguration(hostConfig)
                 .UseStartup<WebApi.Startup>();
 
             var server = new TestServer(hostBuilder);
