@@ -138,15 +138,19 @@ module ShoppingCart =
     
         updateItems cart lineItems   
          
-    let addCartItem cartDto productDto (request:AddCartItemRequest) =
-        result {
-            let! cmd = AddCartItemCommand.fromRequest request
-            let cart = ShoppingCartDto.toDomain cartDto
-            let! product = ProductDto.toDomain productDto
+    let addCartItem cart product (cmd:AddCartItemCommand) =
+        let lineItems = 
+            let check cartItem = cartItem.ProductId = cmd.ProductId
 
-            let updatedCart = addItem cart product cmd                                
-            return ShoppingCartDto.fromDomain updatedCart
-        }
+            let itemFound = cart.LineItems |> Seq.tryFind check
+            match itemFound with
+            | Some _ ->
+                cart.LineItems |> Seq.map (CartItem.addQtyIf cmd)
+            | None ->
+                let newItem = CartItem.createItem cart.Id product cmd.Quantity
+                Seq.append cart.LineItems [newItem]
+
+        updateItems cart lineItems
 
     let updateCart cartDto (request:UpdateCartRequest) =
         result {

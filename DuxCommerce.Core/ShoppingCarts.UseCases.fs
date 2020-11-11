@@ -1,6 +1,8 @@
 ﻿namespace DuxCommerce.ShoppingCarts
 
+open DuxCommerce.Catalogue.Dto
 open DuxCommerce.Common
+open DuxCommerce.ShoppingCarts.Commands
 open DuxCommerce.ShoppingCarts.InternalTypes
 open DuxCommerce.ShoppingCarts.Ports
 open DuxCommerce.Catalogue
@@ -13,11 +15,15 @@ module UseCases =
                 let! cartDto = CartRepo.getShoppingCart shopperId
                 let! productDto = ProductRepo.getProduct request.ProductId
                 
-                let! updatedCart = 
-                    ShoppingCart.addCartItem cartDto productDto request 
-                    |> ConfigReader.retn
+                let! cmd = AddCartItemCommand.fromRequest request |> ConfigReader.retn
+                let cart = ShoppingCartDto.toDomain cartDto
+                let! product = ProductDto.toDomain productDto |> ConfigReader.retn
                 
-                do! CartRepo.saveShoppingCart updatedCart
+                let updatedCart = ShoppingCart.addCartItem cart product cmd
+                
+                let cartDto = ShoppingCartDto.fromDomain updatedCart
+            
+                do! CartRepo.saveShoppingCart cartDto
                 return! CartRepo.getShoppingCart shopperId
             }
 
