@@ -2,6 +2,7 @@
 
 open DuxCommerce.Catalogue.Dto
 open DuxCommerce.Common
+open DuxCommerce.ShoppingCart.Dto
 open DuxCommerce.ShoppingCarts.Commands
 open DuxCommerce.ShoppingCarts.InternalTypes
 open DuxCommerce.ShoppingCarts.Ports
@@ -32,10 +33,12 @@ module UseCases =
             readerResult {
                 let! cartDto = CartRepo.getShoppingCart shopperId
                 
-                let! updatedCart = 
-                    ShoppingCart.updateCart cartDto request
-                    |> ConfigReader.retn
-                
+                let! cmd = UpdateCartCommand.fromRequest request |> ConfigReader.retn
+                let cart = ShoppingCartDto.toDomain cartDto
+            
+                let updatedCart = ShoppingCart.updateCart cart cmd
+                                  |> ShoppingCartDto.fromDomain
+
                 do! CartRepo.saveShoppingCart updatedCart
                 return! CartRepo.getShoppingCart shopperId
             }
@@ -45,10 +48,14 @@ module UseCases =
             readerResult {
                 let! cartDto = CartRepo.getShoppingCart shopperId
                 
-                let! cartAndItems = 
-                    ShoppingCart.deleteCartItem cartDto request
-                    |> ConfigReader.retn
+                let! cmd = DeleteCartItemCommand.fromRequest request |> ConfigReader.retn
+                let cart = ShoppingCartDto.toDomain cartDto
                 
-                do! CartRepo.deleteCartItem cartAndItems
+                let (updatedCart, deletedItems) = ShoppingCart.deleteCartItem cart cmd
+                
+                let updatedCart = updatedCart |> ShoppingCartDto.fromDomain
+                let deletedItems = deletedItems |> Seq.map CartItemDto.fromDomain
+                
+                do! CartRepo.deleteCartItem (updatedCart, deletedItems)
                 return! CartRepo.getShoppingCart shopperId
             }

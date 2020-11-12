@@ -4,7 +4,6 @@ open DuxCommerce.Catalogue.InternalTypes
 open DuxCommerce.Common
 open DuxCommerce.Catalogue.SimpleTypes
 open DuxCommerce.Catalogue.PublicTypes
-open DuxCommerce.Common.ConfigReader
 
 module ProductDto =
 

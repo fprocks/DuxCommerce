@@ -19,6 +19,7 @@
       <Compile Include="ShoppingCarts.PublicTypes.fs" />
       <Compile Include="ShoppingCarts.Commands.fs" />
       <Compile Include="ShoppingCarts.InternalTypes.fs" />
+      <Compile Include="ShoppingCart.Dto.fs" />
       <Compile Include="ShoppingCarts.Ports.fs" />
       <Compile Include="ShoppingCarts.Repos.fs" />
       <Compile Include="ShoppingCarts.UseCases.fs" />

@@ -17,56 +17,6 @@ type CartItem = {
     Quantity: ItemQuantity
     ItemTotal: ItemTotal
 }
-
-type ShoppingCart = {
-    Id : CartId
-    ShopperId : ShopperId
-    LineItems: CartItem seq
-    CartTotal: CartTotal
-}
-
-module CartItemDto = 
-
-    let fromDomain (cartItem:CartItem) :CartItemDto =
-        {
-            Id = CartItemId.value cartItem.Id
-            CartId = CartId.value cartItem.CartId
-            ProductId = ProductId.value cartItem.ProductId
-            ProductName = String255.value cartItem.ProductName
-            Price = SalePrice.value cartItem.Price
-            Quantity = ItemQuantity.value cartItem.Quantity
-            ItemTotal = ItemTotal.value cartItem.ItemTotal
-        }
-            
-    let toDomain (itemDto:CartItemDto) :CartItem =
-        {
-            Id = CartItemId.create itemDto.Id
-            CartId = CartId.create itemDto.CartId
-            ProductId = ProductId.create itemDto.ProductId
-            ProductName = String255 itemDto.ProductName
-            Price = SalePrice.create itemDto.Price
-            Quantity = ItemQuantity.create itemDto.Quantity
-            ItemTotal = ItemTotal.create itemDto.ItemTotal
-        }
-
-module ShoppingCartDto =
-
-    let fromDomain (cart:ShoppingCart) :ShoppingCartDto =
-        {
-            Id = CartId.value cart.Id
-            ShopperId = ShopperId.value cart.ShopperId
-            LineItems = cart.LineItems |> Seq.map CartItemDto.fromDomain
-            CartTotal = CartTotal.value cart.CartTotal
-        }
-    
-    let toDomain (cartDto:ShoppingCartDto) :ShoppingCart =
-        {
-            Id = CartId.create cartDto.Id
-            ShopperId = ShopperId.create cartDto.ShopperId
-            LineItems = cartDto.LineItems |> Seq.map CartItemDto.toDomain
-            CartTotal = CartTotal.create cartDto.CartTotal
-        }
-        
 module internal CartItem =
                 
     let addQtyIf (cmd:AddCartItemCommand) cartItem =        
@@ -104,6 +54,13 @@ module internal CartItem =
             ItemTotal = ItemTotal.calculate product.Price quantity     
         }
 
+type ShoppingCart = {
+    Id : CartId
+    ShopperId : ShopperId
+    LineItems: CartItem seq
+    CartTotal: CartTotal
+}
+
 module ShoppingCart =
         
     let internal cartTotal cart =
@@ -129,14 +86,6 @@ module ShoppingCart =
                 Seq.append cart.LineItems [newItem]
 
         updateItems cart lineItems 
-
-    let internal update cart (cmd:UpdateCartCommand) =
-        let lineItems =
-            cart.LineItems
-            |> Seq.map (CartItem.update cmd.UpdateItems)
-            |> Seq.concat
-    
-        updateItems cart lineItems   
          
     let addCartItem cart product (cmd:AddCartItemCommand) =
         let lineItems = 
@@ -152,30 +101,20 @@ module ShoppingCart =
 
         updateItems cart lineItems
 
-    let updateCart cartDto (request:UpdateCartRequest) =
-        result {
-            let! cmd = UpdateCartCommand.fromRequest request
-            let cart = ShoppingCartDto.toDomain cartDto
+    let updateCart cart (cmd:UpdateCartCommand) =
+        let lineItems =
+            cart.LineItems
+            |> Seq.map (CartItem.update cmd.UpdateItems)
+            |> Seq.concat
+    
+        updateItems cart lineItems
             
-            let updatedCart = update cart cmd
-            return ShoppingCartDto.fromDomain updatedCart
-        }
-
-    let deleteCartItem cartDto (request:DeleteCartItemRequest) =
-        result {
-            let! cmd = DeleteCartItemCommand.fromRequest request
-            let cart = ShoppingCartDto.toDomain cartDto
-
-            let check cartItem = cartItem.ProductId <> cmd.ProductId               
-            let remainingItems = Seq.filter check cart.LineItems 
+    let deleteCartItem cart (cmd:DeleteCartItemCommand) =      
+        let check cartItem = cartItem.ProductId <> cmd.ProductId               
+        let remainingItems = Seq.filter check cart.LineItems 
+        
+        let updatedCart = updateItems cart remainingItems              
+        let deletedItems = Seq.except remainingItems cart.LineItems                
             
-            let updatedCart = 
-                updateItems cart remainingItems  
-                |> ShoppingCartDto.fromDomain
-            
-            let deletedItems = 
-                Seq.except remainingItems cart.LineItems                
-                |> Seq.map CartItemDto.fromDomain
-                
-            return updatedCart , deletedItems
-        }
+        updatedCart, deletedItems
+        
