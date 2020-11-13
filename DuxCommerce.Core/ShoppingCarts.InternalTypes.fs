@@ -2,10 +2,8 @@
 
 open DuxCommerce.Catalogue.InternalTypes
 open DuxCommerce.Common
-open DuxCommerce.ShoppingCarts.PublicTypes
 open DuxCommerce.ShoppingCarts.SimpleTypes
 open DuxCommerce.Catalogue.SimpleTypes
-open DuxCommerce.Catalogue.Dto
 open DuxCommerce.ShoppingCarts.Commands
 
 type CartItem = {
@@ -17,6 +15,7 @@ type CartItem = {
     Quantity: ItemQuantity
     ItemTotal: ItemTotal
 }
+
 module internal CartItem =
                 
     let addQtyIf (cmd:AddCartItemCommand) cartItem =        
@@ -40,8 +39,7 @@ module internal CartItem =
             else Seq.empty
 
         cmds
-        |> Seq.map (updateQtyIf cartItem)
-        |> Seq.concat
+        |> Seq.collect (updateQtyIf cartItem)
     
     let createItem cartId (product:Product) quantity :CartItem=
         {
@@ -72,20 +70,6 @@ module ShoppingCart =
         let updatedCart = {cart with LineItems = lineItems}            
         let cartTotal = cartTotal updatedCart
         {updatedCart with CartTotal = cartTotal}
-
-    let internal addItem cart product (cmd:AddCartItemCommand) =        
-        let lineItems = 
-            let check cartItem = cartItem.ProductId = cmd.ProductId
-
-            let itemFound = cart.LineItems |> Seq.tryFind check
-            match itemFound with
-            | Some _ ->
-                cart.LineItems |> Seq.map (CartItem.addQtyIf cmd)
-            | None ->
-                let newItem = CartItem.createItem cart.Id product cmd.Quantity
-                Seq.append cart.LineItems [newItem]
-
-        updateItems cart lineItems 
          
     let addCartItem cart product (cmd:AddCartItemCommand) =
         let lineItems = 
@@ -104,8 +88,7 @@ module ShoppingCart =
     let updateCart cart (cmd:UpdateCartCommand) =
         let lineItems =
             cart.LineItems
-            |> Seq.map (CartItem.update cmd.UpdateItems)
-            |> Seq.concat
+            |> Seq.collect (CartItem.update cmd.UpdateItems)
     
         updateItems cart lineItems
             
