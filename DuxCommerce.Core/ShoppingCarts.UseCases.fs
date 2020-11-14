@@ -16,12 +16,15 @@ module UseCases =
                 let! cartDto = CartRepo.getShoppingCart shopperId
                 let! productDto = ProductRepo.getProduct request.ProductId
                 
+                // Edge of domain
                 let! cmd = AddCartItemCommand.fromRequest request |> ConfigReader.retn
                 let cart = ShoppingCartDto.toDomain cartDto
                 let! product = ProductDto.toDomain productDto |> ConfigReader.retn
                 
+                // Core of domain
                 let updatedCart = ShoppingCart.addCartItem cart product cmd
                 
+                // Edge logic
                 let cartDto = ShoppingCartDto.fromDomain updatedCart
             
                 do! CartRepo.saveShoppingCart cartDto
