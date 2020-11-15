@@ -33,7 +33,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
         private static void InitHttpWebServer()
         {
             var hostConfig = new ConfigurationBuilder()
-                .AddJsonFile("host-settings.json")
+                .AddJsonFile("appsettings.json")
                 .Build();
 
             var hostBuilder = new WebHostBuilder()

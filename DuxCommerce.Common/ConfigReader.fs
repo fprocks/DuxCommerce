@@ -1,6 +1,6 @@
 ﻿namespace DuxCommerce.Common
 
-type ConfigReader<'a> = ConfigReader of (AppConfig -> 'a)
+type ConfigReader<'a> = ConfigReader of (AppSettings -> 'a)
     
 module ConfigReader =
 
@@ -32,5 +32,5 @@ module ConfigReader =
         ConfigReader newFunc
 
     let execute configReader =
-        let config = AppConfig()
+        let config = AppSettings()
         runReader configReader config 

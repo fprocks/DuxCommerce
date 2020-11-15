@@ -29,7 +29,7 @@ type Startup private () =
         services.AddControllers().AddNewtonsoftJson() |> ignore
         
         DbSetup.InitDb        
-        this.ReadAppConfig()
+        this.ReadAppSettings()
         
         services.AddFluentMigratorCore().ConfigureRunner(fun config ->
             config.AddSqlServer()
@@ -56,8 +56,15 @@ type Startup private () =
            .ServiceProvider.GetService<IMigrationRunner>()
            .MigrateUp() |> ignore
 
-    member this.ReadAppConfig() =
-        let config = { ConnectionString = "Server=(local);Database=DuxCommerce;User Id=DuxAdmin;Password=Password1;" }        
-        AppConfig().initialize(config)
+    member this.ReadAppSettings() =
+        let mutable dbSettings = {ConnectionString = ""}
+        
+        let config = ConfigurationBuilder()
+                        .AddJsonFile("appsettings.json")
+                        .Build();
+        
+        config.GetSection("DatabaseSettings").Bind(dbSettings);
+        
+        AppSettings().initialize(dbSettings)
 
     member val Configuration : IConfiguration = null with get, set
