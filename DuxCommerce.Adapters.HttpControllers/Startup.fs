@@ -1,7 +1,6 @@
 namespace WebApi
 
 open System.Reflection
-open DuxCommerce.Adapters.HttpControllers
 open DuxCommerce.DatabaseMigrations
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Hosting
@@ -12,8 +11,8 @@ open FluentMigrator.Runner
 open RepoDb
 open DuxCommerce.Common
 
-module DbSetup = 
-    let InitDb =   
+module DbBootstrapper  = 
+    let Initialize =   
         ModelMapper.Map()
         SqlServerBootstrap.Initialize()
         
@@ -28,12 +27,13 @@ type Startup private () =
         services.AddAuthorization() |> ignore
         services.AddControllers().AddNewtonsoftJson() |> ignore
         
-        DbSetup.InitDb        
-        this.ReadAppSettings()
-        
+        DbBootstrapper.Initialize        
+        let dbSettings = DatabaseSettings.FromFile "appsettings.json"
+        AppSettings().SetDbSettings(dbSettings)
+
         services.AddFluentMigratorCore().ConfigureRunner(fun config ->
             config.AddSqlServer()
-                .WithGlobalConnectionString(Constants.connString)
+                .WithGlobalConnectionString(dbSettings.ConnectionString)
                 .ScanIn(Assembly.Load("DuxCommerce.DatabaseMigrations")).For.All() |> ignore
             ).AddLogging(fun config -> config.AddFluentMigratorConsole() |> ignore) |> ignore
 
@@ -55,16 +55,5 @@ type Startup private () =
            .CreateScope()
            .ServiceProvider.GetService<IMigrationRunner>()
            .MigrateUp() |> ignore
-
-    member this.ReadAppSettings() =
-        let mutable dbSettings = {ConnectionString = ""}
-        
-        let config = ConfigurationBuilder()
-                        .AddJsonFile("appsettings.json")
-                        .Build();
-        
-        config.GetSection("DatabaseSettings").Bind(dbSettings);
-        
-        AppSettings().initialize(dbSettings)
 
     member val Configuration : IConfiguration = null with get, set
