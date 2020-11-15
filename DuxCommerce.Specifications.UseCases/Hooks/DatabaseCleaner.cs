@@ -1,5 +1,5 @@
-﻿using Respawn;
-using System.Configuration;
+﻿using DuxCommerce.Common;
+using Respawn;
 using System.Data.SqlClient;
 
 namespace DuxCommerce.Specifications.UseCases.Hooks
@@ -8,10 +8,9 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
     {
         public static void CleanUp()
         {
-            var connString = "Server=(local);Database=DuxCommerce;User Id=DuxAdmin;Password=Password1;";
-            //var connString = ConfigurationManager.ConnectionStrings["DuxCommerce"].ConnectionString;
+            var dbSettings = DatabaseSettingsModule.FromFile("appsettings.json");
+            var connection = new SqlConnection(dbSettings.ConnectionString);
 
-            var connection = new SqlConnection(connString);
             connection.Open();
 
             var clientCheckpoint = new Checkpoint()
