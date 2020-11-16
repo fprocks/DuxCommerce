@@ -18,11 +18,3 @@ type ProductDto = {
     TrackInventory : bool
     OutOfStockRule : string
 }
-
-type ValidationError = ValidationError of string
-type DatabaseError = DatabaseError of string
-
-type CreateProductError =
-    | ValidationError of ValidationError
-    | DatabaseError of DatabaseError
-    

@@ -3,7 +3,6 @@
 open DuxCommerce.Catalogue.Ports
 open DuxCommerce.Common
 open DuxCommerce.Catalogue.Dto
-open DuxCommerce.Common.ConfigReader
 
 module UseCases =     
 
