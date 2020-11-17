@@ -1,6 +1,6 @@
 ﻿namespace DuxCommerce.Settings
 
-type StoreSettingDto = {
+type StoreDetailsDto = {
     Id : int64
     StoreName : string
     ContactEmail : string
@@ -10,6 +10,7 @@ type StoreSettingDto = {
     UnitSystem : string
     WeightUnit : string
     LengthUnit : string
+    AddressId : int64 option
 }
 
 type AddressDto = {
