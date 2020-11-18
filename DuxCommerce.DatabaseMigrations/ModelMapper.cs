@@ -1,4 +1,6 @@
 ﻿using DuxCommerce.Catalogue.PublicTypes;
+using DuxCommerce.Settings.InternalTypes;
+using DuxCommerce.Settings.PublicTypes;
 using DuxCommerce.ShoppingCarts.PublicTypes;
 using RepoDb;
 
@@ -16,6 +18,12 @@ namespace DuxCommerce.DatabaseMigrations
             
             FluentMapper.Entity<CartItemDto>()
                 .Table("[dbo].[ShoppingCartItem]");
+
+            FluentMapper.Entity<StoreDetailsDto>()
+                .Table("[dbo].[StoreDetails]");
+            
+            FluentMapper.Entity<AddressDto>()
+                .Table("[dbo].[Address]");
         }
     }
 }

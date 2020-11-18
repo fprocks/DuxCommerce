@@ -3,7 +3,7 @@
 namespace DuxCommerce.DatabaseMigrations
 {
     [Migration(202011210500)]
-    public abstract class CreateAddressTable : Migration
+    public class CreateAddressTable : Migration
     {
         public override void Up()
         {
