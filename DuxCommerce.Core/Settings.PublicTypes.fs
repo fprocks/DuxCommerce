@@ -18,8 +18,9 @@ type AddressDto = {
     Id : int64
     Address1 : string
     Address2 : string option
+    Address3 : string option
     City : string
-    PostalCode : string
+    PostalCode : string option
     State : string option
     Country : string
 }

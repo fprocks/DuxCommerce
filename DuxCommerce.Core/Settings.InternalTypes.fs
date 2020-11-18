@@ -21,6 +21,7 @@ type Address = {
     Id : AddressId
     Address1 : String255
     Address2 : String255 option
+    Address3 : String255 option
     City : String100
     PostalCode : String50
     State : String100 option
