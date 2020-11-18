@@ -145,6 +145,17 @@ module ConstrainedType =
 module String50 =
 *)
 
+type String2 = private String2 of string
+
+module String2 =
+    let value (String2 str) = str
+    
+    let create fieldName str = 
+        ConstrainedType.createString fieldName String2 2 str
+        
+    let createOption fieldName str = 
+        ConstrainedType.createStringOption fieldName String2 2 str
+
 type String50 = private String50 of string
 
 module String50 =

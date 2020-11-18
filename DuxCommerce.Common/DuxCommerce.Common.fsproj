@@ -11,6 +11,9 @@
       <Compile Include="AppSettings.fs" />
       <Compile Include="ConfigReader.fs" />
       <Compile Include="ReaderResult.fs" />
+      <Compile Include="ImperialSystem.fs" />
+      <Compile Include="MetricSystem.fs" />
+      <Compile Include="UnitSystem.fs" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,11 +1,12 @@
-﻿namespace DuxCommerce.Settings
+﻿namespace DuxCommerce.Settings.PublicTypes
 
 type StoreDetailsDto = {
     Id : int64
     StoreName : string
     ContactEmail : string
     SenderEmail : string
-    BusinessName : string
+    BusinessName : string option
+    PhoneNumber: string
     TimeZoneId : string
     UnitSystem : string
     WeightUnit : string
@@ -15,13 +16,10 @@ type StoreDetailsDto = {
 
 type AddressDto = {
     Id : int64
-    StreetAddress1 : string
-    StreetAddress2 : string option
-    StreetAddress3 : string option
+    Address1 : string
+    Address2 : string option
     City : string
-    PostalCode : string option
-    StateId : int64 option
-    StateName : string option
-    CountryId : int64
-    CountryName : string
+    PostalCode : string
+    State : string option
+    Country : string
 }
