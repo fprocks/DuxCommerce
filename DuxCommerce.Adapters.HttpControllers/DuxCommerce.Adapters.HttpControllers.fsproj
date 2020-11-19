@@ -10,6 +10,7 @@
         <Compile Include="Controllers\DuxControllerBase.fs" />
         <Compile Include="Controllers\ShoppingCartController.fs" />
         <Compile Include="Controllers\ProductsController.fs" />
+        <Compile Include="Controllers\StoreDetailsController.fs" />
         <Compile Include="Startup.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>

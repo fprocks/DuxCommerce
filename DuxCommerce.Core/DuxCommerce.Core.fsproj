@@ -9,6 +9,9 @@
       <Compile Include="Settings.SimpleTypes.fs" />
       <Compile Include="Settings.PublicTypes.fs" />
       <Compile Include="Settings.InternalTypes.fs" />
+      <Compile Include="Settings.Ports.fs" />
+      <Compile Include="Settings.Repos.fs" />
+      <Compile Include="Settings.UseCases.fs" />
       <Compile Include="Catalogue.SimpleTypes.fs" />
       <Compile Include="Catalogue.PublicTypes.fs" />
       <Compile Include="Catalogue.InternalTypes.fs" />
