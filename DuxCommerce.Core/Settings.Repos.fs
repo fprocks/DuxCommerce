@@ -10,10 +10,12 @@ open DuxCommerce.Settings.Ports
 module StoreDetailsRepo =
     
     let createStoreDetails :CreateStoreDetails =
-        fun storeDetailsDto ->
-            let create (connection:SqlConnection) = 
-                connection.Insert<StoreDetailsDto, int64>(storeDetailsDto) |> ignore
-                storeDetailsDto.Id
+        fun dto ->
+            let create (connection:SqlConnection) =
+                let addressId = connection.Insert<AddressDto, int64>(dto.Address)
+                dto.AddressId <- addressId
+                connection.Insert<StoreDetailsDto, int64>(dto) |> ignore
+                dto.Id
                 
             RepoAdapter.repoAdapter create
             
@@ -25,8 +27,8 @@ module StoreDetailsRepo =
             RepoAdapter.repoAdapter get          
             
     let updateStoreDetails :UpdateStoreDetails =
-        fun id storeDetailsDto ->
+        fun id dto ->
             let update (connection:SqlConnection) =
-                connection.Update<StoreDetailsDto>(storeDetailsDto, id) |> ignore
+                connection.Update<StoreDetailsDto>(dto, id) |> ignore
                 
             RepoAdapter.repoAdapter update
