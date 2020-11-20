@@ -24,6 +24,6 @@ type StoreDetailsDto = {
     UnitSystem : string
     WeightUnit : string
     LengthUnit : string
-    mutable AddressId: int64
-    mutable Address : AddressDto
+    AddressId: int64
+    Address : AddressDto
 }

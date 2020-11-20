@@ -13,7 +13,7 @@ module StoreDetailsRepo =
         fun dto ->
             let create (connection:SqlConnection) =
                 let addressId = connection.Insert<AddressDto, int64>(dto.Address)
-                dto.AddressId <- addressId
+                let dto = {dto with AddressId = addressId}
                 connection.Insert<StoreDetailsDto, int64>(dto) |> ignore
                 dto.Id
                 
@@ -22,7 +22,9 @@ module StoreDetailsRepo =
     let getStoreDetails :GetStoreDetails =
         fun id ->
             let get (connection:SqlConnection) =
-                connection.Query<StoreDetailsDto>(fun p -> p.Id = id).FirstOrDefault()
+                let storeDto = connection.Query<StoreDetailsDto>(fun p -> p.Id = id).FirstOrDefault()
+                let address = connection.Query<AddressDto>(fun (a:AddressDto) -> a.Id = storeDto.AddressId).FirstOrDefault()
+                {storeDto with Address = address}
                 
             RepoAdapter.repoAdapter get          
             
