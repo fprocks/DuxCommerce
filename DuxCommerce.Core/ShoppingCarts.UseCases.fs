@@ -13,20 +13,22 @@ module UseCases =
     let addCartItem :AddCartItemUseCase =        
         fun shopperId request ->
             readerResult {
+                // Imperative shell
                 let! cartDto = CartRepo.getShoppingCart shopperId
                 let! productDto = ProductRepo.getProduct request.ProductId
                 
-                // Edge of domain
+                // Non-domain functional code
                 let! cmd = AddCartItemCommand.fromRequest request |> ConfigReader.retn
                 let cart = ShoppingCartDto.toDomain cartDto
                 let! product = ProductDto.toDomain productDto |> ConfigReader.retn
                 
-                // Core of domain
+                // Functional core domain
                 let updatedCart = ShoppingCart.addCartItem cart product cmd
                 
-                // Edge logic
+                // Non-domain functional code
                 let cartDto = ShoppingCartDto.fromDomain updatedCart
             
+                // Imperative shell
                 do! CartRepo.saveShoppingCart cartDto
                 return! CartRepo.getShoppingCart shopperId
             }

@@ -9,7 +9,10 @@ module UseCases =
     let createProduct :CreateProductUseCase =            
         fun productDto ->
             readerResult {
-                let! product = productDto |> ProductDto.toDomain |> ConfigReader.retn
+                let! product = 
+                    productDto 
+                    |> ProductDto.toDomain 
+                    |> ConfigReader.retn
                 let! id = productDto |> ProductRepo.createProduct
                 return! ProductRepo.getProduct id 
             }
@@ -24,7 +27,10 @@ module UseCases =
     let updateProduct :UpdateProductUseCase =
         fun id productDto ->
             readerResult {
-                let! product = productDto |> ProductDto.toDomain |> ConfigReader.retn
+                let! product = 
+                    productDto 
+                    |> ProductDto.toDomain 
+                    |> ConfigReader.retn
                 do! ProductRepo.updateProduct id productDto
                 return! ProductRepo.getProduct id
             }

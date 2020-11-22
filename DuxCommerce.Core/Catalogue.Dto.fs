@@ -7,7 +7,7 @@ open DuxCommerce.Catalogue.PublicTypes
 
 module ProductDto =
 
-    let internal toDomain' (productDto: ProductDto) :Result<Product, string> =
+    let internal toDomain productDto :Result<Product, CustomError> =
         result {
             let! name = String255.create "Name" productDto.Name
             let! shippingType = ShippingType.create productDto.ShippingType
@@ -31,13 +31,9 @@ module ProductDto =
                 TrackInventory = productDto.TrackInventory
                 OutOfStockRule = outOfStockRule
               }
-        }
-
-    let toDomain (productDto: ProductDto) :Result<Product, CustomError> =
-        toDomain' productDto
-        |> CustomError.mapValidation
+        } |> CustomError.mapValidation
         
-    let fromDomain (product:Product) :ProductDto =
+    let fromDomain product :ProductDto =
         {
             Id = ProductId.value product.ProductId
             Name = String255.value product.Name

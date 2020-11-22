@@ -9,10 +9,10 @@ open DuxCommerce.ShoppingCarts.SimpleTypes
 
 module CartItemDto = 
 
-    let fromDomain (cartItem:CartItem) :CartItemDto =
+    let fromDomain cartItem :CartItemDto =
         {
             Id = CartItemId.value cartItem.CartItemId
-            CartId = CartId.value cartItem.CartId
+            CartId = ShoppingCartId.value cartItem.CartId
             ProductId = ProductId.value cartItem.ProductId
             ProductName = String255.value cartItem.ProductName
             Price = SalePrice.value cartItem.Price
@@ -23,7 +23,7 @@ module CartItemDto =
     let toDomain (itemDto:CartItemDto) :CartItem =
         {
             CartItemId = CartItemId.create itemDto.Id
-            CartId = CartId.create itemDto.CartId
+            CartId = ShoppingCartId.create itemDto.CartId
             ProductId = ProductId.create itemDto.ProductId
             ProductName = String255 itemDto.ProductName
             Price = SalePrice.create itemDto.Price
@@ -33,17 +33,17 @@ module CartItemDto =
 
 module ShoppingCartDto =
 
-    let fromDomain (cart:ShoppingCart) :ShoppingCartDto =
+    let fromDomain cart :ShoppingCartDto =
         {
-            Id = CartId.value cart.ShoppingId
+            Id = ShoppingCartId.value cart.ShoppingCartId
             ShopperId = ShopperId.value cart.ShopperId
             LineItems = cart.LineItems |> Seq.map CartItemDto.fromDomain
             CartTotal = CartTotal.value cart.CartTotal
         }
     
-    let toDomain (cartDto:ShoppingCartDto) :ShoppingCart =
+    let toDomain cartDto :ShoppingCart =
         {
-            ShoppingId = CartId.create cartDto.Id
+            ShoppingCartId = ShoppingCartId.create cartDto.Id
             ShopperId = ShopperId.create cartDto.ShopperId
             LineItems = cartDto.LineItems |> Seq.map CartItemDto.toDomain
             CartTotal = CartTotal.create cartDto.CartTotal

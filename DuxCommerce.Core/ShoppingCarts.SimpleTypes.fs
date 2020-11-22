@@ -10,13 +10,13 @@ module ShopperId =
 
     let create id = ShopperId id
     
-type CartId = private CartId of int64
+type ShoppingCartId = private ShoppingCartId of int64
 
-module CartId =
+module ShoppingCartId =
 
-    let value (CartId id) = id
+    let value (ShoppingCartId id) = id
 
-    let create id = CartId id
+    let create id = ShoppingCartId id
 
 type CartItemId = private CartItemId of int64
 

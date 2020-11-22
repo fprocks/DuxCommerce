@@ -30,7 +30,7 @@ module AddressDto =
         }
         
 module StoreDetailsDto =
-    let toDomain (dto: StoreDetailsDto) :Result<StoreDetails, string> =
+    let toDomain dto :Result<StoreDetails, string> =
         result {
             let! storeName = String255.create "StoreName" dto.StoreName
             let! contactEmail = StoreContactEmail.create dto.ContactEmail

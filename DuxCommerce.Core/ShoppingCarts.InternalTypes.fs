@@ -8,7 +8,7 @@ open DuxCommerce.ShoppingCarts.Commands
 
 type CartItem = {
     CartItemId: CartItemId
-    CartId: CartId
+    CartId: ShoppingCartId
     ProductId : ProductId
     ProductName: String255
     Price: SalePrice
@@ -52,7 +52,7 @@ module internal CartItem =
         }
 
 type ShoppingCart = {
-    ShoppingId : CartId
+    ShoppingCartId : ShoppingCartId
     ShopperId : ShopperId
     LineItems: CartItem seq
     CartTotal: CartTotal
@@ -78,7 +78,7 @@ module ShoppingCart =
             | Some _ ->
                 cart.LineItems |> Seq.map (CartItem.addQtyIf cmd)
             | None ->
-                let newItem = CartItem.createItem cart.ShoppingId product cmd.Quantity
+                let newItem = CartItem.createItem cart.ShoppingCartId product cmd.Quantity
                 Seq.append cart.LineItems [newItem]
 
         updateItems cart lineItems
