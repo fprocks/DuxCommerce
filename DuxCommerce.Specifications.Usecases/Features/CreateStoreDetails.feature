@@ -1,7 +1,7 @@
 ﻿Feature: Create Store Details
 	In order to customize my online store
 	As a store admin
-	I want to update my store details
+	I want to save my store details
 
 Scenario: Create store details - green path
 	Given Tom enters the following store details:

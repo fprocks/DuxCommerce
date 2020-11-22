@@ -28,7 +28,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "StoreDetails.feature"
+#line 1 "CreateStoreDetails.feature"
 #line hidden
         
         public CreateStoreDetailsFeature(CreateStoreDetailsFeature.FixtureData fixtureData, DuxCommerce_Specifications_UseCases_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
@@ -40,8 +40,8 @@ namespace DuxCommerce.Specifications.UseCases.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Create Store Details", "\tIn order to customize my online store\r\n\tAs a store admin\r\n\tI want to update my s" +
-                    "tore details", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Create Store Details", "\tIn order to customize my online store\r\n\tAs a store admin\r\n\tI want to save my sto" +
+                    "re details", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -116,7 +116,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "StoreName",
                             "ContactEmail",
                             "SenderEmail",
@@ -126,7 +126,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "UnitSystem",
                             "WeightUnit",
                             "LengthUnit"});
-                table13.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "Deals365",
                             "c@gmail.com",
                             "s@gmail.com",
@@ -137,9 +137,9 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
 #line 7
- testRunner.Given("Tom enters the following store details:", ((string)(null)), table13, "Given ");
+ testRunner.Given("Tom enters the following store details:", ((string)(null)), table4, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Address1",
                             "Address2",
                             "Address3",
@@ -147,7 +147,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "PostalCode",
                             "State",
                             "Country"});
-                table14.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "1 Market Street",
                             "",
                             "",
@@ -156,7 +156,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "New South Wales",
                             "AU"});
 #line 10
- testRunner.And("Tome enters the following store address:", ((string)(null)), table14, "And ");
+ testRunner.And("Tome enters the following store address:", ((string)(null)), table5, "And ");
 #line hidden
 #line 13
  testRunner.When("Tom saves the store details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -164,7 +164,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 14
  testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "StoreName",
                             "ContactEmail",
                             "SenderEmail",
@@ -174,7 +174,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "UnitSystem",
                             "WeightUnit",
                             "LengthUnit"});
-                table15.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Deals365",
                             "c@gmail.com",
                             "s@gmail.com",
@@ -185,9 +185,9 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
 #line 15
- testRunner.And("the store details should be created as follow:", ((string)(null)), table15, "And ");
+ testRunner.And("the store details should be created as follow:", ((string)(null)), table6, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Address1",
                             "Address2",
                             "Address3",
@@ -195,7 +195,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "PostalCode",
                             "State",
                             "Country"});
-                table16.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "1 Market Street",
                             "",
                             "",
@@ -204,7 +204,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "New South Wales",
                             "AU"});
 #line 18
- testRunner.And("the store address should be created as follow:", ((string)(null)), table16, "And ");
+ testRunner.And("the store address should be created as follow:", ((string)(null)), table7, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -246,7 +246,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "StoreName",
                             "ContactEmail",
                             "SenderEmail",
@@ -256,7 +256,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "UnitSystem",
                             "WeightUnit",
                             "LengthUnit"});
-                table17.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "Deals365",
                             "c@gmail.com",
                             "s@gmail.com",
@@ -267,9 +267,9 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
 #line 29
- testRunner.Given("Tom enters the following store details:", ((string)(null)), table17, "Given ");
+ testRunner.Given("Tom enters the following store details:", ((string)(null)), table8, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "Address1",
                             "Address2",
                             "Address3",
@@ -277,7 +277,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "PostalCode",
                             "State",
                             "Country"});
-                table18.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "1 Market Street",
                             "",
                             "",
@@ -286,7 +286,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "New South Wales",
                             "AU"});
 #line 32
- testRunner.And("Tome enters the following store address:", ((string)(null)), table18, "And ");
+ testRunner.And("Tome enters the following store address:", ((string)(null)), table9, "And ");
 #line hidden
 #line 35
  testRunner.When("Tom saves the store details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

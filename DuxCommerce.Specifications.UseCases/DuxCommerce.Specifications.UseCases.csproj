@@ -6,6 +6,9 @@
     <None Remove="appsettings.json" />
   </ItemGroup>
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\CreateStoreDetails - Copy.feature.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -28,5 +31,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DuxCommerce.Adapters.HttpControllers\DuxCommerce.Adapters.HttpControllers.fsproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Features\UpdateStoreDetails.feature.cs">
+      <DependentUpon>UpdateStoreDetails.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Features\UpdateStoreDetails.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 </Project>

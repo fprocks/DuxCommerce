@@ -3,6 +3,7 @@ using DuxCommerce.Specifications.UseCases.Hooks;
 using FluentAssertions;
 using Newtonsoft.Json;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -14,8 +15,9 @@ namespace DuxCommerce.Specifications.UseCases.Steps
     {
         private readonly Hooks.ScenarioContext _context;
         private readonly IApiClient _apiClient;
-        private StoreDetailsDto _storeDetailsInput;
-        private StoreDetailsDto _createdDetails;
+
+        private StoreDetailsDto _storeRequest;
+        private StoreDetailsDto _actualStore;
 
         public StoreDetailsSteps(Hooks.ScenarioContext context, IApiClient apiClient)
         {
@@ -23,43 +25,68 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _apiClient = apiClient;
         }
 
+        [Given(@"Tom already created the following store details:")]
+        public void GivenTomAlreadyCreatedTheFollowingStoreDetails(Table table)
+        {
+            _storeRequest = table.CreateSet<StoreDetailsDto>().FirstOrDefault();
+        }
+
+        [Given(@"Tom already created the following store address:")]
+        public async Task GivenTomAlreadyCreatedTheFollowingStoreAddressAsync(Table table)
+        {
+            _storeRequest.Address = table.CreateSet<AddressDto>().FirstOrDefault();
+
+            var apiResult = await _apiClient.PostAsync("api/storedetails", _storeRequest);
+            var storeDetails = await GetCreatedStoreDetails(apiResult);
+
+            _context.CreatedStoreDetails = storeDetails;
+        }
+
         [Given(@"Tom enters the following store details:")]
         public void GivenTomEntersTheFollowingStoreDetails(Table table)
         {
-            _storeDetailsInput = table.CreateSet<StoreDetailsDto>().FirstOrDefault();
+            _storeRequest = table.CreateSet<StoreDetailsDto>().FirstOrDefault();
         }
         
         [Given(@"Tome enters the following store address:")]
         public void GivenTomeEntersTheFollowingStoreAddress(Table table)
         {
-            _storeDetailsInput.Address = table.CreateSet<AddressDto>().FirstOrDefault();
+            _storeRequest.Address = table.CreateSet<AddressDto>().FirstOrDefault();
         }
         
         [When(@"Tom saves the store details")]
         public async System.Threading.Tasks.Task WhenTomSavesTheStoreDetailsAsync()
         {
-            var apiResult = await _apiClient.PostAsync("api/storedetails", _storeDetailsInput);
+            var apiResult = await _apiClient.PostAsync("api/storedetails", _storeRequest);
+            _context.ApiResults.Add(apiResult);
+        }
+
+        [When(@"Tom updates the store details")]
+        public async Task WhenTomUpdatesTheStoreDetailsAsync()
+        {
+            var storeId = _context.CreatedStoreDetails.Id;
+            var apiResult = await _apiClient.PutAsync($"api/storedetails/{storeId}", _storeRequest);
             _context.ApiResults.Add(apiResult);
         }
 
         [Then(@"the store details should be created as follow:")]
         public async Task ThenTheStoreDetailsShouldBeCreatedAsFollowAsync(Table table)
         {
-            _createdDetails = await GetCreatedStoreDetails();
+            var apiResult = _context.ApiResults[0];
+            _actualStore = await GetCreatedStoreDetails(apiResult);
             var expectedDetails = table.CreateSet<StoreDetailsDto>().FirstOrDefault();
-            CompareStoreDetails(expectedDetails, _createdDetails).Should().BeTrue();
+            CompareStoreDetails(expectedDetails, _actualStore).Should().BeTrue();
         }
 
         [Then(@"the store address should be created as follow:")]
         public void ThenTheStoreAddressShouldBeCreatedAsFollow(Table table)
         {
             var expectedAddress = table.CreateSet<AddressDto>().FirstOrDefault();
-            CompareStoreAddress(expectedAddress, _createdDetails.Address).Should().BeTrue();
+            CompareStoreAddress(expectedAddress, _actualStore.Address).Should().BeTrue();
         }
 
-        private async Task<StoreDetailsDto> GetCreatedStoreDetails()
+        private async Task<StoreDetailsDto> GetCreatedStoreDetails(HttpResponseMessage apiResult)
         {
-            var apiResult = _context.ApiResults[0];
             var resultStr = await apiResult.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<StoreDetailsDto>(resultStr);
         }

@@ -1,5 +1,5 @@
-﻿using DuxCommerce.Catalogue;
-using DuxCommerce.Catalogue.PublicTypes;
+﻿using DuxCommerce.Catalogue.PublicTypes;
+using DuxCommerce.Settings.PublicTypes;
 using DuxCommerce.ShoppingCarts.PublicTypes;
 using System;
 using System.Collections.Generic;
@@ -24,6 +24,8 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
         public List<HttpResponseMessage> ApiResults { get; set; }
 
         public List<ProductDto> CreatedProducts { get; set; }
+
+        public StoreDetailsDto CreatedStoreDetails { get; set; }
 
         public ShoppingCartDto ShoppingCart { get; set; }
 

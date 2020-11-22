@@ -32,5 +32,6 @@ module StoreDetailsRepo =
         fun id dto ->
             let update (connection:SqlConnection) =
                 connection.Update<StoreDetailsDto>(dto, id) |> ignore
+                connection.Update<AddressDto>(dto.Address, dto.AddressId) |> ignore
                 
             RepoAdapter.repoAdapter update

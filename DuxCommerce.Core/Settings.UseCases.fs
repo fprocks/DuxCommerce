@@ -30,7 +30,10 @@ module UseCases =
                                     |> StoreDetailsDto.toDomain
                                     |> CustomError.mapValidation
                                     |> ConfigReader.retn
-                                    
+
+                let! details = StoreDetailsRepo.getStoreDetails id
+                let dto = {dto with AddressId = details.AddressId}                    
                 do! StoreDetailsRepo.updateStoreDetails id dto
+
                 return! StoreDetailsRepo.getStoreDetails id
             }
