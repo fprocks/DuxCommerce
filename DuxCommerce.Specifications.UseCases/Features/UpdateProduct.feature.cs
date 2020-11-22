@@ -80,7 +80,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
         {
 #line 6
 #line hidden
-            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                         "Index",
                         "Name",
                         "Description",
@@ -96,7 +96,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
                         "Barcode",
                         "TrackInventory",
                         "OutOfStockRule"});
-            table13.AddRow(new string[] {
+            table17.AddRow(new string[] {
                         "1",
                         "DDD",
                         "DDD Description",
@@ -112,7 +112,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
                         "1234567890111",
                         "True",
                         "Remove"});
-            table13.AddRow(new string[] {
+            table17.AddRow(new string[] {
                         "2",
                         "BDD",
                         "BDD Description",
@@ -128,7 +128,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
                         "1234567890222",
                         "False",
                         "ContinueSelling"});
-            table13.AddRow(new string[] {
+            table17.AddRow(new string[] {
                         "3",
                         "TDD",
                         "TDD Description",
@@ -145,7 +145,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
                         "True",
                         "StopSelling"});
 #line 7
- testRunner.Given("Tom already created the following products:", ((string)(null)), table13, "Given ");
+ testRunner.Given("Tom already created the following products:", ((string)(null)), table17, "Given ");
 #line hidden
         }
         
@@ -185,7 +185,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "Index",
                             "Name",
                             "Description",
@@ -201,7 +201,7 @@ this.FeatureBackground();
                             "Barcode",
                             "TrackInventory",
                             "OutOfStockRule"});
-                table14.AddRow(new string[] {
+                table18.AddRow(new string[] {
                             "1",
                             "DDD Lite",
                             "DDD Desc",
@@ -217,7 +217,7 @@ this.FeatureBackground();
                             "1234567890123",
                             "True",
                             "StopSelling"});
-                table14.AddRow(new string[] {
+                table18.AddRow(new string[] {
                             "2",
                             "BDD Lite",
                             "BDD Desc",
@@ -233,7 +233,7 @@ this.FeatureBackground();
                             "1234567890234",
                             "True",
                             "Remove"});
-                table14.AddRow(new string[] {
+                table18.AddRow(new string[] {
                             "3",
                             "TDD Lite",
                             "TDD Desc",
@@ -250,7 +250,7 @@ this.FeatureBackground();
                             "False",
                             "ContinueSelling"});
 #line 14
- testRunner.And("Tom enters the following product information:", ((string)(null)), table14, "And ");
+ testRunner.And("Tom enters the following product information:", ((string)(null)), table18, "And ");
 #line hidden
 #line 19
  testRunner.When("Tom updates the products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -258,7 +258,7 @@ this.FeatureBackground();
 #line 20
  testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
                             "Index",
                             "Name",
                             "Description",
@@ -274,7 +274,7 @@ this.FeatureBackground();
                             "Barcode",
                             "TrackInventory",
                             "OutOfStockRule"});
-                table15.AddRow(new string[] {
+                table19.AddRow(new string[] {
                             "1",
                             "DDD",
                             "DDD Description",
@@ -290,7 +290,7 @@ this.FeatureBackground();
                             "1234567890111",
                             "True",
                             "Remove"});
-                table15.AddRow(new string[] {
+                table19.AddRow(new string[] {
                             "2",
                             "BDD",
                             "BDD Description",
@@ -306,7 +306,7 @@ this.FeatureBackground();
                             "1234567890222",
                             "False",
                             "ContinueSelling"});
-                table15.AddRow(new string[] {
+                table19.AddRow(new string[] {
                             "3",
                             "TDD",
                             "TDD Description",
@@ -323,7 +323,7 @@ this.FeatureBackground();
                             "True",
                             "StopSelling"});
 #line 21
- testRunner.And("the products should be updated as follow:", ((string)(null)), table15, "And ");
+ testRunner.And("the products should be updated as follow:", ((string)(null)), table19, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -360,7 +360,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
                             "Index",
                             "Name",
                             "Description",
@@ -377,7 +377,7 @@ this.FeatureBackground();
                             "TrackInventory",
                             "OutOfStockRule",
                             "Comment"});
-                table16.AddRow(new string[] {
+                table20.AddRow(new string[] {
                             "1",
                             "DDD Lite",
                             "DDD Desc",
@@ -394,7 +394,7 @@ this.FeatureBackground();
                             "True",
                             "Stop Selling",
                             "Invalid OutOfStock Rule"});
-                table16.AddRow(new string[] {
+                table20.AddRow(new string[] {
                             "2",
                             "BDD Lite",
                             "BDD Desc",
@@ -412,7 +412,7 @@ this.FeatureBackground();
                             "Remove",
                             "Invalid ShippingType"});
 #line 28
- testRunner.And("Tom enters the following product information:", ((string)(null)), table16, "And ");
+ testRunner.And("Tom enters the following product information:", ((string)(null)), table20, "And ");
 #line hidden
 #line 32
  testRunner.When("Tom updates the products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

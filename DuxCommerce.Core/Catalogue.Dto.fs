@@ -15,7 +15,7 @@ module ProductDto =
             let! barcode = String255.create "Barcode" productDto.Barcode
             let! outOfStockRule = OutOfStockRule.create productDto.OutOfStockRule
             return {
-                Id = ProductId productDto.Id
+                ProductId = ProductId productDto.Id
                 Name = name
                 Description = productDto.Description
                 Price = SalePrice productDto.Price
@@ -39,7 +39,7 @@ module ProductDto =
         
     let fromDomain (product:Product) :ProductDto =
         {
-            Id = ProductId.value product.Id
+            Id = ProductId.value product.ProductId
             Name = String255.value product.Name
             Description = product.Description
             Price = SalePrice.value product.Price

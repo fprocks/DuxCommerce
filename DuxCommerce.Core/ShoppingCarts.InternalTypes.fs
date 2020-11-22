@@ -7,7 +7,7 @@ open DuxCommerce.Catalogue.SimpleTypes
 open DuxCommerce.ShoppingCarts.Commands
 
 type CartItem = {
-    Id: CartItemId
+    CartItemId: CartItemId
     CartId: CartId
     ProductId : ProductId
     ProductName: String255
@@ -38,14 +38,13 @@ module internal CartItem =
             then seq {updateQty cartItem itemCmd.Quantity}
             else Seq.empty
 
-        cmds
-        |> Seq.collect (updateQtyIf cartItem)
+        cmds |> Seq.collect (updateQtyIf cartItem)
     
     let createItem cartId (product:Product) quantity :CartItem=
         {
-            Id = CartItemId.create 0L
+            CartItemId = CartItemId.create 0L
             CartId = cartId
-            ProductId = product.Id
+            ProductId = product.ProductId
             ProductName = product.Name
             Price = product.Price
             Quantity = quantity
@@ -53,7 +52,7 @@ module internal CartItem =
         }
 
 type ShoppingCart = {
-    Id : CartId
+    ShoppingId : CartId
     ShopperId : ShopperId
     LineItems: CartItem seq
     CartTotal: CartTotal
@@ -74,13 +73,12 @@ module ShoppingCart =
     let addCartItem cart product (cmd:AddCartItemCommand) =
         let lineItems = 
             let check cartItem = cartItem.ProductId = cmd.ProductId
-
             let itemFound = cart.LineItems |> Seq.tryFind check
             match itemFound with
             | Some _ ->
                 cart.LineItems |> Seq.map (CartItem.addQtyIf cmd)
             | None ->
-                let newItem = CartItem.createItem cart.Id product cmd.Quantity
+                let newItem = CartItem.createItem cart.ShoppingId product cmd.Quantity
                 Seq.append cart.LineItems [newItem]
 
         updateItems cart lineItems

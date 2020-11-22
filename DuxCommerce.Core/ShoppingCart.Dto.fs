@@ -11,7 +11,7 @@ module CartItemDto =
 
     let fromDomain (cartItem:CartItem) :CartItemDto =
         {
-            Id = CartItemId.value cartItem.Id
+            Id = CartItemId.value cartItem.CartItemId
             CartId = CartId.value cartItem.CartId
             ProductId = ProductId.value cartItem.ProductId
             ProductName = String255.value cartItem.ProductName
@@ -22,7 +22,7 @@ module CartItemDto =
             
     let toDomain (itemDto:CartItemDto) :CartItem =
         {
-            Id = CartItemId.create itemDto.Id
+            CartItemId = CartItemId.create itemDto.Id
             CartId = CartId.create itemDto.CartId
             ProductId = ProductId.create itemDto.ProductId
             ProductName = String255 itemDto.ProductName
@@ -35,7 +35,7 @@ module ShoppingCartDto =
 
     let fromDomain (cart:ShoppingCart) :ShoppingCartDto =
         {
-            Id = CartId.value cart.Id
+            Id = CartId.value cart.ShoppingId
             ShopperId = ShopperId.value cart.ShopperId
             LineItems = cart.LineItems |> Seq.map CartItemDto.fromDomain
             CartTotal = CartTotal.value cart.CartTotal
@@ -43,7 +43,7 @@ module ShoppingCartDto =
     
     let toDomain (cartDto:ShoppingCartDto) :ShoppingCart =
         {
-            Id = CartId.create cartDto.Id
+            ShoppingId = CartId.create cartDto.Id
             ShopperId = ShopperId.create cartDto.ShopperId
             LineItems = cartDto.LineItems |> Seq.map CartItemDto.toDomain
             CartTotal = CartTotal.create cartDto.CartTotal

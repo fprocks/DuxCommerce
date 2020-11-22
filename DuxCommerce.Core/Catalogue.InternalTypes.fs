@@ -54,7 +54,7 @@ module OutOfStockRule =
             Error msg        
      
 type Product = {
-    Id : ProductId
+    ProductId : ProductId
     Name : String255
     Description : string
     Price : SalePrice
