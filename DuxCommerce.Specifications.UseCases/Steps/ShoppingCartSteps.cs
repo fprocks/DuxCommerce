@@ -36,21 +36,21 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         public async Task WhenAmyAddsTheFollowingProductsToHerShoppingCartAsync(Table table)
         {
             var apiResult = await AddCartItems(table);
-            _context.ApiResults.Add(apiResult);
+            _context.ApiResult = apiResult;
         }
 
         [When(@"Amy updates her shopping cart as follow:")]
         public async Task WhenAmyUpdatesHerShoppingCartAsFollowAsync(Table table)
         {
             var apiResult = await UpdateShoppingCart(table);
-            _context.ApiResults.Add(apiResult);
+            _context.ApiResult = apiResult;
         }
 
         [When(@"Amy deletes the following cart items:")]
         public async Task WhenAmyDeletesTheFollowingCartItemsAsync(Table table)
         {
             var apiResult = await DeleteCartItems(table);
-            _context.ApiResults.Add(apiResult);
+            _context.ApiResult = apiResult;
         }
 
         [Then(@"her cart details should look as follow:")]
@@ -63,14 +63,14 @@ namespace DuxCommerce.Specifications.UseCases.Steps
                 var index = item.Product - 1;
                 item.ProductId = products[index].Id;
             }
-            var shoppingCart = await GetShoppingCart(_context.ApiResults[0]);
+            var shoppingCart = await GetShoppingCart(_context.ApiResult);
             CompareCartItems(expectedItems.ToList(), shoppingCart.LineItems.ToList());
         }
 
         [Then(@"the cart total is \$(.*)")]
         public async Task ThenTheCartTotalIsAsync(int total)
         {
-            var shoppingCart = await GetShoppingCart(_context.ApiResults[0]);
+            var shoppingCart = await GetShoppingCart(_context.ApiResult);
             shoppingCart.CartTotal.Should().Be(total);
         }
 

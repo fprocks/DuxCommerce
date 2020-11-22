@@ -48,24 +48,23 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [When(@"Tom saves the product")]
         public async Task WhenTomSavesTheProductsAsync()
         {
-            var response = await _apiClient.PostAsync("api/products", _productRequest);
-            _context.ApiResults.Add(response);
+            var apiResult = await _apiClient.PostAsync("api/products", _productRequest);
+            _context.ApiResult = apiResult;
         }
 
         [When(@"Tom updates the product")]
         public async Task WhenTomUpdatesTheProductsAsync()
         {
             var id = _context.CreatedProducts[0].Id;
-            var response = await _apiClient.PutAsync($"api/products/{id}", _productRequest);
-            _context.ApiResults.Add(response);
+            var apiResult = await _apiClient.PutAsync($"api/products/{id}", _productRequest);
+            _context.ApiResult = apiResult;
         }
 
         [Then(@"Tom should receive status codes (.*)")]
         [Then(@"she should receive status codes (.*)")]
         public void ThenTomShouldReceiveSuccessResult(HttpStatusCode code)
         {
-            var codesMatch = _context.ApiResults.All(x => x.StatusCode == code);
-            codesMatch.Should().BeTrue();
+            (_context.ApiResult.StatusCode == code).Should().BeTrue();
         }
 
         [Then(@"the product should be created as follow:")]
@@ -84,7 +83,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
         private async Task<ProductDto> GetProduct()
         {
-            var apiResult = _context.ApiResults[0];
+            var apiResult = _context.ApiResult;
             return await GetProduct(apiResult);
         }
 

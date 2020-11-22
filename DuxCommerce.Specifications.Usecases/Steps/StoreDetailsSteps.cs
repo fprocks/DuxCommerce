@@ -58,7 +58,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         public async System.Threading.Tasks.Task WhenTomSavesTheStoreDetailsAsync()
         {
             var apiResult = await _apiClient.PostAsync("api/storedetails", _storeRequest);
-            _context.ApiResults.Add(apiResult);
+            _context.ApiResult = apiResult;
         }
 
         [When(@"Tom updates the store details")]
@@ -66,13 +66,13 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         {
             var storeId = _context.CreatedStoreDetails.Id;
             var apiResult = await _apiClient.PutAsync($"api/storedetails/{storeId}", _storeRequest);
-            _context.ApiResults.Add(apiResult);
+            _context.ApiResult = apiResult;
         }
 
         [Then(@"the store details should be created as follow:")]
         public async Task ThenTheStoreDetailsShouldBeCreatedAsFollowAsync(Table table)
         {
-            var apiResult = _context.ApiResults[0];
+            var apiResult = _context.ApiResult;
             _actualStore = await GetCreatedStoreDetails(apiResult);
             var expectedDetails = table.CreateSet<StoreDetailsDto>().FirstOrDefault();
             CompareStoreDetails(expectedDetails, _actualStore).Should().BeTrue();
