@@ -16,8 +16,10 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         private readonly Hooks.ScenarioContext _context;
         private readonly IApiClient _apiClient;
 
+        private StoreDetailsDto _preStore;
+
         private StoreDetailsDto _storeRequest;
-        private StoreDetailsDto _actualStore;
+        private StoreDetailsDto _postStore;
 
         public StoreDetailsSteps(Hooks.ScenarioContext context, IApiClient apiClient)
         {
@@ -39,7 +41,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var apiResult = await _apiClient.PostAsync("api/storedetails", _storeRequest);
             var storeDetails = await GetCreatedStoreDetails(apiResult);
 
-            _context.CreatedStoreDetails = storeDetails;
+            _preStore = storeDetails;
         }
 
         [Given(@"Tom enters the following store details:")]
@@ -64,25 +66,25 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [When(@"Tom updates the store details")]
         public async Task WhenTomUpdatesTheStoreDetailsAsync()
         {
-            var storeId = _context.CreatedStoreDetails.Id;
-            var apiResult = await _apiClient.PutAsync($"api/storedetails/{storeId}", _storeRequest);
+            var url = $"api/storedetails/{_preStore.Id}";
+            var apiResult = await _apiClient.PutAsync(url, _storeRequest);
             _context.ApiResult = apiResult;
         }
 
         [Then(@"the store details should be created as follow:")]
         public async Task ThenTheStoreDetailsShouldBeCreatedAsFollowAsync(Table table)
         {
-            var apiResult = _context.ApiResult;
-            _actualStore = await GetCreatedStoreDetails(apiResult);
+            _postStore = await GetCreatedStoreDetails(_context.ApiResult);
             var expectedDetails = table.CreateSet<StoreDetailsDto>().FirstOrDefault();
-            CompareStoreDetails(expectedDetails, _actualStore).Should().BeTrue();
+
+            CompareStoreDetails(expectedDetails, _postStore).Should().BeTrue();
         }
 
         [Then(@"the store address should be created as follow:")]
         public void ThenTheStoreAddressShouldBeCreatedAsFollow(Table table)
         {
             var expectedAddress = table.CreateSet<AddressDto>().FirstOrDefault();
-            CompareStoreAddress(expectedAddress, _actualStore.Address).Should().BeTrue();
+            CompareStoreAddress(expectedAddress, _postStore.Address).Should().BeTrue();
         }
 
         private async Task<StoreDetailsDto> GetCreatedStoreDetails(HttpResponseMessage apiResult)
