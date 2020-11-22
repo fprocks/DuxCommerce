@@ -29,8 +29,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Given(@"Amy adds the following products to her shopping cart:")]
         public async Task GivenAmyAddsTheFollowingProductsToHerShoppingCartAsync(Table table)
         {
-            var lastApiResult = await AddCartItems(table);
-            _context.ShoppingCart = await GetShoppingCart(lastApiResult);
+            await AddCartItems(table);
         }
 
         [When(@"Amy adds the following products to her shopping cart:")]

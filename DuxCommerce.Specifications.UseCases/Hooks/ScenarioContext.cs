@@ -27,8 +27,6 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
 
         public StoreDetailsDto CreatedStoreDetails { get; set; }
 
-        public ShoppingCartDto ShoppingCart { get; set; }
-
         public long ShopperId { get; set; }
     }
 }
