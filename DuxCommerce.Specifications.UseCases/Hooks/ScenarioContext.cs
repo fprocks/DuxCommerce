@@ -11,15 +11,12 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
     {
         public ScenarioContext()
         {
-            ProductRequests = new List<ProductDto>();
             ApiResults = new List<HttpResponseMessage>();
             CreatedProducts = new List<ProductDto>();
 
             // Todo: generate shopperId from front end before we can read it from ShopperContext
             ShopperId = new Random().Next();
         }
-
-        public List<ProductDto> ProductRequests { get; set; }
 
         public List<HttpResponseMessage> ApiResults { get; set; }
 

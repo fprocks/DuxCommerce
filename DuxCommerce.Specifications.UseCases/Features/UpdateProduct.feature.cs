@@ -81,7 +81,6 @@ namespace DuxCommerce.Specifications.UseCases.Features
 #line 6
 #line hidden
             TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Index",
                         "Name",
                         "Description",
                         "Price",
@@ -97,7 +96,6 @@ namespace DuxCommerce.Specifications.UseCases.Features
                         "TrackInventory",
                         "OutOfStockRule"});
             table19.AddRow(new string[] {
-                        "1",
                         "DDD",
                         "DDD Description",
                         "100",
@@ -112,40 +110,8 @@ namespace DuxCommerce.Specifications.UseCases.Features
                         "1234567890111",
                         "True",
                         "Remove"});
-            table19.AddRow(new string[] {
-                        "2",
-                        "BDD",
-                        "BDD Description",
-                        "90",
-                        "110",
-                        "70",
-                        "2",
-                        "3",
-                        "4",
-                        "5",
-                        "PhysicalProduct",
-                        "bdd-book",
-                        "1234567890222",
-                        "False",
-                        "ContinueSelling"});
-            table19.AddRow(new string[] {
-                        "3",
-                        "TDD",
-                        "TDD Description",
-                        "80",
-                        "100",
-                        "60",
-                        "3",
-                        "4",
-                        "5",
-                        "6",
-                        "DigitalProduct",
-                        "tdd-book",
-                        "1234567890333",
-                        "True",
-                        "StopSelling"});
 #line 7
- testRunner.Given("Tom already created the following products:", ((string)(null)), table19, "Given ");
+ testRunner.Given("Tom already created the following product:", ((string)(null)), table19, "Given ");
 #line hidden
         }
         
@@ -154,15 +120,32 @@ namespace DuxCommerce.Specifications.UseCases.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Update products - green path")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="Update products - green path")]
         [Xunit.TraitAttribute("FeatureTitle", "Update a product")]
         [Xunit.TraitAttribute("Description", "Update products - green path")]
-        public virtual void UpdateProducts_GreenPath()
+        [Xunit.InlineDataAttribute("DDD Lite", "DDD Desc", "90", "110", "70", "4", "3", "2", "1", "DigitalProduct", "ddd-lite", "1234567890123", "True", "StopSelling", new string[0])]
+        [Xunit.InlineDataAttribute("BDD Lite", "BDD Desc", "80", "100", "60", "5", "4", "3", "2", "ShipSeparately", "bdd-lite", "1234567890234", "True", "Remove", new string[0])]
+        [Xunit.InlineDataAttribute("TDD Lite", "TDD Desc", "70", "90", "50", "6", "5", "4", "3", "PhysicalProduct", "tdd-lite", "1234567890345", "False", "ContinueSelling", new string[0])]
+        public virtual void UpdateProducts_GreenPath(string name, string description, string price, string retail, string cost, string length, string width, string height, string weight, string shippingType, string sku, string barcode, string trackInventory, string outOfStockRule, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Name", name);
+            argumentsOfScenario.Add("Description", description);
+            argumentsOfScenario.Add("Price", price);
+            argumentsOfScenario.Add("Retail", retail);
+            argumentsOfScenario.Add("Cost", cost);
+            argumentsOfScenario.Add("Length", length);
+            argumentsOfScenario.Add("Width", width);
+            argumentsOfScenario.Add("Height", height);
+            argumentsOfScenario.Add("Weight", weight);
+            argumentsOfScenario.Add("ShippingType", shippingType);
+            argumentsOfScenario.Add("Sku", sku);
+            argumentsOfScenario.Add("Barcode", barcode);
+            argumentsOfScenario.Add("TrackInventory", trackInventory);
+            argumentsOfScenario.Add("OutOfStockRule", outOfStockRule);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update products - green path", null, tagsOfScenario, argumentsOfScenario);
-#line 13
+#line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -186,7 +169,6 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Index",
                             "Name",
                             "Description",
                             "Price",
@@ -202,64 +184,30 @@ this.FeatureBackground();
                             "TrackInventory",
                             "OutOfStockRule"});
                 table20.AddRow(new string[] {
-                            "1",
-                            "DDD Lite",
-                            "DDD Desc",
-                            "90",
-                            "110",
-                            "70",
-                            "4",
-                            "3",
-                            "2",
-                            "1",
-                            "DigitalProduct",
-                            "ddd-lite",
-                            "1234567890123",
-                            "True",
-                            "StopSelling"});
-                table20.AddRow(new string[] {
-                            "2",
-                            "BDD Lite",
-                            "BDD Desc",
-                            "80",
-                            "100",
-                            "60",
-                            "5",
-                            "4",
-                            "3",
-                            "2",
-                            "ShipSeparately",
-                            "bdd-lite",
-                            "1234567890234",
-                            "True",
-                            "Remove"});
-                table20.AddRow(new string[] {
-                            "3",
-                            "TDD Lite",
-                            "TDD Desc",
-                            "70",
-                            "90",
-                            "50",
-                            "6",
-                            "5",
-                            "4",
-                            "3",
-                            "PhysicalProduct",
-                            "tdd-lite",
-                            "1234567890345",
-                            "False",
-                            "ContinueSelling"});
-#line 14
+                            string.Format("{0}", name),
+                            string.Format("{0}", description),
+                            string.Format("{0}", price),
+                            string.Format("{0}", retail),
+                            string.Format("{0}", cost),
+                            string.Format("{0}", length),
+                            string.Format("{0}", width),
+                            string.Format("{0}", height),
+                            string.Format("{0}", weight),
+                            string.Format("{0}", shippingType),
+                            string.Format("{0}", sku),
+                            string.Format("{0}", barcode),
+                            string.Format("{0}", trackInventory),
+                            string.Format("{0}", outOfStockRule)});
+#line 12
  testRunner.And("Tom enters the following product information:", ((string)(null)), table20, "And ");
 #line hidden
-#line 19
- testRunner.When("Tom updates the products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 15
+ testRunner.When("Tom updates the product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 20
+#line 16
  testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Index",
                             "Name",
                             "Description",
                             "Price",
@@ -275,69 +223,69 @@ this.FeatureBackground();
                             "TrackInventory",
                             "OutOfStockRule"});
                 table21.AddRow(new string[] {
-                            "1",
-                            "DDD",
-                            "DDD Description",
-                            "100",
-                            "120",
-                            "80",
-                            "1",
-                            "2",
-                            "3",
-                            "4",
-                            "ShipSeparately",
-                            "ddd-book",
-                            "1234567890111",
-                            "True",
-                            "Remove"});
-                table21.AddRow(new string[] {
-                            "2",
-                            "BDD",
-                            "BDD Description",
-                            "90",
-                            "110",
-                            "70",
-                            "2",
-                            "3",
-                            "4",
-                            "5",
-                            "PhysicalProduct",
-                            "bdd-book",
-                            "1234567890222",
-                            "False",
-                            "ContinueSelling"});
-                table21.AddRow(new string[] {
-                            "3",
-                            "TDD",
-                            "TDD Description",
-                            "80",
-                            "100",
-                            "60",
-                            "3",
-                            "4",
-                            "5",
-                            "6",
-                            "DigitalProduct",
-                            "tdd-book",
-                            "1234567890333",
-                            "True",
-                            "StopSelling"});
-#line 21
- testRunner.And("the products should be updated as follow:", ((string)(null)), table21, "And ");
+                            string.Format("{0}", name),
+                            string.Format("{0}", description),
+                            string.Format("{0}", price),
+                            string.Format("{0}", retail),
+                            string.Format("{0}", cost),
+                            string.Format("{0}", length),
+                            string.Format("{0}", width),
+                            string.Format("{0}", height),
+                            string.Format("{0}", weight),
+                            string.Format("{0}", shippingType),
+                            string.Format("{0}", sku),
+                            string.Format("{0}", barcode),
+                            string.Format("{0}", trackInventory),
+                            string.Format("{0}", outOfStockRule)});
+#line 17
+ testRunner.And("the product should be updated as follow:", ((string)(null)), table21, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Update products - red path")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="Update products - red path")]
         [Xunit.TraitAttribute("FeatureTitle", "Update a product")]
         [Xunit.TraitAttribute("Description", "Update products - red path")]
-        public virtual void UpdateProducts_RedPath()
+        [Xunit.InlineDataAttribute("DDD Lite", "DDD Desc", "90", "110", "70", "4", "3", "2", "1", "DigitalProduct", "ddd-lite", "1234567890123", "True", "Stop Selling", "Invalid OutOfStock Rule", new string[0])]
+        [Xunit.InlineDataAttribute("BDD Lite", "BDD Desc", "80", "100", "60", "5", "4", "3", "2", "Ship Separately", "bdd-lite", "1234567890234", "True", "Remove", "Invalid ShippingType", new string[0])]
+        public virtual void UpdateProducts_RedPath(
+                    string name, 
+                    string description, 
+                    string price, 
+                    string retail, 
+                    string cost, 
+                    string length, 
+                    string width, 
+                    string height, 
+                    string weight, 
+                    string shippingType, 
+                    string sku, 
+                    string barcode, 
+                    string trackInventory, 
+                    string outOfStockRule, 
+                    string comment, 
+                    string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Name", name);
+            argumentsOfScenario.Add("Description", description);
+            argumentsOfScenario.Add("Price", price);
+            argumentsOfScenario.Add("Retail", retail);
+            argumentsOfScenario.Add("Cost", cost);
+            argumentsOfScenario.Add("Length", length);
+            argumentsOfScenario.Add("Width", width);
+            argumentsOfScenario.Add("Height", height);
+            argumentsOfScenario.Add("Weight", weight);
+            argumentsOfScenario.Add("ShippingType", shippingType);
+            argumentsOfScenario.Add("Sku", sku);
+            argumentsOfScenario.Add("Barcode", barcode);
+            argumentsOfScenario.Add("TrackInventory", trackInventory);
+            argumentsOfScenario.Add("OutOfStockRule", outOfStockRule);
+            argumentsOfScenario.Add("Comment", comment);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update products - red path", null, tagsOfScenario, argumentsOfScenario);
-#line 27
+#line 26
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -361,7 +309,6 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Index",
                             "Name",
                             "Description",
                             "Price",
@@ -375,49 +322,29 @@ this.FeatureBackground();
                             "Sku",
                             "Barcode",
                             "TrackInventory",
-                            "OutOfStockRule",
-                            "Comment"});
+                            "OutOfStockRule"});
                 table22.AddRow(new string[] {
-                            "1",
-                            "DDD Lite",
-                            "DDD Desc",
-                            "90",
-                            "110",
-                            "70",
-                            "4",
-                            "3",
-                            "2",
-                            "1",
-                            "DigitalProduct",
-                            "ddd-lite",
-                            "1234567890123",
-                            "True",
-                            "Stop Selling",
-                            "Invalid OutOfStock Rule"});
-                table22.AddRow(new string[] {
-                            "2",
-                            "BDD Lite",
-                            "BDD Desc",
-                            "80",
-                            "100",
-                            "60",
-                            "5",
-                            "4",
-                            "3",
-                            "2",
-                            "Ship Separately",
-                            "bdd-lite",
-                            "1234567890234",
-                            "True",
-                            "Remove",
-                            "Invalid ShippingType"});
-#line 28
+                            string.Format("{0}", name),
+                            string.Format("{0}", description),
+                            string.Format("{0}", price),
+                            string.Format("{0}", retail),
+                            string.Format("{0}", cost),
+                            string.Format("{0}", length),
+                            string.Format("{0}", width),
+                            string.Format("{0}", height),
+                            string.Format("{0}", weight),
+                            string.Format("{0}", shippingType),
+                            string.Format("{0}", sku),
+                            string.Format("{0}", barcode),
+                            string.Format("{0}", trackInventory),
+                            string.Format("{0}", outOfStockRule)});
+#line 27
  testRunner.And("Tom enters the following product information:", ((string)(null)), table22, "And ");
 #line hidden
-#line 32
- testRunner.When("Tom updates the products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.When("Tom updates the product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 33
+#line 31
  testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
