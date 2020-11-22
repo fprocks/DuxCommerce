@@ -164,46 +164,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 14
  testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.SkippableTheoryAttribute(DisplayName="Create store details - red path")]
-        [Xunit.TraitAttribute("FeatureTitle", "Create Store Details")]
-        [Xunit.TraitAttribute("Description", "Create store details - red path")]
-        [Xunit.InlineDataAttribute("MetricSystem", "Pound", "Centimeter", "Invalid WeightUnit", new string[0])]
-        [Xunit.InlineDataAttribute("MetricSystem", "Kilogram", "Foot", "Invalid LengthUnit", new string[0])]
-        [Xunit.InlineDataAttribute("ImperialSystem", "Pound", "Centimeter", "Invalid WeightUnit", new string[0])]
-        [Xunit.InlineDataAttribute("ImperialSystem", "Kilogram", "Inch", "Invalid LengthUnit", new string[0])]
-        public virtual void CreateStoreDetails_RedPath(string unitSystem, string weightUnit, string lengthUnit, string comment, string[] exampleTags)
-        {
-            string[] tagsOfScenario = exampleTags;
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("UnitSystem", unitSystem);
-            argumentsOfScenario.Add("WeightUnit", weightUnit);
-            argumentsOfScenario.Add("LengthUnit", lengthUnit);
-            argumentsOfScenario.Add("Comment", comment);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create store details - red path", null, tagsOfScenario, argumentsOfScenario);
-#line 22
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
                 TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "StoreName",
                             "ContactEmail",
@@ -224,8 +184,8 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", unitSystem),
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
-#line 23
- testRunner.Given("Tom enters the following store details:", ((string)(null)), table15, "Given ");
+#line 15
+ testRunner.And("the store details should be created as follow:", ((string)(null)), table15, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                             "Address1",
@@ -243,13 +203,95 @@ this.ScenarioInitialize(scenarioInfo);
                             "2000",
                             "New South Wales",
                             "AU"});
-#line 26
- testRunner.And("Tome enters the following store address:", ((string)(null)), table16, "And ");
+#line 18
+ testRunner.And("the store address should be created as follow:", ((string)(null)), table16, "And ");
 #line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableTheoryAttribute(DisplayName="Create store details - red path")]
+        [Xunit.TraitAttribute("FeatureTitle", "Create Store Details")]
+        [Xunit.TraitAttribute("Description", "Create store details - red path")]
+        [Xunit.InlineDataAttribute("MetricSystem", "Pound", "Centimeter", "Invalid WeightUnit", new string[0])]
+        [Xunit.InlineDataAttribute("MetricSystem", "Kilogram", "Foot", "Invalid LengthUnit", new string[0])]
+        [Xunit.InlineDataAttribute("ImperialSystem", "Pound", "Centimeter", "Invalid WeightUnit", new string[0])]
+        [Xunit.InlineDataAttribute("ImperialSystem", "Kilogram", "Inch", "Invalid LengthUnit", new string[0])]
+        public virtual void CreateStoreDetails_RedPath(string unitSystem, string weightUnit, string lengthUnit, string comment, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("UnitSystem", unitSystem);
+            argumentsOfScenario.Add("WeightUnit", weightUnit);
+            argumentsOfScenario.Add("LengthUnit", lengthUnit);
+            argumentsOfScenario.Add("Comment", comment);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create store details - red path", null, tagsOfScenario, argumentsOfScenario);
+#line 28
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                            "StoreName",
+                            "ContactEmail",
+                            "SenderEmail",
+                            "BusinessName",
+                            "PhoneNumber",
+                            "TimeZoneId",
+                            "UnitSystem",
+                            "WeightUnit",
+                            "LengthUnit"});
+                table17.AddRow(new string[] {
+                            "Deals365",
+                            "c@gmail.com",
+                            "s@gmail.com",
+                            "Deals365 PTY",
+                            "89457621",
+                            "UTC",
+                            string.Format("{0}", unitSystem),
+                            string.Format("{0}", weightUnit),
+                            string.Format("{0}", lengthUnit)});
 #line 29
+ testRunner.Given("Tom enters the following store details:", ((string)(null)), table17, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Address1",
+                            "Address2",
+                            "Address3",
+                            "City",
+                            "PostalCode",
+                            "State",
+                            "Country"});
+                table18.AddRow(new string[] {
+                            "1 Market Street",
+                            "",
+                            "",
+                            "Sydney",
+                            "2000",
+                            "New South Wales",
+                            "AU"});
+#line 32
+ testRunner.And("Tome enters the following store address:", ((string)(null)), table18, "And ");
+#line hidden
+#line 35
  testRunner.When("Tom saves the store details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 30
+#line 36
  testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

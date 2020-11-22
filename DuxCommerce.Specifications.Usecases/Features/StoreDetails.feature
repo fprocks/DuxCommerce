@@ -12,6 +12,12 @@ Scenario: Create store details - green path
 	| 1 Market Street |          |          | Sydney | 2000       | New South Wales | AU      |
 	When Tom saves the store details
 	Then Tom should receive status codes OK
+	And the store details should be created as follow:
+	| StoreName | ContactEmail | SenderEmail | BusinessName | PhoneNumber | TimeZoneId | UnitSystem   | WeightUnit   | LengthUnit   |
+	| Deals365  | c@gmail.com  | s@gmail.com | Deals365 PTY | 89457621    | UTC        | <UnitSystem> | <WeightUnit> | <LengthUnit> |
+	And the store address should be created as follow:
+	| Address1        | Address2 | Address3 | City   | PostalCode | State           | Country |
+	| 1 Market Street |          |          | Sydney | 2000       | New South Wales | AU      |
 Examples: 
 	| UnitSystem     | WeightUnit | LengthUnit |
 	| MetricSystem   | Gram       | Centimeter |

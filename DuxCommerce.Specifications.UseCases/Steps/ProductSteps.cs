@@ -33,7 +33,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             foreach (var request in requests)
             {
                 var apiResult = await _apiClient.PostAsync("api/products", request);
-                var product = await GetProduct(apiResult);
+                var product = await GetCreatedProduct(apiResult);
                 _context.CreatedProducts.Add(product);
             }
         }
@@ -79,23 +79,23 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Then(@"the products should be created as follow:")]
         public async Task ThenTheProductsShouldBeCreatedAsFollowAsync(Table table)
         {
-            var createdProducts = await GetProducts();
+            var createdProducts = await GetCreatedProducts();
             CompareProducts(table, createdProducts);
         }
 
         [Then(@"the products should be updated as follow:")]
         public async Task ThenTheProductsShouldBeUpdatedAsFollowAsync(Table table)
         {
-            var updatedProducts = await GetProducts();
+            var updatedProducts = await GetCreatedProducts();
             CompareProducts(table, updatedProducts);
         }
 
-        private async Task<List<ProductDto>> GetProducts()
+        private async Task<List<ProductDto>> GetCreatedProducts()
         {
             var products = new List<ProductDto>();
             foreach(var apiResult in _context.ApiResults)
             {
-                var product = await GetProduct(apiResult);
+                var product = await GetCreatedProduct(apiResult);
                 products.Add(product);
             }
             return products;
@@ -106,10 +106,10 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var expectedProducts = table.CreateSet<ProductDto>();
 
             actualProducts.Count().Should().Be(expectedProducts.Count());
-            actualProducts.EqualTo(expectedProducts.ToList());
+            actualProducts.EqualTo(expectedProducts.ToList()).Should().BeTrue();
         }
 
-        private async Task<ProductDto> GetProduct(HttpResponseMessage apiResult)
+        private async Task<ProductDto> GetCreatedProduct(HttpResponseMessage apiResult)
         {
             var resultStr = await apiResult.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<ProductDto>(resultStr);
