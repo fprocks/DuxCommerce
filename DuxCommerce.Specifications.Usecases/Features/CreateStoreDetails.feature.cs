@@ -140,16 +140,18 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Tom enters the following store details:", ((string)(null)), table4, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Address1",
-                            "Address2",
-                            "Address3",
+                            "FirstName",
+                            "LastName",
+                            "AddressLine1",
+                            "AddressLine2",
                             "City",
                             "PostalCode",
                             "State",
                             "Country"});
                 table5.AddRow(new string[] {
+                            "James",
+                            "Green",
                             "1 Market Street",
-                            "",
                             "",
                             "Sydney",
                             "2000",
@@ -188,16 +190,18 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the store details should be created as follow:", ((string)(null)), table6, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Address1",
-                            "Address2",
-                            "Address3",
+                            "FirstName",
+                            "LastName",
+                            "AddressLine1",
+                            "AddressLine2",
                             "City",
                             "PostalCode",
                             "State",
                             "Country"});
                 table7.AddRow(new string[] {
+                            "James",
+                            "Green",
                             "1 Market Street",
-                            "",
                             "",
                             "Sydney",
                             "2000",
@@ -270,16 +274,18 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Tom enters the following store details:", ((string)(null)), table8, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Address1",
-                            "Address2",
-                            "Address3",
+                            "FirstName",
+                            "LastName",
+                            "AddressLine1",
+                            "AddressLine2",
                             "City",
                             "PostalCode",
                             "State",
                             "Country"});
                 table9.AddRow(new string[] {
+                            "James",
+                            "Green",
                             "1 Market Street",
-                            "",
                             "",
                             "Sydney",
                             "2000",

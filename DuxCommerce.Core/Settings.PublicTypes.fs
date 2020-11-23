@@ -3,9 +3,10 @@
 [<CLIMutable>]
 type AddressDto = {
     Id : int64
-    Address1 : string
-    Address2 : string
-    Address3 : string
+    FirstName : string
+    LastName : string
+    AddressLine1 : string
+    AddressLine2 : string
     City : string
     PostalCode : string
     State : string

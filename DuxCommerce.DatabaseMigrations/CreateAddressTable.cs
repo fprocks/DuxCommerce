@@ -9,9 +9,10 @@ namespace DuxCommerce.DatabaseMigrations
         {
             Create.Table("Address")
                 .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-                .WithColumn("Address1").AsString(255).NotNullable()
-                .WithColumn("Address2").AsString(255).Nullable()
-                .WithColumn("Address3").AsString(255).Nullable()
+                .WithColumn("FirstName").AsString(50).NotNullable()
+                .WithColumn("LastName").AsString(50).NotNullable()
+                .WithColumn("AddressLine1").AsString(255).NotNullable()
+                .WithColumn("AddressLine2").AsString(255).Nullable()
                 .WithColumn("City").AsString(100).NotNullable()
                 .WithColumn("PostalCode").AsString(50).Nullable()
                 .WithColumn("State").AsString(100).Nullable()

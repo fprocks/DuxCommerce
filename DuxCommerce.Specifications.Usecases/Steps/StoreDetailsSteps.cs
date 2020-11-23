@@ -108,9 +108,10 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
         private bool CompareStoreAddress(AddressDto expected, AddressDto actual)
         {
-            return expected.Address1 == actual.Address1 &&
-                expected.Address2 == actual.Address2 &&
-                expected.Address3 == actual.Address3 &&
+            return expected.FirstName == actual.FirstName &&
+                expected.LastName == actual.LastName &&
+                expected.AddressLine1 == actual.AddressLine1 &&
+                expected.AddressLine2 == actual.AddressLine2 &&
                 expected.City == actual.City &&
                 expected.PostalCode == actual.PostalCode &&
                 expected.State == actual.State &&

@@ -9,9 +9,10 @@ module AddressDto =
     let toDomain (dto: AddressDto) :Result<Address, string> =
         result {
             let addressId = AddressId.create dto.Id
-            let! address1 = String255.create "Address1" dto.Address1
-            let! address2 = String255.createOption "Address2" dto.Address2
-            let! address3 = String255.createOption "Address3" dto.Address3            
+            let! firstName = String50.create "FirstName" dto.FirstName
+            let! lastName = String50.create "LastName" dto.LastName
+            let! addressLine1 = String255.create "AddressLine1" dto.AddressLine1
+            let! addressLine2 = String255.createOption "AddressLine2" dto.AddressLine2
             let! city = String100.create "City" dto.City
             let! postalCode = String50.createOption "PostalCode" dto.PostalCode
             let! state = String100.createOption "State" dto.State
@@ -19,9 +20,10 @@ module AddressDto =
             
             return {
                 AddressId = addressId
-                Address1 = address1
-                Address2 = address2
-                Address3 = address3
+                FirstName = firstName
+                LastName = lastName
+                AddressLine1 = addressLine1
+                AddressLine2 = addressLine2
                 City = city
                 PostalCode = postalCode
                 State = state

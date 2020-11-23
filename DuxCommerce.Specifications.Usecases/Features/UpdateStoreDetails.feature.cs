@@ -104,16 +104,18 @@ namespace DuxCommerce.Specifications.UseCases.Features
  testRunner.Given("Tom already created the following store details:", ((string)(null)), table23, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Address1",
-                        "Address2",
-                        "Address3",
+                        "FirstName",
+                        "LastName",
+                        "AddressLine1",
+                        "AddressLine2",
                         "City",
                         "PostalCode",
                         "State",
                         "Country"});
             table24.AddRow(new string[] {
+                        "James",
+                        "Green",
                         "1 Market Street",
-                        "",
                         "",
                         "Sydney",
                         "2000",
@@ -190,17 +192,19 @@ this.FeatureBackground();
  testRunner.And("Tom enters the following store details:", ((string)(null)), table25, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Address1",
-                            "Address2",
-                            "Address3",
+                            "FirstName",
+                            "LastName",
+                            "AddressLine1",
+                            "AddressLine2",
                             "City",
                             "PostalCode",
                             "State",
                             "Country"});
                 table26.AddRow(new string[] {
+                            "James",
+                            "Green",
                             "Unit 7",
                             "2 Market Street",
-                            "",
                             "Melbourne",
                             "3000",
                             "Victoria",
@@ -238,17 +242,19 @@ this.FeatureBackground();
  testRunner.And("the store details should be created as follow:", ((string)(null)), table27, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Address1",
-                            "Address2",
-                            "Address3",
+                            "FirstName",
+                            "LastName",
+                            "AddressLine1",
+                            "AddressLine2",
                             "City",
                             "PostalCode",
                             "State",
                             "Country"});
                 table28.AddRow(new string[] {
+                            "James",
+                            "Green",
                             "Unit 7",
                             "2 Market Street",
-                            "",
                             "Melbourne",
                             "3000",
                             "Victoria",
@@ -323,16 +329,18 @@ this.FeatureBackground();
  testRunner.And("Tom enters the following store details:", ((string)(null)), table29, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Address1",
-                            "Address2",
-                            "Address3",
+                            "FirstName",
+                            "LastName",
+                            "AddressLine1",
+                            "AddressLine2",
                             "City",
                             "PostalCode",
                             "State",
                             "Country"});
                 table30.AddRow(new string[] {
+                            "James",
+                            "Green",
                             "1 Market Street",
-                            "",
                             "",
                             "Sydney",
                             "2000",

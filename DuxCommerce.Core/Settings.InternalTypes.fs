@@ -5,9 +5,10 @@ open DuxCommerce.Settings.SimpleTypes
 
 type Address = {
     AddressId : AddressId
-    Address1 : String255
-    Address2 : String255 option
-    Address3 : String255 option
+    FirstName : String50
+    LastName : String50
+    AddressLine1 : String255
+    AddressLine2 : String255 option
     City : String100
     PostalCode : String50 option
     State : String100 option
