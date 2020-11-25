@@ -1,5 +1,7 @@
 ﻿namespace DuxCommerce.Settings.PublicTypes
 
+open DuxCommerce.Settings.SimpleTypes
+
 [<CLIMutable>]
 type AddressDto = {
     Id : int64
@@ -27,4 +29,12 @@ type StoreDetailsDto = {
     LengthUnit : string
     AddressId: int64
     Address : AddressDto
+}
+
+[<CLIMutable>]
+type WarehouseDto = {
+    Id : int64
+    Name : string
+    AddressId : int64
+    IsDefault : bool
 }
