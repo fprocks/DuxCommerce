@@ -22,7 +22,7 @@ module StoreDetailsRepo =
     let getStoreDetails :GetStoreDetails =
         fun id ->
             let get (connection:SqlConnection) =
-                let storeDto = connection.Query<StoreDetailsDto>(fun p -> p.Id = id).FirstOrDefault()
+                let storeDto = connection.Query<StoreDetailsDto>(fun (p:StoreDetailsDto) -> p.Id = id).FirstOrDefault()
                 let address = connection.Query<AddressDto>(fun (a:AddressDto) -> a.Id = storeDto.AddressId).FirstOrDefault()
                 {storeDto with Address = address}
                 

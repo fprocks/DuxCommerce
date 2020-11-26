@@ -1,7 +1,5 @@
 ﻿namespace DuxCommerce.Settings.PublicTypes
 
-open DuxCommerce.Settings.SimpleTypes
-
 [<CLIMutable>]
 type AddressDto = {
     Id : int64
