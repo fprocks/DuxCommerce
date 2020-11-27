@@ -2,7 +2,7 @@
 
 namespace DuxCommerce.DatabaseMigrations
 {
-    [Migration(20200926102800)]
+    [Migration(202009261028)]
     public class CreateProductTable : Migration
     {
         public override void Up()
