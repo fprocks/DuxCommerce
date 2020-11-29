@@ -6,16 +6,18 @@ open DuxCommerce.Common
 
 module UseCases =     
     let createStoreDetails :CreateStoreDetailsUseCase =            
-        fun detailsDto ->
+        fun storeDto ->
             readerResult {
                 let! _ = 
-                    detailsDto 
+                    storeDto 
                     |> StoreDetailsDto.toDomain 
                     |> CustomError.mapValidation 
                     |> ConfigReader.retn
                                
-                let! id = detailsDto |> StoreDetailsRepo.createStoreDetails
-                return! StoreDetailsRepo.getStoreDetails id 
+                let! storeId = storeDto |> StoreDetailsRepo.createStoreDetails
+                let! _ = storeDto.Address |> WarehouseRepo.createWarehouse
+
+                return! StoreDetailsRepo.getStoreDetails storeId 
             }
     
     let getStoreDetails :GetStoreDetailsUseCase =
@@ -25,17 +27,17 @@ module UseCases =
             }
         
     let updateStoreDetails :UpdateStoreDetailsUseCase =
-        fun id detailsDto ->
+        fun id storeDto ->
             readerResult {
                 let! _ = 
-                    detailsDto
+                    storeDto
                     |> StoreDetailsDto.toDomain
                     |> CustomError.mapValidation
                     |> ConfigReader.retn
 
                 let! details = StoreDetailsRepo.getStoreDetails id
-                let dto = {detailsDto with AddressId = details.AddressId}                    
-                do! StoreDetailsRepo.updateStoreDetails id dto
+                let storeDto = {storeDto with AddressId = details.AddressId}                    
+                do! StoreDetailsRepo.updateStoreDetails id storeDto
 
                 return! StoreDetailsRepo.getStoreDetails id
             }

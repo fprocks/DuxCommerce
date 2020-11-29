@@ -53,7 +53,10 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Given(@"Tome enters the following store address:")]
         public void GivenTomeEntersTheFollowingStoreAddress(Table table)
         {
-            _storeRequest.Address = table.CreateSet<AddressDto>().FirstOrDefault();
+            var address = table.CreateSet<AddressDto>().FirstOrDefault();
+            address.FirstName = "James";
+            address.LastName = "Green";
+            _storeRequest.Address = address;
         }
         
         [When(@"Tom saves the store details")]
@@ -108,9 +111,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
         private bool CompareStoreAddress(AddressDto expected, AddressDto actual)
         {
-            return expected.FirstName == actual.FirstName &&
-                expected.LastName == actual.LastName &&
-                expected.AddressLine1 == actual.AddressLine1 &&
+            return expected.AddressLine1 == actual.AddressLine1 &&
                 expected.AddressLine2 == actual.AddressLine2 &&
                 expected.City == actual.City &&
                 expected.PostalCode == actual.PostalCode &&

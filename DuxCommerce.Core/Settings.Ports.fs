@@ -8,10 +8,11 @@ type CreateStoreDetailsUseCase = StoreDetailsDto -> ConfigReader<Result<StoreDet
 type GetStoreDetailsUseCase = int64 -> ConfigReader<Result<StoreDetailsDto, CustomError>>
 type UpdateStoreDetailsUseCase = int64 -> StoreDetailsDto -> ConfigReader<Result<StoreDetailsDto, CustomError>>
 
-
 // Output port
 type CreateStoreDetails = StoreDetailsDto -> ConfigReader<Result<int64, CustomError>>
 type GetStoreDetails = int64 -> ConfigReader<Result<StoreDetailsDto, CustomError>>
 type UpdateStoreDetails = int64 -> StoreDetailsDto -> ConfigReader<Result<unit, CustomError>>
 
-type CreateWarehouse = WarehouseDto -> ConfigReader<Result<int64, CustomError>>
+type CreateWarehouse = AddressDto -> ConfigReader<Result<int64, CustomError>>
+type GetWarehouse = int64 -> ConfigReader<Result<WarehouseDto, CustomError>>
+type UpdateWarehouse = int64 -> WarehouseDto -> ConfigReader<Result<unit, CustomError>>

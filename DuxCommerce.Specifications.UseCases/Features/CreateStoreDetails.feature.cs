@@ -140,8 +140,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Tom enters the following store details:", ((string)(null)), table4, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                            "FirstName",
-                            "LastName",
                             "AddressLine1",
                             "AddressLine2",
                             "City",
@@ -149,8 +147,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "State",
                             "Country"});
                 table5.AddRow(new string[] {
-                            "James",
-                            "Green",
                             "1 Market Street",
                             "",
                             "Sydney",
@@ -190,8 +186,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the store details should be created as follow:", ((string)(null)), table6, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
-                            "FirstName",
-                            "LastName",
                             "AddressLine1",
                             "AddressLine2",
                             "City",
@@ -199,8 +193,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "State",
                             "Country"});
                 table7.AddRow(new string[] {
-                            "James",
-                            "Green",
                             "1 Market Street",
                             "",
                             "Sydney",
@@ -209,6 +201,27 @@ this.ScenarioInitialize(scenarioInfo);
                             "AU"});
 #line 18
  testRunner.And("the store address should be created as follow:", ((string)(null)), table7, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "AddressLine1",
+                            "AddressLine2",
+                            "City",
+                            "PostalCode",
+                            "State",
+                            "Country",
+                            "IsDefault"});
+                table8.AddRow(new string[] {
+                            "1 Market Street",
+                            "1 Market Street",
+                            "",
+                            "Sydney",
+                            "2000",
+                            "New South Wales",
+                            "AU",
+                            "True"});
+#line 21
+ testRunner.And("the store warehouse should be created as follow:", ((string)(null)), table8, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -230,7 +243,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("LengthUnit", lengthUnit);
             argumentsOfScenario.Add("Comment", comment);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create store details - red path", null, tagsOfScenario, argumentsOfScenario);
-#line 28
+#line 31
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -250,7 +263,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "StoreName",
                             "ContactEmail",
                             "SenderEmail",
@@ -260,7 +273,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "UnitSystem",
                             "WeightUnit",
                             "LengthUnit"});
-                table8.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "Deals365",
                             "c@gmail.com",
                             "s@gmail.com",
@@ -270,10 +283,10 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", unitSystem),
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
-#line 29
- testRunner.Given("Tom enters the following store details:", ((string)(null)), table8, "Given ");
+#line 32
+ testRunner.Given("Tom enters the following store details:", ((string)(null)), table9, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "AddressLine1",
@@ -282,7 +295,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "PostalCode",
                             "State",
                             "Country"});
-                table9.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "James",
                             "Green",
                             "1 Market Street",
@@ -291,13 +304,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "2000",
                             "New South Wales",
                             "AU"});
-#line 32
- testRunner.And("Tome enters the following store address:", ((string)(null)), table9, "And ");
-#line hidden
 #line 35
+ testRunner.And("Tome enters the following store address:", ((string)(null)), table10, "And ");
+#line hidden
+#line 38
  testRunner.When("Tom saves the store details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 36
+#line 39
  testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

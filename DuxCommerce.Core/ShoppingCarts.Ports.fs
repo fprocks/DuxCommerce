@@ -1,7 +1,6 @@
 ﻿namespace DuxCommerce.ShoppingCarts.Ports
 
 open DuxCommerce.Common
-open DuxCommerce.Common.ConfigReader
 open DuxCommerce.ShoppingCarts.PublicTypes
 
 // Input port

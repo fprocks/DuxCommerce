@@ -10,11 +10,11 @@ open DuxCommerce.Settings.Ports
 module StoreDetailsRepo =
     
     let createStoreDetails :CreateStoreDetails =
-        fun dto ->
+        fun storeDto ->
             let create (connection:SqlConnection) =
-                let addressId = connection.Insert<AddressDto, int64>(dto.Address)
-                let dto = {dto with AddressId = addressId}
-                connection.Insert<StoreDetailsDto, int64>(dto) |> ignore
+                let addressId = connection.Insert<AddressDto, int64>(storeDto.Address)
+                let dto = {storeDto with AddressId = addressId}
+                connection.Insert<StoreDetailsDto, int64>(dto) |> ignore               
                 dto.Id
                 
             RepoAdapter.repoAdapter create
@@ -29,9 +29,36 @@ module StoreDetailsRepo =
             RepoAdapter.repoAdapter get          
             
     let updateStoreDetails :UpdateStoreDetails =
-        fun id dto ->
+        fun id storeDto ->
             let update (connection:SqlConnection) =
-                connection.Update<StoreDetailsDto>(dto, id) |> ignore
-                connection.Update<AddressDto>(dto.Address, dto.AddressId) |> ignore
+                connection.Update<StoreDetailsDto>(storeDto, id) |> ignore
+                connection.Update<AddressDto>(storeDto.Address, storeDto.AddressId) |> ignore
                 
+            RepoAdapter.repoAdapter update
+
+module WarehouseRepo =
+    
+    let createWarehouse :CreateWarehouse =
+        fun addressDto -> 
+            let create (connection:SqlConnection) =
+                let addressId = connection.Insert<AddressDto, int64>(addressDto)
+
+                let warehouse = {Id = 0L; Name = addressDto.AddressLine1; AddressId = addressId; IsDefault = true}
+                connection.Insert<WarehouseDto, int64>(warehouse) |> ignore
+                warehouse.Id
+
+            RepoAdapter.repoAdapter create
+
+    let getWarehouse :GetWarehouse =
+        fun id ->
+            let get (connection:SqlConnection) =
+                connection.Query<WarehouseDto>(fun p -> p.Id = id).FirstOrDefault()
+            
+            RepoAdapter.repoAdapter get          
+        
+    let updateProduct :UpdateWarehouse =
+        fun id warehouseDto ->
+            let update (connection:SqlConnection) =
+                connection.Update<WarehouseDto>(warehouseDto, id) |> ignore
+            
             RepoAdapter.repoAdapter update

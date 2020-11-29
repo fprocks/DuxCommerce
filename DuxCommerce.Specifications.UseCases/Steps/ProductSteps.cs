@@ -3,8 +3,7 @@ using DuxCommerce.Specifications.UseCases.Extensions;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using FluentAssertions;
 using Newtonsoft.Json;
- using System.Linq;
-using System.Net;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
@@ -58,13 +57,6 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var id = _context.CreatedProducts[0].Id;
             var apiResult = await _apiClient.PutAsync($"api/products/{id}", _productRequest);
             _context.ApiResult = apiResult;
-        }
-
-        [Then(@"Tom should receive status codes (.*)")]
-        [Then(@"she should receive status codes (.*)")]
-        public void ThenTomShouldReceiveSuccessResult(HttpStatusCode code)
-        {
-            (_context.ApiResult.StatusCode == code).Should().BeTrue();
         }
 
         [Then(@"the product should be created as follow:")]

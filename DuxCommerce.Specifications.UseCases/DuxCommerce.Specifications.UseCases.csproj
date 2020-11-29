@@ -27,7 +27,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Drivers\" />
-    <Folder Include="Setup\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DuxCommerce.Adapters.HttpControllers\DuxCommerce.Adapters.HttpControllers.fsproj" />

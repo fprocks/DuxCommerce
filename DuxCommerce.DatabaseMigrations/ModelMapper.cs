@@ -23,6 +23,9 @@ namespace DuxCommerce.DatabaseMigrations
             
             FluentMapper.Entity<AddressDto>()
                 .Table("[dbo].[Address]");
+
+            FluentMapper.Entity<WarehouseDto>()
+                .Table("[dbo].[Warehouse]");
         }
     }
 }
