@@ -39,11 +39,11 @@ module StoreDetailsRepo =
 module WarehouseRepo =
     
     let createWarehouse :CreateWarehouse =
-        fun storeId addressDto -> 
+        fun addressDto -> 
             let create (connection:SqlConnection) =
                 let addressId = connection.Insert<AddressDto, int64>(addressDto)
 
-                let warehouse = {Id = 0L; StoreId = storeId; Name = addressDto.AddressLine1; AddressId = addressId; IsDefault = true}
+                let warehouse = {Id = 0L; Name = addressDto.AddressLine1; AddressId = addressId; IsDefault = true}
                 connection.Insert<WarehouseDto, int64>(warehouse) |> ignore
                 warehouse.Id
 

@@ -32,7 +32,6 @@ type StoreDetailsDto = {
 [<CLIMutable>]
 type WarehouseDto = {
     Id : int64
-    StoreId : int64
     Name : string
     AddressId : int64
     IsDefault : bool

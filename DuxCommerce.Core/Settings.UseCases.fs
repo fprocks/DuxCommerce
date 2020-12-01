@@ -15,7 +15,7 @@ module UseCases =
                     |> ConfigReader.retn
                                
                 let! storeId = storeDto |> StoreDetailsRepo.createStoreDetails
-                let! _ = storeDto.Address |> WarehouseRepo.createWarehouse storeId
+                let! _ = storeDto.Address |> WarehouseRepo.createWarehouse
 
                 return! StoreDetailsRepo.getStoreDetails storeId 
             }
