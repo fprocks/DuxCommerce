@@ -13,6 +13,6 @@ type CreateStoreDetails = StoreDetailsDto -> ConfigReader<Result<int64, CustomEr
 type GetStoreDetails = int64 -> ConfigReader<Result<StoreDetailsDto, CustomError>>
 type UpdateStoreDetails = int64 -> StoreDetailsDto -> ConfigReader<Result<unit, CustomError>>
 
-type CreateWarehouse = AddressDto -> ConfigReader<Result<int64, CustomError>>
-type GetWarehouse = int64 -> ConfigReader<Result<WarehouseDto, CustomError>>
-type UpdateWarehouse = int64 -> WarehouseDto -> ConfigReader<Result<unit, CustomError>>
+type CreateLocation = AddressDto -> ConfigReader<Result<int64, CustomError>>
+type GetLocation = int64 -> ConfigReader<Result<LocationDto, CustomError>>
+type UpdateLocation = int64 -> LocationDto -> ConfigReader<Result<unit, CustomError>>

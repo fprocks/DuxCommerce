@@ -30,7 +30,7 @@ type StoreDetailsDto = {
 }
 
 [<CLIMutable>]
-type WarehouseDto = {
+type LocationDto = {
     Id : int64
     Name : string
     AddressId : int64

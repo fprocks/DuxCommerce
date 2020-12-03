@@ -36,29 +36,29 @@ module StoreDetailsRepo =
                 
             RepoAdapter.repoAdapter update
 
-module WarehouseRepo =
+module LocationRepo =
     
-    let createWarehouse :CreateWarehouse =
+    let createLocation :CreateLocation =
         fun addressDto -> 
             let create (connection:SqlConnection) =
                 let addressId = connection.Insert<AddressDto, int64>(addressDto)
 
-                let warehouse = {Id = 0L; Name = addressDto.AddressLine1; AddressId = addressId; IsDefault = true}
-                connection.Insert<WarehouseDto, int64>(warehouse) |> ignore
-                warehouse.Id
+                let location = {Id = 0L; Name = addressDto.AddressLine1; AddressId = addressId; IsDefault = true}
+                connection.Insert<LocationDto, int64>(location) |> ignore
+                location.Id
 
             RepoAdapter.repoAdapter create
 
-    let getWarehouse :GetWarehouse =
+    let getLocation :GetLocation =
         fun id ->
             let get (connection:SqlConnection) =
-                connection.Query<WarehouseDto>(fun p -> p.Id = id).FirstOrDefault()
+                connection.Query<LocationDto>(fun p -> p.Id = id).FirstOrDefault()
             
             RepoAdapter.repoAdapter get          
         
-    let updateProduct :UpdateWarehouse =
-        fun id warehouseDto ->
+    let updateLocation :UpdateLocation =
+        fun id locationDto ->
             let update (connection:SqlConnection) =
-                connection.Update<WarehouseDto>(warehouseDto, id) |> ignore
+                connection.Update<LocationDto>(locationDto, id) |> ignore
             
             RepoAdapter.repoAdapter update

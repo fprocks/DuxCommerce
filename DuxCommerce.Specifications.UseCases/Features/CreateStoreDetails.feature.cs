@@ -221,7 +221,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "AU",
                             "True"});
 #line 21
- testRunner.And("the store warehouse should be created as follow:", ((string)(null)), table8, "And ");
+ testRunner.And("the location should be created as follow:", ((string)(null)), table8, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

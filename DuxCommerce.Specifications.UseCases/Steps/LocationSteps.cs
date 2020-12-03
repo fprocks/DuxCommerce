@@ -4,10 +4,10 @@ using TechTalk.SpecFlow;
 namespace DuxCommerce.Specifications.UseCases.Steps
 {
     [Binding]
-    public class WarehouseSteps
+    public class LocationSteps
     {
-        [Then(@"the store warehouse should be created as follow:")]
-        public void ThenTheStoreWarehouseShouldBeCreatedAsFollow(Table table)
+        [Then(@"the location should be created as follow:")]
+        public void ThenTheLocationShouldBeCreatedAsFollow(Table table)
         {
             //ScenarioContext.Current.Pending();
         }
