@@ -21,6 +21,7 @@ Scenario: Create store details - green path
 	And the location should be created as follow:
 	| Name            | AddressLine1    | AddressLine2 | City   | PostalCode | State           | Country | IsDefault |
 	| 1 Market Street | 1 Market Street |              | Sydney | 2000       | New South Wales | AU      | True      |
+	And the general shipping profile should be created
 Examples: 
 	| UnitSystem     | WeightUnit | LengthUnit |
 	| MetricSystem   | Gram       | Centimeter |
