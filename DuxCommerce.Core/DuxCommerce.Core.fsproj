@@ -5,29 +5,29 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Include="Common.RepoAdapter.fs" />
-      <Compile Include="Settings.SimpleTypes.fs" />
-      <Compile Include="Settings.PublicTypes.fs" />
-      <Compile Include="Settings.InternalTypes.fs" />
-      <Compile Include="Settings.Dto.fs" />
-      <Compile Include="Settings.Ports.fs" />
-      <Compile Include="Settings.Repos.fs" />
-      <Compile Include="Settings.UseCases.fs" />
-      <Compile Include="Catalogue.SimpleTypes.fs" />
-      <Compile Include="Catalogue.PublicTypes.fs" />
-      <Compile Include="Catalogue.InternalTypes.fs" />
-      <Compile Include="Catalogue.Dto.fs" />
-      <Compile Include="Catalogue.Ports.fs" />
-      <Compile Include="Catalogue.Repos.fs" />
-      <Compile Include="Catalogue.UseCases.fs" />
-      <Compile Include="ShoppingCarts.SimpleTypes.fs" />
-      <Compile Include="ShoppingCarts.PublicTypes.fs" />
-      <Compile Include="ShoppingCarts.Commands.fs" />
-      <Compile Include="ShoppingCarts.InternalTypes.fs" />
-      <Compile Include="ShoppingCart.Dto.fs" />
-      <Compile Include="ShoppingCarts.Ports.fs" />
-      <Compile Include="ShoppingCarts.Repos.fs" />
-      <Compile Include="ShoppingCarts.UseCases.fs" />
+      <Compile Include="Common\Common.RepoAdapter.fs" />
+      <Compile Include="Settings\Settings.SimpleTypes.fs" />
+      <Compile Include="Settings\Settings.PublicTypes.fs" />
+      <Compile Include="Settings\Settings.InternalTypes.fs" />
+      <Compile Include="Settings\Settings.Dto.fs" />
+      <Compile Include="Settings\Settings.Ports.fs" />
+      <Compile Include="Settings\Settings.Repos.fs" />
+      <Compile Include="Settings\Settings.UseCases.fs" />
+      <Compile Include="Catalogue\Catalogue.SimpleTypes.fs" />
+      <Compile Include="Catalogue\Catalogue.PublicTypes.fs" />
+      <Compile Include="Catalogue\Catalogue.InternalTypes.fs" />
+      <Compile Include="Catalogue\Catalogue.Dto.fs" />
+      <Compile Include="Catalogue\Catalogue.Ports.fs" />
+      <Compile Include="Catalogue\Catalogue.Repos.fs" />
+      <Compile Include="Catalogue\Catalogue.UseCases.fs" />
+      <Compile Include="ShoppingCart\ShoppingCarts.SimpleTypes.fs" />
+      <Compile Include="ShoppingCart\ShoppingCarts.PublicTypes.fs" />
+      <Compile Include="ShoppingCart\ShoppingCarts.Commands.fs" />
+      <Compile Include="ShoppingCart\ShoppingCarts.InternalTypes.fs" />
+      <Compile Include="ShoppingCart\ShoppingCart.Dto.fs" />
+      <Compile Include="ShoppingCart\ShoppingCarts.Ports.fs" />
+      <Compile Include="ShoppingCart\ShoppingCarts.Repos.fs" />
+      <Compile Include="ShoppingCart\ShoppingCarts.UseCases.fs" />
     </ItemGroup>
 
     <ItemGroup>

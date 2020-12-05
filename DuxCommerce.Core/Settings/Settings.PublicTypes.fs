@@ -36,3 +36,26 @@ type LocationDto = {
     AddressId : int64
     IsDefault : bool
 }
+
+[<CLIMutable>]
+type ShippingProfileDto = {
+    Id: int64
+    Name : string
+}
+
+type ShippingProfileSouce = {
+    Id : int64
+    ProfileId : int64
+    LocationId : int64
+}
+
+type ShippingProfileZone = {
+    Id : int64
+    Name : string
+    ProfileId : int64
+}
+
+type ShippingCountry = {
+    Id : int64
+
+}

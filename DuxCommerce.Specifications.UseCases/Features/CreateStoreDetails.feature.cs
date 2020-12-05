@@ -223,6 +223,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 21
  testRunner.And("the location should be created as follow:", ((string)(null)), table8, "And ");
 #line hidden
+#line 24
+ testRunner.And("the general shipping profile should be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
@@ -243,7 +246,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("LengthUnit", lengthUnit);
             argumentsOfScenario.Add("Comment", comment);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create store details - red path", null, tagsOfScenario, argumentsOfScenario);
-#line 31
+#line 32
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -283,7 +286,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", unitSystem),
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
-#line 32
+#line 33
  testRunner.Given("Tom enters the following store details:", ((string)(null)), table9, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
@@ -304,13 +307,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "2000",
                             "New South Wales",
                             "AU"});
-#line 35
+#line 36
  testRunner.And("Tome enters the following store address:", ((string)(null)), table10, "And ");
 #line hidden
-#line 38
+#line 39
  testRunner.When("Tom saves the store details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 39
+#line 40
  testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

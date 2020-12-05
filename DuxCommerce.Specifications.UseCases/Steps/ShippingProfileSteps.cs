@@ -1,7 +1,4 @@
 ﻿using DuxCommerce.Specifications.UseCases.Hooks;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace DuxCommerce.Specifications.UseCases.Steps
