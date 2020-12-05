@@ -43,19 +43,37 @@ type ShippingProfileDto = {
     Name : string
 }
 
-type ShippingProfileSouce = {
+type ShippingLocationDto = {
     Id : int64
-    ProfileId : int64
+    ShippingProfileId : int64
     LocationId : int64
 }
 
-type ShippingProfileZone = {
+type ShippingZoneDto = {
     Id : int64
     Name : string
-    ProfileId : int64
+    ShippingProfileId : int64
 }
 
-type ShippingCountry = {
+type ShippingCountryDto = {
     Id : int64
-
+    ShippingZoneId : int64
+    CountryId : int64
 }
+
+type ShippingStateDto = {
+    Id : int64
+    ShippingCountryId : int64
+    StateId : int64
+}
+
+type ShippingRatesDto = {
+    Id : int64
+    ShippingZoneId : int64
+    Name : string
+    ShippingType : string
+    Rate : decimal
+    Min : decimal
+    Max : decimal
+}
+
