@@ -83,6 +83,7 @@ type ShippingZoneDto = {
 type ShippingProfileDto = {
     Id: int64
     Name: string
+    IsDefault: bool
     Locations: ShippingLocationDto seq
     Zones: ShippingZoneDto seq
 }
