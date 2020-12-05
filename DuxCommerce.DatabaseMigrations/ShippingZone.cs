@@ -2,20 +2,20 @@
 
 namespace DuxCommerce.DatabaseMigrations
 {
-    [Migration(202012061001)]
-    public class CreateShippingProfileTable : Migration
+    [Migration(202012061012)]
+    public class CreateShippingZoneTable : Migration
     {
         public override void Up()
         {
-            Create.Table("ShippingProfile")
+            Create.Table("ShippingZone")
                 .WithColumn("Id").AsInt64().PrimaryKey().Identity()
                 .WithColumn("Name").AsString().NotNullable()
-                .WithColumn("IsDefault").AsBoolean().NotNullable();
+                .WithColumn("ShippingProfileId").AsInt64().NotNullable();
         }
 
         public override void Down()
         {
-            Delete.Table("ShippingProfile");
+            Delete.Table("ShippingZone");
         }
     }
 }
