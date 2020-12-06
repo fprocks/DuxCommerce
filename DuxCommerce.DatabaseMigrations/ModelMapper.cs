@@ -27,6 +27,12 @@ namespace DuxCommerce.DatabaseMigrations
             FluentMapper.Entity<LocationDto>()
                 .Table("[dbo].[Location]");
 
+            FluentMapper.Entity<ShippingCountryDto>()
+                .Table("[dbo].[ShippingCountry]");
+
+            FluentMapper.Entity<ShippingStateDto>()
+                .Table("[dbo].[ShippingState]");
+
             FluentMapper.Entity<ShippingProfileDto>()
                 .Table("[dbo].[ShippingProfile]");
             

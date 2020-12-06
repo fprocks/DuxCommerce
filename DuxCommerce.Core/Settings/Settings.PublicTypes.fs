@@ -48,14 +48,14 @@ type ShippingLocationDto = {
 type ShippingStateDto = {
     Id: int64
     ShippingCountryId: int64
-    StateId: int64
+    State: string
 }
 
 [<CLIMutable>]
 type ShippingCountryDto = {
     Id: int64
     ShippingZoneId: int64
-    CountryId: int64
+    Country: string
     States: ShippingStateDto seq
 }
 
