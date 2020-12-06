@@ -9,7 +9,7 @@ namespace DuxCommerce.DatabaseMigrations
         {
             Create.Table("ShippingZone")
                 .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-                .WithColumn("Name").AsString().NotNullable()
+                .WithColumn("Name").AsString(100).NotNullable()
                 .WithColumn("ShippingProfileId").AsInt64().NotNullable();
         }
 

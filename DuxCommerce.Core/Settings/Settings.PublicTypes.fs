@@ -64,7 +64,7 @@ type ShippingRatesDto = {
     Id: int64
     ShippingZoneId: int64
     Name: string
-    ShippingType: string
+    RateType: string
     Rate: decimal
     Min: decimal
     Max: decimal
