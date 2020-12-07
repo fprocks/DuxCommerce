@@ -5,39 +5,39 @@ open DuxCommerce.Settings.Ports
 open DuxCommerce.Common
 
 module UseCases =     
-    let createStoreDetails :CreateStoreDetailsUseCase =            
+    let createStoreProfile :CreateStoreProfileUseCase =            
         fun storeDto ->
             readerResult {
                 let! _ = 
                     storeDto 
-                    |> StoreDetailsDto.toDomain 
+                    |> StoreProfileDto.toDomain 
                     |> CustomError.mapValidation 
                     |> ConfigReader.retn
                                
-                let! storeId = storeDto |> StoreDetailsRepo.createStoreDetails
+                let! storeId = storeDto |> StoreProfileRepo.createStoreProfile
                 let! _ = storeDto.Address |> LocationRepo.createLocation
 
-                return! StoreDetailsRepo.getStoreDetails storeId 
+                return! StoreProfileRepo.getStoreProfile storeId 
             }
     
-    let getStoreDetails :GetStoreDetailsUseCase =
+    let getStoreProfile :GetStoreProfileUseCase =
         fun id ->
             readerResult {                
-                return! StoreDetailsRepo.getStoreDetails id
+                return! StoreProfileRepo.getStoreProfile id
             }
         
-    let updateStoreDetails :UpdateStoreDetailsUseCase =
+    let updateStoreProfile :UpdateStoreProfileUseCase =
         fun id storeDto ->
             readerResult {
                 let! _ = 
                     storeDto
-                    |> StoreDetailsDto.toDomain
+                    |> StoreProfileDto.toDomain
                     |> CustomError.mapValidation
                     |> ConfigReader.retn
 
-                let! details = StoreDetailsRepo.getStoreDetails id
+                let! details = StoreProfileRepo.getStoreProfile id
                 let storeDto = {storeDto with AddressId = details.AddressId}                    
-                do! StoreDetailsRepo.updateStoreDetails id storeDto
+                do! StoreProfileRepo.updateStoreProfile id storeDto
 
-                return! StoreDetailsRepo.getStoreDetails id
+                return! StoreProfileRepo.getStoreProfile id
             }

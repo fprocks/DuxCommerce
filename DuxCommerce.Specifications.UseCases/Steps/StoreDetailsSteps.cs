@@ -16,10 +16,10 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         private readonly Hooks.ScenarioContext _context;
         private readonly IApiClient _apiClient;
 
-        private StoreDetailsDto _preStore;
+        private StoreProfileDto _profilePreUpdate;
 
-        private StoreDetailsDto _storeRequest;
-        private StoreDetailsDto _postStore;
+        private StoreProfileDto _profileRequest;
+        private StoreProfileDto _profilePostUpdate;
 
         public StoreDetailsSteps(Hooks.ScenarioContext context, IApiClient apiClient)
         {
@@ -27,27 +27,27 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _apiClient = apiClient;
         }
 
-        [Given(@"Tom already created the following store details:")]
-        public void GivenTomAlreadyCreatedTheFollowingStoreDetails(Table table)
+        [Given(@"Tom already created the following store profile:")]
+        public void GivenTomAlreadyCreatedTheFollowingStoreProfile(Table table)
         {
-            _storeRequest = table.CreateSet<StoreDetailsDto>().FirstOrDefault();
+            _profileRequest = table.CreateSet<StoreProfileDto>().FirstOrDefault();
         }
 
         [Given(@"Tom already created the following store address:")]
         public async Task GivenTomAlreadyCreatedTheFollowingStoreAddressAsync(Table table)
         {
-            _storeRequest.Address = table.CreateSet<AddressDto>().FirstOrDefault();
+            _profileRequest.Address = table.CreateSet<AddressDto>().FirstOrDefault();
 
-            var apiResult = await _apiClient.PostAsync("api/storedetails", _storeRequest);
-            var storeDetails = await GetCreatedStoreDetails(apiResult);
+            var apiResult = await _apiClient.PostAsync("api/storeprofile", _profileRequest);
+            var storeProfile = await GetCreatedProfile(apiResult);
 
-            _preStore = storeDetails;
+            _profilePreUpdate = storeProfile;
         }
 
-        [Given(@"Tom enters the following store details:")]
-        public void GivenTomEntersTheFollowingStoreDetails(Table table)
+        [Given(@"Tom enters the following store profile:")]
+        public void GivenTomEntersTheFollowingStoreProfile(Table table)
         {
-            _storeRequest = table.CreateSet<StoreDetailsDto>().FirstOrDefault();
+            _profileRequest = table.CreateSet<StoreProfileDto>().FirstOrDefault();
         }
         
         [Given(@"Tome enters the following store address:")]
@@ -56,47 +56,47 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var address = table.CreateSet<AddressDto>().FirstOrDefault();
             address.FirstName = "James";
             address.LastName = "Green";
-            _storeRequest.Address = address;
+            _profileRequest.Address = address;
         }
         
-        [When(@"Tom saves the store details")]
-        public async System.Threading.Tasks.Task WhenTomSavesTheStoreDetailsAsync()
+        [When(@"Tom saves the store profile")]
+        public async System.Threading.Tasks.Task WhenTomSavesTheStoreProfileAsync()
         {
-            var apiResult = await _apiClient.PostAsync("api/storedetails", _storeRequest);
+            var apiResult = await _apiClient.PostAsync("api/storeprofile", _profileRequest);
             _context.ApiResult = apiResult;
         }
 
-        [When(@"Tom updates the store details")]
-        public async Task WhenTomUpdatesTheStoreDetailsAsync()
+        [When(@"Tom updates the store profile")]
+        public async Task WhenTomUpdatesTheStoreProfileAsync()
         {
-            var url = $"api/storedetails/{_preStore.Id}";
-            var apiResult = await _apiClient.PutAsync(url, _storeRequest);
+            var url = $"api/storeprofile/{_profilePreUpdate.Id}";
+            var apiResult = await _apiClient.PutAsync(url, _profileRequest);
             _context.ApiResult = apiResult;
         }
 
-        [Then(@"the store details should be created as follow:")]
+        [Then(@"the store profile should be created as follow:")]
         public async Task ThenTheStoreDetailsShouldBeCreatedAsFollowAsync(Table table)
         {
-            _postStore = await GetCreatedStoreDetails(_context.ApiResult);
-            var expectedDetails = table.CreateSet<StoreDetailsDto>().FirstOrDefault();
+            _profilePostUpdate = await GetCreatedProfile(_context.ApiResult);
+            var expectedProfile = table.CreateSet<StoreProfileDto>().FirstOrDefault();
 
-            CompareStoreDetails(expectedDetails, _postStore).Should().BeTrue();
+            CompareStoreProfile(expectedProfile, _profilePostUpdate).Should().BeTrue();
         }
 
         [Then(@"the store address should be created as follow:")]
         public void ThenTheStoreAddressShouldBeCreatedAsFollow(Table table)
         {
             var expectedAddress = table.CreateSet<AddressDto>().FirstOrDefault();
-            CompareStoreAddress(expectedAddress, _postStore.Address).Should().BeTrue();
+            CompareStoreAddress(expectedAddress, _profilePostUpdate.Address).Should().BeTrue();
         }
 
-        private async Task<StoreDetailsDto> GetCreatedStoreDetails(HttpResponseMessage apiResult)
+        private async Task<StoreProfileDto> GetCreatedProfile(HttpResponseMessage apiResult)
         {
             var resultStr = await apiResult.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<StoreDetailsDto>(resultStr);
+            return JsonConvert.DeserializeObject<StoreProfileDto>(resultStr);
         }
 
-        private bool CompareStoreDetails(StoreDetailsDto expected, StoreDetailsDto actual)
+        private bool CompareStoreProfile(StoreProfileDto expected, StoreProfileDto actual)
         {
             return expected.StoreName == actual.StoreName &&
                 expected.ContactEmail == actual.ContactEmail &&

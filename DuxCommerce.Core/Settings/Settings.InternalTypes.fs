@@ -15,8 +15,8 @@ type Address = {
     Country : CountryCode
 }
 
-type StoreDetails = {
-    StoreId : StoreId
+type StoreProfile = {
+    StoreProfileId : StoreProfileId
     StoreName : String255
     ContactEmail : StoreContactEmail
     SenderEmail : StoreSenderEmail

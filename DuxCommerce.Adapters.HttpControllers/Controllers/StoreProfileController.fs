@@ -8,26 +8,26 @@ open Microsoft.Extensions.Logging
 
 [<ApiController>]
 [<Route("api/[controller]")>]
-type StoreDetailsController (logger : ILogger<StoreDetailsController>) =
+type StoreProfileController (logger : ILogger<StoreProfileController>) =
     inherit DuxControllerBase()
 
     [<HttpGet("{id}")>]
     member this.Get(id : int64) : IActionResult=
-        let result = ConfigReader.execute (UseCases.getStoreDetails id)
+        let result = ConfigReader.execute (UseCases.getStoreProfile id)
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.Convert(m)
         
     [<HttpPost>]
-    member this.Post(request: StoreDetailsDto) : IActionResult =
-        let result = ConfigReader.execute (UseCases.createStoreDetails request)
+    member this.Post(request: StoreProfileDto) : IActionResult =
+        let result = ConfigReader.execute (UseCases.createStoreProfile request)
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.Convert(m)
         
     [<HttpPut("{id}")>]
-    member this.Put(id: int64, request: StoreDetailsDto) : IActionResult=
-        let result = ConfigReader.execute (UseCases.updateStoreDetails id request)
+    member this.Put(id: int64, request: StoreProfileDto) : IActionResult=
+        let result = ConfigReader.execute (UseCases.updateStoreProfile id request)
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.Convert(m)

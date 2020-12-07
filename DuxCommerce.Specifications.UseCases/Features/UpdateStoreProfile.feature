@@ -1,26 +1,26 @@
-﻿Feature: Update Store Details
+﻿Feature: Update Store Profile
 	In order to customize my online store
 	As a store admin
-	I want to update my store details
+	I want to update my store profile
 
 Background: 
-	Given Tom already created the following store details:
+	Given Tom already created the following store profile:
 	| StoreName | ContactEmail | SenderEmail | BusinessName | PhoneNumber | TimeZoneId | UnitSystem   | WeightUnit | LengthUnit |
 	| Deals365  | c@gmail.com  | s@gmail.com | Deals365 PTY | 89457621    | UTC        | MetricSystem | Gram       | Centimeter |
 	And Tom already created the following store address:
 	| FirstName | LastName | AddressLine1    | AddressLine2 | City   | PostalCode | State           | Country |
 	| James     | Green    | 1 Market Street |              | Sydney | 2000       | New South Wales | AU      |
 
-Scenario: Update store details - green path
-	And Tom enters the following store details:
+Scenario: Update store profile - green path
+	And Tom enters the following store profile:
 	| StoreName | ContactEmail      | SenderEmail      | BusinessName | PhoneNumber | TimeZoneId | UnitSystem   | WeightUnit   | LengthUnit   |
 	| Deals360  | contact@gmail.com | sender@gmail.com | Deals360 PTY | 89457688    | UTC+2      | <UnitSystem> | <WeightUnit> | <LengthUnit> |
 	And Tome enters the following store address:
 	| FirstName | LastName | AddressLine1 | AddressLine2    | City      | PostalCode | State    | Country |
 	| James     | Green    | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria | AU      |
-	When Tom updates the store details
+	When Tom updates the store profile
 	Then Tom should receive status codes OK
-	And the store details should be created as follow:
+	And the store profile should be created as follow:
 	| StoreName | ContactEmail      | SenderEmail      | BusinessName | PhoneNumber | TimeZoneId | UnitSystem   | WeightUnit   | LengthUnit   |
 	| Deals360  | contact@gmail.com | sender@gmail.com | Deals360 PTY | 89457688    | UTC+2      | <UnitSystem> | <WeightUnit> | <LengthUnit> |
 	And the store address should be created as follow:
@@ -32,14 +32,14 @@ Examples:
 	| ImperialSystem | Pound      | Foot       |
 	| ImperialSystem | Ounce      | Inch       |
 
-Scenario: Update store details - red path
-	And Tom enters the following store details:
+Scenario: Update store profile - red path
+	And Tom enters the following store profile:
 	| StoreName | ContactEmail | SenderEmail | BusinessName | PhoneNumber | TimeZoneId | UnitSystem   | WeightUnit   | LengthUnit   |
 	| Deals365  | c@gmail.com  | s@gmail.com | Deals365 PTY | 89457621    | UTC        | <UnitSystem> | <WeightUnit> | <LengthUnit> |
 	And Tome enters the following store address:
 	| FirstName | LastName | AddressLine1    | AddressLine2 | City   | PostalCode | State           | Country |
 	| James     | Green    | 1 Market Street |              | Sydney | 2000       | New South Wales | AU      |
-	When Tom updates the store details
+	When Tom updates the store profile
 	Then Tom should receive status codes BadRequest
 Examples: 
 	| UnitSystem     | WeightUnit | LengthUnit | Comment            |

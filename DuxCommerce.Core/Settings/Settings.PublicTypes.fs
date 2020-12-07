@@ -14,7 +14,7 @@ type AddressDto = {
 }
 
 [<CLIMutable>]
-type StoreDetailsDto = {
+type StoreProfileDto = {
     Id: int64
     StoreName: string
     ContactEmail: string

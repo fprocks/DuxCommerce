@@ -7,31 +7,31 @@ open RepoDb
 open System.Linq
 open DuxCommerce.Settings.Ports
 
-module StoreDetailsRepo =
+module StoreProfileRepo =
     
-    let createStoreDetails :CreateStoreDetails =
+    let createStoreProfile :CreateStoreProfile =
         fun storeDto ->
             let create (connection:SqlConnection) =
                 let addressId = connection.Insert<AddressDto, int64>(storeDto.Address)
                 let dto = {storeDto with AddressId = addressId}
-                connection.Insert<StoreDetailsDto, int64>(dto) |> ignore               
+                connection.Insert<StoreProfileDto, int64>(dto) |> ignore               
                 dto.Id
                 
             RepoAdapter.repoAdapter create
             
-    let getStoreDetails :GetStoreDetails =
+    let getStoreProfile :GetStoreProfile =
         fun id ->
             let get (connection:SqlConnection) =
-                let storeDto = connection.Query<StoreDetailsDto>(fun (p:StoreDetailsDto) -> p.Id = id).FirstOrDefault()
+                let storeDto = connection.Query<StoreProfileDto>(fun (p:StoreProfileDto) -> p.Id = id).FirstOrDefault()
                 let address = connection.Query<AddressDto>(fun (a:AddressDto) -> a.Id = storeDto.AddressId).FirstOrDefault()
                 {storeDto with Address = address}
                 
             RepoAdapter.repoAdapter get          
             
-    let updateStoreDetails :UpdateStoreDetails =
+    let updateStoreProfile :UpdateStoreProfile =
         fun id storeDto ->
             let update (connection:SqlConnection) =
-                connection.Update<StoreDetailsDto>(storeDto, id) |> ignore
+                connection.Update<StoreProfileDto>(storeDto, id) |> ignore
                 connection.Update<AddressDto>(storeDto.Address, storeDto.AddressId) |> ignore
                 
             RepoAdapter.repoAdapter update

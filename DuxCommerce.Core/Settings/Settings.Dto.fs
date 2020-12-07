@@ -31,8 +31,8 @@ module AddressDto =
             }
         }
         
-module StoreDetailsDto =
-    let toDomain dto :Result<StoreDetails, string> =
+module StoreProfileDto =
+    let toDomain dto :Result<StoreProfile, string> =
         result {
             let! storeName = String255.create "StoreName" dto.StoreName
             let! contactEmail = StoreContactEmail.create dto.ContactEmail
@@ -46,7 +46,7 @@ module StoreDetailsDto =
             let! address = AddressDto.toDomain dto.Address
             
             return {
-                StoreId = StoreId.create dto.Id
+                StoreProfileId = StoreProfileId.create dto.Id
                 StoreName = storeName
                 ContactEmail = contactEmail
                 SenderEmail = senderEmail

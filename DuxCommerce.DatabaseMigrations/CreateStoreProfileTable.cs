@@ -3,11 +3,11 @@
 namespace DuxCommerce.DatabaseMigrations
 {
     [Migration(202011181900)]
-    public class CreateStoreDetailsTable : Migration
+    public class CreateStoreProfileTable : Migration
     {
         public override void Up()
         {
-            Create.Table("StoreDetails")
+            Create.Table("StoreProfile")
                 .WithColumn("Id").AsInt64().PrimaryKey().Identity()
                 .WithColumn("StoreName").AsString(255).NotNullable()
                 .WithColumn("ContactEmail").AsString(100).NotNullable()
@@ -23,7 +23,7 @@ namespace DuxCommerce.DatabaseMigrations
 
         public override void Down()
         {
-            Delete.Table("StoreDetails");
+            Delete.Table("StoreProfile");
         }
     }
 }

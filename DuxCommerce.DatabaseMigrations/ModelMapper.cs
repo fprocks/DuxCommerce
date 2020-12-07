@@ -18,8 +18,8 @@ namespace DuxCommerce.DatabaseMigrations
             FluentMapper.Entity<CartItemDto>()
                 .Table("[dbo].[ShoppingCartItem]");
 
-            FluentMapper.Entity<StoreDetailsDto>()
-                .Table("[dbo].[StoreDetails]");
+            FluentMapper.Entity<StoreProfileDto>()
+                .Table("[dbo].[StoreProfile]");
             
             FluentMapper.Entity<AddressDto>()
                 .Table("[dbo].[Address]");

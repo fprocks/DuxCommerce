@@ -2,10 +2,10 @@
 
 open DuxCommerce.Common
 
-type StoreId = private StoreId of int64
-module StoreId =
-    let value (StoreId id) = id
-    let create id = StoreId id
+type StoreProfileId = private StoreProfileId of int64
+module StoreProfileId =
+    let value (StoreProfileId id) = id
+    let create id = StoreProfileId id
     
 type StoreContactEmail = private StoreContactEmail of EmailAddress
 module StoreContactEmail =
