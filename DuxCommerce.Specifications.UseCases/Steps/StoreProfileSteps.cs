@@ -11,7 +11,7 @@ using TechTalk.SpecFlow.Assist;
 namespace DuxCommerce.Specifications.UseCases.Steps
 {
     [Binding]
-    public class StoreDetailsSteps
+    public class StoreProfileSteps
     {
         private readonly Hooks.ScenarioContext _context;
         private readonly IApiClient _apiClient;
@@ -21,7 +21,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         private StoreProfileDto _profileRequest;
         private StoreProfileDto _profilePostUpdate;
 
-        public StoreDetailsSteps(Hooks.ScenarioContext context, IApiClient apiClient)
+        public StoreProfileSteps(Hooks.ScenarioContext context, IApiClient apiClient)
         {
             _context = context;
             _apiClient = apiClient;
