@@ -12,7 +12,7 @@ type ProductDto = {
     Width : decimal
     Height : decimal
     Weight: decimal
-    ShippingType : string
+    ProductType : string
     SKU : string
     Barcode : string
     TrackInventory : bool

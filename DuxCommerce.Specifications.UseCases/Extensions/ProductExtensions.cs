@@ -16,7 +16,7 @@ namespace DuxCommerce.Specifications.UseCases.Extensions
                 expected.Width == actual.Width &&
                 expected.Height == actual.Height &&
                 expected.Weight == actual.Weight &&
-                expected.ShippingType == actual.ShippingType &&
+                expected.ProductType == actual.ProductType &&
                 expected.SKU == actual.SKU &&
                 expected.Barcode == actual.Barcode &&
                 expected.TrackInventory == actual.TrackInventory &&

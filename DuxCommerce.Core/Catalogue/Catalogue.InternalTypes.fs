@@ -3,29 +3,25 @@
 open DuxCommerce.Common
 open DuxCommerce.Catalogue.SimpleTypes
 
-type ShippingType =
+type ProductType =
     | PhysicalProduct
     | DigitalProduct
-    | ShipSeparately
     
-module ShippingType =
+module ProductType =
 
-    let value shippingType = 
-        match shippingType with
+    let value productType = 
+        match productType with
         | PhysicalProduct -> "PhysicalProduct"
         | DigitalProduct -> "DigitalProduct"
-        | ShipSeparately -> "ShipSeparately"
 
-    let create shippingType =
-        match shippingType with
+    let create productType =
+        match productType with
         | "PhysicalProduct"  -> 
             Ok PhysicalProduct
         | "DigitalProduct" -> 
             Ok DigitalProduct
-        | "ShipSeparately" -> 
-            Ok ShipSeparately
         | _ -> 
-            let msg = "ShippingType must be one of 'PhysicalProduct', 'DigitalProduct', 'ShipSeparately'" 
+            let msg = "ProductType must be 'PhysicalProduct' or 'DigitalProduct'" 
             Error msg
             
 type OutOfStockRule =
@@ -64,7 +60,7 @@ type Product = {
     Width : Width
     Height : Height
     Weight: Weight
-    ShippingType : ShippingType
+    ProductType : ProductType
     SKU : String255
     Barcode : String255
     TrackInventory : bool

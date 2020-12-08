@@ -90,7 +90,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
                         "Width",
                         "Height",
                         "Weight",
-                        "ShippingType",
+                        "ProductType",
                         "Sku",
                         "Barcode",
                         "TrackInventory",
@@ -105,7 +105,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
                         "2",
                         "3",
                         "4",
-                        "ShipSeparately",
+                        "DigitalProduct",
                         "ddd-book",
                         "1234567890111",
                         "True",
@@ -124,9 +124,8 @@ namespace DuxCommerce.Specifications.UseCases.Features
         [Xunit.TraitAttribute("FeatureTitle", "Update a product")]
         [Xunit.TraitAttribute("Description", "Update products - green path")]
         [Xunit.InlineDataAttribute("DDD Lite", "DDD Desc", "90", "110", "70", "4", "3", "2", "1", "DigitalProduct", "ddd-lite", "1234567890123", "True", "StopSelling", new string[0])]
-        [Xunit.InlineDataAttribute("BDD Lite", "BDD Desc", "80", "100", "60", "5", "4", "3", "2", "ShipSeparately", "bdd-lite", "1234567890234", "True", "Remove", new string[0])]
         [Xunit.InlineDataAttribute("TDD Lite", "TDD Desc", "70", "90", "50", "6", "5", "4", "3", "PhysicalProduct", "tdd-lite", "1234567890345", "False", "ContinueSelling", new string[0])]
-        public virtual void UpdateProducts_GreenPath(string name, string description, string price, string retail, string cost, string length, string width, string height, string weight, string shippingType, string sku, string barcode, string trackInventory, string outOfStockRule, string[] exampleTags)
+        public virtual void UpdateProducts_GreenPath(string name, string description, string price, string retail, string cost, string length, string width, string height, string weight, string productType, string sku, string barcode, string trackInventory, string outOfStockRule, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
@@ -139,7 +138,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
             argumentsOfScenario.Add("Width", width);
             argumentsOfScenario.Add("Height", height);
             argumentsOfScenario.Add("Weight", weight);
-            argumentsOfScenario.Add("ShippingType", shippingType);
+            argumentsOfScenario.Add("ProductType", productType);
             argumentsOfScenario.Add("Sku", sku);
             argumentsOfScenario.Add("Barcode", barcode);
             argumentsOfScenario.Add("TrackInventory", trackInventory);
@@ -178,7 +177,7 @@ this.FeatureBackground();
                             "Width",
                             "Height",
                             "Weight",
-                            "ShippingType",
+                            "ProductType",
                             "Sku",
                             "Barcode",
                             "TrackInventory",
@@ -193,7 +192,7 @@ this.FeatureBackground();
                             string.Format("{0}", width),
                             string.Format("{0}", height),
                             string.Format("{0}", weight),
-                            string.Format("{0}", shippingType),
+                            string.Format("{0}", productType),
                             string.Format("{0}", sku),
                             string.Format("{0}", barcode),
                             string.Format("{0}", trackInventory),
@@ -217,7 +216,7 @@ this.FeatureBackground();
                             "Width",
                             "Height",
                             "Weight",
-                            "ShippingType",
+                            "ProductType",
                             "Sku",
                             "Barcode",
                             "TrackInventory",
@@ -232,7 +231,7 @@ this.FeatureBackground();
                             string.Format("{0}", width),
                             string.Format("{0}", height),
                             string.Format("{0}", weight),
-                            string.Format("{0}", shippingType),
+                            string.Format("{0}", productType),
                             string.Format("{0}", sku),
                             string.Format("{0}", barcode),
                             string.Format("{0}", trackInventory),
@@ -248,7 +247,7 @@ this.FeatureBackground();
         [Xunit.TraitAttribute("FeatureTitle", "Update a product")]
         [Xunit.TraitAttribute("Description", "Update products - red path")]
         [Xunit.InlineDataAttribute("DDD Lite", "DDD Desc", "90", "110", "70", "4", "3", "2", "1", "DigitalProduct", "ddd-lite", "1234567890123", "True", "Stop Selling", "Invalid OutOfStock Rule", new string[0])]
-        [Xunit.InlineDataAttribute("BDD Lite", "BDD Desc", "80", "100", "60", "5", "4", "3", "2", "Ship Separately", "bdd-lite", "1234567890234", "True", "Remove", "Invalid ShippingType", new string[0])]
+        [Xunit.InlineDataAttribute("BDD Lite", "BDD Desc", "80", "100", "60", "5", "4", "3", "2", "Digital Product", "bdd-lite", "1234567890234", "True", "Remove", "Invalid ProductType", new string[0])]
         public virtual void UpdateProducts_RedPath(
                     string name, 
                     string description, 
@@ -259,7 +258,7 @@ this.FeatureBackground();
                     string width, 
                     string height, 
                     string weight, 
-                    string shippingType, 
+                    string productType, 
                     string sku, 
                     string barcode, 
                     string trackInventory, 
@@ -278,14 +277,14 @@ this.FeatureBackground();
             argumentsOfScenario.Add("Width", width);
             argumentsOfScenario.Add("Height", height);
             argumentsOfScenario.Add("Weight", weight);
-            argumentsOfScenario.Add("ShippingType", shippingType);
+            argumentsOfScenario.Add("ProductType", productType);
             argumentsOfScenario.Add("Sku", sku);
             argumentsOfScenario.Add("Barcode", barcode);
             argumentsOfScenario.Add("TrackInventory", trackInventory);
             argumentsOfScenario.Add("OutOfStockRule", outOfStockRule);
             argumentsOfScenario.Add("Comment", comment);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update products - red path", null, tagsOfScenario, argumentsOfScenario);
-#line 26
+#line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -318,7 +317,7 @@ this.FeatureBackground();
                             "Width",
                             "Height",
                             "Weight",
-                            "ShippingType",
+                            "ProductType",
                             "Sku",
                             "Barcode",
                             "TrackInventory",
@@ -333,18 +332,18 @@ this.FeatureBackground();
                             string.Format("{0}", width),
                             string.Format("{0}", height),
                             string.Format("{0}", weight),
-                            string.Format("{0}", shippingType),
+                            string.Format("{0}", productType),
                             string.Format("{0}", sku),
                             string.Format("{0}", barcode),
                             string.Format("{0}", trackInventory),
                             string.Format("{0}", outOfStockRule)});
-#line 27
+#line 26
  testRunner.And("Tom enters the following product information:", ((string)(null)), table23, "And ");
 #line hidden
-#line 30
+#line 29
  testRunner.When("Tom updates the product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 31
+#line 30
  testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

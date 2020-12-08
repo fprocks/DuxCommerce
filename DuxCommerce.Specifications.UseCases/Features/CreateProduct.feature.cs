@@ -84,10 +84,9 @@ namespace DuxCommerce.Specifications.UseCases.Features
         [Xunit.SkippableTheoryAttribute(DisplayName="Create products - green path")]
         [Xunit.TraitAttribute("FeatureTitle", "Create a product")]
         [Xunit.TraitAttribute("Description", "Create products - green path")]
-        [Xunit.InlineDataAttribute("DDD", "DDD Description", "100", "120", "80", "1", "2", "3", "4", "ShipSeparately", "ddd-book", "1234567890111", "True", "Remove", new string[0])]
         [Xunit.InlineDataAttribute("BDD", "BDD Description", "90", "110", "70", "2", "3", "4", "5", "PhysicalProduct", "bdd-book", "1234567890222", "False", "ContinueSelling", new string[0])]
         [Xunit.InlineDataAttribute("TDD", "TDD Description", "80", "100", "60", "3", "4", "5", "6", "DigitalProduct", "tdd-book", "1234567890333", "True", "StopSelling", new string[0])]
-        public virtual void CreateProducts_GreenPath(string name, string description, string price, string retail, string cost, string length, string width, string height, string weight, string shippingType, string sku, string barcode, string trackInventory, string outOfStockRule, string[] exampleTags)
+        public virtual void CreateProducts_GreenPath(string name, string description, string price, string retail, string cost, string length, string width, string height, string weight, string productType, string sku, string barcode, string trackInventory, string outOfStockRule, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
@@ -100,7 +99,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
             argumentsOfScenario.Add("Width", width);
             argumentsOfScenario.Add("Height", height);
             argumentsOfScenario.Add("Weight", weight);
-            argumentsOfScenario.Add("ShippingType", shippingType);
+            argumentsOfScenario.Add("ProductType", productType);
             argumentsOfScenario.Add("Sku", sku);
             argumentsOfScenario.Add("Barcode", barcode);
             argumentsOfScenario.Add("TrackInventory", trackInventory);
@@ -136,7 +135,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Width",
                             "Height",
                             "Weight",
-                            "ShippingType",
+                            "ProductType",
                             "Sku",
                             "Barcode",
                             "TrackInventory",
@@ -151,7 +150,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", width),
                             string.Format("{0}", height),
                             "<Weigth>",
-                            string.Format("{0}", shippingType),
+                            string.Format("{0}", productType),
                             string.Format("{0}", sku),
                             string.Format("{0}", barcode),
                             string.Format("{0}", trackInventory),
@@ -175,7 +174,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Width",
                             "Height",
                             "Weight",
-                            "ShippingType",
+                            "ProductType",
                             "Sku",
                             "Barcode",
                             "TrackInventory",
@@ -190,7 +189,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", width),
                             string.Format("{0}", height),
                             "<Weigth>",
-                            string.Format("{0}", shippingType),
+                            string.Format("{0}", productType),
                             string.Format("{0}", sku),
                             string.Format("{0}", barcode),
                             string.Format("{0}", trackInventory),
@@ -205,7 +204,7 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.SkippableTheoryAttribute(DisplayName="Create products - red path")]
         [Xunit.TraitAttribute("FeatureTitle", "Create a product")]
         [Xunit.TraitAttribute("Description", "Create products - red path")]
-        [Xunit.InlineDataAttribute("DDD", "DDD Description", "100", "120", "80", "1", "2", "3", "4", "Ship Separately", "ddd-book", "1234567890111", "Yes", "Remove", "Invalid ShippingType", new string[0])]
+        [Xunit.InlineDataAttribute("DDD", "DDD Description", "100", "120", "80", "1", "2", "3", "4", "Physical Product", "ddd-book", "1234567890111", "Yes", "Remove", "Invalid Product Type", new string[0])]
         [Xunit.InlineDataAttribute("BDD", "BDD Description", "90", "110", "70", "2", "3", "4", "5", "PhysicalProduct", "bdd-book", "1234567890222", "No", "Continue Selling", "Invalid OutOfStock Rule", new string[0])]
         public virtual void CreateProducts_RedPath(
                     string name, 
@@ -217,7 +216,7 @@ this.ScenarioInitialize(scenarioInfo);
                     string width, 
                     string height, 
                     string weight, 
-                    string shippingType, 
+                    string productType, 
                     string sku, 
                     string barcode, 
                     string trackInventory, 
@@ -236,14 +235,14 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Width", width);
             argumentsOfScenario.Add("Height", height);
             argumentsOfScenario.Add("Weight", weight);
-            argumentsOfScenario.Add("ShippingType", shippingType);
+            argumentsOfScenario.Add("ProductType", productType);
             argumentsOfScenario.Add("Sku", sku);
             argumentsOfScenario.Add("Barcode", barcode);
             argumentsOfScenario.Add("TrackInventory", trackInventory);
             argumentsOfScenario.Add("OutOfStockRule", outOfStockRule);
             argumentsOfScenario.Add("Comment", comment);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create products - red path", null, tagsOfScenario, argumentsOfScenario);
-#line 21
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -273,7 +272,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Width",
                             "Height",
                             "Weight",
-                            "ShippingType",
+                            "ProductType",
                             "Sku",
                             "Barcode",
                             "TrackInventory",
@@ -288,18 +287,18 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", width),
                             string.Format("{0}", height),
                             "<Weigth>",
-                            string.Format("{0}", shippingType),
+                            string.Format("{0}", productType),
                             string.Format("{0}", sku),
                             string.Format("{0}", barcode),
                             string.Format("{0}", trackInventory),
                             string.Format("{0}", outOfStockRule)});
-#line 22
+#line 21
  testRunner.Given("Tom enters the following product information:", ((string)(null)), table3, "Given ");
 #line hidden
-#line 25
+#line 24
  testRunner.When("Tom saves the product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 26
+#line 25
  testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
