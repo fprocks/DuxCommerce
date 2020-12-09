@@ -143,7 +143,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table1.AddRow(new string[] {
                             string.Format("{0}", name),
                             string.Format("{0}", description),
-                            "<Pricce>",
+                            string.Format("{0}", price),
                             string.Format("{0}", retail),
                             string.Format("{0}", cost),
                             string.Format("{0}", length),
@@ -182,7 +182,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table2.AddRow(new string[] {
                             string.Format("{0}", name),
                             string.Format("{0}", description),
-                            "<Pricce>",
+                            string.Format("{0}", price),
                             string.Format("{0}", retail),
                             string.Format("{0}", cost),
                             string.Format("{0}", length),
@@ -280,7 +280,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table3.AddRow(new string[] {
                             string.Format("{0}", name),
                             string.Format("{0}", description),
-                            "<Pricce>",
+                            string.Format("{0}", price),
                             string.Format("{0}", retail),
                             string.Format("{0}", cost),
                             string.Format("{0}", length),
