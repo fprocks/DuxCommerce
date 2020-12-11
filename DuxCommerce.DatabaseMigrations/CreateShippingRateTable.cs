@@ -13,8 +13,7 @@ namespace DuxCommerce.DatabaseMigrations
                 .WithColumn("Name").AsString(100).NotNullable()
                 .WithColumn("RateType").AsString(50).NotNullable()
                 .WithColumn("Rate").AsDecimal().NotNullable()
-                .WithColumn("Min").AsDecimal().NotNullable()
-                .WithColumn("Max").AsDecimal().Nullable();
+                .WithColumn("Min").AsDecimal().NotNullable();
         }
 
         public override void Down()

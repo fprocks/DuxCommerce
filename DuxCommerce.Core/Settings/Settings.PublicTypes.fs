@@ -67,7 +67,6 @@ type ShippingRatesDto = {
     RateType: string
     Rate: decimal
     Min: decimal
-    Max: decimal
 }
 
 [<CLIMutable>] 
