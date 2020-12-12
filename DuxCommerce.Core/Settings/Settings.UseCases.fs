@@ -6,18 +6,18 @@ open DuxCommerce.Common
 
 module UseCases =     
     let createStoreProfile :CreateStoreProfileUseCase =            
-        fun storeDto ->
+        fun profileDto ->
             readerResult {
                 let! _ = 
-                    storeDto 
+                    profileDto 
                     |> StoreProfileDto.toDomain 
                     |> CustomError.mapValidation 
                     |> ConfigReader.retn
                                
-                let! storeId = storeDto |> StoreProfileRepo.createStoreProfile
-                let! _ = storeDto.Address |> LocationRepo.createLocation
+                let! profileId = profileDto |> StoreProfileRepo.createStoreProfile
+                let! _ = profileDto.Address |> LocationRepo.createLocation
 
-                return! StoreProfileRepo.getStoreProfile storeId 
+                return! StoreProfileRepo.getStoreProfile profileId 
             }
     
     let getStoreProfile :GetStoreProfileUseCase =
@@ -27,17 +27,17 @@ module UseCases =
             }
         
     let updateStoreProfile :UpdateStoreProfileUseCase =
-        fun id storeDto ->
+        fun id profileDto ->
             readerResult {
                 let! _ = 
-                    storeDto
+                    profileDto
                     |> StoreProfileDto.toDomain
                     |> CustomError.mapValidation
                     |> ConfigReader.retn
 
-                let! details = StoreProfileRepo.getStoreProfile id
-                let storeDto = {storeDto with AddressId = details.AddressId}                    
-                do! StoreProfileRepo.updateStoreProfile id storeDto
+                let! profile = StoreProfileRepo.getStoreProfile id
+                let updatedProfile = {profileDto with AddressId = profile.AddressId}                    
+                do! StoreProfileRepo.updateStoreProfile id updatedProfile
 
                 return! StoreProfileRepo.getStoreProfile id
             }

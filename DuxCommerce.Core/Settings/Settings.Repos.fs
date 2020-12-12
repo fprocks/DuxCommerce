@@ -10,10 +10,10 @@ open DuxCommerce.Settings.Ports
 module StoreProfileRepo =
     
     let createStoreProfile :CreateStoreProfile =
-        fun storeDto ->
+        fun profileDto ->
             let create (connection:SqlConnection) =
-                let addressId = connection.Insert<AddressDto, int64>(storeDto.Address)
-                let dto = {storeDto with AddressId = addressId}
+                let addressId = connection.Insert<AddressDto, int64>(profileDto.Address)
+                let dto = {profileDto with AddressId = addressId}
                 connection.Insert<StoreProfileDto, int64>(dto) |> ignore               
                 dto.Id
                 
@@ -22,17 +22,17 @@ module StoreProfileRepo =
     let getStoreProfile :GetStoreProfile =
         fun id ->
             let get (connection:SqlConnection) =
-                let storeDto = connection.Query<StoreProfileDto>(fun (p:StoreProfileDto) -> p.Id = id).FirstOrDefault()
-                let address = connection.Query<AddressDto>(fun (a:AddressDto) -> a.Id = storeDto.AddressId).FirstOrDefault()
-                {storeDto with Address = address}
+                let profileDto = connection.Query<StoreProfileDto>(fun (p:StoreProfileDto) -> p.Id = id).FirstOrDefault()
+                let address = connection.Query<AddressDto>(fun (a:AddressDto) -> a.Id = profileDto.AddressId).FirstOrDefault()
+                {profileDto with Address = address}
                 
             RepoAdapter.repoAdapter get          
             
     let updateStoreProfile :UpdateStoreProfile =
-        fun id storeDto ->
+        fun id profileDto ->
             let update (connection:SqlConnection) =
-                connection.Update<StoreProfileDto>(storeDto, id) |> ignore
-                connection.Update<AddressDto>(storeDto.Address, storeDto.AddressId) |> ignore
+                connection.Update<StoreProfileDto>(profileDto, id) |> ignore
+                connection.Update<AddressDto>(profileDto.Address, profileDto.AddressId) |> ignore
                 
             RepoAdapter.repoAdapter update
 
