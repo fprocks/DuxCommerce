@@ -1,6 +1,14 @@
 ﻿namespace DuxCommerce.Settings.PublicTypes
 
 [<CLIMutable>]
+type CountryDto = {
+    Id: int64
+    CountryName: string
+    ISOCode: string
+    Enabled: bool
+}
+
+[<CLIMutable>]
 type AddressDto = {
     Id: int64
     FirstName: string
