@@ -18,6 +18,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
                 TablesToIgnore = new[]
                 {
                     "VersionInfo",
+                    "Country"
                 }
             };
 

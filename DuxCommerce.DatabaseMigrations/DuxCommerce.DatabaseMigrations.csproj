@@ -5,17 +5,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Resources\Countries.json" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Include="Resources\Countries.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <Compile Remove="Resources\**" />
+      <EmbeddedResource Remove="Resources\**" />
+      <None Remove="Resources\**" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="FluentMigrator" Version="3.2.9" />
+      <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
       <PackageReference Include="RepoDb" Version="1.11.6" />
     </ItemGroup>
 
