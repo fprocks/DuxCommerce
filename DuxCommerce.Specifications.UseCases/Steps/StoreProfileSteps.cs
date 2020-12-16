@@ -75,6 +75,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [Then(@"the store profile should be created as follow:")]
+        [Then(@"the store profile should be updated as follow:")]
         public async Task ThenTheStoreDetailsShouldBeCreatedAsFollowAsync(Table table)
         {
             _profilePostUpdate = await GetCreatedProfile(_context.ApiResult);
@@ -84,6 +85,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [Then(@"the store address should be created as follow:")]
+        [Then(@"the store address should be updated as follow:")]
         public void ThenTheStoreAddressShouldBeCreatedAsFollow(Table table)
         {
             var expectedAddress = table.CreateSet<AddressDto>().FirstOrDefault();

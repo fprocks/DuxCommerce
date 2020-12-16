@@ -20,10 +20,10 @@ Scenario: Update store profile - green path
 	| James     | Green    | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria | AU      |
 	When Tom updates the store profile
 	Then Tom should receive status codes OK
-	And the store profile should be created as follow:
+	And the store profile should be updated as follow:
 	| StoreName | ContactEmail      | SenderEmail      | BusinessName | PhoneNumber | TimeZoneId | UnitSystem   | WeightUnit   | LengthUnit   |
 	| Deals360  | contact@gmail.com | sender@gmail.com | Deals360 PTY | 89457688    | UTC+2      | <UnitSystem> | <WeightUnit> | <LengthUnit> |
-	And the store address should be created as follow:
+	And the store address should be updated as follow:
 	| FirstName | LastName | AddressLine1 | AddressLine2    | City      | PostalCode | State    | Country |
 	| James     | Green    | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria | AU      |
 Examples: 

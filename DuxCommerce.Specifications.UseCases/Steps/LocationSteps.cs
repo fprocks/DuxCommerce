@@ -6,7 +6,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
     [Binding]
     public class LocationSteps
     {
-        [Then(@"the location should be created as follow:")]
+        [Then(@"default location should be created as follow:")]
         public void ThenTheLocationShouldBeCreatedAsFollow(Table table)
         {
             //ScenarioContext.Current.Pending();

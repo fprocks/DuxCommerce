@@ -15,8 +15,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _apiClient = apiClient;
         }
 
-        [Then(@"the general shipping profile should be created")]
-        public void ThenTheGeneralShippingProfileShouldBeCreated()
+        [Then(@"default shipping profile should be created")]
+        public void ThenDefaultShippingProfileShouldBeCreated()
         {
         }
     }
