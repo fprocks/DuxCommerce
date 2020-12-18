@@ -135,6 +135,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
         [Xunit.TraitAttribute("FeatureTitle", "Update Store Profile")]
         [Xunit.TraitAttribute("Description", "Update store profile - green path")]
         [Xunit.InlineDataAttribute("MetricSystem", "Kilogram", "Meter", new string[0])]
+        [Xunit.InlineDataAttribute("MetricSystem", "Gram", "Centimeter", new string[0])]
         [Xunit.InlineDataAttribute("ImperialSystem", "Pound", "Foot", new string[0])]
         [Xunit.InlineDataAttribute("ImperialSystem", "Ounce", "Inch", new string[0])]
         public virtual void UpdateStoreProfile_GreenPath(string unitSystem, string weightUnit, string lengthUnit, string[] exampleTags)
@@ -239,7 +240,7 @@ this.FeatureBackground();
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
 #line 23
- testRunner.And("the store profile should be created as follow:", ((string)(null)), table28, "And ");
+ testRunner.And("the store profile should be updated as follow:", ((string)(null)), table28, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -260,7 +261,7 @@ this.FeatureBackground();
                             "Victoria",
                             "AU"});
 #line 26
- testRunner.And("the store address should be created as follow:", ((string)(null)), table29, "And ");
+ testRunner.And("the store address should be updated as follow:", ((string)(null)), table29, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -282,7 +283,7 @@ this.FeatureBackground();
             argumentsOfScenario.Add("LengthUnit", lengthUnit);
             argumentsOfScenario.Add("Comment", comment);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update store profile - red path", null, tagsOfScenario, argumentsOfScenario);
-#line 35
+#line 36
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -325,7 +326,7 @@ this.FeatureBackground();
                             string.Format("{0}", unitSystem),
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
-#line 36
+#line 37
  testRunner.And("Tom enters the following store profile:", ((string)(null)), table30, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
@@ -346,13 +347,13 @@ this.FeatureBackground();
                             "2000",
                             "New South Wales",
                             "AU"});
-#line 39
+#line 40
  testRunner.And("Tome enters the following store address:", ((string)(null)), table31, "And ");
 #line hidden
-#line 42
+#line 43
  testRunner.When("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 43
+#line 44
  testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

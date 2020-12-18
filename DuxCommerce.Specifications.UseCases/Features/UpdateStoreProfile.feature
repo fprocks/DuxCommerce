@@ -29,6 +29,7 @@ Scenario: Update store profile - green path
 Examples: 
 	| UnitSystem     | WeightUnit | LengthUnit |
 	| MetricSystem   | Kilogram   | Meter      |
+	| MetricSystem   | Gram       | Centimeter |
 	| ImperialSystem | Pound      | Foot       |
 	| ImperialSystem | Ounce      | Inch       |
 

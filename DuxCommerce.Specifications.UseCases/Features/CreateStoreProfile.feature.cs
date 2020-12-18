@@ -221,10 +221,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "AU",
                             "True"});
 #line 21
- testRunner.And("the location should be created as follow:", ((string)(null)), table8, "And ");
+ testRunner.And("default location should be created as follow:", ((string)(null)), table8, "And ");
 #line hidden
 #line 24
- testRunner.And("the general shipping profile should be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("default shipping profile should be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
