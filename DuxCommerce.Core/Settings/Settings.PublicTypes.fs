@@ -38,7 +38,7 @@ type StoreProfileDto = {
 }
 
 [<CLIMutable>]
-type LocationDto = {
+type ShippingOriginDto = {
     Id: int64
     Name: string
     AddressId: int64
@@ -46,10 +46,10 @@ type LocationDto = {
 }
 
 [<CLIMutable>]
-type ShippingLocationDto = {
+type ShippingProfileOriginDto = {
     Id: int64
-    ShippingProfileId: int64
-    LocationId: int64
+    ProfileId: int64
+    OriginId: int64
 }
 
 [<CLIMutable>]
@@ -68,13 +68,23 @@ type ShippingCountryDto = {
 }
 
 [<CLIMutable>]
-type ShippingRatesDto = {
+type ShippingRateDto = {
     Id: int64
     ShippingZoneId: int64
     Name: string
     RateType: string
     Rate: decimal
     Min: decimal
+    Max: decimal
+}
+
+[<CLIMutable>]
+type ShippingRateItemDto = {
+    Id: int64
+    ShippingRateId: int64
+    Rate: decimal
+    Min: decimal
+    Max: decimal
 }
 
 [<CLIMutable>] 
@@ -82,7 +92,7 @@ type ShippingZoneDto = {
     Id: int64
     Name: string
     ShippingProfileId: int64
-    Rates: ShippingRatesDto seq
+    Rates: ShippingRateDto seq
     Countries: ShippingCountryDto seq
 }
 
@@ -91,6 +101,6 @@ type ShippingProfileDto = {
     Id: int64
     Name: string
     IsDefault: bool
-    Locations: ShippingLocationDto seq
+    Origins: ShippingProfileOriginDto seq
     Zones: ShippingZoneDto seq
 }

@@ -38,27 +38,27 @@ module StoreProfileRepo =
 
 module LocationRepo =
     
-    let createLocation :CreateLocation =
+    let createLocation :CreateShippingOrigin =
         fun addressDto -> 
             let create (connection:SqlConnection) =
                 let addressId = connection.Insert<AddressDto, int64>(addressDto)
 
                 let location = {Id = 0L; Name = addressDto.AddressLine1; AddressId = addressId; IsDefault = true}
-                connection.Insert<LocationDto, int64>(location) |> ignore
+                connection.Insert<ShippingOriginDto, int64>(location) |> ignore
                 location.Id
 
             RepoAdapter.repoAdapter create
 
-    let getLocation :GetLocation =
+    let getLocation :GetShippingOrigin =
         fun id ->
             let get (connection:SqlConnection) =
-                connection.Query<LocationDto>(fun p -> p.Id = id).FirstOrDefault()
+                connection.Query<ShippingOriginDto>(fun p -> p.Id = id).FirstOrDefault()
             
             RepoAdapter.repoAdapter get          
         
-    let updateLocation :UpdateLocation =
+    let updateLocation :UpdateShippingOrigin =
         fun id locationDto ->
             let update (connection:SqlConnection) =
-                connection.Update<LocationDto>(locationDto, id) |> ignore
+                connection.Update<ShippingOriginDto>(locationDto, id) |> ignore
             
             RepoAdapter.repoAdapter update

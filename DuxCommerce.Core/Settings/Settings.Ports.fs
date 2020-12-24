@@ -13,6 +13,6 @@ type CreateStoreProfile = StoreProfileDto -> ConfigReader<Result<int64, CustomEr
 type GetStoreProfile = int64 -> ConfigReader<Result<StoreProfileDto, CustomError>>
 type UpdateStoreProfile = int64 -> StoreProfileDto -> ConfigReader<Result<unit, CustomError>>
 
-type CreateLocation = AddressDto -> ConfigReader<Result<int64, CustomError>>
-type GetLocation = int64 -> ConfigReader<Result<LocationDto, CustomError>>
-type UpdateLocation = int64 -> LocationDto -> ConfigReader<Result<unit, CustomError>>
+type CreateShippingOrigin = AddressDto -> ConfigReader<Result<int64, CustomError>>
+type GetShippingOrigin = int64 -> ConfigReader<Result<ShippingOriginDto, CustomError>>
+type UpdateShippingOrigin = int64 -> ShippingOriginDto -> ConfigReader<Result<unit, CustomError>>
