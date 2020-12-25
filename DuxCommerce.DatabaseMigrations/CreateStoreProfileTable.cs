@@ -18,7 +18,7 @@ namespace DuxCommerce.DatabaseMigrations
                 .WithColumn("UnitSystem").AsString(20).NotNullable()
                 .WithColumn("WeightUnit").AsString(20).NotNullable()
                 .WithColumn("LengthUnit").AsString(20).NotNullable()
-                .WithColumn("AddressId").AsInt64().Nullable();
+                .WithColumn("AddressId").AsInt64().NotNullable();
         }
 
         public override void Down()
