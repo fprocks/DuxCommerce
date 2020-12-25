@@ -15,7 +15,7 @@ module UseCases =
                     |> ConfigReader.retn
                                
                 let! profileId = profileDto |> StoreProfileRepo.createStoreProfile
-                let! _ = profileDto.Address |> LocationRepo.createLocation
+                let! _ = profileDto.Address |> ShippingOriginRepo.createOrigin
 
                 return! StoreProfileRepo.getStoreProfile profileId 
             }
