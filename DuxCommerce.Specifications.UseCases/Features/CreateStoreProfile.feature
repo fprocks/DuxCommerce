@@ -8,16 +8,16 @@ Scenario: Create store profile - green path
 	| StoreName | ContactEmail | SenderEmail | BusinessName | PhoneNumber | TimeZoneId | UnitSystem   | WeightUnit   | LengthUnit   |
 	| Deals365  | c@gmail.com  | s@gmail.com | Deals365 PTY | 89457621    | UTC        | <UnitSystem> | <WeightUnit> | <LengthUnit> |
 	And Tome enters the following store address:
-	| AddressLine1    | AddressLine2 | City   | PostalCode | State           | Country |
-	| 1 Market Street |              | Sydney | 2000       | New South Wales | AU      |
+	| AddressLine1    | AddressLine2 | City   | PostalCode | StateName       | CountryCode |
+	| 1 Market Street |              | Sydney | 2000       | New South Wales | AU          |
 	When Tom saves the store profile
 	Then Tom should receive status codes OK
 	And the store profile should be created as follow:
 	| StoreName | ContactEmail | SenderEmail | BusinessName | PhoneNumber | TimeZoneId | UnitSystem   | WeightUnit   | LengthUnit   |
 	| Deals365  | c@gmail.com  | s@gmail.com | Deals365 PTY | 89457621    | UTC        | <UnitSystem> | <WeightUnit> | <LengthUnit> |
 	And the store address should be created as follow:
-	| AddressLine1    | AddressLine2 | City   | PostalCode | State           | Country |
-	| 1 Market Street |              | Sydney | 2000       | New South Wales | AU      |
+	| AddressLine1    | AddressLine2 | City   | PostalCode | StateName       | CountryCode |
+	| 1 Market Street |              | Sydney | 2000       | New South Wales | AU          |
 	And default location should be created as follow:
 	| Name            | AddressLine1    | AddressLine2 | City   | PostalCode | State           | Country | IsDefault |
 	| 1 Market Street | 1 Market Street |              | Sydney | 2000       | New South Wales | AU      | True      |
@@ -34,8 +34,8 @@ Scenario: Create store profile - red path
 	| StoreName | ContactEmail | SenderEmail | BusinessName | PhoneNumber | TimeZoneId | UnitSystem   | WeightUnit   | LengthUnit   |
 	| Deals365  | c@gmail.com  | s@gmail.com | Deals365 PTY | 89457621    | UTC        | <UnitSystem> | <WeightUnit> | <LengthUnit> |
 	And Tome enters the following store address:
-	| FirstName | LastName | AddressLine1    | AddressLine2 | City   | PostalCode | State           | Country |
-	| James     | Green    | 1 Market Street |              | Sydney | 2000       | New South Wales | AU      |
+	| FirstName | LastName | AddressLine1    | AddressLine2 | City   | PostalCode | StateName       | CountryCode |
+	| James     | Green    | 1 Market Street |              | Sydney | 2000       | New South Wales | AU          |
 	When Tom saves the store profile
 	Then Tom should receive status codes BadRequest
 Examples: 

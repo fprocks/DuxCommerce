@@ -144,8 +144,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "AddressLine2",
                             "City",
                             "PostalCode",
-                            "State",
-                            "Country"});
+                            "StateName",
+                            "CountryCode"});
                 table5.AddRow(new string[] {
                             "1 Market Street",
                             "",
@@ -190,8 +190,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "AddressLine2",
                             "City",
                             "PostalCode",
-                            "State",
-                            "Country"});
+                            "StateName",
+                            "CountryCode"});
                 table7.AddRow(new string[] {
                             "1 Market Street",
                             "",
@@ -296,8 +296,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "AddressLine2",
                             "City",
                             "PostalCode",
-                            "State",
-                            "Country"});
+                            "StateName",
+                            "CountryCode"});
                 table10.AddRow(new string[] {
                             "James",
                             "Green",

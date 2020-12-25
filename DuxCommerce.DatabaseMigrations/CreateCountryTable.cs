@@ -9,9 +9,8 @@ namespace DuxCommerce.DatabaseMigrations
         {
             Create.Table("Country")
                 .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-                .WithColumn("CountryName").AsString(100).NotNullable()
-                .WithColumn("ISOCode").AsString(2).NotNullable()
-                .WithColumn("Enabled").AsBoolean().NotNullable();
+                .WithColumn("Name").AsString(100).NotNullable()
+                .WithColumn("ISOCode").AsString(2).NotNullable();
         }
 
         public override void Down()

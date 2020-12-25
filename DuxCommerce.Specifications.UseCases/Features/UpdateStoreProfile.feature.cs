@@ -110,8 +110,8 @@ namespace DuxCommerce.Specifications.UseCases.Features
                         "AddressLine2",
                         "City",
                         "PostalCode",
-                        "State",
-                        "Country"});
+                        "StateName",
+                        "CountryCode"});
             table25.AddRow(new string[] {
                         "James",
                         "Green",
@@ -199,8 +199,8 @@ this.FeatureBackground();
                             "AddressLine2",
                             "City",
                             "PostalCode",
-                            "State",
-                            "Country"});
+                            "StateName",
+                            "CountryCode"});
                 table27.AddRow(new string[] {
                             "James",
                             "Green",
@@ -249,8 +249,8 @@ this.FeatureBackground();
                             "AddressLine2",
                             "City",
                             "PostalCode",
-                            "State",
-                            "Country"});
+                            "StateName",
+                            "CountryCode"});
                 table29.AddRow(new string[] {
                             "James",
                             "Green",
@@ -336,8 +336,8 @@ this.FeatureBackground();
                             "AddressLine2",
                             "City",
                             "PostalCode",
-                            "State",
-                            "Country"});
+                            "StateName",
+                            "CountryCode"});
                 table31.AddRow(new string[] {
                             "James",
                             "Green",

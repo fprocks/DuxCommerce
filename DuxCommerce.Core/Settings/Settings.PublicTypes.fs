@@ -3,9 +3,15 @@
 [<CLIMutable>]
 type CountryDto = {
     Id: int64
-    CountryName: string
+    Name: string
     ISOCode: string
-    Enabled: bool
+} 
+
+[<CLIMutable>]
+type StateDto = {
+    Id: int64
+    CountryCode: string
+    Name: string
 }
 
 [<CLIMutable>]
@@ -17,8 +23,10 @@ type AddressDto = {
     AddressLine2: string
     City: string
     PostalCode: string
-    State: string
-    Country: string
+    StateId: int64
+    StateName: string
+    CountryCode: string
+    IsBillingAddress: bool
 }
 
 [<CLIMutable>]
@@ -48,22 +56,22 @@ type ShippingOriginDto = {
 [<CLIMutable>]
 type ShippingProfileOriginDto = {
     Id: int64
-    ProfileId: int64
-    OriginId: int64
+    ShippingProfileId: int64
+    ShippingOriginId: int64
 }
 
 [<CLIMutable>]
 type ShippingStateDto = {
     Id: int64
     ShippingCountryId: int64
-    State: string
+    StateId: int64
 }
 
 [<CLIMutable>]
 type ShippingCountryDto = {
     Id: int64
     ShippingZoneId: int64
-    Country: string
+    CountryCode: string
     States: ShippingStateDto seq
 }
 
@@ -73,9 +81,6 @@ type ShippingRateDto = {
     ShippingZoneId: int64
     Name: string
     RateType: string
-    Rate: decimal
-    Min: decimal
-    Max: decimal
 }
 
 [<CLIMutable>]

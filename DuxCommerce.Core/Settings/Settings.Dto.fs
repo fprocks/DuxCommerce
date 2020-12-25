@@ -15,8 +15,8 @@ module AddressDto =
             let! addressLine2 = String255.createOption "AddressLine2" dto.AddressLine2
             let! city = String100.create "City" dto.City
             let! postalCode = String50.createOption "PostalCode" dto.PostalCode
-            let! state = String100.createOption "State" dto.State
-            let! country = CountryCode.create "CountryCode" dto.Country
+            let! state = String100.create "State" dto.StateName
+            let! country = CountryCode.create "CountryCode" dto.CountryCode
             
             return {
                 AddressId = addressId
@@ -26,8 +26,8 @@ module AddressDto =
                 AddressLine2 = addressLine2
                 City = city
                 PostalCode = postalCode
-                State = state
-                Country = country
+                StateName = state
+                CountryCode = country
             }
         }
         

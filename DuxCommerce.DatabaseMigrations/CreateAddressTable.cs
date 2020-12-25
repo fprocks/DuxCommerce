@@ -15,8 +15,10 @@ namespace DuxCommerce.DatabaseMigrations
                 .WithColumn("AddressLine2").AsString(255).Nullable()
                 .WithColumn("City").AsString(100).NotNullable()
                 .WithColumn("PostalCode").AsString(50).Nullable()
-                .WithColumn("State").AsString(100).Nullable()
-                .WithColumn("Country").AsString(2).NotNullable();
+                .WithColumn("StateId").AsInt64().Nullable()
+                .WithColumn("StateName").AsString(100).NotNullable()
+                .WithColumn("CountryCode").AsString(2).NotNullable()
+                .WithColumn("IsBillingAddress").AsBoolean().NotNullable();
         }
 
         public override void Down()

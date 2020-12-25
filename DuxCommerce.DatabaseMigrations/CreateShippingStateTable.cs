@@ -10,7 +10,7 @@ namespace DuxCommerce.DatabaseMigrations
             Create.Table("ShippingState")
                 .WithColumn("Id").AsInt64().PrimaryKey().Identity()
                 .WithColumn("ShippingCountryId").AsInt64().NotNullable()
-                .WithColumn("State").AsString(100).NotNullable();
+                .WithColumn("StateId").AsInt64().NotNullable();
         }
 
         public override void Down()

@@ -11,9 +11,7 @@ namespace DuxCommerce.DatabaseMigrations
                 .WithColumn("Id").AsInt64().PrimaryKey().Identity()
                 .WithColumn("ShippingZoneId").AsInt64().NotNullable()
                 .WithColumn("Name").AsString(100).NotNullable()
-                .WithColumn("RateType").AsString(50).NotNullable()
-                .WithColumn("Rate").AsDecimal().NotNullable()
-                .WithColumn("Min").AsDecimal().NotNullable();
+                .WithColumn("RateType").AsString(50).NotNullable();
         }
 
         public override void Down()

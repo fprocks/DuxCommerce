@@ -21,32 +21,38 @@ namespace DuxCommerce.DatabaseMigrations
             FluentMapper.Entity<CountryDto>()
                 .Table("[dbo].[Country]");
 
+            FluentMapper.Entity<StateDto>()
+                .Table("[dbo].[State]");
+
             FluentMapper.Entity<StoreProfileDto>()
                 .Table("[dbo].[StoreProfile]");
-            
+
             FluentMapper.Entity<AddressDto>()
                 .Table("[dbo].[Address]");
 
-            FluentMapper.Entity<LocationDto>()
-                .Table("[dbo].[Location]");
+            FluentMapper.Entity<ShippingOriginDto>()
+                .Table("[dbo].[ShippingOrigin]");
+
+            FluentMapper.Entity<ShippingProfileDto>()
+                .Table("[dbo].[ShippingProfile]");
+
+            FluentMapper.Entity<ShippingProfileOriginDto>()
+                .Table("[dbo].[ShippingProfileOrigin]");
+            
+            FluentMapper.Entity<ShippingZoneDto>()
+                .Table("[dbo].[ShippingZone]");
 
             FluentMapper.Entity<ShippingCountryDto>()
                 .Table("[dbo].[ShippingCountry]");
 
             FluentMapper.Entity<ShippingStateDto>()
                 .Table("[dbo].[ShippingState]");
-
-            FluentMapper.Entity<ShippingProfileDto>()
-                .Table("[dbo].[ShippingProfile]");
             
-            FluentMapper.Entity<ShippingZoneDto>()
-                .Table("[dbo].[ShippingZone]");
-
-            FluentMapper.Entity<ShippingLocationDto>()
-                .Table("[dbo].[ShippingLocation]");
-            
-            FluentMapper.Entity<ShippingRatesDto>()
+            FluentMapper.Entity<ShippingRateDto>()
                 .Table("[dbo].[ShippingRate]");
+
+            FluentMapper.Entity<ShippingRateItemDto>()
+                .Table("[dbo].[ShippingRateItem]");
         }
     }
 }

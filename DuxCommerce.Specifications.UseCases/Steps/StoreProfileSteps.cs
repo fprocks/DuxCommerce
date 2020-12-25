@@ -117,8 +117,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
                 expected.AddressLine2 == actual.AddressLine2 &&
                 expected.City == actual.City &&
                 expected.PostalCode == actual.PostalCode &&
-                expected.State == actual.State &&
-                expected.Country == actual.Country;
+                expected.StateName == actual.StateName &&
+                expected.CountryCode == actual.CountryCode;
         }
     }
 }
