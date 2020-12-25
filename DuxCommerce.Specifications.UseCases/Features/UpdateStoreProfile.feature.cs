@@ -114,7 +114,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
                         "CountryCode"});
             table25.AddRow(new string[] {
                         "James",
-                        "Green",
+                        "Harper",
                         "1 Market Street",
                         "",
                         "Sydney",
@@ -203,7 +203,7 @@ this.FeatureBackground();
                             "CountryCode"});
                 table27.AddRow(new string[] {
                             "James",
-                            "Green",
+                            "Harper",
                             "Unit 7",
                             "2 Market Street",
                             "Melbourne",
@@ -253,7 +253,7 @@ this.FeatureBackground();
                             "CountryCode"});
                 table29.AddRow(new string[] {
                             "James",
-                            "Green",
+                            "Harper",
                             "Unit 7",
                             "2 Market Street",
                             "Melbourne",
@@ -340,7 +340,7 @@ this.FeatureBackground();
                             "CountryCode"});
                 table31.AddRow(new string[] {
                             "James",
-                            "Green",
+                            "Harper",
                             "1 Market Street",
                             "",
                             "Sydney",

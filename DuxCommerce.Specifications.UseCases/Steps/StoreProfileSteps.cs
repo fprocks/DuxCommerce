@@ -54,8 +54,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         public void GivenTomeEntersTheFollowingStoreAddress(Table table)
         {
             var address = table.CreateSet<AddressDto>().FirstOrDefault();
-            address.FirstName = "James";
-            address.LastName = "Green";
+            address.FirstName = "F";
+            address.LastName = "L";
             _profileRequest.Address = address;
         }
         

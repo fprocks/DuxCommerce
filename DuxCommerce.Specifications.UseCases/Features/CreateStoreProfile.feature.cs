@@ -208,8 +208,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "AddressLine2",
                             "City",
                             "PostalCode",
-                            "State",
-                            "Country",
+                            "StateName",
+                            "CountryCode",
                             "IsDefault"});
                 table8.AddRow(new string[] {
                             "1 Market Street",
@@ -221,7 +221,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "AU",
                             "True"});
 #line 21
- testRunner.And("default location should be created as follow:", ((string)(null)), table8, "And ");
+ testRunner.And("default shipping origin should be created as follow:", ((string)(null)), table8, "And ");
 #line hidden
 #line 24
  testRunner.And("default shipping profile should be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -290,8 +290,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Tom enters the following store profile:", ((string)(null)), table9, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
-                            "FirstName",
-                            "LastName",
                             "AddressLine1",
                             "AddressLine2",
                             "City",
@@ -299,8 +297,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "StateName",
                             "CountryCode"});
                 table10.AddRow(new string[] {
-                            "James",
-                            "Green",
                             "1 Market Street",
                             "",
                             "Sydney",

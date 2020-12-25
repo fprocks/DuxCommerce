@@ -9,7 +9,7 @@ Background:
 	| Deals365  | c@gmail.com  | s@gmail.com | Deals365 PTY | 89457621    | UTC        | MetricSystem | Gram       | Centimeter |
 	And Tom already created the following store address:
 	| FirstName | LastName | AddressLine1    | AddressLine2 | City   | PostalCode | StateName       | CountryCode |
-	| James     | Green    | 1 Market Street |              | Sydney | 2000       | New South Wales | AU          |
+	| James     | Harper   | 1 Market Street |              | Sydney | 2000       | New South Wales | AU          |
 
 Scenario: Update store profile - green path
 	And Tom enters the following store profile:
@@ -17,7 +17,7 @@ Scenario: Update store profile - green path
 	| Deals360  | contact@gmail.com | sender@gmail.com | Deals360 PTY | 89457688    | UTC+2      | <UnitSystem> | <WeightUnit> | <LengthUnit> |
 	And Tome enters the following store address:
 	| FirstName | LastName | AddressLine1 | AddressLine2    | City      | PostalCode | StateName | CountryCode |
-	| James     | Green    | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
+	| James     | Harper   | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
 	When Tom updates the store profile
 	Then Tom should receive status codes OK
 	And the store profile should be updated as follow:
@@ -25,7 +25,7 @@ Scenario: Update store profile - green path
 	| Deals360  | contact@gmail.com | sender@gmail.com | Deals360 PTY | 89457688    | UTC+2      | <UnitSystem> | <WeightUnit> | <LengthUnit> |
 	And the store address should be updated as follow:
 	| FirstName | LastName | AddressLine1 | AddressLine2    | City      | PostalCode | StateName | CountryCode |
-	| James     | Green    | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
+	| James     | Harper   | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
 Examples: 
 	| UnitSystem     | WeightUnit | LengthUnit |
 	| MetricSystem   | Kilogram   | Meter      |
@@ -39,7 +39,7 @@ Scenario: Update store profile - red path
 	| Deals365  | c@gmail.com  | s@gmail.com | Deals365 PTY | 89457621    | UTC        | <UnitSystem> | <WeightUnit> | <LengthUnit> |
 	And Tome enters the following store address:
 	| FirstName | LastName | AddressLine1    | AddressLine2 | City   | PostalCode | StateName       | CountryCode |
-	| James     | Green    | 1 Market Street |              | Sydney | 2000       | New South Wales | AU          |
+	| James     | Harper   | 1 Market Street |              | Sydney | 2000       | New South Wales | AU          |
 	When Tom updates the store profile
 	Then Tom should receive status codes BadRequest
 Examples: 
