@@ -17,10 +17,10 @@ namespace DuxCommerce.Specifications.UseCases.Steps
     [Binding]
     public class ShoppingCartSteps
     {
-        private readonly Hooks.ScenarioContext _context;
+        private readonly StepsContext _context;
         private readonly IApiClient _apiClient;
 
-        public ShoppingCartSteps(Hooks.ScenarioContext context, IApiClient apiClient)
+        public ShoppingCartSteps(StepsContext context, IApiClient apiClient)
         {
             _context = context;
             _apiClient = apiClient;

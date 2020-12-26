@@ -13,9 +13,9 @@ module StoreProfileRepo =
         fun profileDto ->
             let create (connection:SqlConnection) =
                 let addressId = connection.Insert<AddressDto, int64>(profileDto.Address)
-                let dto = {profileDto with AddressId = addressId}
-                connection.Insert<StoreProfileDto, int64>(dto) |> ignore               
-                dto.Id
+                let profileDto = {profileDto with AddressId = addressId}
+                connection.Insert<StoreProfileDto, int64>(profileDto) |> ignore               
+                profileDto.Id
                 
             RepoAdapter.repoAdapter create
             
@@ -42,10 +42,9 @@ module ShippingOriginRepo =
         fun addressDto -> 
             let create (connection:SqlConnection) =
                 let addressId = connection.Insert<AddressDto, int64>(addressDto)
-
-                let origin = {Id = 0L; Name = addressDto.AddressLine1; AddressId = addressId; IsDefault = true}
-                connection.Insert<ShippingOriginDto, int64>(origin) |> ignore
-                origin.Id
+                let originDto = {Id = 0L; Name = addressDto.AddressLine1; AddressId = addressId; IsDefault = true}
+                connection.Insert<ShippingOriginDto, int64>(originDto) |> ignore
+                originDto.Id
 
             RepoAdapter.repoAdapter create
 

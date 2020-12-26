@@ -1,8 +1,6 @@
-﻿using FluentAssertions;
-using System;
-using System.Collections.Generic;
+﻿using DuxCommerce.Specifications.UseCases.Hooks;
+using FluentAssertions;
 using System.Net;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace DuxCommerce.Specifications.UseCases.Steps
@@ -10,9 +8,9 @@ namespace DuxCommerce.Specifications.UseCases.Steps
     [Binding]
     public class CommonSteps
     {
-        private readonly Hooks.ScenarioContext _context;
+        private readonly StepsContext _context;
 
-        public CommonSteps(Hooks.ScenarioContext context)
+        public CommonSteps(StepsContext context)
         {
             _context = context;
         }
