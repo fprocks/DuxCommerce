@@ -79,6 +79,10 @@ module ShippingProfileRepo =
                 let shippingCountry = {Id = 0L; ShippingZoneId = zoneId; CountryCode = addressDto.CountryCode}
                 let shippingCountryId = connection.Insert<ShippingCountryDto, int64>(shippingCountry)
 
+                connection.Query<StateDto>(fun (s:StateDto) -> s.CountryCode = addressDto.CountryCode)
+                |> Seq.map (fun s -> {Id = 0L; ShippingCountryId = shippingCountryId; StateId = s.Id})
+                |> Seq.iter (fun s -> connection.Insert<ShippingStateDto, int64>(s) |> ignore )
+
                 profileId
 
             RepoAdapter.repoAdapter create

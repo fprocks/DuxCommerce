@@ -22,7 +22,6 @@ module CartRepo =
 
                 cartDto.LineItems 
                 |> Seq.iter (insertOrUpdate connection) 
-                |> ignore
 
             RepoAdapter.repoAdapter save
             
@@ -38,7 +37,7 @@ module CartRepo =
                     newCart
                 | _ -> 
                     let items = connection.Query<CartItemDto>(fun c -> c.CartId = cartDto.Id)
-                    { cartDto with LineItems = items}
+                    {cartDto with LineItems = items}
                 
             RepoAdapter.repoAdapter get
     
@@ -51,7 +50,6 @@ module CartRepo =
                                   
                   itemsToDelete
                   |> Seq.iter (fun item -> connection.Delete<CartItemDto>(item.Id, transaction = trans) |> ignore)
-                  |> ignore
                   
                   trans.Commit() )
                 
