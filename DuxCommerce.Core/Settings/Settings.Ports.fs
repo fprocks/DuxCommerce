@@ -16,3 +16,5 @@ type UpdateStoreProfile = int64 -> StoreProfileDto -> ConfigReader<Result<unit, 
 type CreateShippingOrigin = AddressDto -> ConfigReader<Result<int64, CustomError>>
 type GetShippingOrigin = int64 -> ConfigReader<Result<ShippingOriginDto, CustomError>>
 type UpdateShippingOrigin = int64 -> ShippingOriginDto -> ConfigReader<Result<unit, CustomError>>
+
+type CreateShippingProfile = int64 -> AddressDto -> ConfigReader<Result<int64, CustomError>>

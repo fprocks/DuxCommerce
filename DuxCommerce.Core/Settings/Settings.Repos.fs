@@ -14,8 +14,8 @@ module StoreProfileRepo =
             let create (connection:SqlConnection) =
                 let addressId = connection.Insert<AddressDto, int64>(profileDto.Address)
                 let profileDto = {profileDto with AddressId = addressId}
-                connection.Insert<StoreProfileDto, int64>(profileDto) |> ignore               
-                profileDto.Id
+                let profileId = connection.Insert<StoreProfileDto, int64>(profileDto)               
+                profileId
                 
             RepoAdapter.repoAdapter create
             
@@ -43,8 +43,8 @@ module ShippingOriginRepo =
             let create (connection:SqlConnection) =
                 let addressId = connection.Insert<AddressDto, int64>(addressDto)
                 let originDto = {Id = 0L; Name = addressDto.AddressLine1; AddressId = addressId; IsDefault = true}
-                connection.Insert<ShippingOriginDto, int64>(originDto) |> ignore
-                originDto.Id
+                let originId = connection.Insert<ShippingOriginDto, int64>(originDto)
+                originId
 
             RepoAdapter.repoAdapter create
 
@@ -61,3 +61,20 @@ module ShippingOriginRepo =
                 connection.Update<ShippingOriginDto>(originDto, id) |> ignore
             
             RepoAdapter.repoAdapter update
+
+module ShippingProfileRepo = 
+
+    let createProfile :CreateShippingProfile =
+        fun originId addressDto -> 
+            let create (connection:SqlConnection) =
+                let profileDto = {Id = 0L; Name = "Default Profile"; IsDefault = true}
+                let profileId = connection.Insert<ShippingProfileDto, int64>(profileDto)
+
+                let profileOrigin = {Id = 0L; ShippingProfileId = profileId; ShippingOriginId = originId}
+                let _ = connection.Insert<ShippingProfileOriginDto, int64>(profileOrigin);
+
+                let zoneDto = {Id = 0L; Name = addressDto.CountryCode; ShippingProfileId = profileId}
+                let zoneId = connection.Insert<ShippingZoneDto, int64>(zoneDto)
+                zoneId
+
+            RepoAdapter.repoAdapter create

@@ -284,7 +284,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Name",
                             "IsDefault"});
                 table10.AddRow(new string[] {
-                            "Default",
+                            "Default Profile",
                             "True"});
 #line 37
  testRunner.And("default shipping profile should be created as follow:", ((string)(null)), table10, "And ");
@@ -313,7 +313,7 @@ this.ScenarioInitialize(scenarioInfo);
                 TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name"});
                 table12.AddRow(new string[] {
-                            "Australia"});
+                            "Default Zone"});
 #line 43
  testRunner.And("shipping zone should be created as follow:", ((string)(null)), table12, "And ");
 #line hidden

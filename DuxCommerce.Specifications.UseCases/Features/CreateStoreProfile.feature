@@ -35,14 +35,14 @@ Scenario: Create default shipping profile
 	When Tom saves the store profile
 	Then Tom should receive status codes OK
 	And default shipping profile should be created as follow:
-	| Name    | IsDefault |
-	| Default | True      |
+	| Name            | IsDefault |
+	| Default Profile | True      |
 	And shipping origin should be created as follow:
 	| Name            | AddressLine1    | AddressLine2 | City   | PostalCode | StateName       | CountryCode | IsDefault |
 	| 1 Market Street | 1 Market Street |              | Sydney | 2000       | New South Wales | AU          | True      |
 	And shipping zone should be created as follow:
-	| Name      |
-	| Australia |
+	| Name         |
+	| Default Zone |
 	And shippig countries should be created as follow:
 	| CountryCode |
 	| AU          |	
