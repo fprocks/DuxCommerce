@@ -16,7 +16,11 @@ module UseCases =
                                
                 let! profileId = profileDto |> StoreProfileRepo.createStoreProfile
                 let! originId = profileDto.Address |> ShippingOriginRepo.createOrigin
-                profileDto.Address |> ShippingProfileRepo.createProfile originId |> ignore
+
+                // Todo: the following line never executes ShippingProfileRepo.createProfile
+                //profileDto.Address |> ShippingProfileRepo.createProfile originId |> ignore
+
+                let! _ = profileDto.Address |> ShippingProfileRepo.createProfile originId
 
                 return! StoreProfileRepo.getStoreProfile profileId 
             }

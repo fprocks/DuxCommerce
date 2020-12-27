@@ -71,10 +71,14 @@ module ShippingProfileRepo =
                 let profileId = connection.Insert<ShippingProfileDto, int64>(profileDto)
 
                 let profileOrigin = {Id = 0L; ShippingProfileId = profileId; ShippingOriginId = originId}
-                let _ = connection.Insert<ShippingProfileOriginDto, int64>(profileOrigin);
+                connection.Insert<ShippingProfileOriginDto, int64>(profileOrigin) |> ignore
 
                 let zoneDto = {Id = 0L; Name = addressDto.CountryCode; ShippingProfileId = profileId}
                 let zoneId = connection.Insert<ShippingZoneDto, int64>(zoneDto)
-                zoneId
+
+                let shippingCountry = {Id = 0L; ShippingZoneId = zoneId; CountryCode = addressDto.CountryCode}
+                let shippingCountryId = connection.Insert<ShippingCountryDto, int64>(shippingCountry)
+
+                profileId
 
             RepoAdapter.repoAdapter create

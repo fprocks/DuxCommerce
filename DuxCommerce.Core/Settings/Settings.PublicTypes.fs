@@ -71,7 +71,7 @@ type ShippingStateDto = {
 type ShippingCountryDto = {
     Id: int64
     ShippingZoneId: int64
-    //CountryCode: string
+    CountryCode: string
     //States: ShippingStateDto seq
 }
 
