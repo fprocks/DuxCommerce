@@ -106,6 +106,6 @@ type ShippingProfileDto = {
     Id: int64
     Name: string
     IsDefault: bool
-    //Origins: ShippingProfileOriginDto seq
-    //Zones: ShippingZoneDto seq
+    Origins: ShippingProfileOriginDto seq
+    Zones: ShippingZoneDto seq
 }

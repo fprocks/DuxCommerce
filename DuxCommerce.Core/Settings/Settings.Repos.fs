@@ -67,7 +67,7 @@ module ShippingProfileRepo =
     let createProfile :CreateShippingProfile =
         fun originId addressDto -> 
             let create (connection:SqlConnection) =
-                let profileDto = {Id = 0L; Name = "Default Profile"; IsDefault = true}
+                let profileDto = {Id = 0L; Name = "Default Profile"; IsDefault = true; Origins = Seq.empty; Zones = Seq.empty}
                 let profileId = connection.Insert<ShippingProfileDto, int64>(profileDto)
 
                 let profileOrigin = {Id = 0L; ShippingProfileId = profileId; ShippingOriginId = originId}
