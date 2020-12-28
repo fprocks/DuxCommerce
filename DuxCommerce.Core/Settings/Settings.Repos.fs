@@ -86,3 +86,10 @@ module ShippingProfileRepo =
                 profileId
 
             RepoAdapter.repoAdapter create
+
+    let getDefaultProfile :GetDefaultProfile=
+        fun () ->
+            let get (connection:SqlConnection) =
+                connection.Query<ShippingProfileDto>(fun p -> p.IsDefault = true).FirstOrDefault()
+    
+            RepoAdapter.repoAdapter get       

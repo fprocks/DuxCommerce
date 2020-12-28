@@ -11,6 +11,7 @@
         <Compile Include="Controllers\ShoppingCartController.fs" />
         <Compile Include="Controllers\ProductsController.fs" />
         <Compile Include="Controllers\StoreProfileController.fs" />
+        <Compile Include="Controllers\ShippingProfileController.fs" />
         <Compile Include="Startup.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>

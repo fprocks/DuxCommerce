@@ -8,6 +8,9 @@ type CreateStoreProfileUseCase = StoreProfileDto -> ConfigReader<Result<StorePro
 type GetStoreProfileUseCase = int64 -> ConfigReader<Result<StoreProfileDto, CustomError>>
 type UpdateStoreProfileUseCase = int64 -> StoreProfileDto -> ConfigReader<Result<StoreProfileDto, CustomError>>
 
+type GetDefaultShippingProfileUseCase = unit -> ConfigReader<Result<ShippingProfileDto, CustomError>>
+
+
 // Output port
 type CreateStoreProfile = StoreProfileDto -> ConfigReader<Result<int64, CustomError>>
 type GetStoreProfile = int64 -> ConfigReader<Result<StoreProfileDto, CustomError>>
@@ -18,3 +21,4 @@ type GetShippingOrigin = int64 -> ConfigReader<Result<ShippingOriginDto, CustomE
 type UpdateShippingOrigin = int64 -> ShippingOriginDto -> ConfigReader<Result<unit, CustomError>>
 
 type CreateShippingProfile = int64 -> AddressDto -> ConfigReader<Result<int64, CustomError>>
+type GetDefaultProfile = unit -> ConfigReader<Result<ShippingProfileDto, CustomError>>
