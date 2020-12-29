@@ -318,40 +318,38 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("shipping zone should be created as follow:", ((string)(null)), table12, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
-                            "CountryId",
                             "CountryCode"});
                 table13.AddRow(new string[] {
-                            "1",
                             "AU"});
 #line 46
  testRunner.And("shippig countries should be created as follow:", ((string)(null)), table13, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
-                            "CountryId",
-                            "State"});
+                            "CountryCode",
+                            "Name"});
                 table14.AddRow(new string[] {
-                            "1",
+                            "AU",
                             "Australian Capital Territory"});
                 table14.AddRow(new string[] {
-                            "1",
+                            "AU",
                             "New South Wales"});
                 table14.AddRow(new string[] {
-                            "1",
+                            "AU",
                             "Northern Territory"});
                 table14.AddRow(new string[] {
-                            "1",
+                            "AU",
                             "Queensland"});
                 table14.AddRow(new string[] {
-                            "1",
+                            "AU",
                             "South Australia"});
                 table14.AddRow(new string[] {
-                            "1",
+                            "AU",
                             "Tasmania"});
                 table14.AddRow(new string[] {
-                            "1",
+                            "AU",
                             "Victoria"});
                 table14.AddRow(new string[] {
-                            "1",
+                            "AU",
                             "Western Australia"});
 #line 49
  testRunner.And("shippig states should be created as follow:", ((string)(null)), table14, "And ");

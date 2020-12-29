@@ -55,11 +55,16 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Then(@"shippig countries should be created as follow:")]
         public void ThenShippigCountriesShouldBeCreatedAsFollow(Table table)
         {
+            var expected = table.CreateSet<ShippingCountry>();
+            CompareCountries(expected.ToList(), _shippingProfile.Zones.SelectMany(x => x.Countries).ToList());
         }
 
         [Then(@"shippig states should be created as follow:")]
         public void ThenShippigStatesShouldBeCreatedAsFollow(Table table)
         {
+            var expected = table.CreateSet<ShippingState>();
+            var actual = _shippingProfile.Zones.SelectMany(x => x.Countries).SelectMany(x => x.States);
+            CompareStates(expected.ToList(), actual.ToList());
         }
 
         private void CompareOrigins(List<ExpectedOrigin> expected, List<ShippingOriginDto> actual)
@@ -73,6 +78,25 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             expected.Count().Should().Be(actual.Count());
             for(var index = 0; index < expected.Count(); index ++)
             {
+                expected[index].Name.Should().Be(actual[index].Name);
+            }
+        }
+
+        private void CompareCountries(List<ShippingCountry> expected, List<ShippingCountryDto> actual)
+        {
+            expected.Count().Should().Be(actual.Count());
+            for (var index = 0; index < expected.Count(); index++)
+            {
+                expected[index].CountryCode.Should().Be(actual[index].CountryCode);
+            }
+        }
+
+        private void CompareStates(List<ShippingState> expected, List<StateDto> actual)
+        {
+            expected.Count().Should().Be(actual.Count());
+            for (var index = 0; index < expected.Count(); index++)
+            {
+                expected[index].CountryCode.Should().Be(actual[index].CountryCode);
                 expected[index].Name.Should().Be(actual[index].Name);
             }
         }
