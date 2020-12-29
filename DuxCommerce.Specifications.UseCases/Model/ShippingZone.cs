@@ -1,6 +1,6 @@
 ﻿namespace DuxCommerce.Specifications.UseCases.Model
 {
-    public class ExpectedZone
+    public class ShippingZone
     {
         public string Name { get; set; }
     }

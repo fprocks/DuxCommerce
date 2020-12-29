@@ -1,6 +1,6 @@
 ﻿namespace DuxCommerce.Specifications.UseCases.Model
 {
-    public class ExpectedOrigin
+    public class ShippingOrigin
     {
         public string Name { get; set; }
         public bool IsDefault { get; set; }

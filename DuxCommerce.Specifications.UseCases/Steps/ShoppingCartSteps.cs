@@ -57,7 +57,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Then(@"her cart details should look as follow:")]
         public async Task ThenHerCartDetailsShouldLookAsFollowAsync(Table table)
         {
-            var expectedItems = table.CreateSet<ExpectedCartItem>();
+            var expectedItems = table.CreateSet<CartItem>();
             var products = _context.CreatedProducts;
             foreach (var item in expectedItems)
             {
@@ -115,7 +115,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             return lastApiResult;
         }
 
-        private void CompareCartItems(List<ExpectedCartItem> expectedItems, List<CartItemDto> lineItems)
+        private void CompareCartItems(List<CartItem> expectedItems, List<CartItemDto> lineItems)
         {
             expectedItems.Count().Should().Be(lineItems.Count());
             expectedItems.EqualTo(lineItems).Should().BeTrue();

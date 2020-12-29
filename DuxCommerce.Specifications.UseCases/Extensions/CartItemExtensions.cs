@@ -6,7 +6,7 @@ namespace DuxCommerce.Specifications.UseCases.Extensions
 {
     public static class CartItemExtensions
     {
-        public static bool EqualTo(this List<ExpectedCartItem> expectedItems, List<CartItemDto> actualItems)
+        public static bool EqualTo(this List<CartItem> expectedItems, List<CartItemDto> actualItems)
         {
             for (var index = 0; index < expectedItems.Count; index++)
             {
@@ -17,7 +17,7 @@ namespace DuxCommerce.Specifications.UseCases.Extensions
             return true;
         }
 
-        private static bool EqualTo(this ExpectedCartItem expected, CartItemDto actual)
+        private static bool EqualTo(this CartItem expected, CartItemDto actual)
         {
             return expected.ProductId == actual.ProductId &&
                 expected.Name == actual.ProductName &&

@@ -8,7 +8,7 @@ namespace DuxCommerce.Specifications.UseCases.Extensions
 {
     public static class OriginExtensions
     {
-        public static bool EqualTo(this List<ExpectedOrigin> expectedOrigins, List<ShippingOriginDto> actualOrigins)
+        public static bool EqualTo(this List<ShippingOrigin> expectedOrigins, List<ShippingOriginDto> actualOrigins)
         {
             for (var index = 0; index < expectedOrigins.Count; index++)
             {
@@ -19,7 +19,7 @@ namespace DuxCommerce.Specifications.UseCases.Extensions
             return true;
         }
 
-        private static bool EqualTo(this ExpectedOrigin expected, ShippingOriginDto actual)
+        private static bool EqualTo(this ShippingOrigin expected, ShippingOriginDto actual)
         {
             return expected.Name == actual.Name &&
                 expected.IsDefault == actual.IsDefault &&

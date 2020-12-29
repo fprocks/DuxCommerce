@@ -33,7 +33,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
             _shippingProfile = JsonConvert.DeserializeObject<ShippingProfileDto>(profileStr);
 
-            var expected = table.CreateSet<ExpectedShippingProfile>().FirstOrDefault();
+            var expected = table.CreateSet<ShippingProfile>().FirstOrDefault();
             expected.Name.Should().Be(_shippingProfile.Name);
             expected.IsDefault.Should().Be(_shippingProfile.IsDefault);
         }
@@ -41,14 +41,14 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Then(@"shipping origin should be created as follow:")]
         public void ThenShippingOriginShouldBeCreatedAsFollow(Table table)
         {
-            var expected = table.CreateSet<ExpectedOrigin>();
+            var expected = table.CreateSet<ShippingOrigin>();
             CompareOrigins(expected.ToList(), _shippingProfile.Origins.ToList());
         }
 
         [Then(@"shipping zone should be created as follow:")]
         public void ThenShippingZoneShouldBeCreatedAsFollow(Table table)
         {
-            var expected = table.CreateSet<ExpectedZone>();
+            var expected = table.CreateSet<ShippingZone>();
             CompareZones(expected.ToList(), _shippingProfile.Zones.ToList());
         }
 
@@ -67,13 +67,13 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             CompareStates(expected.ToList(), actual.ToList());
         }
 
-        private void CompareOrigins(List<ExpectedOrigin> expected, List<ShippingOriginDto> actual)
+        private void CompareOrigins(List<ShippingOrigin> expected, List<ShippingOriginDto> actual)
         {
             expected.Count().Should().Be(actual.Count());
             expected.Equals(actual);
         }
 
-        private void CompareZones(List<ExpectedZone> expected, List<ShippingZoneDto> actual)
+        private void CompareZones(List<ShippingZone> expected, List<ShippingZoneDto> actual)
         {
             expected.Count().Should().Be(actual.Count());
             for(var index = 0; index < expected.Count(); index ++)
