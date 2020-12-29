@@ -313,7 +313,7 @@ this.ScenarioInitialize(scenarioInfo);
                 TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name"});
                 table12.AddRow(new string[] {
-                            "Default Zone"});
+                            "AU"});
 #line 43
  testRunner.And("shipping zone should be created as follow:", ((string)(null)), table12, "And ");
 #line hidden

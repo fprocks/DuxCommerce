@@ -42,7 +42,7 @@ Scenario: Create default shipping profile
 	| 1 Market Street | 1 Market Street |              | Sydney | 2000       | New South Wales | AU          | True      |
 	And shipping zone should be created as follow:
 	| Name         |
-	| Default Zone |
+	| AU |
 	And shippig countries should be created as follow:
 	| CountryId | CountryCode |
 	| 1         | AU          |

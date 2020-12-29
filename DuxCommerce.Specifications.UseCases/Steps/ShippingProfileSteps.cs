@@ -48,6 +48,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Then(@"shipping zone should be created as follow:")]
         public void ThenShippingZoneShouldBeCreatedAsFollow(Table table)
         {
+            var expected = table.CreateSet<ExpectedZone>();
+            CompareZones(expected.ToList(), _shippingProfile.Zones.ToList());
         }
 
         [Then(@"shippig countries should be created as follow:")]
@@ -62,8 +64,17 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
         private void CompareOrigins(List<ExpectedOrigin> expected, List<ShippingOriginDto> actual)
         {
-            expected.Count().Should().Be(_shippingProfile.Origins.Count());
+            expected.Count().Should().Be(actual.Count());
             expected.Equals(actual);
+        }
+
+        private void CompareZones(List<ExpectedZone> expected, List<ShippingZoneDto> actual)
+        {
+            expected.Count().Should().Be(actual.Count());
+            for(var index = 0; index < expected.Count(); index ++)
+            {
+                expected[index].Name.Should().Be(actual[index].Name);
+            }
         }
     }
 }
