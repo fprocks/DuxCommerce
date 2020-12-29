@@ -31,22 +31,22 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
         public async Task<HttpResponseMessage> PostAsync(string url, object payload)
         {
             var method = "POST";
-            return await SendRequest(url, payload, method);
+            return await SendRequest(url, method, payload);
         }
 
         public async Task<HttpResponseMessage> PutAsync(string url, object payload)
         {
-            var method = "PUT"; 
-            return await SendRequest(url, payload, method);
+            var method = "PUT";
+            return await SendRequest(url, method, payload);
         }
 
         public async Task<HttpResponseMessage> DeleteAsync(string url, object payload)
         {
             var method = "DELETE";
-            return await SendRequest(url, payload, method);
+            return await SendRequest(url, method, payload);
         }
 
-        private async Task<HttpResponseMessage> SendRequest(string url, object payload, string method)
+        private async Task<HttpResponseMessage> SendRequest(string url, string method, object payload)
         {
             var json = JsonConvert.SerializeObject(payload);
             var content = new StringContent(json, Encoding.UTF8, "application/json");

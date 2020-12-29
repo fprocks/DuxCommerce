@@ -11,7 +11,7 @@ open DuxCommerce.ShoppingCarts.PublicTypes
 type ShoppingCartController (logger : ILogger<ShoppingCartController>) =
     inherit DuxControllerBase()
 
-    // Todo: pass in shopperId from front end before we can read it from ShopperContext
+    // Note: pass in shopperId from front end before we can read it from ShopperContext
     [<HttpPost("{shopperId}/items")>]
     member this.Post(shopperId: int64, request: AddCartItemRequest) : IActionResult =
         let result = ConfigReader.execute (UseCases.addCartItem shopperId request)

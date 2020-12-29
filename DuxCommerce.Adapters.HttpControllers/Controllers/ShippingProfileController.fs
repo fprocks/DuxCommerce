@@ -11,7 +11,7 @@ type ShippingProfileController (logger : ILogger<ShippingProfileController>) =
     inherit DuxControllerBase()
 
     [<HttpGet("default")>]
-    member this.Get : IActionResult=
+    member this.Get() : IActionResult=
         let result = ConfigReader.execute (UseCases.getDefaultShippingProfile ())
         match result with
         | Ok p -> base.Ok(p) :> _

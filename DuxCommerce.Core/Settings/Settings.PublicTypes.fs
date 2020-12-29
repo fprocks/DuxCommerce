@@ -51,6 +51,7 @@ type ShippingOriginDto = {
     Name: string
     AddressId: int64
     IsDefault: bool
+    Address: AddressDto
 }
 
 [<CLIMutable>]
@@ -72,7 +73,7 @@ type ShippingCountryDto = {
     Id: int64
     ShippingZoneId: int64
     CountryCode: string
-    //States: ShippingStateDto seq
+    States: StateDto seq
 }
 
 [<CLIMutable>]
@@ -98,7 +99,7 @@ type ShippingZoneDto = {
     Name: string
     ShippingProfileId: int64
     //Rates: ShippingRateDto seq
-    //Countries: ShippingCountryDto seq
+    Countries: ShippingCountryDto seq
 }
 
 [<CLIMutable>]
@@ -106,6 +107,6 @@ type ShippingProfileDto = {
     Id: int64
     Name: string
     IsDefault: bool
-    Origins: ShippingProfileOriginDto seq
+    Origins: ShippingOriginDto seq
     Zones: ShippingZoneDto seq
 }

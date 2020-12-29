@@ -44,18 +44,18 @@ Scenario: Create default shipping profile
 	| Name         |
 	| Default Zone |
 	And shippig countries should be created as follow:
-	| CountryCode |
-	| AU          |	
+	| CountryId | CountryCode |
+	| 1         | AU          |
 	And shippig states should be created as follow:
-	| State                        |
-	| Australian Capital Territory |
-	| New South Wales              |
-	| Northern Territory           |
-	| Queensland                   |
-	| South Australia              |
-	| Tasmania                     |
-	| Victoria                     |
-	| Western Australia            |
+	| CountryId | State                        |
+	| 1         | Australian Capital Territory |
+	| 1         | New South Wales              |
+	| 1         | Northern Territory           |
+	| 1         | Queensland                   |
+	| 1         | South Australia              |
+	| 1         | Tasmania                     |
+	| 1         | Victoria                     |
+	| 1         | Western Australia            |
 
 Scenario: Create store profile - red path
 	Given Tom enters the following store profile:
