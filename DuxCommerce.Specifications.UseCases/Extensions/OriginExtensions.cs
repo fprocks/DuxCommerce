@@ -1,5 +1,5 @@
 ﻿using DuxCommerce.Settings.PublicTypes;
-using DuxCommerce.Specifications.UseCases.Model;
+using DuxCommerce.Specifications.UseCases.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -1,6 +1,6 @@
 ﻿using DuxCommerce.Settings.PublicTypes;
 using DuxCommerce.Specifications.UseCases.Hooks;
-using DuxCommerce.Specifications.UseCases.Model;
+using DuxCommerce.Specifications.UseCases.Models;
 using FluentAssertions;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -65,6 +65,56 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var expected = table.CreateSet<ShippingState>();
             var actual = _shippingProfile.Zones.SelectMany(x => x.Countries).SelectMany(x => x.States);
             CompareStates(expected.ToList(), actual.ToList());
+        }
+
+        [Given(@"Tom already created the following shipping origins:")]
+        public void GivenTomAlreadyCreatedTheFollowingShippingOrigins(Table table)
+        {
+        }
+
+        [Given(@"Tom enters shipping profile name Fragile Products")]
+        public void GivenTomEntersShippingProfileNameFragileProducts()
+        {
+        }
+
+        [Given(@"Tom selects shipping origin (.*)")]
+        public void GivenTomSelectsShippingOrigin(int p0)
+        {
+        }
+
+        [Given(@"Tom selects the following shipping countries:")]
+        public void GivenTomSelectsTheFollowingShippingCountries(Table table)
+        {
+        }
+
+        [Given(@"Tom selects the following shipping states:")]
+        public void GivenTomSelectsTheFollowingShippingStates(Table table)
+        {
+        }
+
+        [Given(@"Tom selects the rate type (.*)")]
+        public void GivenTomSelectsTheRateType(string p0)
+        {
+        }
+
+        [Given(@"Tom enters the rate name (.*)")]
+        public void GivenTomEntersTheRateName(string p0)
+        {
+        }
+
+        [Given(@"Tome enters the following rates:")]
+        public void GivenTomeEntersTheFollowingRates(Table table)
+        {
+        }
+
+        [When(@"Tom saves the shipping profile")]
+        public void WhenTomSavesTheShippingProfile()
+        {
+        }
+
+        [Then(@"shipping profile should be saved as expected")]
+        public void ThenShippingProfileShouldBeSavedAsExpected()
+        {
         }
 
         private void CompareOrigins(List<ShippingOrigin> expected, List<ShippingOriginDto> actual)

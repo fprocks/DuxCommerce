@@ -6,6 +6,7 @@
     <None Remove="appsettings.json" />
   </ItemGroup>
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\CreateShippingProfile - Copy.feature.cs" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Features\CreateStoreDetails - Copy.feature.cs" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Features\CreateStoreProfile - Copy.feature.cs" />
   </ItemGroup>
@@ -33,6 +34,9 @@
     <ProjectReference Include="..\DuxCommerce.Adapters.HttpControllers\DuxCommerce.Adapters.HttpControllers.fsproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Features\CreateShippingProfile.feature.cs">
+      <DependentUpon>CreateShippingProfile.feature</DependentUpon>
+    </Compile>
     <Compile Update="Features\CreateStoreProfile.feature.cs">
       <DependentUpon>CreateStoreProfile.feature</DependentUpon>
     </Compile>
@@ -41,6 +45,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <SpecFlowFeatureFiles Update="Features\CreateShippingProfile.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\CreateStoreProfile.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>

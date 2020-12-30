@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.Specifications.UseCases.Model
+﻿namespace DuxCommerce.Specifications.UseCases.Models
 {
     public class ShippingState
     {

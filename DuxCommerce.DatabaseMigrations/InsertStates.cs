@@ -30,9 +30,11 @@ namespace DuxCommerce.DatabaseMigrations
             allStates.Add(GetUsStates());
             allStates.Add(GetInStates());
             allStates.Add(GetAuStates());
+            allStates.Add(GetNzStates());
 
             return allStates;
         }
+
         private CountryState GetUsStates()
         {
             var states = new List<string>
@@ -165,6 +167,31 @@ namespace DuxCommerce.DatabaseMigrations
             };
 
             return new CountryState("AU", states);
+        }
+
+        private CountryState GetNzStates()
+        {
+            var states = new List<string>
+            {
+                "Auckland",
+                "Bay of Plenty",
+                "Canterbury",
+                "Gisborne",
+                "Hawke’s Bay",
+                "Manawatu-Wanganui",
+                "Marlborough",
+                "Nelson",
+                "Northland",
+                "Otago",
+                "Southland",
+                "Taranaki",
+                "Tasman",
+                "Waikato",
+                "Wellington",
+                "West Coast"
+            };
+
+            return new CountryState("NZ", states);
         }
 
         class CountryState

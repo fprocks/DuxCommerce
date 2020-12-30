@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DuxCommerce.Specifications.UseCases.Model
+namespace DuxCommerce.Specifications.UseCases.Models
 {
     public class CartItem
     {

@@ -1,5 +1,5 @@
 ﻿using DuxCommerce.ShoppingCarts.PublicTypes;
-using DuxCommerce.Specifications.UseCases.Model;
+using DuxCommerce.Specifications.UseCases.Models;
 using System.Collections.Generic;
 
 namespace DuxCommerce.Specifications.UseCases.Extensions
