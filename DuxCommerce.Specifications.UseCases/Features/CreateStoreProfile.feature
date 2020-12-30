@@ -56,7 +56,7 @@ Scenario: Create default shipping profile
 	And shipping origin should be created as follow:
 	| Name            | AddressLine1    | AddressLine2 | City   | PostalCode | StateName       | CountryCode | IsDefault |
 	| 1 Market Street | 1 Market Street |              | Sydney | 2000       | New South Wales | AU          | True      |
-	And shipping zone should be created as follow:
+	And shipping zones should be created as follow:
 	| Name |
 	| AU   |
 	And shippig countries should be created as follow:

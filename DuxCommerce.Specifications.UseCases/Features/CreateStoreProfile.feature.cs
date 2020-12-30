@@ -401,7 +401,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table18.AddRow(new string[] {
                             "AU"});
 #line 59
- testRunner.And("shipping zone should be created as follow:", ((string)(null)), table18, "And ");
+ testRunner.And("shipping zones should be created as follow:", ((string)(null)), table18, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
                             "CountryCode"});

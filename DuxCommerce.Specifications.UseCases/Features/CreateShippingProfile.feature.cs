@@ -148,7 +148,7 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 12
- testRunner.And("Tom enters shipping profile name Fragile Products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Tom enters shipping profile name Heavy Products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
  testRunner.And("Tom selects shipping origin 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

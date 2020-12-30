@@ -47,10 +47,17 @@ module UseCases =
                 return! StoreProfileRepo.getStoreProfile id
             }
             
-    let getDefaultShippingProfile :GetDefaultShippingProfileUseCase=
+    let getDefaultShippingProfile :GetDefaultProfileUseCase =
         fun () ->
             readerResult {
                 return! ShippingProfileRepo.getDefaultProfile ()
+            }
+
+    let createShippingOrigin :CreateShippingOriginUseCase = 
+        fun addressDto ->
+            readerResult {
+                let! originId = addressDto |> ShippingOriginRepo.createOrigin
+                return! ShippingOriginRepo.getOrigin originId
             }
             
     

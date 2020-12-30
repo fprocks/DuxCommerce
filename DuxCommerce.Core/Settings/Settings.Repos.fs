@@ -51,7 +51,7 @@ module ShippingOriginRepo =
     let getOrigin :GetShippingOrigin =
         fun id ->
             let get (connection:SqlConnection) =
-                connection.Query<ShippingOriginDto>(fun p -> p.Id = id).FirstOrDefault()
+                connection.Query<ShippingOriginDto>(fun (p:ShippingOriginDto) -> p.Id = id).FirstOrDefault()
             
             RepoAdapter.repoAdapter get          
         
