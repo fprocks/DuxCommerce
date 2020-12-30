@@ -18,13 +18,15 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         private readonly IApiClient _apiClient;
 
         private ShippingProfileDto _profileCreated;
-
+        private ShippingProfileDto _profileRequest;
         private ShippingOriginDto _originCreated;
 
         public ShippingProfileSteps(StepsContext context, IApiClient apiClient)
         {
             _context = context;
             _apiClient = apiClient;
+
+            _profileRequest = new ShippingProfileDto();
         }
 
         [Then(@"default shipping profile should be created as follow:")]
@@ -83,6 +85,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Given(@"Tom enters shipping profile name (.*)")]
         public void GivenTomEntersShippingProfileNameFragileProducts(string name)
         {
+            _profileRequest.Name = name;
         }
 
         [Given(@"Tom selects shipping origin (.*)")]

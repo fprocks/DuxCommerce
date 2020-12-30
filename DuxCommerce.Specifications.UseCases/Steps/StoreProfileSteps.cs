@@ -92,7 +92,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             CompareStoreAddress(expectedAddress, _profilePostUpdate.Address).Should().BeTrue();
         }
 
-        private async Task<StoreProfileDto> GetCreatedProfile(HttpResponseMessage apiResult)
+        private async Task<StoreProfileDto> GetCreatedProfile(HttpResponseMessage apiResult) 
         {
             var resultStr = await apiResult.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<StoreProfileDto>(resultStr);

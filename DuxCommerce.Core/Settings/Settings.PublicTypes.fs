@@ -1,5 +1,34 @@
 ﻿namespace DuxCommerce.Settings.PublicTypes
 
+type ShippingCountryRequest = {
+    CountryCode: string
+    States: int64 seq
+}
+
+type ShippingRateItemRequest = {
+    Min: decimal
+    Max: decimal
+    Rate: decimal
+}
+
+type ShippingRateRequest = {
+    Name: string
+    Ratetype: string
+    Items: ShippingRateItemRequest seq
+}
+
+type ShippingZoneRequest = {
+    Name: string
+    Rates: ShippingRateRequest seq
+    Countries: ShippingCountryRequest seq
+}
+
+type CreateShippingProfileRequest = {
+    Name: string
+    Origins: int64 seq
+    Zones: ShippingZoneRequest seq
+}
+
 [<CLIMutable>]
 type CountryDto = {
     Id: int64
@@ -98,7 +127,7 @@ type ShippingZoneDto = {
     Id: int64
     Name: string
     ShippingProfileId: int64
-    //Rates: ShippingRateDto seq
+    Rates: ShippingRateDto seq
     Countries: ShippingCountryDto seq
 }
 
