@@ -2,9 +2,9 @@
 
 open DuxCommerce.Common
 open DuxCommerce.Settings
-open DuxCommerce.Settings.PublicTypes
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Logging
+open DuxCommerce.Settings.Dto
 
 [<ApiController>]
 [<Route("api/[controller]")>]

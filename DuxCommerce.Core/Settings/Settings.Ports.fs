@@ -1,7 +1,7 @@
 ﻿namespace DuxCommerce.Settings.Ports
 
 open DuxCommerce.Common
-open DuxCommerce.Settings.PublicTypes
+open DuxCommerce.Settings.Dto
 
 // Input port
 type CreateStoreProfileUseCase = StoreProfileDto -> ConfigReader<Result<StoreProfileDto, CustomError>>

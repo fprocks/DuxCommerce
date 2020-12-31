@@ -73,8 +73,8 @@ module ShoppingCart =
     let addCartItem cart product (cmd:AddCartItemCommand) =
         let lineItems = 
             let check cartItem = cartItem.ProductId = cmd.ProductId
-            let itemFound = cart.LineItems |> Seq.tryFind check
-            match itemFound with
+            let itemExists = cart.LineItems |> Seq.tryFind check
+            match itemExists with
             | Some _ ->
                 cart.LineItems |> Seq.map (CartItem.addQtyIf cmd)
             | None ->

@@ -1,4 +1,4 @@
-﻿using DuxCommerce.Settings.PublicTypes;
+﻿using DuxCommerce.Settings.Dto;
 using FluentMigrator;
 using Newtonsoft.Json;
 using System.Collections.Generic;

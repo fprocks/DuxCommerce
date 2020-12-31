@@ -1,4 +1,5 @@
-﻿using DuxCommerce.Settings.PublicTypes;
+﻿using DuxCommerce.Settings.Dto;
+using DuxCommerce.Settings.PublicTypes;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using DuxCommerce.Specifications.UseCases.Models;
 using FluentAssertions;
@@ -18,21 +19,26 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         private readonly IApiClient _apiClient;
 
         private ShippingProfileDto _profileCreated;
-        private ShippingProfileDto _profileRequest;
+
         private ShippingOriginDto _originCreated;
+        private ShippingProfileRequest _profileRequest;
+
+        private ShippingZoneRequest _zoneRquest;
+        private List<ShippingCountryRequest> _countryRequests;
+        private ShippingRateRequest _rateRequest;
 
         public ShippingProfileSteps(StepsContext context, IApiClient apiClient)
         {
             _context = context;
             _apiClient = apiClient;
 
-            _profileRequest = new ShippingProfileDto();
+            _profileRequest = new ShippingProfileRequest();
         }
 
         [Then(@"default shipping profile should be created as follow:")]
         public async Task ThenDefaultShippingProfileShouldBeCreatedAsFollowAsync(Table table)
         {
-            var url = $"api/shippingprofile/default";
+            var url = $"api/shippingprofiles/default";
             var apiResult = await _apiClient.GetAsync(url);
             var profileStr = await apiResult.Content.ReadAsStringAsync();
 
@@ -91,36 +97,61 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Given(@"Tom selects shipping origin (.*)")]
         public void GivenTomSelectsShippingOrigin(int originId)
         {
+            _profileRequest.Origins = new List<long> { _originCreated.Id };
+        }
+
+        [Given(@"Tom enters the zone name (.*)")]
+        public void GivenTomEntersTheZoneNameANZ(string zoneName)
+        {
+            _zoneRquest = new ShippingZoneRequest { Name = zoneName };
         }
 
         [Given(@"Tom selects the following shipping countries:")]
         public void GivenTomSelectsTheFollowingShippingCountries(Table table)
         {
+            var countryCodes = table.CreateSet<ShippingCountry>();
+            _countryRequests = countryCodes
+                .Select(c => new ShippingCountryRequest { CountryCode = c.CountryCode })
+                .ToList();
         }
 
         [Given(@"Tom selects the following shipping states:")]
         public void GivenTomSelectsTheFollowingShippingStates(Table table)
         {
+            var shippingStates = table.CreateSet<ShippingState>();
+            foreach(var country in _countryRequests)
+            {
+                var states = shippingStates
+                    .Where(s => s.CountryCode == country.CountryCode)
+                    .Select(x => x.StateId);
+
+                country.States = states;
+            }
+
+            _zoneRquest.Countries = _countryRequests;
         }
 
-        [Given(@"Tom selects the rate type (.*)")]
-        public void GivenTomSelectsTheRateType(string p0)
+        [Given(@"Tom selects rate type (.*) and enters rate name (.*)")]
+        public void GivenTomSelectsRateTypeAndEntersRateName(string rateType, string rateName)
         {
-        }
-
-        [Given(@"Tom enters the rate name (.*)")]
-        public void GivenTomEntersTheRateName(string p0)
-        {
+            _rateRequest = new ShippingRateRequest { Ratetype = rateType, Name = rateName };
         }
 
         [Given(@"Tome enters the following rates:")]
         public void GivenTomeEntersTheFollowingRates(Table table)
         {
+            var rateItems = table.CreateSet<ShippingRateItemRequest>();
+            _rateRequest.Items = rateItems;
+
+            _zoneRquest.Rates = new List<ShippingRateRequest> { _rateRequest };
+            _profileRequest.Zones = new List<ShippingZoneRequest> { _zoneRquest };
         }
 
         [When(@"Tom saves the shipping profile")]
-        public void WhenTomSavesTheShippingProfile()
+        public async Task WhenTomSavesTheShippingProfileAsync()
         {
+            var apiResult = await _apiClient.PostAsync("api/ShippingProfiles", _profileRequest);
+            _context.ApiResult = apiResult;
         }
 
         [Then(@"shipping profile should be saved as expected")]

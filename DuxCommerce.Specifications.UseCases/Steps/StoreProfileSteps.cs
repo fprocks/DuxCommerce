@@ -1,4 +1,4 @@
-﻿using DuxCommerce.Settings.PublicTypes;
+﻿using DuxCommerce.Settings.Dto;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using FluentAssertions;
 using Newtonsoft.Json;
@@ -60,7 +60,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
         
         [When(@"Tom saves the store profile")]
-        public async System.Threading.Tasks.Task WhenTomSavesTheStoreProfileAsync()
+        public async Task WhenTomSavesTheStoreProfileAsync()
         {
             var apiResult = await _apiClient.PostAsync("api/storeprofile", _profileRequest);
             _context.ApiResult = apiResult;

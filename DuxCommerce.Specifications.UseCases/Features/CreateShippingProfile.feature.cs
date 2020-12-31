@@ -153,41 +153,43 @@ this.FeatureBackground();
 #line 13
  testRunner.And("Tom selects shipping origin 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 14
+ testRunner.And("Tom enters the zone name ANZ", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "CountryCode"});
                 table5.AddRow(new string[] {
                             "AU"});
                 table5.AddRow(new string[] {
                             "NZ"});
-#line 14
+#line 15
  testRunner.And("Tom selects the following shipping countries:", ((string)(null)), table5, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "StateId",
                             "CountryCode",
                             "Name"});
                 table6.AddRow(new string[] {
+                            "101",
                             "AU",
                             "New South Wales"});
                 table6.AddRow(new string[] {
+                            "103",
                             "AU",
                             "Queensland"});
                 table6.AddRow(new string[] {
-                            "AU",
-                            "Victoria"});
-                table6.AddRow(new string[] {
+                            "108",
                             "NZ",
                             "Auckland"});
                 table6.AddRow(new string[] {
+                            "122",
                             "NZ",
                             "Wellington"});
-#line 18
+#line 19
  testRunner.And("Tom selects the following shipping states:", ((string)(null)), table6, "And ");
 #line hidden
 #line 25
- testRunner.And(string.Format("Tom selects the rate type {0}", rateType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 26
- testRunner.And(string.Format("Tom enters the rate name {0}", rateName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("Tom selects rate type {0} and enters rate name {1}", rateType, rateName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Min",
@@ -205,16 +207,16 @@ this.FeatureBackground();
                             "200",
                             "40000",
                             "200"});
-#line 27
+#line 26
  testRunner.And("Tome enters the following rates:", ((string)(null)), table7, "And ");
 #line hidden
-#line 32
+#line 31
  testRunner.When("Tom saves the shipping profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 33
+#line 32
  testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 34
+#line 33
  testRunner.And("shipping profile should be saved as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

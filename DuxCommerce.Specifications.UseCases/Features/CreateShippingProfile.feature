@@ -11,19 +11,18 @@ Background:
 Scenario: Create custom shipping profile
 	And Tom enters shipping profile name Heavy Products
 	And Tom selects shipping origin 1
+	And Tom enters the zone name ANZ
 	And Tom selects the following shipping countries:
 	| CountryCode |
 	| AU          |
 	| NZ          |
 	And Tom selects the following shipping states:
-	| CountryCode | Name            |
-	| AU          | New South Wales |
-	| AU          | Queensland      |
-	| AU          | Victoria        |
-	| NZ          | Auckland        |
-	| NZ          | Wellington      |
-	And Tom selects the rate type <RateType>
-	And Tom enters the rate name <RateName>
+	| StateId | CountryCode | Name            |
+	| 101     | AU          | New South Wales |
+	| 103     | AU          | Queensland      |
+	| 108     | NZ          | Auckland        |
+	| 122     | NZ          | Wellington      |
+	And Tom selects rate type <RateType> and enters rate name <RateName>
 	And Tome enters the following rates:
 	| Min | Max   | Rate |
 	| 0   | 100   | 50   |

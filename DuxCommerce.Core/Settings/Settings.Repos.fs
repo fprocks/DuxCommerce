@@ -2,7 +2,7 @@
 
 open System.Data.SqlClient
 open DuxCommerce.Core.Common
-open DuxCommerce.Settings.PublicTypes
+open DuxCommerce.Settings.Dto
 open RepoDb
 open System.Linq
 open DuxCommerce.Settings.Ports

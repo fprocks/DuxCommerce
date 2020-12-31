@@ -7,7 +7,7 @@ open Microsoft.Extensions.Logging
 
 [<ApiController>]
 [<Route("api/[controller]")>]
-type ShippingProfileController (logger : ILogger<ShippingProfileController>) =
+type StatesController (logger : ILogger<StatesController>) =
     inherit DuxControllerBase()
 
     [<HttpGet("default")>]
