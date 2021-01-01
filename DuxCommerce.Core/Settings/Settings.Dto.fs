@@ -3,117 +3,7 @@
 open DuxCommerce.Common
 open DuxCommerce.Settings.InternalTypes
 open DuxCommerce.Settings.SimpleTypes
-  
-[<CLIMutable>]
-type CountryDto = {
-    Id: int64
-    Name: string
-    ISOCode: string
-} 
-
-[<CLIMutable>]
-type StateDto = {
-    Id: int64
-    CountryCode: string
-    Name: string
-}
-
-[<CLIMutable>]
-type AddressDto = {
-    Id: int64
-    FirstName: string
-    LastName: string
-    AddressLine1: string
-    AddressLine2: string
-    City: string
-    PostalCode: string
-    StateId: int64
-    StateName: string
-    CountryCode: string
-    IsBillingAddress: bool
-}
-
-[<CLIMutable>]
-type StoreProfileDto = {
-    Id: int64
-    StoreName: string
-    ContactEmail: string
-    SenderEmail: string
-    BusinessName: string
-    PhoneNumber: string
-    TimeZoneId: string
-    UnitSystem: string
-    WeightUnit: string
-    LengthUnit: string
-    AddressId: int64
-    Address: AddressDto
-}
-
-[<CLIMutable>]
-type ShippingOriginDto = {
-    Id: int64
-    Name: string
-    AddressId: int64
-    IsDefault: bool
-    Address: AddressDto
-}
-
-[<CLIMutable>]
-type ShippingProfileOriginDto = {
-    Id: int64
-    ShippingProfileId: int64
-    ShippingOriginId: int64
-}
-
-[<CLIMutable>]
-type ShippingStateDto = {
-    Id: int64
-    ShippingCountryId: int64
-    StateId: int64
-}
-
-[<CLIMutable>]
-type ShippingCountryDto = {
-    Id: int64
-    ShippingZoneId: int64
-    CountryCode: string
-    States: StateDto seq
-}
-
-[<CLIMutable>]
-type ShippingMethodDto = {
-    Id: int64
-    ShippingZoneId: int64
-    Name: string
-    Type: string
-}
-
-[<CLIMutable>]
-type ShippingRateDto = {
-    Id: int64
-    ShippingMethodId: int64
-    Min: decimal
-    Max: decimal
-    Rate: decimal
-}
-
-[<CLIMutable>] 
-type ShippingZoneDto = {
-    Id: int64
-    Name: string
-    ShippingProfileId: int64
-    Methods: ShippingMethodDto seq
-    Countries: ShippingCountryDto seq
-}
-
-[<CLIMutable>]
-type ShippingProfileDto = {
-    Id: int64
-    Name: string
-    IsDefault: bool
-    Origins: ShippingOriginDto seq
-    Zones: ShippingZoneDto seq
-}
+open DuxCommerce.Settings.PublicTypes
 
 module AddressDto =
     let toDomain (dto: AddressDto) :Result<Address, string> =
@@ -140,7 +30,7 @@ module AddressDto =
                 CountryCode = country
             }
         }
-        
+
 module StoreProfileDto =
     let toDomain dto :Result<StoreProfile, string> =
         result {
@@ -169,3 +59,73 @@ module StoreProfileDto =
                 Address = address
               } 
         }
+
+module ShippingCountryDto =
+    let toDomain (dto:ShippingCountryDto) =
+        result {
+            let! code = CountryCode.create "CountryCode" dto.CountryCode
+            let states = dto.StateIds |> Seq.map StateId.create
+
+            return {
+                CountryCode = code
+                States = states
+            }
+        }
+
+module ShippingRateDto =
+    let toDomain (dto:ShippingRateDto) =
+        {
+            Min = RateCondition.create dto.Min
+            Max = RateCondition.create dto.Min
+            Rate = RateAmount.create dto.Rate
+        }
+        
+module ShippingMethodDto =
+    let toDomain (dto:ShippingMethodDto)=
+        result {
+            let! name = String50.create "Method.Name" dto.Name
+            let! methodType = ShippingMethodType.create dto.MethodType
+            let rates = dto.Rates |> Seq.map ShippingRateDto.toDomain
+                                    
+            return {
+                Name = name
+                MethodType = methodType
+                Rates = rates
+            }
+        }
+
+module ShippingZoneDto = 
+    let toDomain (dto:ShippingZoneDto) =
+        result {
+            let! name = String50.create "Zone.Name" dto.Name
+            let! methods = dto.Methods 
+                            |> Seq.map ShippingMethodDto.toDomain
+                            |> Seq.toList
+                            |> Result.sequence
+            let! countries = dto.Countries 
+                            |> Seq.map ShippingCountryDto.toDomain
+                            |> Seq.toList
+                            |> Result.sequence
+            return {
+                Name = name
+                Methods = methods
+                Countries = countries
+            }
+        }
+
+module ShippingProfileDto = 
+    let toDomain (dto:ShippingProfileDto) :Result<ShippingProfile, string> =
+        result {
+            let! name = String50.create "Profile.Name" dto.Name
+            let origins = dto.OriginIds |> Seq.map ShippingOriginId.create
+            let! zones = dto.Zones 
+                        |> Seq.map ShippingZoneDto.toDomain
+                        |> Seq.toList
+                        |> Result.sequence
+            return {
+                ShippingProfileId = ShippingProfileId.create 0L
+                Name = name
+                Origins = origins
+                Zones = zones
+            }
+        }        

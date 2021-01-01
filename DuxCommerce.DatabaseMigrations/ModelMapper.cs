@@ -1,5 +1,5 @@
 ﻿using DuxCommerce.Catalogue.PublicTypes;
-using DuxCommerce.Settings.Dto;
+using DuxCommerce.Settings.PublicTypes;
 using DuxCommerce.ShoppingCarts.PublicTypes;
 using RepoDb;
 

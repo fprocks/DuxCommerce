@@ -1,4 +1,4 @@
-﻿using DuxCommerce.Settings.Dto;
+﻿using DuxCommerce.Settings.PublicTypes;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using FluentAssertions;
 using Newtonsoft.Json;

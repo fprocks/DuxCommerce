@@ -19,7 +19,7 @@ type ShippingProfilesController (logger : ILogger<ShippingProfilesController>) =
         | Error m -> base.Convert(m)
 
     [<HttpPost>]
-    member this.Post(request: ShippingProfileRequest) : IActionResult =
+    member this.Post(request: ShippingProfileDto) : IActionResult =
         let result = ConfigReader.execute (UseCases.createShippingProfile request)
         match result with
         | Ok p -> base.Ok(p) :> _

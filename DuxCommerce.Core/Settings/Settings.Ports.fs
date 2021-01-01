@@ -10,7 +10,7 @@ type GetStoreProfileUseCase = int64 -> ConfigReader<Result<StoreProfileDto, Cust
 type UpdateStoreProfileUseCase = int64 -> StoreProfileDto -> ConfigReader<Result<StoreProfileDto, CustomError>>
 
 type GetDefaultProfileUseCase = unit -> ConfigReader<Result<ShippingProfileDto, CustomError>>
-type CreateShippingProfileUseCase = ShippingProfileRequest -> ConfigReader<Result<ShippingProfileDto, CustomError>>
+type CreateShippingProfileUseCase = ShippingProfileDto -> ConfigReader<Result<ShippingProfileDto, CustomError>>
 
 type CreateShippingOriginUseCase = AddressDto -> ConfigReader<Result<ShippingOriginDto, CustomError>>
 
