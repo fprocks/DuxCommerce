@@ -2,6 +2,7 @@
 
 open DuxCommerce.Common
 open DuxCommerce.Settings.Dto
+open DuxCommerce.Settings.PublicTypes
 
 // Input port
 type CreateStoreProfileUseCase = StoreProfileDto -> ConfigReader<Result<StoreProfileDto, CustomError>>
@@ -9,6 +10,8 @@ type GetStoreProfileUseCase = int64 -> ConfigReader<Result<StoreProfileDto, Cust
 type UpdateStoreProfileUseCase = int64 -> StoreProfileDto -> ConfigReader<Result<StoreProfileDto, CustomError>>
 
 type GetDefaultProfileUseCase = unit -> ConfigReader<Result<ShippingProfileDto, CustomError>>
+type CreateShippingProfileUseCase = ShippingProfileRequest -> ConfigReader<Result<ShippingProfileDto, CustomError>>
+
 type CreateShippingOriginUseCase = AddressDto -> ConfigReader<Result<ShippingOriginDto, CustomError>>
 
 // Output port

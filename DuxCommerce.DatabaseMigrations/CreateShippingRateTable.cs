@@ -2,16 +2,17 @@
 
 namespace DuxCommerce.DatabaseMigrations
 {
-    [Migration(202012061758)]
+    [Migration(202012250015)]
     public class CreateShippingRateTable : Migration
     {
         public override void Up()
         {
             Create.Table("ShippingRate")
                 .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-                .WithColumn("ShippingZoneId").AsInt64().NotNullable()
-                .WithColumn("Name").AsString(100).NotNullable()
-                .WithColumn("RateType").AsString(50).NotNullable();
+                .WithColumn("ShippingMethodId").AsInt64().NotNullable()
+                .WithColumn("Min").AsDecimal().NotNullable()
+                .WithColumn("Max").AsDecimal().NotNullable()
+                .WithColumn("Rate").AsDecimal().NotNullable();
         }
 
         public override void Down()

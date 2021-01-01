@@ -116,13 +116,12 @@ namespace DuxCommerce.Specifications.UseCases.Features
         [Xunit.InlineDataAttribute("ByWeight", "By Weight", new string[0])]
         [Xunit.InlineDataAttribute("ByQuantity", "By Quantity", new string[0])]
         [Xunit.InlineDataAttribute("ByOrderTotal", "By Order Total", new string[0])]
-        [Xunit.InlineDataAttribute("FixedRate", "Fixed Rate", new string[0])]
-        public virtual void CreateCustomShippingProfile(string rateType, string rateName, string[] exampleTags)
+        public virtual void CreateCustomShippingProfile(string methodType, string methodName, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("RateType", rateType);
-            argumentsOfScenario.Add("RateName", rateName);
+            argumentsOfScenario.Add("MethodType", methodType);
+            argumentsOfScenario.Add("MethodName", methodName);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create custom shipping profile", null, tagsOfScenario, argumentsOfScenario);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
@@ -189,7 +188,7 @@ this.FeatureBackground();
  testRunner.And("Tom selects the following shipping states:", ((string)(null)), table6, "And ");
 #line hidden
 #line 25
- testRunner.And(string.Format("Tom selects rate type {0} and enters rate name {1}", rateType, rateName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("Tom selects shipping method type {0} and enters method name {1}", methodType, methodName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Min",

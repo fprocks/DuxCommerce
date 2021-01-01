@@ -34,11 +34,10 @@ module UseCases =
     let updateStoreProfile :UpdateStoreProfileUseCase =
         fun id profileDto ->
             readerResult {
-                let! _ = 
-                    profileDto
-                    |> StoreProfileDto.toDomain
-                    |> CustomError.mapValidation
-                    |> ConfigReader.retn
+                let! _ = profileDto
+                        |> StoreProfileDto.toDomain
+                        |> CustomError.mapValidation
+                        |> ConfigReader.retn
 
                 let! profile = StoreProfileRepo.getStoreProfile id
                 let updatedProfile = {profileDto with AddressId = profile.AddressId}                    
@@ -53,11 +52,15 @@ module UseCases =
                 return! ShippingProfileRepo.getDefaultProfile ()
             }
 
+    let createShippingProfile :CreateShippingProfileUseCase = failwith "Not Implemented"
+        //fun request -> 
+        //    readerResult {
+        //        let! cmd = ShippingProfile.fromRequest request
+        //    }
+
     let createShippingOrigin :CreateShippingOriginUseCase = 
         fun addressDto ->
             readerResult {
                 let! originId = addressDto |> ShippingOriginRepo.createOrigin
                 return! ShippingOriginRepo.getOrigin originId
-            }
-            
-    
+            }    

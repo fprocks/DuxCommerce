@@ -75,7 +75,7 @@ module ShippingProfileRepo =
                 let profileOrigin = {Id = 0L; ShippingProfileId = profileId; ShippingOriginId = originId}
                 connection.Insert<ShippingProfileOriginDto, int64>(profileOrigin) |> ignore
 
-                let zoneDto = {Id = 0L; Name = addressDto.CountryCode; ShippingProfileId = profileId; Rates = Seq.empty; Countries = Seq.empty}
+                let zoneDto = {Id = 0L; Name = addressDto.CountryCode; ShippingProfileId = profileId; Methods = Seq.empty; Countries = Seq.empty}
                 let zoneId = connection.Insert<ShippingZoneDto, int64>(zoneDto)
 
                 let shippingCountry = {Id = 0L; ShippingZoneId = zoneId; CountryCode = addressDto.CountryCode; States = Seq.empty}

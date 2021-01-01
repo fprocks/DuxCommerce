@@ -25,7 +25,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
         private ShippingZoneRequest _zoneRquest;
         private List<ShippingCountryRequest> _countryRequests;
-        private ShippingRateRequest _rateRequest;
+        private ShippingMethodRequest _methodRequest;
 
         public ShippingProfileSteps(StepsContext context, IApiClient apiClient)
         {
@@ -131,19 +131,19 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _zoneRquest.Countries = _countryRequests;
         }
 
-        [Given(@"Tom selects rate type (.*) and enters rate name (.*)")]
-        public void GivenTomSelectsRateTypeAndEntersRateName(string rateType, string rateName)
+        [Given(@"Tom selects shipping method type (.*) and enters method name (.*)")]
+        public void GivenTomSelectsRateTypeAndEntersRateName(string methodType, string methodName)
         {
-            _rateRequest = new ShippingRateRequest { Ratetype = rateType, Name = rateName };
+            _methodRequest = new ShippingMethodRequest { Name = methodName, MethodType = methodType };
         }
 
         [Given(@"Tome enters the following rates:")]
         public void GivenTomeEntersTheFollowingRates(Table table)
         {
-            var rateItems = table.CreateSet<ShippingRateItemRequest>();
-            _rateRequest.Items = rateItems;
+            var rates = table.CreateSet<ShippingRateRequest>();
+            _methodRequest.Rates = rates;
 
-            _zoneRquest.Rates = new List<ShippingRateRequest> { _rateRequest };
+            _zoneRquest.Methods = new List<ShippingMethodRequest> { _methodRequest };
             _profileRequest.Zones = new List<ShippingZoneRequest> { _zoneRquest };
         }
 

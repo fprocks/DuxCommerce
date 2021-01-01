@@ -47,12 +47,12 @@ namespace DuxCommerce.DatabaseMigrations
 
             FluentMapper.Entity<ShippingStateDto>()
                 .Table("[dbo].[ShippingState]");
+
+            FluentMapper.Entity<ShippingMethodDto>()
+                .Table("[dbo].[ShippingMethod]");
             
             FluentMapper.Entity<ShippingRateDto>()
                 .Table("[dbo].[ShippingRate]");
-
-            FluentMapper.Entity<ShippingRateItemDto>()
-                .Table("[dbo].[ShippingRateItem]");
         }
     }
 }

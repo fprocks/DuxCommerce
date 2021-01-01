@@ -7,23 +7,23 @@ type ShippingCountryRequest = {
 }
 
 [<CLIMutable>]
-type ShippingRateItemRequest = {
+type ShippingRateRequest = {
     Min: decimal
     Max: decimal
     Rate: decimal
 }
 
 [<CLIMutable>]
-type ShippingRateRequest = {
+type ShippingMethodRequest = {
     Name: string
-    Ratetype: string
-    Items: ShippingRateItemRequest seq
+    MethodType: string
+    Rates: ShippingRateRequest seq
 }
 
 [<CLIMutable>]
 type ShippingZoneRequest = {
     Name: string
-    Rates: ShippingRateRequest seq
+    Methods: ShippingMethodRequest seq
     Countries: ShippingCountryRequest seq
 }
 

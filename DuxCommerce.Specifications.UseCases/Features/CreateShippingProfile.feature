@@ -22,7 +22,7 @@ Scenario: Create custom shipping profile
 	| 103     | AU          | Queensland      |
 	| 108     | NZ          | Auckland        |
 	| 122     | NZ          | Wellington      |
-	And Tom selects rate type <RateType> and enters rate name <RateName>
+	And Tom selects shipping method type <MethodType> and enters method name <MethodName>
 	And Tome enters the following rates:
 	| Min | Max   | Rate |
 	| 0   | 100   | 50   |
@@ -32,8 +32,7 @@ Scenario: Create custom shipping profile
 	Then Tom should receive status codes OK
 	And shipping profile should be saved as expected
 Examples: 
-	| RateType     | RateName       |
+	| MethodType   | MethodName     |
 	| ByWeight     | By Weight      |
 	| ByQuantity   | By Quantity    |
 	| ByOrderTotal | By Order Total |
-	| FixedRate    | Fixed Rate     |

@@ -81,20 +81,20 @@ type ShippingCountryDto = {
 }
 
 [<CLIMutable>]
-type ShippingRateDto = {
+type ShippingMethodDto = {
     Id: int64
     ShippingZoneId: int64
     Name: string
-    RateType: string
+    Type: string
 }
 
 [<CLIMutable>]
-type ShippingRateItemDto = {
+type ShippingRateDto = {
     Id: int64
-    ShippingRateId: int64
-    Rate: decimal
+    ShippingMethodId: int64
     Min: decimal
     Max: decimal
+    Rate: decimal
 }
 
 [<CLIMutable>] 
@@ -102,7 +102,7 @@ type ShippingZoneDto = {
     Id: int64
     Name: string
     ShippingProfileId: int64
-    Rates: ShippingRateDto seq
+    Methods: ShippingMethodDto seq
     Countries: ShippingCountryDto seq
 }
 

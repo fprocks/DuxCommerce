@@ -45,7 +45,6 @@ module AddressId =
     
     
 type CountryCode = private CountryCode of String2
-
 module CountryCode =
     let value (CountryCode code) = code
     let create field code =
@@ -53,4 +52,28 @@ module CountryCode =
             let! countryCode = String2.create field code
             return CountryCode countryCode
         }
-               
+
+type ShippingOriginId = private ShippingOriginId of int64
+module ShippingOriginId =
+    let value (ShippingOriginId id) = id
+    let create id = ShippingOriginId id
+
+type ShippingProfileId = private ShippingProfileId of int64
+module ShippingProfileId =
+    let value (ShippingProfileId id) = id
+    let create id = ShippingProfileId id
+
+type StateId = private StateId of int64
+module StateId =
+    let value (StateId id) = id
+    let create id = StateId id
+
+type RateCondition = private RateCondition of decimal
+module RateCondition =
+    let value (RateCondition cond) = cond
+    let create cond = RateCondition cond    
+
+type RateAmount = private RateAmount of decimal
+module RateAmount =
+    let value (RateAmount rate) = rate
+    let create rate = RateAmount rate    
