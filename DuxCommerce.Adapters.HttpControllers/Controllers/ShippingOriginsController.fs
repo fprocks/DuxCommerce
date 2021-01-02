@@ -13,7 +13,7 @@ type ShippingOriginsController (logger : ILogger<ShippingOriginsController>) =
 
     [<HttpPost>]
     member this.Post(request: AddressDto) : IActionResult =
-        let result = ConfigReader.execute (UseCases.createShippingOrigin request)
+        let result = ConfigReader.execute (ShippingOriginUseCases.createOrigin request)
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.Convert(m)

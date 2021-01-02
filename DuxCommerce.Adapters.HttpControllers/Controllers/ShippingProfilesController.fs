@@ -13,14 +13,14 @@ type ShippingProfilesController (logger : ILogger<ShippingProfilesController>) =
 
     [<HttpGet("default")>]
     member this.Get() : IActionResult=
-        let result = ConfigReader.execute (UseCases.getDefaultShippingProfile ())
+        let result = ConfigReader.execute (ShippingProfileUseCases.getDefaultProfile ())
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.Convert(m)
 
     [<HttpPost>]
     member this.Post(request: ShippingProfileDto) : IActionResult =
-        let result = ConfigReader.execute (UseCases.createShippingProfile request)
+        let result = ConfigReader.execute (ShippingProfileUseCases.createProfile request)
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.Convert(m)

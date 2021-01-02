@@ -1,7 +1,6 @@
 ﻿namespace DuxCommerce.Settings.Ports
 
 open DuxCommerce.Common
-open DuxCommerce.Settings.Dto
 open DuxCommerce.Settings.PublicTypes
 
 // Input port

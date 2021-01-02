@@ -13,21 +13,21 @@ type StoreProfileController (logger : ILogger<StoreProfileController>) =
 
     [<HttpGet("{id}")>]
     member this.Get(id : int64) : IActionResult=
-        let result = ConfigReader.execute (UseCases.getStoreProfile id)
+        let result = ConfigReader.execute (StoreProfileUseCases.getProfile id)
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.Convert(m)
         
     [<HttpPost>]
     member this.Post(request: StoreProfileDto) : IActionResult =
-        let result = ConfigReader.execute (UseCases.createStoreProfile request)
+        let result = ConfigReader.execute (StoreProfileUseCases.createProfile request)
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.Convert(m)
         
     [<HttpPut("{id}")>]
     member this.Put(id: int64, request: StoreProfileDto) : IActionResult=
-        let result = ConfigReader.execute (UseCases.updateStoreProfile id request)
+        let result = ConfigReader.execute (StoreProfileUseCases.updateProfile id request)
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.Convert(m)
