@@ -64,10 +64,13 @@ module ShippingOriginRepo =
 
 module ShippingProfileRepo = 
 
-    let createProfile :CreateShippingProfile =
-        fun originId addressDto -> 
+    let createDefaultProfile :CreateDefaultProfile =
+        fun addressDto -> 
             let create (connection:SqlConnection) =
-                // Todo: performance tuning
+                let addressId = connection.Insert<AddressDto, int64>(addressDto)
+                let originDto = {Id = 0L; Name = addressDto.AddressLine1; AddressId = addressId; IsDefault = true; Address = Unchecked.defaultof<AddressDto>}
+                let originId = connection.Insert<ShippingOriginDto, int64>(originDto)
+
                 let profileDto = {Id = 0L; Name = "Default Profile"; IsDefault = true; OriginIds = Seq.empty; Zones = Seq.empty}
                 let profileId = connection.Insert<ShippingProfileDto, int64>(profileDto)
 
@@ -88,15 +91,15 @@ module ShippingProfileRepo =
 
             RepoAdapter.repoAdapter create
 
-    let createProfile2 :CreateShippingProfile2 =
-        fun dto -> 
+    let createCustomProfile :CreateCustomProfile =
+        fun profileDto -> 
             let create (connection:SqlConnection) =
-                let profileId = connection.Insert<ShippingProfileDto, int64>(dto)
+                let profileId = connection.Insert<ShippingProfileDto, int64>(profileDto)
 
                 let createOrigin originId = 
                     {Id = 0L; ShippingProfileId = profileId; ShippingOriginId = originId}
 
-                dto.OriginIds
+                profileDto.OriginIds
                 |> Seq.map createOrigin
                 |> Seq.iter (fun o -> connection.Insert<ShippingProfileOriginDto, int64>(o) |> ignore)
 
@@ -107,7 +110,6 @@ module ShippingProfileRepo =
                 let createCountry zoneId (countryDto:ShippingCountryDto) =
                     let countryDto = {countryDto with ShippingZoneId = zoneId}
                     let countryId = connection.Insert<ShippingCountryDto, int64>(countryDto)
-
                     countryDto.StateIds
                     |> Seq.iter (fun id -> (createState countryId id) |> ignore)
                 
@@ -118,21 +120,18 @@ module ShippingProfileRepo =
                 let createMethod zoneId (methodDto:ShippingMethodDto) =
                     let methodDto = {methodDto with ShippingZoneId = zoneId}
                     let methodId = connection.Insert<ShippingMethodDto, int64>(methodDto)
-
                     methodDto.Rates
                     |> Seq.iter (fun r -> (createRate methodId r) |> ignore)
 
                 let createZone (zoneDto:ShippingZoneDto) =
                     let zoneDto = {zoneDto with ShippingProfileId = profileId}
                     let zoneId = connection.Insert<ShippingZoneDto, int64>(zoneDto)
-
                     zoneDto.Countries
                     |> Seq.iter (fun c -> (createCountry zoneId c) |> ignore)
-
                     zoneDto.Methods
                     |> Seq.iter (fun m -> (createMethod zoneId m) |> ignore)
 
-                dto.Zones
+                profileDto.Zones
                 |> Seq.iter (fun z -> (createZone z) |> ignore)
 
                 profileId
@@ -167,7 +166,6 @@ module ShippingProfileRepo =
                             |> Seq.map (fun o -> o.ShippingOriginId)
 
             {profile with OriginIds = originIds; Zones = shippingZones}
-
 
     let getDefault :GetDefaultProfile =
         fun () ->

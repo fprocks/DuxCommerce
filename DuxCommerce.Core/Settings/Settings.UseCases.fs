@@ -14,12 +14,11 @@ module UseCases =
                         |> ConfigReader.retn
                                
                 let! profileId = profileDto |> StoreProfileRepo.createProfile
-                let! originId = profileDto.Address |> ShippingOriginRepo.createOrigin
 
                 // Todo: why the next line never executes ShippingProfileRepo.createProfile
                 //profileDto.Address |> ShippingProfileRepo.createProfile originId |> ignore
 
-                let! _ = profileDto.Address |> ShippingProfileRepo.createProfile originId
+                let! _ = profileDto.Address |> ShippingProfileRepo.createDefaultProfile
 
                 return! StoreProfileRepo.getProfile profileId 
             }
@@ -59,7 +58,7 @@ module UseCases =
                         |> CustomError.mapValidation
                         |> ConfigReader.retn
 
-                let! profileId = ShippingProfileRepo.createProfile2 dto
+                let! profileId = ShippingProfileRepo.createCustomProfile dto
                 return! ShippingProfileRepo.getProfile profileId
             }
 

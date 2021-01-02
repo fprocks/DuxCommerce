@@ -23,7 +23,7 @@ type CreateShippingOrigin = AddressDto -> ConfigReader<Result<int64, CustomError
 type GetShippingOrigin = int64 -> ConfigReader<Result<ShippingOriginDto, CustomError>>
 type UpdateShippingOrigin = int64 -> ShippingOriginDto -> ConfigReader<Result<unit, CustomError>>
 
-type CreateShippingProfile = int64 -> AddressDto -> ConfigReader<Result<int64, CustomError>>
-type CreateShippingProfile2 = ShippingProfileDto -> ConfigReader<Result<int64, CustomError>>
+type CreateDefaultProfile = AddressDto -> ConfigReader<Result<int64, CustomError>>
+type CreateCustomProfile = ShippingProfileDto -> ConfigReader<Result<int64, CustomError>>
 type GetDefaultProfile = unit -> ConfigReader<Result<ShippingProfileDto, CustomError>>
 type GetShippingProfile = int64 -> ConfigReader<Result<ShippingProfileDto, CustomError>>
