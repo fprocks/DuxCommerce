@@ -9,7 +9,7 @@ open DuxCommerce.Settings.Ports
 
 module StoreProfileRepo =
     
-    let createStoreProfile :CreateStoreProfile =
+    let createProfile :CreateStoreProfile =
         fun profileDto ->
             let create (connection:SqlConnection) =
                 let addressId = connection.Insert<AddressDto, int64>(profileDto.Address)
@@ -19,7 +19,7 @@ module StoreProfileRepo =
                 
             RepoAdapter.repoAdapter create
             
-    let getStoreProfile :GetStoreProfile =
+    let getProfile :GetStoreProfile =
         fun id ->
             let get (connection:SqlConnection) =
                 let profileDto = connection.Query<StoreProfileDto>(fun (p:StoreProfileDto) -> p.Id = id).FirstOrDefault()
@@ -28,7 +28,7 @@ module StoreProfileRepo =
                 
             RepoAdapter.repoAdapter get          
             
-    let updateStoreProfile :UpdateStoreProfile =
+    let updateProfile :UpdateStoreProfile =
         fun id profileDto ->
             let update (connection:SqlConnection) =
                 connection.Update<StoreProfileDto>(profileDto, id) |> ignore
@@ -67,7 +67,6 @@ module ShippingProfileRepo =
     let createProfile :CreateShippingProfile =
         fun originId addressDto -> 
             let create (connection:SqlConnection) =
-
                 // Todo: performance tuning
                 let profileDto = {Id = 0L; Name = "Default Profile"; IsDefault = true; OriginIds = Seq.empty; Zones = Seq.empty}
                 let profileId = connection.Insert<ShippingProfileDto, int64>(profileDto)
@@ -89,39 +88,100 @@ module ShippingProfileRepo =
 
             RepoAdapter.repoAdapter create
 
-    let getDefaultProfile :GetDefaultProfile=
+    let createProfile2 :CreateShippingProfile2 =
+        fun dto -> 
+            let create (connection:SqlConnection) =
+                let profileId = connection.Insert<ShippingProfileDto, int64>(dto)
+
+                let createOrigin originId = 
+                    {Id = 0L; ShippingProfileId = profileId; ShippingOriginId = originId}
+
+                dto.OriginIds
+                |> Seq.map createOrigin
+                |> Seq.iter (fun o -> connection.Insert<ShippingProfileOriginDto, int64>(o) |> ignore)
+
+                let createState countryId stateId =
+                    let state = {Id = 0L; ShippingCountryId = countryId; StateId = stateId}
+                    connection.Insert<ShippingStateDto, int64>(state)
+
+                let createCountry zoneId (countryDto:ShippingCountryDto) =
+                    let countryDto = {countryDto with ShippingZoneId = zoneId}
+                    let countryId = connection.Insert<ShippingCountryDto, int64>(countryDto)
+
+                    countryDto.StateIds
+                    |> Seq.iter (fun id -> (createState countryId id) |> ignore)
+                
+                let createRate methodId (rateDto:ShippingRateDto) =
+                    let rateDto = {rateDto with ShippingMethodId = methodId}
+                    connection.Insert<ShippingRateDto, int64>(rateDto)
+
+                let createMethod zoneId (methodDto:ShippingMethodDto) =
+                    let methodDto = {methodDto with ShippingZoneId = zoneId}
+                    let methodId = connection.Insert<ShippingMethodDto, int64>(methodDto)
+
+                    methodDto.Rates
+                    |> Seq.iter (fun r -> (createRate methodId r) |> ignore)
+
+                let createZone (zoneDto:ShippingZoneDto) =
+                    let zoneDto = {zoneDto with ShippingProfileId = profileId}
+                    let zoneId = connection.Insert<ShippingZoneDto, int64>(zoneDto)
+
+                    zoneDto.Countries
+                    |> Seq.iter (fun c -> (createCountry zoneId c) |> ignore)
+
+                    zoneDto.Methods
+                    |> Seq.iter (fun m -> (createMethod zoneId m) |> ignore)
+
+                dto.Zones
+                |> Seq.iter (fun z -> (createZone z) |> ignore)
+
+                profileId
+
+            RepoAdapter.repoAdapter create
+
+    let internal getProfileDetails =
+        fun (connection:SqlConnection) profile ->
+            let shippingZones = connection.Query<ShippingZoneDto>(fun z -> z.ShippingProfileId = profile.Id)
+
+            let zoneIds = shippingZones |> Seq.map(fun z -> z.Id)
+            let shippingCountries = connection.Query<ShippingCountryDto>(fun (c:ShippingCountryDto) -> zoneIds.Contains(c.ShippingZoneId))
+
+            let shippingCountryIds = shippingCountries |> Seq.map (fun c -> c.Id) 
+            let shippingStates = connection.Query<ShippingStateDto>(fun s -> shippingCountryIds.Contains(s.ShippingCountryId))                               
+
+            let filterStates shippingStates shippingCountryId = 
+                shippingStates 
+                |> Seq.filter(fun s -> s.ShippingCountryId = shippingCountryId)
+                |> Seq.map(fun s -> s.StateId)
+
+            let shippingCountries = shippingCountries 
+                                    |> Seq.map (fun c -> {c with StateIds = (filterStates shippingStates c.Id)})
+
+            let filterCountries (countries:ShippingCountryDto seq) zoneId =
+                countries |> Seq.filter(fun c -> c.ShippingZoneId = zoneId)
+
+            let shippingZones = shippingZones
+                                |> Seq.map(fun z -> {z with Countries = (filterCountries shippingCountries z.Id)})
+
+            let originIds = connection.Query<ShippingProfileOriginDto>(fun (o:ShippingProfileOriginDto) -> o.ShippingProfileId = profile.Id)
+                            |> Seq.map (fun o -> o.ShippingOriginId)
+
+            {profile with OriginIds = originIds; Zones = shippingZones}
+
+
+    let getDefault :GetDefaultProfile =
         fun () ->
             let get (connection:SqlConnection) =
-
-                // Todo: performance tuning
-                //let profile = connection.Query<ShippingProfileDto>(fun p -> p.IsDefault = true).FirstOrDefault()
-                let profile = connection.Query<ShippingProfileDto>(fun p -> p.Name = "Default Profile").FirstOrDefault()
-
-                let originIds = connection.Query<ShippingProfileOriginDto>(fun (o:ShippingProfileOriginDto) -> o.ShippingProfileId = profile.Id)
-                                |> Seq.map (fun o -> o.ShippingOriginId)
-
-                let shippingZones = connection.Query<ShippingZoneDto>(fun z -> z.ShippingProfileId = profile.Id)
-
-                let zoneIds = shippingZones |> Seq.map(fun z -> z.Id)
-                let shippingCountries = connection.Query<ShippingCountryDto>(fun (c:ShippingCountryDto) -> zoneIds.Contains(c.ShippingZoneId))
-
-                let shippingCountryIds = shippingCountries |> Seq.map (fun c -> c.Id) 
-                let shippingStates = connection.Query<ShippingStateDto>(fun s -> shippingCountryIds.Contains(s.ShippingCountryId))                               
-
-                let filterStates shippingStates shippingCountryId = 
-                    shippingStates 
-                    |> Seq.filter(fun s -> s.ShippingCountryId = shippingCountryId)
-                    |> Seq.map(fun s -> s.StateId)
-
-                let shippingCountries = shippingCountries 
-                                        |> Seq.map (fun c -> {c with StateIds = (filterStates shippingStates c.Id)})
-
-                let filterCountries (countries:ShippingCountryDto seq) zoneId =
-                    countries |> Seq.filter(fun c -> c.ShippingZoneId = zoneId)
-
-                let shippingZones = shippingZones
-                                    |> Seq.map(fun z -> {z with Countries = (filterCountries shippingCountries z.Id)})
-
-                {profile with OriginIds = originIds; Zones = shippingZones}
+                // connection.Query<ShippingProfileDto>(fun p -> p.IsDefault = true).FirstOrDefault()            
+                connection.Query<ShippingProfileDto>(fun p -> p.Name = "Default Profile").FirstOrDefault()
+                |> getProfileDetails connection
 
             RepoAdapter.repoAdapter get       
+
+    let getProfile :GetShippingProfile=
+        fun id ->
+            let get (connection:SqlConnection) =
+                connection.Query<ShippingProfileDto>(fun p -> p.Id = id).FirstOrDefault()
+                |> getProfileDetails connection
+                
+            RepoAdapter.repoAdapter get     
