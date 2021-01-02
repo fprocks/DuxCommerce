@@ -39,8 +39,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         {
             var url = $"api/shippingprofiles/default";
             var apiResult = await _apiClient.GetAsync(url);
-            var profileStr = await apiResult.Content.ReadAsStringAsync();
 
+            var profileStr = await apiResult.Content.ReadAsStringAsync();
             _profileCreated = JsonConvert.DeserializeObject<ShippingProfileDto>(profileStr);
 
             var expected = table.CreateSet<ShippingProfile>().FirstOrDefault();
@@ -120,11 +120,11 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var shippingStates = table.CreateSet<ShippingState>();
             foreach(var country in _countryRequests)
             {
-                var states = shippingStates
+                var stateIds = shippingStates
                     .Where(s => s.CountryCode == country.CountryCode)
                     .Select(x => x.StateId);
 
-                country.StateIds = states;
+                country.StateIds = stateIds;
             }
 
             _zoneRquest.Countries = _countryRequests;
@@ -151,6 +151,9 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         {
             var apiResult = await _apiClient.PostAsync("api/ShippingProfiles", _profileRequest);
             _context.ApiResult = apiResult;
+
+            var profileStr = await apiResult.Content.ReadAsStringAsync();
+            _profileCreated = JsonConvert.DeserializeObject<ShippingProfileDto>(profileStr);
         }
 
         [Then(@"shipping profile should be saved as expected")]

@@ -63,12 +63,12 @@ Scenario: Create default shipping profile
 	| CountryCode |
 	| AU          |
 	And shippig states should be created as follow:
-	| CountryCode | Name                         |
-	| AU          | Australian Capital Territory |
-	| AU          | New South Wales              |
-	| AU          | Northern Territory           |
-	| AU          | Queensland                   |
-	| AU          | South Australia              |
-	| AU          | Tasmania                     |
-	| AU          | Victoria                     |
-	| AU          | Western Australia            |
+	| StateId | CountryCode | Name                         |
+	| 100     | AU          | Australian Capital Territory |
+	| 101     | AU          | New South Wales              |
+	| 102     | AU          | Northern Territory           |
+	| 103     | AU          | Queensland                   |
+	| 104     | AU          | South Australia              |
+	| 105     | AU          | Tasmania                     |
+	| 106     | AU          | Victoria                     |
+	| 107     | AU          | Western Australia            |
