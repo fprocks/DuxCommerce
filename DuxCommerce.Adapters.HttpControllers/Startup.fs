@@ -34,7 +34,6 @@ type Startup private () =
         let mongoSettings = MongoSettings.FromFile "appsettings.json"
         AppSettings().SetMongoSettings(mongoSettings)
 
-
         services.AddFluentMigratorCore().ConfigureRunner(fun config ->
             config.AddSqlServer()
                 .WithGlobalConnectionString(sqlSettings.ConnectionString)

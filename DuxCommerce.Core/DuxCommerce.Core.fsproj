@@ -5,7 +5,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Include="Common\Common.RepoAdapter.fs" />
+      <Compile Include="Common\Common.CollectionNames.fs" />
+      <Compile Include="Common\Common.MongoRepoAdapter.fs" />
+      <Compile Include="Common\Common.SqlRepoAdapter.fs" />
       <Compile Include="Settings\Settings.SimpleTypes.fs" />
       <Compile Include="Settings\Settings.PublicTypes.fs" />
       <Compile Include="Settings\Settings.InternalTypes.fs" />
@@ -36,6 +38,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="MongoDB.Driver" Version="2.11.5" />
       <PackageReference Include="RepoDb.SqlServer" Version="1.0.13" />
     </ItemGroup>
 

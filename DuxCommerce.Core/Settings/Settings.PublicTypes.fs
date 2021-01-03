@@ -1,15 +1,19 @@
 ﻿namespace DuxCommerce.Settings.PublicTypes
 
+open MongoDB.Bson
+open MongoDB.Bson.Serialization.Attributes
+
 [<CLIMutable>]
 type AddressDto = {
-    Id: int64
+    [<BsonRepresentation(BsonType.ObjectId)>]
+    Id: string
     FirstName: string
     LastName: string
     AddressLine1: string
     AddressLine2: string
     City: string
     PostalCode: string
-    StateId: int64
+    StateId: string
     StateName: string
     CountryCode: string
     IsBillingAddress: bool
@@ -17,7 +21,8 @@ type AddressDto = {
 
 [<CLIMutable>]
 type StoreProfileDto = {
-    Id: int64
+    [<BsonRepresentation(BsonType.ObjectId)>]
+    Id: string
     StoreName: string
     ContactEmail: string
     SenderEmail: string
@@ -27,59 +32,44 @@ type StoreProfileDto = {
     UnitSystem: string
     WeightUnit: string
     LengthUnit: string
-    AddressId: int64
+    AddressId: string 
+    [<BsonIgnore>]
     Address: AddressDto
 }
 
 [<CLIMutable>]
 type CountryDto = {
-  Id: int64
-  Name: string
-  ISOCode: string
+    [<BsonRepresentation(BsonType.ObjectId)>]
+    Id: string
+    Name: string
+    ISOCode: string
 } 
 
 [<CLIMutable>]
 type StateDto = {
-  Id: int64
-  CountryCode: string
-  Name: string
+    [<BsonRepresentation(BsonType.ObjectId)>]
+    Id: string
+    CountryCode: string
+    Name: string
 }
 
 [<CLIMutable>]
 type ShippingOriginDto = {
-    Id: int64
+    [<BsonRepresentation(BsonType.ObjectId)>]
+    Id: string
     Name: string
-    AddressId: int64
+    AddressId: string
     IsDefault: bool
-    Address: AddressDto
-}
-
-[<CLIMutable>]
-type ShippingProfileOriginDto = {
-    Id: int64
-    ShippingProfileId: int64
-    ShippingOriginId: int64
-}
-
-[<CLIMutable>]
-type ShippingStateDto = {
-    Id: int64
-    ShippingCountryId: int64
-    StateId: int64
 }
 
 [<CLIMutable>]
 type ShippingCountryDto = {
-    Id: int64
-    ShippingZoneId: int64
     CountryCode: string
-    StateIds: int64 seq
+    StateIds: string seq
 }
 
 [<CLIMutable>]
 type ShippingRateDto = {
-    Id: int64
-    ShippingMethodId: int64
     Min: decimal
     Max: decimal
     Rate: decimal
@@ -87,8 +77,6 @@ type ShippingRateDto = {
 
 [<CLIMutable>]
 type ShippingMethodDto = {
-    Id: int64
-    ShippingZoneId: int64
     Name: string
     MethodType: string
     Rates: ShippingRateDto seq
@@ -96,18 +84,16 @@ type ShippingMethodDto = {
 
 [<CLIMutable>] 
 type ShippingZoneDto = {
-    Id: int64
     Name: string
-    ShippingProfileId: int64
     Methods: ShippingMethodDto seq
     Countries: ShippingCountryDto seq
 }
 
 [<CLIMutable>]
 type ShippingProfileDto = {
-    Id: int64
+    Id: string
     Name: string
     IsDefault: bool
-    OriginIds: int64 seq
+    OriginIds: string seq
     Zones: ShippingZoneDto seq
 }

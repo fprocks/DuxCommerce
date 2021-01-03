@@ -12,7 +12,7 @@ type StoreProfileController (logger : ILogger<StoreProfileController>) =
     inherit DuxControllerBase()
 
     [<HttpGet("{id}")>]
-    member this.Get(id : int64) : IActionResult=
+    member this.Get(id : string) : IActionResult=
         let result = ConfigReader.execute (StoreProfileUseCases.getProfile id)
         match result with
         | Ok p -> base.Ok(p) :> _
@@ -26,7 +26,7 @@ type StoreProfileController (logger : ILogger<StoreProfileController>) =
         | Error m -> base.Convert(m)
         
     [<HttpPut("{id}")>]
-    member this.Put(id: int64, request: StoreProfileDto) : IActionResult=
+    member this.Put(id: string, request: StoreProfileDto) : IActionResult=
         let result = ConfigReader.execute (StoreProfileUseCases.updateProfile id request)
         match result with
         | Ok p -> base.Ok(p) :> _

@@ -2,7 +2,7 @@
 
 open DuxCommerce.Settings.Dto
 open DuxCommerce.Settings.Ports
-open DuxCommerce.Settings.SqlRepos
+open DuxCommerce.Settings.MongoRepos
 open DuxCommerce.Common
 
 module StoreProfileUseCases =   
