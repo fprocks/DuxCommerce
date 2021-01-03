@@ -28,12 +28,16 @@ type Startup private () =
         services.AddControllers().AddNewtonsoftJson() |> ignore
         
         DbBootstrapper.Initialize        
-        let dbSettings = DatabaseSettings.FromFile "appsettings.json"
-        AppSettings().SetDbSettings(dbSettings)
+        let sqlSettings = SqlServerSettings.FromFile "appsettings.json"
+        AppSettings().SetSqlSettings(sqlSettings)
+
+        let mongoSettings = MongoSettings.FromFile "appsettings.json"
+        AppSettings().SetMongoSettings(mongoSettings)
+
 
         services.AddFluentMigratorCore().ConfigureRunner(fun config ->
             config.AddSqlServer()
-                .WithGlobalConnectionString(dbSettings.ConnectionString)
+                .WithGlobalConnectionString(sqlSettings.ConnectionString)
                 .ScanIn(Assembly.Load("DuxCommerce.DatabaseMigrations")).For.All() |> ignore
             ).AddLogging(fun config -> config.AddFluentMigratorConsole() |> ignore) |> ignore
 

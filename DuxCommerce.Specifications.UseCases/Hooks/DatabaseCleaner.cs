@@ -8,7 +8,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
     {
         public static void CleanUp()
         {
-            var dbSettings = DatabaseSettingsModule.FromFile("appsettings.json");
+            var dbSettings = SqlServerSettingsModule.FromFile("appsettings.json");
             var connection = new SqlConnection(dbSettings.ConnectionString);
 
             connection.Open();

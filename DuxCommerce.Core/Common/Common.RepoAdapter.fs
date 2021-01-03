@@ -10,7 +10,7 @@ module RepoAdapter =
     let repoAdapter repoFn=
         try
             let func (appConfig:AppSettings) =
-                let connString = appConfig.ConnectionString
+                let connString = appConfig.GetSqlSettings.ConnectionString
                 ( use connection = new SqlConnection(connString)
                   connection.EnsureOpen() |> ignore
                   Ok (repoFn connection)
