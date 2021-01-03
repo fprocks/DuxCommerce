@@ -140,11 +140,29 @@ module ShippingProfileRepo =
 
     let internal getProfileDetails =
         fun (connection:SqlConnection) profile ->
+
+            // Shipping zones
             let shippingZones = connection.Query<ShippingZoneDto>(fun z -> z.ShippingProfileId = profile.Id)
-
             let zoneIds = shippingZones |> Seq.map(fun z -> z.Id)
-            let shippingCountries = connection.Query<ShippingCountryDto>(fun (c:ShippingCountryDto) -> zoneIds.Contains(c.ShippingZoneId))
 
+            // Shipping methods and rates
+            let shippingMethods = connection.Query<ShippingMethodDto>(fun (m:ShippingMethodDto) -> zoneIds.Contains(m.ShippingZoneId))
+            let shippingMethodIds = shippingMethods |> Seq.map (fun m -> m.Id)
+            let shippingRates = connection.Query<ShippingRateDto>(fun r -> shippingMethodIds.Contains(r.ShippingMethodId))
+
+            let filterRates shippingRates shippingMethodId =
+                shippingRates
+                |> Seq.filter (fun r -> r.ShippingMethodId = shippingMethodId)
+            let shippingMethods = shippingMethods
+                                  |> Seq.map (fun m -> {m with Rates = (filterRates shippingRates m.Id)})
+
+            let filterMethods methods zoneId =
+                methods |> Seq.filter (fun m -> m.ShippingZoneId = zoneId)
+            let shippingZones = shippingZones
+                                |> Seq.map(fun z -> {z with Methods = (filterMethods shippingMethods z.Id)})
+
+            // Shipping countries and states
+            let shippingCountries = connection.Query<ShippingCountryDto>(fun (c:ShippingCountryDto) -> zoneIds.Contains(c.ShippingZoneId))
             let shippingCountryIds = shippingCountries |> Seq.map (fun c -> c.Id) 
             let shippingStates = connection.Query<ShippingStateDto>(fun s -> shippingCountryIds.Contains(s.ShippingCountryId))                               
 
@@ -152,16 +170,15 @@ module ShippingProfileRepo =
                 shippingStates 
                 |> Seq.filter(fun s -> s.ShippingCountryId = shippingCountryId)
                 |> Seq.map(fun s -> s.StateId)
-
             let shippingCountries = shippingCountries 
                                     |> Seq.map (fun c -> {c with StateIds = (filterStates shippingStates c.Id)})
 
             let filterCountries (countries:ShippingCountryDto seq) zoneId =
                 countries |> Seq.filter(fun c -> c.ShippingZoneId = zoneId)
-
             let shippingZones = shippingZones
                                 |> Seq.map(fun z -> {z with Countries = (filterCountries shippingCountries z.Id)})
-
+            
+            // Shipping origins
             let originIds = connection.Query<ShippingProfileOriginDto>(fun (o:ShippingProfileOriginDto) -> o.ShippingProfileId = profile.Id)
                             |> Seq.map (fun o -> o.ShippingOriginId)
 

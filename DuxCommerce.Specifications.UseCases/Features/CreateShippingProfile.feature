@@ -30,7 +30,7 @@ Scenario: Create custom shipping profile
 	| 200 | 40000 | 200  |
 	When Tom saves the shipping profile
 	Then Tom should receive status codes OK
-	And shipping profile should be saved as expected
+	And custom shipping profile should be created
 Examples: 
 	| MethodType   | MethodName     |
 	| ByWeight     | By Weight      |

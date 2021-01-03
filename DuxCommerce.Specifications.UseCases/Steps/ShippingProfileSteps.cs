@@ -17,14 +17,10 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         private readonly StepsContext _context;
         private readonly IApiClient _apiClient;
 
-        private ShippingProfileDto _profileCreated;
-
         private ShippingOriginDto _originCreated;
-        private ShippingProfileDto _profileRequest;
 
-        private ShippingZoneDto _zoneRquest;
-        private List<ShippingCountryDto> _countryRequests;
-        private ShippingMethodDto _methodRequest;
+        private ShippingProfileDto _profileRequest;
+        private ShippingProfileDto _profileCreated;
 
         public ShippingProfileSteps(StepsContext context, IApiClient apiClient)
         {
@@ -58,7 +54,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Then(@"shipping zones should be created as follow:")]
         public void ThenShippingZonesShouldBeCreatedAsFollow(Table table)
         {
-            var expected = table.CreateSet<ShippingZone>();
+            var expected = table.CreateSet<ShippingZoneDto>();
             CompareZones(expected.ToList(), _profileCreated.Zones.ToList());
         }
 
@@ -102,14 +98,16 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Given(@"Tom enters the zone name (.*)")]
         public void GivenTomEntersTheZoneNameANZ(string zoneName)
         {
-            _zoneRquest = new ShippingZoneDto { Name = zoneName };
+            var zoneRquest = new ShippingZoneDto { Name = zoneName };
+            _profileRequest.Zones = new List<ShippingZoneDto> { zoneRquest };
         }
 
         [Given(@"Tom selects the following shipping countries:")]
         public void GivenTomSelectsTheFollowingShippingCountries(Table table)
         {
             var countryCodes = table.CreateSet<ShippingCountry>();
-            _countryRequests = countryCodes
+            var zoneRequest = _profileRequest.Zones.FirstOrDefault();
+            zoneRequest.Countries = countryCodes
                 .Select(c => new ShippingCountryDto { CountryCode = c.CountryCode })
                 .ToList();
         }
@@ -118,7 +116,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         public void GivenTomSelectsTheFollowingShippingStates(Table table)
         {
             var shippingStates = table.CreateSet<ShippingState>();
-            foreach(var country in _countryRequests)
+            var zoneRequest = _profileRequest.Zones.FirstOrDefault();
+            foreach(var country in zoneRequest.Countries)
             {
                 var stateIds = shippingStates
                     .Where(s => s.CountryCode == country.CountryCode)
@@ -126,24 +125,24 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
                 country.StateIds = stateIds;
             }
-
-            _zoneRquest.Countries = _countryRequests;
         }
 
         [Given(@"Tom selects shipping method type (.*) and enters method name (.*)")]
         public void GivenTomSelectsRateTypeAndEntersRateName(string methodType, string methodName)
         {
-            _methodRequest = new ShippingMethodDto { Name = methodName, MethodType = methodType };
+            var zoneRequest = _profileRequest.Zones.FirstOrDefault();
+            var method= new ShippingMethodDto { Name = methodName, MethodType = methodType };
+            zoneRequest.Methods = new List<ShippingMethodDto> { method };
         }
 
         [Given(@"Tome enters the following rates:")]
         public void GivenTomeEntersTheFollowingRates(Table table)
         {
             var rates = table.CreateSet<ShippingRateDto>();
-            _methodRequest.Rates = rates;
-
-            _zoneRquest.Methods = new List<ShippingMethodDto> { _methodRequest };
-            _profileRequest.Zones = new List<ShippingZoneDto> { _zoneRquest };
+            var methodRequest = _profileRequest
+                                .Zones.FirstOrDefault()
+                                .Methods.FirstOrDefault();
+            methodRequest.Rates = rates;
         }
 
         [When(@"Tom saves the shipping profile")]
@@ -156,18 +155,28 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _profileCreated = JsonConvert.DeserializeObject<ShippingProfileDto>(profileStr);
         }
 
-        [Then(@"shipping profile should be saved as expected")]
-        public void ThenShippingProfileShouldBeSavedAsExpected()
+        [Then(@"custom shipping profile should be created")]
+        public void ThenCustomShippingProfileShouldBeCreated()
         {
+            CompareZones(_profileRequest.Zones.ToList(), _profileCreated.Zones.ToList());
+
+            var zoneRequest = _profileRequest.Zones.FirstOrDefault();
+
+            var countries = _profileCreated.Zones.FirstOrDefault().Countries;
+            CompareCountries(zoneRequest.Countries.ToList(), countries.ToList());
+
+            var methods = _profileCreated.Zones.FirstOrDefault().Methods;
+            CompareMethods(zoneRequest.Methods.ToList(), methods.ToList());
         }
 
-        private void CompareOrigins(List<ShippingOrigin> expected, List<ShippingOriginDto> actual)
-        {
-            expected.Count().Should().Be(actual.Count());
-            expected.Equals(actual);
-        }
 
-        private void CompareZones(List<ShippingZone> expected, List<ShippingZoneDto> actual)
+        //private void CompareOrigins(List<ShippingOrigin> expected, List<ShippingOriginDto> actual)
+        //{
+        //    expected.Count().Should().Be(actual.Count());
+        //    expected.Equals(actual);
+        //}
+
+        private void CompareZones(List<ShippingZoneDto> expected, List<ShippingZoneDto> actual)
         {
             expected.Count().Should().Be(actual.Count());
             for(var index = 0; index < expected.Count(); index ++)
@@ -185,14 +194,49 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             }
         }
 
-        private void CompareStates(List<ShippingState> expected, List<StateDto> actual)
+        private void CompareCountries(List<ShippingCountryDto> expected, List<ShippingCountryDto> actual)
         {
             expected.Count().Should().Be(actual.Count());
             for (var index = 0; index < expected.Count(); index++)
             {
                 expected[index].CountryCode.Should().Be(actual[index].CountryCode);
-                expected[index].Name.Should().Be(actual[index].Name);
+
+                expected[index].StateIds.Count().Should().Be(actual[index].StateIds.Count());
+                expected[index].StateIds.Should().BeEquivalentTo(actual[index].StateIds);
             }
         }
+
+        private void CompareMethods(List<ShippingMethodDto> expected, List<ShippingMethodDto> actual)
+        {
+            expected.Count().Should().Be(actual.Count());
+            for (var index = 0; index < expected.Count(); index++)
+            {
+                expected[index].Name.Should().Be(actual[index].Name);
+                expected[index].MethodType.Should().Be(actual[index].MethodType);
+
+                CompareRates(expected[index].Rates.ToList(), actual[index].Rates.ToList());
+            }
+        }
+
+        private void CompareRates(List<ShippingRateDto> expected, List<ShippingRateDto> actual)
+        {
+            expected.Count().Should().Be(actual.Count());
+            for (var index = 0; index < expected.Count(); index++)
+            {
+                expected[index].Min.Should().Be(actual[index].Min);
+                expected[index].Max.Should().Be(actual[index].Max);
+                expected[index].Rate.Should().Be(actual[index].Rate);
+            }
+        }
+
+        //private void CompareStates(List<ShippingState> expected, List<StateDto> actual)
+        //{
+        //    expected.Count().Should().Be(actual.Count());
+        //    for (var index = 0; index < expected.Count(); index++)
+        //    {
+        //        expected[index].CountryCode.Should().Be(actual[index].CountryCode);
+        //        expected[index].Name.Should().Be(actual[index].Name);
+        //    }
+        //}
     }
 }
