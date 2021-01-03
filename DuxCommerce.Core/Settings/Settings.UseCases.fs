@@ -2,6 +2,7 @@
 
 open DuxCommerce.Settings.Dto
 open DuxCommerce.Settings.Ports
+open DuxCommerce.Settings.SqlRepos
 open DuxCommerce.Common
 
 module StoreProfileUseCases =   

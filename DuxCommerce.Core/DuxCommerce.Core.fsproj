@@ -11,7 +11,8 @@
       <Compile Include="Settings\Settings.InternalTypes.fs" />
       <Compile Include="Settings\Settings.Dto.fs" />
       <Compile Include="Settings\Settings.Ports.fs" />
-      <Compile Include="Settings\Settings.Repos.fs" />
+      <Compile Include="Settings\Settings.SqlRepos.fs" />
+      <Compile Include="Settings\Settings.MongoRepos.fs" />
       <Compile Include="Settings\Settings.UseCases.fs" />
       <Compile Include="Catalogue\Catalogue.SimpleTypes.fs" />
       <Compile Include="Catalogue\Catalogue.PublicTypes.fs" />

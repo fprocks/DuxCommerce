@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.Settings
+﻿namespace DuxCommerce.Settings.SqlRepos
 
 open System.Data.SqlClient
 open DuxCommerce.Core.Common
