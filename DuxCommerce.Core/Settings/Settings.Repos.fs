@@ -140,7 +140,6 @@ module ShippingProfileRepo =
 
     let internal getProfileDetails =
         fun (connection:SqlConnection) profile ->
-
             // Shipping zones
             let shippingZones = connection.Query<ShippingZoneDto>(fun z -> z.ShippingProfileId = profile.Id)
             let zoneIds = shippingZones |> Seq.map(fun z -> z.Id)

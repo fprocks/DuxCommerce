@@ -167,14 +167,14 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
             var methods = _profileCreated.Zones.FirstOrDefault().Methods;
             CompareMethods(zoneRequest.Methods.ToList(), methods.ToList());
+
+            CompareOrigins(_profileRequest.OriginIds.ToList(), _profileCreated.OriginIds.ToList());
         }
 
-
-        //private void CompareOrigins(List<ShippingOrigin> expected, List<ShippingOriginDto> actual)
-        //{
-        //    expected.Count().Should().Be(actual.Count());
-        //    expected.Equals(actual);
-        //}
+        private void CompareOrigins(List<long> expected, List<long> actual)
+        {
+            expected.Should().BeEquivalentTo(actual);
+        }
 
         private void CompareZones(List<ShippingZoneDto> expected, List<ShippingZoneDto> actual)
         {
@@ -201,7 +201,6 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             {
                 expected[index].CountryCode.Should().Be(actual[index].CountryCode);
 
-                expected[index].StateIds.Count().Should().Be(actual[index].StateIds.Count());
                 expected[index].StateIds.Should().BeEquivalentTo(actual[index].StateIds);
             }
         }
@@ -228,15 +227,5 @@ namespace DuxCommerce.Specifications.UseCases.Steps
                 expected[index].Rate.Should().Be(actual[index].Rate);
             }
         }
-
-        //private void CompareStates(List<ShippingState> expected, List<StateDto> actual)
-        //{
-        //    expected.Count().Should().Be(actual.Count());
-        //    for (var index = 0; index < expected.Count(); index++)
-        //    {
-        //        expected[index].CountryCode.Should().Be(actual[index].CountryCode);
-        //        expected[index].Name.Should().Be(actual[index].Name);
-        //    }
-        //}
     }
 }
