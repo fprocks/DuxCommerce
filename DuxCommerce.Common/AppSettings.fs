@@ -18,6 +18,7 @@ module SqlServerSettings =
 
         settings
 
+[<CLIMutable>]        
 type MongoSettings = {
     ConnectionString : string
     DatabaseName : string

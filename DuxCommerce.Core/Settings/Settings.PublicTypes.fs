@@ -5,6 +5,7 @@ open MongoDB.Bson.Serialization.Attributes
 
 [<CLIMutable>]
 type AddressDto = {
+    [<BsonId>]
     [<BsonRepresentation(BsonType.ObjectId)>]
     Id: string
     FirstName: string
@@ -21,6 +22,7 @@ type AddressDto = {
 
 [<CLIMutable>]
 type StoreProfileDto = {
+    [<BsonId>]
     [<BsonRepresentation(BsonType.ObjectId)>]
     Id: string
     StoreName: string
@@ -39,6 +41,7 @@ type StoreProfileDto = {
 
 [<CLIMutable>]
 type CountryDto = {
+    [<BsonId>]
     [<BsonRepresentation(BsonType.ObjectId)>]
     Id: string
     Name: string
@@ -47,6 +50,7 @@ type CountryDto = {
 
 [<CLIMutable>]
 type StateDto = {
+    [<BsonId>]
     [<BsonRepresentation(BsonType.ObjectId)>]
     Id: string
     CountryCode: string
@@ -55,6 +59,7 @@ type StateDto = {
 
 [<CLIMutable>]
 type ShippingOriginDto = {
+    [<BsonId>]
     [<BsonRepresentation(BsonType.ObjectId)>]
     Id: string
     Name: string
@@ -91,6 +96,8 @@ type ShippingZoneDto = {
 
 [<CLIMutable>]
 type ShippingProfileDto = {
+    [<BsonId>]
+    [<BsonRepresentation(BsonType.ObjectId)>]
     Id: string
     Name: string
     IsDefault: bool

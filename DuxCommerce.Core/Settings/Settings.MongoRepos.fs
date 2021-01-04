@@ -103,7 +103,7 @@ module ShippingProfileRepo =
             profileDto
 
 
-    let createDefaultProfile :CreateDefaultProfile =
+    let createDefault:CreateDefaultProfile =
         fun addressDto -> 
             let create (db:IMongoDatabase) =
                 let addresses = db.GetCollection<AddressDto>(CollectionName.Address)
@@ -121,7 +121,7 @@ module ShippingProfileRepo =
 
             MongoRepoAdapter.repoAdapter create
 
-    let createCustomProfile :CreateCustomProfile =
+    let createCustom :CreateCustomProfile =
         fun profileDto -> 
             let create (db:IMongoDatabase) =
                 let profiles = db.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile)
