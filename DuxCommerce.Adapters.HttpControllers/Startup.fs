@@ -54,9 +54,9 @@ type Startup private () =
             endpoints.MapControllers() |> ignore
             ) |> ignore
         
-        app.ApplicationServices
-           .CreateScope()
-           .ServiceProvider.GetService<IMigrationRunner>()
-           .MigrateUp() |> ignore
+        //app.ApplicationServices
+        //   .CreateScope()
+        //   .ServiceProvider.GetService<IMigrationRunner>()
+        //   .MigrateUp() |> ignore
 
     member val Configuration : IConfiguration = null with get, set
