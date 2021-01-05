@@ -34,7 +34,6 @@ type Startup private () =
         let mongoSettings = MongoSettings.FromFile "appsettings.json"
         AppSettings().SetMongoSettings(mongoSettings)
 
-
         services.AddFluentMigratorCore().ConfigureRunner(fun config ->
             config.AddSqlServer()
                 .WithGlobalConnectionString(sqlSettings.ConnectionString)
@@ -55,9 +54,9 @@ type Startup private () =
             endpoints.MapControllers() |> ignore
             ) |> ignore
         
-        app.ApplicationServices
-           .CreateScope()
-           .ServiceProvider.GetService<IMigrationRunner>()
-           .MigrateUp() |> ignore
+        //app.ApplicationServices
+        //   .CreateScope()
+        //   .ServiceProvider.GetService<IMigrationRunner>()
+        //   .MigrateUp() |> ignore
 
     member val Configuration : IConfiguration = null with get, set

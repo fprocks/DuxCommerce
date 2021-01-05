@@ -8,7 +8,8 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
         [BeforeTestRun]
         public static void BeforeScenario()
         {
-            DatabaseCleaner.CleanUp();
+            //SqlDatabaseCleaner.CleanUp();
+            MongoDatabaseCleaner.CleanUpAsync();
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace DuxCommerce.Specifications.UseCases.Hooks
 {
-    public class DatabaseCleaner
+    public class SqlDatabaseCleaner
     {
         public static void CleanUp()
         {

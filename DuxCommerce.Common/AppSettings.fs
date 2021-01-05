@@ -9,15 +9,16 @@ type SqlServerSettings = {
 
 module SqlServerSettings = 
     let FromFile (configFile:string) = 
-        let mutable dbSettings = {ConnectionString = ""}
+        let mutable settings = {ConnectionString = ""}
     
         let config = ConfigurationBuilder()
                         .AddJsonFile(configFile)
                         .Build()
-        config.Bind("SqlServerSettings", dbSettings)
+        config.Bind("SqlServerSettings", settings)
 
-        dbSettings
+        settings
 
+[<CLIMutable>]        
 type MongoSettings = {
     ConnectionString : string
     DatabaseName : string

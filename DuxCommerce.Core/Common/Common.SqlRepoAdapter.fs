@@ -5,7 +5,7 @@ open System.Data.SqlClient
 open DuxCommerce.Common
 open RepoDb
 
-module RepoAdapter = 
+module SqlRepoAdapter = 
 
     let repoAdapter repoFn=
         try

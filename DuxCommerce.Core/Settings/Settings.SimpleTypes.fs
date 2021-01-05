@@ -2,7 +2,7 @@
 
 open DuxCommerce.Common
 
-type StoreProfileId = private StoreProfileId of int64
+type StoreProfileId = private StoreProfileId of string
 module StoreProfileId =
     let value (StoreProfileId id) = id
     let create id = StoreProfileId id
@@ -38,7 +38,7 @@ module TimeZoneId =
             return (TimeZoneId zoneId)
         }
       
-type AddressId = private AddressId of int64
+type AddressId = private AddressId of string
 module AddressId =
     let value (AddressId id) = id
     let create id = AddressId id
@@ -53,17 +53,17 @@ module CountryCode =
             return CountryCode countryCode
         }
 
-type ShippingOriginId = private ShippingOriginId of int64
+type ShippingOriginId = private ShippingOriginId of string
 module ShippingOriginId =
     let value (ShippingOriginId id) = id
     let create id = ShippingOriginId id
 
-type ShippingProfileId = private ShippingProfileId of int64
+type ShippingProfileId = private ShippingProfileId of string
 module ShippingProfileId =
     let value (ShippingProfileId id) = id
     let create id = ShippingProfileId id
 
-type StateId = private StateId of int64
+type StateId = private StateId of string
 module StateId =
     let value (StateId id) = id
     let create id = StateId id

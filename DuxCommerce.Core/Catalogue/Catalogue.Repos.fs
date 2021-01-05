@@ -15,18 +15,18 @@ module ProductRepo =
                 connection.Insert<ProductDto, int64>(productDto) |> ignore
                 productDto.Id
                 
-            RepoAdapter.repoAdapter create
+            SqlRepoAdapter.repoAdapter create
             
     let getProduct :GetProduct =
         fun id ->
             let get (connection:SqlConnection) =
                 connection.Query<ProductDto>(fun p -> p.Id = id).FirstOrDefault()
                 
-            RepoAdapter.repoAdapter get          
+            SqlRepoAdapter.repoAdapter get          
             
     let updateProduct :UpdateProduct =
         fun id productDto ->
             let update (connection:SqlConnection) =
                 connection.Update<ProductDto>(productDto, id) |> ignore
                 
-            RepoAdapter.repoAdapter update
+            SqlRepoAdapter.repoAdapter update

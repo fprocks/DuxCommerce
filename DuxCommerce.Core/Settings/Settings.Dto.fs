@@ -73,7 +73,7 @@ module ShippingCountryDto =
         }
 
 module ShippingRateDto =
-    let toDomain (dto:ShippingRateDto) =
+    let toDomain dto :ShippingRate=
         {
             Min = RateCondition.create dto.Min
             Max = RateCondition.create dto.Min
@@ -81,7 +81,7 @@ module ShippingRateDto =
         }
         
 module ShippingMethodDto =
-    let toDomain (dto:ShippingMethodDto)=
+    let toDomain (dto:ShippingMethodDto) :Result<ShippingMethod, string> =
         result {
             let! name = String50.create "Method.Name" dto.Name
             let! methodType = ShippingMethodType.create dto.MethodType
@@ -95,7 +95,7 @@ module ShippingMethodDto =
         }
 
 module ShippingZoneDto = 
-    let toDomain (dto:ShippingZoneDto) =
+    let toDomain (dto:ShippingZoneDto) :Result<ShippingZone, string> =
         result {
             let! name = String50.create "Zone.Name" dto.Name
             let! methods = dto.Methods 
@@ -123,7 +123,7 @@ module ShippingProfileDto =
                         |> Seq.toList
                         |> Result.sequence
             return {
-                ShippingProfileId = ShippingProfileId.create 0L
+                ShippingProfileId = ShippingProfileId.create ""
                 Name = name
                 Origins = origins
                 Zones = zones

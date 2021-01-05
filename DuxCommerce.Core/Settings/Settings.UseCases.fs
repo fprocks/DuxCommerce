@@ -2,7 +2,7 @@
 
 open DuxCommerce.Settings.Dto
 open DuxCommerce.Settings.Ports
-open DuxCommerce.Settings.SqlRepos
+open DuxCommerce.Settings.MongoRepos
 open DuxCommerce.Common
 
 module StoreProfileUseCases =   
@@ -20,7 +20,7 @@ module StoreProfileUseCases =
                 // Todo: why the next line never executes ShippingProfileRepo.createProfile
                 //profileDto.Address |> ShippingProfileRepo.createProfile |> ignore
 
-                let! _ = profileDto.Address |> ShippingProfileRepo.createDefaultProfile
+                let! _ = profileDto.Address |> ShippingProfileRepo.createDefault
 
                 return! StoreProfileRepo.getProfile profileId 
             }
@@ -62,7 +62,7 @@ module ShippingProfileUseCases =
                         |> CustomError.mapValidation
                         |> ConfigReader.retn
 
-                let! profileId = ShippingProfileRepo.createCustomProfile dto
+                let! profileId = ShippingProfileRepo.createCustom dto
                 return! ShippingProfileRepo.getProfile profileId
             }
 
