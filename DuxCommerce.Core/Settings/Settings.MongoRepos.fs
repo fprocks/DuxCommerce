@@ -80,11 +80,8 @@ module ShippingOriginRepo =
 module ShippingProfileRepo = 
 
     let internal createProfile =
-        fun (originId:string) addressDto ->
-            let shippingCountry = 
-                match box addressDto.StateId with
-                | null -> {CountryCode = addressDto.CountryCode; StateIds = Seq.empty}
-                | _ -> {CountryCode = addressDto.CountryCode; StateIds = seq {addressDto.StateId}}
+        fun (originId:string) (addressDto:AddressDto) ->
+            let shippingCountry = {CountryCode = addressDto.CountryCode; StateNames = seq {addressDto.StateName}}
 
             let zoneDto = {
                 Name = addressDto.CountryCode; 
