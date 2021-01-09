@@ -5,12 +5,12 @@
 
 Scenario: Create products - green path
 	Given Tom enters the following product information:
-	| Name   | Description   | Price    | Retail   | Cost   | Length   | Width   | Height   | Weight   | ProductType   | Sku   | Barcode   | TrackInventory   | OutOfStockRule   |
+	| Name   | Description   | Price   | Retail   | Cost   | Length   | Width   | Height   | Weight   | ProductType   | Sku   | Barcode   | TrackInventory   | OutOfStockRule   |
 	| <Name> | <Description> | <Price> | <Retail> | <Cost> | <Length> | <Width> | <Height> | <Weigth> | <ProductType> | <Sku> | <Barcode> | <TrackInventory> | <OutOfStockRule> |
 	When Tom saves the product
 	Then Tom should receive status codes OK
 	And the product should be created as follow:
-	| Name   | Description   | Price    | Retail   | Cost   | Length   | Width   | Height   | Weight   | ProductType   | Sku   | Barcode   | TrackInventory   | OutOfStockRule   |
+	| Name   | Description   | Price   | Retail   | Cost   | Length   | Width   | Height   | Weight   | ProductType   | Sku   | Barcode   | TrackInventory   | OutOfStockRule   |
 	| <Name> | <Description> | <Price> | <Retail> | <Cost> | <Length> | <Width> | <Height> | <Weigth> | <ProductType> | <Sku> | <Barcode> | <TrackInventory> | <OutOfStockRule> |
 Examples: 
 	| Name | Description     | Price | Retail | Cost | Length | Width | Height | Weight | ProductType     | Sku      | Barcode       | TrackInventory | OutOfStockRule  |
@@ -19,7 +19,7 @@ Examples:
 
 Scenario: Create products - red path
 	Given Tom enters the following product information:
-	| Name   | Description   | Price    | Retail   | Cost   | Length   | Width   | Height   | Weight   | ProductType   | Sku   | Barcode   | TrackInventory   | OutOfStockRule   |
+	| Name   | Description   | Price   | Retail   | Cost   | Length   | Width   | Height   | Weight   | ProductType   | Sku   | Barcode   | TrackInventory   | OutOfStockRule   |
 	| <Name> | <Description> | <Price> | <Retail> | <Cost> | <Length> | <Width> | <Height> | <Weigth> | <ProductType> | <Sku> | <Barcode> | <TrackInventory> | <OutOfStockRule> |
 	When Tom saves the product
 	Then Tom should receive status codes BadRequest

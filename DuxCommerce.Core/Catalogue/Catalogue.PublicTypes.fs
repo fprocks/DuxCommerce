@@ -1,8 +1,13 @@
 ﻿namespace DuxCommerce.Catalogue.PublicTypes
 
+open MongoDB.Bson.Serialization.Attributes
+open MongoDB.Bson
+
 [<CLIMutable>]
 type ProductDto = {
-    Id: int64
+    [<BsonId>]
+    [<BsonRepresentation(BsonType.ObjectId)>]
+    Id: string
     Name : string
     Description : string
     Price : decimal

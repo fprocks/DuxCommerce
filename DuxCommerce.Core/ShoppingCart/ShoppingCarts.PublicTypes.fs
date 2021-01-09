@@ -1,12 +1,15 @@
 ﻿namespace DuxCommerce.ShoppingCarts.PublicTypes
 
+open MongoDB.Bson.Serialization.Attributes
+open MongoDB.Bson
+
 type AddCartItemRequest = {
-    ProductId: int64
+    ProductId: string
     Quantity: decimal
 }
 
 type UpdateCartItemRequest = {
-    ProductId: int64
+    ProductId: string
     Quantity: decimal
 }
 
@@ -15,14 +18,12 @@ type UpdateCartRequest = {
 }
 
 type DeleteCartItemRequest = {
-    ProductId: int64
+    ProductId: string
 }
 
 [<CLIMutable>]
 type CartItemDto = {
-    Id: int64
-    CartId: int64
-    ProductId: int64
+    ProductId: string
     ProductName: string
     Price: decimal
     Quantity: decimal
@@ -31,8 +32,10 @@ type CartItemDto = {
 
 [<CLIMutable>]
 type ShoppingCartDto = {
-    Id: int64
-    ShopperId: int64
+    [<BsonId>]
+    [<BsonRepresentation(BsonType.ObjectId)>]
+    Id: string
+    ShopperId: string
     LineItems: CartItemDto seq
     CartTotal: decimal
 }

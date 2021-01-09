@@ -38,10 +38,12 @@ module StoreProfileRepo =
         fun id profileDto ->
             let update (db:IMongoDatabase) =
                 let profiles = db.GetCollection<StoreProfileDto>(CollectionName.StoreProfile)
+                let profileDto = {profileDto with Id = id}
                 profiles.ReplaceOne((fun x -> x.Id = id), profileDto) |> ignore
 
                 let addresses = db.GetCollection<AddressDto>(CollectionName.Address)
-                addresses.ReplaceOne((fun x -> x.Id = profileDto.AddressId), profileDto.Address) |> ignore
+                let addressDto = {profileDto.Address with Id = profileDto.AddressId}
+                addresses.ReplaceOne((fun x -> x.Id = profileDto.AddressId), addressDto) |> ignore
                 
             MongoRepoAdapter.repoAdapter update
 

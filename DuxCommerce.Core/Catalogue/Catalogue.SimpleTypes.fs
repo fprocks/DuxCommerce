@@ -1,6 +1,6 @@
 ﻿namespace DuxCommerce.Catalogue.SimpleTypes
 
-type ProductId = ProductId of int64
+type ProductId = ProductId of string
 module ProductId =
     let value (ProductId id) = id    
     let create id = ProductId id

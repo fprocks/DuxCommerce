@@ -7,8 +7,6 @@ open DuxCommerce.Catalogue.SimpleTypes
 open DuxCommerce.ShoppingCarts.Commands
 
 type CartItem = {
-    CartItemId: CartItemId
-    CartId: ShoppingCartId
     ProductId : ProductId
     ProductName: String255
     Price: SalePrice
@@ -42,8 +40,6 @@ module internal CartItem =
     
     let createItem cartId (product:Product) quantity :CartItem=
         {
-            CartItemId = CartItemId.create 0L
-            CartId = cartId
             ProductId = product.ProductId
             ProductName = product.Name
             Price = product.Price
@@ -95,7 +91,6 @@ module ShoppingCart =
         let remainingItems = Seq.filter check cart.LineItems 
         
         let updatedCart = updateItems cart remainingItems              
-        let deletedItems = Seq.except remainingItems cart.LineItems                
             
-        updatedCart, deletedItems
+        updatedCart
         

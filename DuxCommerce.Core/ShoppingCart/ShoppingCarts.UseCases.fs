@@ -6,7 +6,8 @@ open DuxCommerce.ShoppingCart.Dto
 open DuxCommerce.ShoppingCarts.Commands
 open DuxCommerce.ShoppingCarts.InternalTypes
 open DuxCommerce.ShoppingCarts.Ports
-open DuxCommerce.Catalogue
+open DuxCommerce.ShoppingCarts.MongoRepos
+open DuxCommerce.Catalogue.MongoRepos
 
 module UseCases =
 
@@ -56,11 +57,10 @@ module UseCases =
                 let! cmd = DeleteCartItemCommand.fromRequest request |> ConfigReader.retn
                 let cart = ShoppingCartDto.toDomain cartDto
                 
-                let (updatedCart, deletedItems) = ShoppingCart.deleteCartItem cart cmd
+                let updatedCart = ShoppingCart.deleteCartItem cart cmd
                 
                 let updatedCart = updatedCart |> ShoppingCartDto.fromDomain
-                let deletedItems = deletedItems |> Seq.map CartItemDto.fromDomain
                 
-                do! CartRepo.deleteCartItem (updatedCart, deletedItems)
+                do! CartRepo.saveShoppingCart updatedCart
                 return! CartRepo.getShoppingCart shopperId
             }
