@@ -64,7 +64,10 @@ module ShippingCountryDto =
     let toDomain (dto:ShippingCountryDto) =
         result {
             let! code = CountryCode.create "CountryCode" dto.CountryCode
-            let states = dto.StateIds |> Seq.map StateId.create
+            let! states = dto.StateNames 
+                        |> Seq.map (String50.create "StateNames")
+                        |> Seq.toList
+                        |> Result.sequence
 
             return {
                 CountryCode = code

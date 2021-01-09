@@ -56,7 +56,7 @@ type StoreProfile = {
  
 type ShippingCountry = {
     CountryCode: CountryCode
-    States: StateId seq
+    States: String50 seq
 }
 
 type ShippingRate = {

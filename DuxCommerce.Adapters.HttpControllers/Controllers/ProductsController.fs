@@ -12,7 +12,7 @@ type ProductsController (logger : ILogger<ProductsController>) =
     inherit DuxControllerBase()
 
     [<HttpGet("{id}")>]
-    member this.Get(id : int64) : IActionResult=
+    member this.Get(id : string) : IActionResult=
         let result = ConfigReader.execute (UseCases.getProduct id)
         match result with
         | Ok p -> base.Ok(p) :> _
@@ -26,7 +26,7 @@ type ProductsController (logger : ILogger<ProductsController>) =
         | Error m -> base.Convert(m)
         
     [<HttpPut("{id}")>]
-    member this.Put(id: int64, request: ProductDto) : IActionResult=
+    member this.Put(id: string, request: ProductDto) : IActionResult=
         let result = ConfigReader.execute (UseCases.updateProduct id request)
         match result with
         | Ok p -> base.Ok(p) :> _

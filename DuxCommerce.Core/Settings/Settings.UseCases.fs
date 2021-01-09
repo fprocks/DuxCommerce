@@ -17,10 +17,10 @@ module StoreProfileUseCases =
                                
                 let! profileId = profileDto |> StoreProfileRepo.createProfile
 
+                let addressDto = {profileDto.Address with Id = ""}
                 // Todo: why the next line never executes ShippingProfileRepo.createProfile
                 //profileDto.Address |> ShippingProfileRepo.createProfile |> ignore
-
-                let! _ = profileDto.Address |> ShippingProfileRepo.createDefault
+                let! _ = addressDto |> ShippingProfileRepo.createDefault
 
                 return! StoreProfileRepo.getProfile profileId 
             }

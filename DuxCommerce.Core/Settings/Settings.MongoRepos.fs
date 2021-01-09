@@ -38,10 +38,12 @@ module StoreProfileRepo =
         fun id profileDto ->
             let update (db:IMongoDatabase) =
                 let profiles = db.GetCollection<StoreProfileDto>(CollectionName.StoreProfile)
+                let profileDto = {profileDto with Id = id}
                 profiles.ReplaceOne((fun x -> x.Id = id), profileDto) |> ignore
 
                 let addresses = db.GetCollection<AddressDto>(CollectionName.Address)
-                addresses.ReplaceOne((fun x -> x.Id = profileDto.AddressId), profileDto.Address) |> ignore
+                let addressDto = {profileDto.Address with Id = profileDto.AddressId}
+                addresses.ReplaceOne((fun x -> x.Id = profileDto.AddressId), addressDto) |> ignore
                 
             MongoRepoAdapter.repoAdapter update
 
@@ -80,11 +82,8 @@ module ShippingOriginRepo =
 module ShippingProfileRepo = 
 
     let internal createProfile =
-        fun (originId:string) addressDto ->
-            let shippingCountry = 
-                match box addressDto.StateId with
-                | null -> {CountryCode = addressDto.CountryCode; StateIds = Seq.empty}
-                | _ -> {CountryCode = addressDto.CountryCode; StateIds = seq {addressDto.StateId}}
+        fun (originId:string) (addressDto:AddressDto) ->
+            let shippingCountry = {CountryCode = addressDto.CountryCode; StateNames = seq {addressDto.StateName}}
 
             let zoneDto = {
                 Name = addressDto.CountryCode; 

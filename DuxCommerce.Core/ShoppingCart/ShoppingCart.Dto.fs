@@ -9,10 +9,8 @@ open DuxCommerce.ShoppingCarts.SimpleTypes
 
 module CartItemDto = 
 
-    let fromDomain cartItem :CartItemDto =
+    let fromDomain (cartItem:CartItem) :CartItemDto =
         {
-            Id = CartItemId.value cartItem.CartItemId
-            CartId = ShoppingCartId.value cartItem.CartId
             ProductId = ProductId.value cartItem.ProductId
             ProductName = String255.value cartItem.ProductName
             Price = SalePrice.value cartItem.Price
@@ -22,8 +20,6 @@ module CartItemDto =
             
     let toDomain (itemDto:CartItemDto) :CartItem =
         {
-            CartItemId = CartItemId.create itemDto.Id
-            CartId = ShoppingCartId.create itemDto.CartId
             ProductId = ProductId.create itemDto.ProductId
             ProductName = String255 itemDto.ProductName
             Price = SalePrice.create itemDto.Price

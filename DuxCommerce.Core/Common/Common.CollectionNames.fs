@@ -6,3 +6,5 @@ module CollectionName =
     let StoreProfile = "StoreProfile"
     let ShippingOrigin = "ShippingOrigin"
     let ShippingProfile = "ShippingProfile"
+    let Product = "Product"
+    let ShoppingCart = "ShoppingCart"

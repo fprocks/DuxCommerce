@@ -69,8 +69,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         public void ThenShippigStatesShouldBeCreatedAsFollow(Table table)
         {
             var expected = table.CreateSet<ShippingState>();
-            var actual = _profileCreated.Zones.SelectMany(x => x.Countries).SelectMany(x => x.StateIds);
-            expected.Select(x => x.StateId).Should().BeEquivalentTo(actual);
+            var actual = _profileCreated.Zones.SelectMany(x => x.Countries).SelectMany(x => x.StateNames);
+            expected.Select(x => x.Name).Should().BeEquivalentTo(actual);
         }
 
         [Given(@"Tom already created the following shipping origins:")]
@@ -115,16 +115,16 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Given(@"Tom selects the following shipping states:")]
         public void GivenTomSelectsTheFollowingShippingStates(Table table)
         {
-            //var shippingStates = table.CreateSet<ShippingState>();
-            //var zoneRequest = _profileRequest.Zones.FirstOrDefault();
-            //foreach(var country in zoneRequest.Countries)
-            //{
-            //    var stateIds = shippingStates
-            //        .Where(s => s.CountryCode == country.CountryCode)
-            //        .Select(x => x.StateId);
+            var shippingStates = table.CreateSet<ShippingState>();
+            var zoneRequest = _profileRequest.Zones.FirstOrDefault();
+            foreach (var country in zoneRequest.Countries)
+            {
+                var states = shippingStates
+                    .Where(s => s.CountryCode == country.CountryCode)
+                    .Select(x => x.Name);
 
-            //    country.StateIds = stateIds;
-            //}
+                country.StateNames = states;
+            }
         }
 
         [Given(@"Tom selects shipping method type (.*) and enters method name (.*)")]
@@ -200,7 +200,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             for (var index = 0; index < expected.Count(); index++)
             {
                 expected[index].CountryCode.Should().Be(actual[index].CountryCode);
-                expected[index].StateIds.Should().BeEquivalentTo(actual[index].StateIds);
+                expected[index].StateNames.Should().BeEquivalentTo(actual[index].StateNames);
             }
         }
 

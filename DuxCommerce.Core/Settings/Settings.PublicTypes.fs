@@ -70,7 +70,8 @@ type ShippingOriginDto = {
 [<CLIMutable>]
 type ShippingCountryDto = {
     CountryCode: string
-    StateIds: string seq
+    // Todo: change this to States: StateDto seq
+    StateNames: string seq
 }
 
 [<CLIMutable>]

@@ -2,7 +2,7 @@
 
 open DuxCommerce.Catalogue.SimpleTypes
 
-type ShopperId = private ShopperId of int64
+type ShopperId = private ShopperId of string
 
 module ShopperId =
 
@@ -10,7 +10,7 @@ module ShopperId =
 
     let create id = ShopperId id
     
-type ShoppingCartId = private ShoppingCartId of int64
+type ShoppingCartId = private ShoppingCartId of string
 
 module ShoppingCartId =
 
@@ -18,13 +18,6 @@ module ShoppingCartId =
 
     let create id = ShoppingCartId id
 
-type CartItemId = private CartItemId of int64
-
-module CartItemId =
-
-    let value (CartItemId id) = id
-
-    let create id = CartItemId id
 
 type ItemQuantity = private ItemQuantity of decimal
 

@@ -7,7 +7,7 @@ namespace DuxCommerce.Specifications.UseCases.Models
     public class CartItem
     {
         public int Product { get; set; }
-        public long ProductId { get; set; }
+        public string ProductId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public decimal Quantity { get; set; }

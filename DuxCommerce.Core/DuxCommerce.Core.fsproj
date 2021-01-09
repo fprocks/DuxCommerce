@@ -13,7 +13,6 @@
       <Compile Include="Settings\Settings.InternalTypes.fs" />
       <Compile Include="Settings\Settings.Dto.fs" />
       <Compile Include="Settings\Settings.Ports.fs" />
-      <Compile Include="Settings\Settings.SqlRepos.fs" />
       <Compile Include="Settings\Settings.MongoRepos.fs" />
       <Compile Include="Settings\Settings.UseCases.fs" />
       <Compile Include="Catalogue\Catalogue.SimpleTypes.fs" />
@@ -21,7 +20,7 @@
       <Compile Include="Catalogue\Catalogue.InternalTypes.fs" />
       <Compile Include="Catalogue\Catalogue.Dto.fs" />
       <Compile Include="Catalogue\Catalogue.Ports.fs" />
-      <Compile Include="Catalogue\Catalogue.Repos.fs" />
+      <Compile Include="Catalogue\Catalogue.MongoRepos.fs" />
       <Compile Include="Catalogue\Catalogue.UseCases.fs" />
       <Compile Include="ShoppingCart\ShoppingCarts.SimpleTypes.fs" />
       <Compile Include="ShoppingCart\ShoppingCarts.PublicTypes.fs" />
@@ -29,7 +28,7 @@
       <Compile Include="ShoppingCart\ShoppingCarts.InternalTypes.fs" />
       <Compile Include="ShoppingCart\ShoppingCart.Dto.fs" />
       <Compile Include="ShoppingCart\ShoppingCarts.Ports.fs" />
-      <Compile Include="ShoppingCart\ShoppingCarts.Repos.fs" />
+      <Compile Include="ShoppingCart\ShoppingCarts.MongoRepos.fs" />
       <Compile Include="ShoppingCart\ShoppingCarts.UseCases.fs" />
     </ItemGroup>
 
