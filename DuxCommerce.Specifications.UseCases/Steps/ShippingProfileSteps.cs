@@ -115,16 +115,16 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Given(@"Tom selects the following shipping states:")]
         public void GivenTomSelectsTheFollowingShippingStates(Table table)
         {
-            //var shippingStates = table.CreateSet<ShippingState>();
-            //var zoneRequest = _profileRequest.Zones.FirstOrDefault();
-            //foreach(var country in zoneRequest.Countries)
-            //{
-            //    var stateIds = shippingStates
-            //        .Where(s => s.CountryCode == country.CountryCode)
-            //        .Select(x => x.StateId);
+            var shippingStates = table.CreateSet<ShippingState>();
+            var zoneRequest = _profileRequest.Zones.FirstOrDefault();
+            foreach (var country in zoneRequest.Countries)
+            {
+                var states = shippingStates
+                    .Where(s => s.CountryCode == country.CountryCode)
+                    .Select(x => x.Name);
 
-            //    country.StateIds = stateIds;
-            //}
+                country.StateNames = states;
+            }
         }
 
         [Given(@"Tom selects shipping method type (.*) and enters method name (.*)")]

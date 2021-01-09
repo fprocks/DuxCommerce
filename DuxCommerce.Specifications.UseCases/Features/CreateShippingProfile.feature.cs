@@ -165,23 +165,18 @@ this.FeatureBackground();
  testRunner.And("Tom selects the following shipping countries:", ((string)(null)), table5, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
-                            "StateId",
                             "CountryCode",
                             "Name"});
                 table6.AddRow(new string[] {
-                            "101",
                             "AU",
                             "New South Wales"});
                 table6.AddRow(new string[] {
-                            "103",
                             "AU",
                             "Queensland"});
                 table6.AddRow(new string[] {
-                            "108",
                             "NZ",
                             "Auckland"});
                 table6.AddRow(new string[] {
-                            "122",
                             "NZ",
                             "Wellington"});
 #line 19

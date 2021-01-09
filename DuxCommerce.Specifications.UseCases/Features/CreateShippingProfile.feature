@@ -17,11 +17,11 @@ Scenario: Create custom shipping profile
 	| AU          |
 	| NZ          |
 	And Tom selects the following shipping states:
-	| StateId | CountryCode | Name            |
-	| 101     | AU          | New South Wales |
-	| 103     | AU          | Queensland      |
-	| 108     | NZ          | Auckland        |
-	| 122     | NZ          | Wellington      |
+	| CountryCode | Name            |
+	| AU          | New South Wales |
+	| AU          | Queensland      |
+	| NZ          | Auckland        |
+	| NZ          | Wellington      |
 	And Tom selects shipping method type <MethodType> and enters method name <MethodName>
 	And Tome enters the following rates:
 	| Min | Max   | Rate |
