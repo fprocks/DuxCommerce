@@ -63,7 +63,7 @@ type ShippingOriginDto = {
     [<BsonRepresentation(BsonType.ObjectId)>]
     Id: string
     Name: string
-    AddressId: string
+    Address: AddressDto
     IsDefault: bool
 }
 

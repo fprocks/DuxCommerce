@@ -73,4 +73,10 @@ module ShippingOriginUseCases =
             readerResult {
                 let! originId = addressDto |> ShippingOriginRepo.createOrigin
                 return! ShippingOriginRepo.getOrigin originId
-            }    
+            }
+
+    let getOrigins :GetShippingOriginsUseCase = 
+        fun ids ->
+            readerResult {
+                return! ShippingOriginRepo.getOrigins ids
+            }

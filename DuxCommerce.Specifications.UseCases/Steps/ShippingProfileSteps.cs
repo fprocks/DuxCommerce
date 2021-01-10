@@ -45,10 +45,18 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [Then(@"shipping origin should be created as follow:")]
-        public void ThenShippingOriginShouldBeCreatedAsFollow(Table table)
+        public async Task ThenShippingOriginShouldBeCreatedAsFollowAsync(Table table)
         {
-            //var expected = table.CreateSet<ShippingOrigin>();
-            //CompareOrigins(expected.ToList(), _profileCreated.Origins.ToList());
+            var ids = _profileCreated.OriginIds.Select(x => $"originIds={x}");
+            var query = string.Join("&", ids);
+            var url = $"api/shippingorigins?{query}";
+
+            var apiResult = await _apiClient.GetAsync(url);
+            var profileStr = await apiResult.Content.ReadAsStringAsync();
+            var actual = JsonConvert.DeserializeObject<List<ShippingOriginDto>>(profileStr);
+
+            var expected = table.CreateSet<ShippingOrigin>();
+            CompareOrigins(expected.ToList(), actual);
         }
 
         [Then(@"shipping zones should be created as follow:")]
@@ -171,9 +179,20 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             //CompareOrigins(_profileRequest.OriginIds.ToList(), _profileCreated.OriginIds.ToList());
         }
 
-        private void CompareOrigins(List<long> expected, List<long> actual)
+        private void CompareOrigins(List<ShippingOrigin> expected, List<ShippingOriginDto> actual)
         {
-            expected.Should().BeEquivalentTo(actual);
+            expected.Count().Should().Be(actual.Count());
+            for(var index = 0; index < expected.Count(); index ++)
+            {
+                expected[index].Name.Should().Be(actual[index].Name);
+                expected[index].IsDefault.Should().Be(actual[index].IsDefault);
+                expected[index].AddressLine1.Should().Be(actual[index].Address.AddressLine1);
+                expected[index].AddressLine2.Should().Be(actual[index].Address.AddressLine2);
+                expected[index].City.Should().Be(actual[index].Address.City);
+                expected[index].PostalCode.Should().Be(actual[index].Address.PostalCode);
+                expected[index].StateName.Should().Be(actual[index].Address.StateName);
+                expected[index].CountryCode.Should().Be(actual[index].Address.CountryCode);
+            }
         }
 
         private void CompareZones(List<ShippingZoneDto> expected, List<ShippingZoneDto> actual)

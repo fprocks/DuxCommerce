@@ -56,20 +56,32 @@ module ShippingOriginRepo =
                 addresses.InsertOne(addressDto)
 
                 let profiles = db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
-                let originDto = {Id = ""; Name = addressDto.AddressLine1; AddressId = addressDto.Id; IsDefault = true}
+                let originDto = {Id = ""; Name = addressDto.AddressLine1; Address = addressDto; IsDefault = true}
                 profiles.InsertOne(originDto)
 
                 originDto.Id
 
             MongoRepoAdapter.repoAdapter create
 
+    let getOrigins :GetShippingOrigins =
+        fun ids ->
+            let get (db:IMongoDatabase) =
+                let origins = db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
+                let filter = Builders<ShippingOriginDto>.Filter.In((fun x -> x.Id), ids)
+                origins.Find(filter).ToEnumerable()
+
+                // Todo: the following filter is not supported
+                //origins.Find(fun x -> Seq.exists ((=) x.Id) ids).ToEnumerable()
+
+            MongoRepoAdapter.repoAdapter get
+            
     let getOrigin :GetShippingOrigin =
         fun id ->
             let get (db:IMongoDatabase) =
-                let profiles = db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
-                profiles.Find(fun x -> x.Id = id).FirstOrDefault()
+                let origins = db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
+                origins.Find(fun x -> x.Id = id).FirstOrDefault()
 
-            MongoRepoAdapter.repoAdapter get          
+            MongoRepoAdapter.repoAdapter get
         
     let updateOrigin :UpdateShippingOrigin =
         fun id originDto ->
@@ -101,14 +113,13 @@ module ShippingProfileRepo =
 
             profileDto
 
-
     let createDefault:CreateDefaultProfile =
         fun addressDto -> 
             let create (db:IMongoDatabase) =
                 let addresses = db.GetCollection<AddressDto>(CollectionName.Address)
                 addresses.InsertOne(addressDto)
 
-                let originDto = {Id = ""; Name = addressDto.AddressLine1; AddressId = addressDto.Id; IsDefault = true}
+                let originDto = {Id = ""; Name = addressDto.AddressLine1; Address = addressDto; IsDefault = true}
                 let origins = db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
                 origins.InsertOne(originDto)
 
