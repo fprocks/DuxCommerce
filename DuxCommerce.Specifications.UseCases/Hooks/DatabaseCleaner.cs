@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace DuxCommerce.Specifications.UseCases.Hooks
 {
-    public class MongoDatabaseCleaner
+    public class DatabaseCleaner
     {
         public static void CleanUpAsync()
         {

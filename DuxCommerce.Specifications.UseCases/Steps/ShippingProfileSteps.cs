@@ -1,4 +1,5 @@
 ﻿using DuxCommerce.Settings.PublicTypes;
+using DuxCommerce.Specifications.UseCases.Extensions;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using DuxCommerce.Specifications.UseCases.Models;
 using FluentAssertions;
@@ -176,23 +177,13 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var methods = _profileCreated.Zones.FirstOrDefault().Methods;
             CompareMethods(zoneRequest.Methods.ToList(), methods.ToList());
 
-            //CompareOrigins(_profileRequest.OriginIds.ToList(), _profileCreated.OriginIds.ToList());
+            _profileRequest.OriginIds.Should().BeEquivalentTo(_profileCreated.OriginIds);
         }
 
         private void CompareOrigins(List<ShippingOrigin> expected, List<ShippingOriginDto> actual)
         {
             expected.Count().Should().Be(actual.Count());
-            for(var index = 0; index < expected.Count(); index ++)
-            {
-                expected[index].Name.Should().Be(actual[index].Name);
-                expected[index].IsDefault.Should().Be(actual[index].IsDefault);
-                expected[index].AddressLine1.Should().Be(actual[index].Address.AddressLine1);
-                expected[index].AddressLine2.Should().Be(actual[index].Address.AddressLine2);
-                expected[index].City.Should().Be(actual[index].Address.City);
-                expected[index].PostalCode.Should().Be(actual[index].Address.PostalCode);
-                expected[index].StateName.Should().Be(actual[index].Address.StateName);
-                expected[index].CountryCode.Should().Be(actual[index].Address.CountryCode);
-            }
+            expected.EqualTo(actual);
         }
 
         private void CompareZones(List<ShippingZoneDto> expected, List<ShippingZoneDto> actual)
