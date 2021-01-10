@@ -11,12 +11,9 @@ module MongoRepoAdapter =
             let func (appConfig:AppSettings) =
                 let settings = appConfig.GetMongoSettings
 
-                //let client = MongoClient(settings.ConnectionString)
-                //let database = client.GetDatabase(settings.DatabaseName)
+                let client = MongoClient(settings.ConnectionString)
+                let database = client.GetDatabase(settings.DatabaseName)
                 
-                let client = MongoClient("mongodb://localhost")
-                let database = client.GetDatabase("DuxCommerce_Acceptance")
-
                 Ok (repoFn database)
                 
             ConfigReader.ConfigReader func

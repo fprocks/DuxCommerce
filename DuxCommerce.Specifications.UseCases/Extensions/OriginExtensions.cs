@@ -1,9 +1,6 @@
-﻿using DuxCommerce.Settings.Dto;
-using DuxCommerce.Settings.PublicTypes;
+﻿using DuxCommerce.Settings.PublicTypes;
 using DuxCommerce.Specifications.UseCases.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DuxCommerce.Specifications.UseCases.Extensions
 {

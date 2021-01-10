@@ -2,8 +2,6 @@ namespace WebApi
 
 open Microsoft.AspNetCore.Hosting
 open Microsoft.Extensions.Hosting
-open RepoDb
-open DuxCommerce.DatabaseMigrations
 
 module Program =
        
