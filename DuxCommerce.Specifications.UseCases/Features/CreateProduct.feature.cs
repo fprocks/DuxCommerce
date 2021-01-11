@@ -125,45 +125,6 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Name",
-                            "Description",
-                            "Price",
-                            "Retail",
-                            "Cost",
-                            "Length",
-                            "Width",
-                            "Height",
-                            "Weight",
-                            "ProductType",
-                            "Sku",
-                            "Barcode",
-                            "TrackInventory",
-                            "OutOfStockRule"});
-                table1.AddRow(new string[] {
-                            string.Format("{0}", name),
-                            string.Format("{0}", description),
-                            string.Format("{0}", price),
-                            string.Format("{0}", retail),
-                            string.Format("{0}", cost),
-                            string.Format("{0}", length),
-                            string.Format("{0}", width),
-                            string.Format("{0}", height),
-                            "<Weigth>",
-                            string.Format("{0}", productType),
-                            string.Format("{0}", sku),
-                            string.Format("{0}", barcode),
-                            string.Format("{0}", trackInventory),
-                            string.Format("{0}", outOfStockRule)});
-#line 7
- testRunner.Given("Tom enters the following product information:", ((string)(null)), table1, "Given ");
-#line hidden
-#line 10
- testRunner.When("Tom saves the product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 11
- testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description",
@@ -194,8 +155,47 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", barcode),
                             string.Format("{0}", trackInventory),
                             string.Format("{0}", outOfStockRule)});
+#line 7
+ testRunner.Given("Tom enters the following product information:", ((string)(null)), table2, "Given ");
+#line hidden
+#line 10
+ testRunner.When("Tom saves the product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 11
+ testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Description",
+                            "Price",
+                            "Retail",
+                            "Cost",
+                            "Length",
+                            "Width",
+                            "Height",
+                            "Weight",
+                            "ProductType",
+                            "Sku",
+                            "Barcode",
+                            "TrackInventory",
+                            "OutOfStockRule"});
+                table3.AddRow(new string[] {
+                            string.Format("{0}", name),
+                            string.Format("{0}", description),
+                            string.Format("{0}", price),
+                            string.Format("{0}", retail),
+                            string.Format("{0}", cost),
+                            string.Format("{0}", length),
+                            string.Format("{0}", width),
+                            string.Format("{0}", height),
+                            "<Weigth>",
+                            string.Format("{0}", productType),
+                            string.Format("{0}", sku),
+                            string.Format("{0}", barcode),
+                            string.Format("{0}", trackInventory),
+                            string.Format("{0}", outOfStockRule)});
 #line 12
- testRunner.And("the product should be created as follow:", ((string)(null)), table2, "And ");
+ testRunner.And("the product should be created as follow:", ((string)(null)), table3, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -262,7 +262,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description",
                             "Price",
@@ -277,7 +277,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Barcode",
                             "TrackInventory",
                             "OutOfStockRule"});
-                table3.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             string.Format("{0}", name),
                             string.Format("{0}", description),
                             string.Format("{0}", price),
@@ -293,7 +293,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", trackInventory),
                             string.Format("{0}", outOfStockRule)});
 #line 21
- testRunner.Given("Tom enters the following product information:", ((string)(null)), table3, "Given ");
+ testRunner.Given("Tom enters the following product information:", ((string)(null)), table4, "Given ");
 #line hidden
 #line 24
  testRunner.When("Tom saves the product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
