@@ -5,9 +5,13 @@ open DuxCommerce.Common
 open DuxCommerce.ShoppingCart.Dto
 open DuxCommerce.ShoppingCarts.Commands
 open DuxCommerce.ShoppingCarts.InternalTypes
-open DuxCommerce.ShoppingCarts.Ports
 open DuxCommerce.ShoppingCarts.MongoRepos
 open DuxCommerce.Catalogue.MongoRepos
+open DuxCommerce.ShoppingCarts.PublicTypes
+
+type AddCartItemUseCase = string -> AddCartItemRequest -> ConfigReader<Result<ShoppingCartDto, CustomError>>
+type UpdateCartUseCase = string -> UpdateCartRequest -> ConfigReader<Result<ShoppingCartDto, CustomError>>
+type DeleteCartItemUseCase = string -> DeleteCartItemRequest -> ConfigReader<Result<ShoppingCartDto, CustomError>>
 
 module UseCases =
 

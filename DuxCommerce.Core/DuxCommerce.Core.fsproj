@@ -24,7 +24,6 @@
       <Compile Include="ShoppingCart\ShoppingCarts.Commands.fs" />
       <Compile Include="ShoppingCart\ShoppingCarts.InternalTypes.fs" />
       <Compile Include="ShoppingCart\ShoppingCart.Dto.fs" />
-      <Compile Include="ShoppingCart\ShoppingCarts.Ports.fs" />
       <Compile Include="ShoppingCart\ShoppingCarts.MongoRepos.fs" />
       <Compile Include="ShoppingCart\ShoppingCarts.UseCases.fs" />
     </ItemGroup>

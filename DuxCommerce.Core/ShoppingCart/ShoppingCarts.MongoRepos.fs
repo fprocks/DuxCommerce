@@ -1,9 +1,13 @@
 ﻿namespace DuxCommerce.ShoppingCarts.MongoRepos
 
 open DuxCommerce.Core.Common
-open DuxCommerce.ShoppingCarts.Ports
 open DuxCommerce.ShoppingCarts.PublicTypes
 open MongoDB.Driver
+open DuxCommerce.Common
+
+type GetShoppingCart = string -> ConfigReader<Result<ShoppingCartDto, CustomError>>
+type SaveShoppingCart = ShoppingCartDto -> ConfigReader<Result<unit, CustomError>>
+type DeleteCartItem = ShoppingCartDto * (CartItemDto seq) -> ConfigReader<Result<uint, CustomError>>
 
 module CartRepo =
                 
