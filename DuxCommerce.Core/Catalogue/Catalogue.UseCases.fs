@@ -1,11 +1,15 @@
 ﻿namespace DuxCommerce.Catalogue
 
-open DuxCommerce.Catalogue.Ports
+open DuxCommerce.Catalogue.PublicTypes
 open DuxCommerce.Common
 open DuxCommerce.Catalogue.Dto
 open DuxCommerce.Catalogue.MongoRepos
 
-module UseCases =     
+type CreateProductUseCase = ProductDto -> ConfigReader<Result<ProductDto, CustomError>>
+type GetProductUseCase = string -> ConfigReader<Result<ProductDto, CustomError>>
+type UpdateProductUseCase = string -> ProductDto -> ConfigReader<Result<ProductDto, CustomError>>
+
+module ProductUseCases =     
 
     let createProduct :CreateProductUseCase =            
         fun productDto ->

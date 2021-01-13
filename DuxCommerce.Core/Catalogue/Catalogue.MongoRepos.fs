@@ -2,8 +2,12 @@
 
 open DuxCommerce.Core.Common
 open DuxCommerce.Catalogue.PublicTypes
-open DuxCommerce.Catalogue.Ports
 open MongoDB.Driver
+open DuxCommerce.Common
+
+type CreateProduct = ProductDto -> ConfigReader<Result<string, CustomError>>
+type GetProduct = string -> ConfigReader<Result<ProductDto, CustomError>>
+type UpdateProduct = string -> ProductDto -> ConfigReader<Result<unit, CustomError>>
 
 module ProductRepo =
     

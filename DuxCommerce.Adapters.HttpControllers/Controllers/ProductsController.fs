@@ -13,21 +13,21 @@ type ProductsController (logger : ILogger<ProductsController>) =
 
     [<HttpGet("{id}")>]
     member this.Get(id : string) : IActionResult=
-        let result = ConfigReader.execute (UseCases.getProduct id)
+        let result = ConfigReader.execute (ProductUseCases.getProduct id)
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.Convert(m)
         
     [<HttpPost>]
     member this.Post(request: ProductDto) : IActionResult =
-        let result = ConfigReader.execute (UseCases.createProduct request)
+        let result = ConfigReader.execute (ProductUseCases.createProduct request)
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.Convert(m)
         
     [<HttpPut("{id}")>]
     member this.Put(id: string, request: ProductDto) : IActionResult=
-        let result = ConfigReader.execute (UseCases.updateProduct id request)
+        let result = ConfigReader.execute (ProductUseCases.updateProduct id request)
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.Convert(m)
