@@ -13,7 +13,7 @@ type AddCartItemUseCase = string -> AddCartItemRequest -> ConfigReader<Result<Sh
 type UpdateCartUseCase = string -> UpdateCartRequest -> ConfigReader<Result<ShoppingCartDto, CustomError>>
 type DeleteCartItemUseCase = string -> DeleteCartItemRequest -> ConfigReader<Result<ShoppingCartDto, CustomError>>
 
-module UseCases =
+module ShoppingCartUseCases =
 
     let addCartItem :AddCartItemUseCase =        
         fun shopperId request ->
