@@ -5,12 +5,9 @@ open DuxCommerce.Shipping.PublicTypes
 open MongoDB.Driver
 open DuxCommerce.Common
 
-type CreateStoreProfile = StoreProfileDto -> ConfigReader<Result<string , CustomError>>
-type GetStoreProfile = string -> ConfigReader<Result<StoreProfileDto, CustomError>>
-type UpdateStoreProfile = string -> StoreProfileDto -> ConfigReader<Result<unit, CustomError>>
-
 module StoreProfileRepo =
-    
+
+    type CreateStoreProfile = StoreProfileDto -> ConfigReader<Result<string , CustomError>>
     let createProfile :CreateStoreProfile =
         fun profileDto ->
             let create (db:IMongoDatabase) =
@@ -25,6 +22,7 @@ module StoreProfileRepo =
                 
             MongoRepoAdapter.repoAdapter create
             
+    type GetStoreProfile = string -> ConfigReader<Result<StoreProfileDto, CustomError>>
     let getProfile :GetStoreProfile =
         fun id ->
             let get (db:IMongoDatabase) =
@@ -38,6 +36,7 @@ module StoreProfileRepo =
                 
             MongoRepoAdapter.repoAdapter get          
             
+    type UpdateStoreProfile = string -> StoreProfileDto -> ConfigReader<Result<unit, CustomError>>    
     let updateProfile :UpdateStoreProfile =
         fun id profileDto ->
             let update (db:IMongoDatabase) =
@@ -51,13 +50,9 @@ module StoreProfileRepo =
                 
             MongoRepoAdapter.repoAdapter update
 
-type CreateShippingOrigin = AddressDto -> ConfigReader<Result<string, CustomError>>
-type GetShippingOrigins = string seq -> ConfigReader<Result<ShippingOriginDto seq, CustomError>>
-type GetShippingOrigin = string -> ConfigReader<Result<ShippingOriginDto, CustomError>>
-type UpdateShippingOrigin = string -> ShippingOriginDto -> ConfigReader<Result<unit, CustomError>>
-
 module ShippingOriginRepo =
-    
+
+    type CreateShippingOrigin = AddressDto -> ConfigReader<Result<string, CustomError>>
     let createOrigin :CreateShippingOrigin =
         fun addressDto -> 
             let create (db:IMongoDatabase) =
@@ -72,6 +67,7 @@ module ShippingOriginRepo =
 
             MongoRepoAdapter.repoAdapter create
 
+    type GetShippingOrigins = string seq -> ConfigReader<Result<ShippingOriginDto seq, CustomError>>
     let getOrigins :GetShippingOrigins =
         fun ids ->
             let get (db:IMongoDatabase) =
@@ -84,6 +80,7 @@ module ShippingOriginRepo =
 
             MongoRepoAdapter.repoAdapter get
             
+    type GetShippingOrigin = string -> ConfigReader<Result<ShippingOriginDto, CustomError>>
     let getOrigin :GetShippingOrigin =
         fun id ->
             let get (db:IMongoDatabase) =
@@ -92,6 +89,7 @@ module ShippingOriginRepo =
 
             MongoRepoAdapter.repoAdapter get
         
+    type UpdateShippingOrigin = string -> ShippingOriginDto -> ConfigReader<Result<unit, CustomError>>
     let updateOrigin :UpdateShippingOrigin =
         fun id originDto ->
             let update (db:IMongoDatabase) =
@@ -100,10 +98,6 @@ module ShippingOriginRepo =
             
             MongoRepoAdapter.repoAdapter update
 
-type CreateDefaultProfile = AddressDto -> ConfigReader<Result<string, CustomError>>
-type CreateCustomProfile = ShippingProfileDto -> ConfigReader<Result<string, CustomError>>
-type GetDefaultProfile = unit -> ConfigReader<Result<ShippingProfileDto, CustomError>>
-type GetShippingProfile = string -> ConfigReader<Result<ShippingProfileDto, CustomError>>
 
 module ShippingProfileRepo = 
 
@@ -126,7 +120,8 @@ module ShippingProfileRepo =
                 }
 
             profileDto
-
+            
+    type CreateDefaultProfile = AddressDto -> ConfigReader<Result<string, CustomError>>
     let createDefault:CreateDefaultProfile =
         fun addressDto -> 
             let create (db:IMongoDatabase) =
@@ -145,6 +140,7 @@ module ShippingProfileRepo =
 
             MongoRepoAdapter.repoAdapter create
 
+    type CreateCustomProfile = ShippingProfileDto -> ConfigReader<Result<string, CustomError>>
     let createCustom :CreateCustomProfile =
         fun profileDto -> 
             let create (db:IMongoDatabase) =
@@ -155,6 +151,7 @@ module ShippingProfileRepo =
 
             MongoRepoAdapter.repoAdapter create
 
+    type GetDefaultProfile = unit -> ConfigReader<Result<ShippingProfileDto, CustomError>>
     let getDefault :GetDefaultProfile =
         fun () ->
             let get (db:IMongoDatabase) =
@@ -162,34 +159,12 @@ module ShippingProfileRepo =
                 profiles.Find(fun x -> x.IsDefault = true).FirstOrDefault()
 
             MongoRepoAdapter.repoAdapter get       
-
+            
+    type GetShippingProfile = string -> ConfigReader<Result<ShippingProfileDto, CustomError>>
     let getProfile :GetShippingProfile=
         fun id ->
             let get (db:IMongoDatabase) =
                 let profiles = db.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile)
                 profiles.Find(fun x -> x.Id = id).FirstOrDefault()
                 
-            MongoRepoAdapter.repoAdapter get
-
-type CreatePaymentMethod = PaymentMethodDto -> ConfigReader<Result<string, CustomError>>
-type GetPaymentMethod = string -> ConfigReader<Result<PaymentMethodDto, CustomError>>
-
-module PaymentMethodRepo =
-    
-    let createMethod :CreatePaymentMethod =
-        fun methodDto -> 
-            let create (db:IMongoDatabase) =
-                let methods = db.GetCollection<PaymentMethodDto>(CollectionName.PaymentMethod)
-                methods.InsertOne(methodDto)
-
-                methodDto.Id
-
-            MongoRepoAdapter.repoAdapter create
-
-    let getMethod :GetPaymentMethod=
-        fun id ->
-            let get (db:IMongoDatabase) =
-                let methods = db.GetCollection<PaymentMethodDto>(CollectionName.PaymentMethod)
-                methods.Find(fun x -> x.Id = id).FirstOrDefault()
-            
             MongoRepoAdapter.repoAdapter get

@@ -5,12 +5,9 @@ open DuxCommerce.Shipping.MongoRepos
 open DuxCommerce.Common
 open DuxCommerce.Shipping.PublicTypes
 
-type CreateStoreProfileUseCase = StoreProfileDto -> ConfigReader<Result<StoreProfileDto, CustomError>>
-type GetStoreProfileUseCase = string -> ConfigReader<Result<StoreProfileDto, CustomError>>
-type UpdateStoreProfileUseCase = string -> StoreProfileDto -> ConfigReader<Result<StoreProfileDto, CustomError>>
-
 module StoreProfileUseCases =   
 
+    type CreateStoreProfileUseCase = StoreProfileDto -> ConfigReader<Result<StoreProfileDto, CustomError>>
     let createProfile :CreateStoreProfileUseCase =            
         fun profileDto ->
             readerResult {
@@ -28,13 +25,15 @@ module StoreProfileUseCases =
 
                 return! StoreProfileRepo.getProfile profileId 
             }
-    
+
+    type GetStoreProfileUseCase = string -> ConfigReader<Result<StoreProfileDto, CustomError>>  
     let getProfile :GetStoreProfileUseCase =
         fun id ->
             readerResult {                
                 return! StoreProfileRepo.getProfile id
             }
         
+    type UpdateStoreProfileUseCase = string -> StoreProfileDto -> ConfigReader<Result<StoreProfileDto, CustomError>>  
     let updateProfile :UpdateStoreProfileUseCase =
         fun id profileDto ->
             readerResult {
@@ -50,17 +49,17 @@ module StoreProfileUseCases =
                 return! StoreProfileRepo.getProfile id
             }
 
-type CreateShippingProfileUseCase = ShippingProfileDto -> ConfigReader<Result<ShippingProfileDto, CustomError>>
-type GetDefaultProfileUseCase = unit -> ConfigReader<Result<ShippingProfileDto, CustomError>>
 
 module ShippingProfileUseCases =
 
+    type GetDefaultProfileUseCase = unit -> ConfigReader<Result<ShippingProfileDto, CustomError>>
     let getDefaultProfile :GetDefaultProfileUseCase =
         fun () ->
             readerResult {
                 return! ShippingProfileRepo.getDefault ()
             }
 
+    type CreateShippingProfileUseCase = ShippingProfileDto -> ConfigReader<Result<ShippingProfileDto, CustomError>>
     let createProfile :CreateShippingProfileUseCase = 
         fun dto -> 
             readerResult {
@@ -73,11 +72,10 @@ module ShippingProfileUseCases =
                 return! ShippingProfileRepo.getProfile profileId
             }
 
-type CreateShippingOriginUseCase = AddressDto -> ConfigReader<Result<ShippingOriginDto, CustomError>>
-type GetShippingOriginsUseCase = string seq -> ConfigReader<Result<ShippingOriginDto seq, CustomError>>
 
 module ShippingOriginUseCases =
 
+    type CreateShippingOriginUseCase = AddressDto -> ConfigReader<Result<ShippingOriginDto, CustomError>>
     let createOrigin :CreateShippingOriginUseCase = 
         fun addressDto ->
             readerResult {
@@ -85,20 +83,9 @@ module ShippingOriginUseCases =
                 return! ShippingOriginRepo.getOrigin originId
             }
 
+    type GetShippingOriginsUseCase = string seq -> ConfigReader<Result<ShippingOriginDto seq, CustomError>>
     let getOrigins :GetShippingOriginsUseCase = 
         fun ids ->
             readerResult {
                 return! ShippingOriginRepo.getOrigins ids
-            }
-
-
-type CreatePaymentMethodUseCase = PaymentMethodDto -> ConfigReader<Result<PaymentMethodDto, CustomError>>
-
-module PaymentMethodUseCases =
-
-    let createMethod :CreatePaymentMethodUseCase = 
-        fun methodDto ->
-            readerResult {
-                let! methodId = methodDto |> PaymentMethodRepo.createMethod
-                return! PaymentMethodRepo.getMethod methodId
             }

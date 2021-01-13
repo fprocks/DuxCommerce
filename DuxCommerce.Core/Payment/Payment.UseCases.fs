@@ -5,10 +5,9 @@ open DuxCommerce.Payment.MongoRepos
 open DuxCommerce.Common
 open DuxCommerce.Payment.PublicTypes
 
-type CreatePaymentMethodUseCase = PaymentMethodDto -> ConfigReader<Result<PaymentMethodDto, CustomError>>
-
 module PaymentMethodUseCases =
 
+    type CreatePaymentMethodUseCase = PaymentMethodDto -> ConfigReader<Result<PaymentMethodDto, CustomError>>
     let createMethod :CreatePaymentMethodUseCase = 
         fun methodDto ->
             readerResult {

@@ -5,11 +5,9 @@ open DuxCommerce.Payment.PublicTypes
 open MongoDB.Driver
 open DuxCommerce.Common
 
-type CreatePaymentMethod = PaymentMethodDto -> ConfigReader<Result<string, CustomError>>
-type GetPaymentMethod = string -> ConfigReader<Result<PaymentMethodDto, CustomError>>
-
 module PaymentMethodRepo =
-    
+
+    type CreatePaymentMethod = PaymentMethodDto -> ConfigReader<Result<string, CustomError>>    
     let createMethod :CreatePaymentMethod =
         fun methodDto -> 
             let create (db:IMongoDatabase) =
@@ -20,6 +18,7 @@ module PaymentMethodRepo =
 
             MongoRepoAdapter.repoAdapter create
 
+    type GetPaymentMethod = string -> ConfigReader<Result<PaymentMethodDto, CustomError>>
     let getMethod :GetPaymentMethod=
         fun id ->
             let get (db:IMongoDatabase) =
