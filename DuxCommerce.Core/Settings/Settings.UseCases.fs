@@ -1,9 +1,13 @@
 ﻿namespace DuxCommerce.Settings
 
 open DuxCommerce.Settings.Dto
-open DuxCommerce.Settings.Ports
 open DuxCommerce.Settings.MongoRepos
 open DuxCommerce.Common
+open DuxCommerce.Settings.PublicTypes
+
+type CreateStoreProfileUseCase = StoreProfileDto -> ConfigReader<Result<StoreProfileDto, CustomError>>
+type GetStoreProfileUseCase = string -> ConfigReader<Result<StoreProfileDto, CustomError>>
+type UpdateStoreProfileUseCase = string -> StoreProfileDto -> ConfigReader<Result<StoreProfileDto, CustomError>>
 
 module StoreProfileUseCases =   
 
@@ -46,6 +50,9 @@ module StoreProfileUseCases =
                 return! StoreProfileRepo.getProfile id
             }
 
+type CreateShippingProfileUseCase = ShippingProfileDto -> ConfigReader<Result<ShippingProfileDto, CustomError>>
+type GetDefaultProfileUseCase = unit -> ConfigReader<Result<ShippingProfileDto, CustomError>>
+
 module ShippingProfileUseCases =
 
     let getDefaultProfile :GetDefaultProfileUseCase =
@@ -66,6 +73,9 @@ module ShippingProfileUseCases =
                 return! ShippingProfileRepo.getProfile profileId
             }
 
+type CreateShippingOriginUseCase = AddressDto -> ConfigReader<Result<ShippingOriginDto, CustomError>>
+type GetShippingOriginsUseCase = string seq -> ConfigReader<Result<ShippingOriginDto seq, CustomError>>
+
 module ShippingOriginUseCases =
 
     let createOrigin :CreateShippingOriginUseCase = 
@@ -79,4 +89,16 @@ module ShippingOriginUseCases =
         fun ids ->
             readerResult {
                 return! ShippingOriginRepo.getOrigins ids
+            }
+
+
+type CreatePaymentMethodUseCase = PaymentMethodDto -> ConfigReader<Result<PaymentMethodDto, CustomError>>
+
+module PaymentMethodUseCases =
+
+    let createMethod :CreatePaymentMethodUseCase = 
+        fun methodDto ->
+            readerResult {
+                let! methodId = methodDto |> PaymentMethodRepo.createMethod
+                return! PaymentMethodRepo.getMethod methodId
             }

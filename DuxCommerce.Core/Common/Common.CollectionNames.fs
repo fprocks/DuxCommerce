@@ -8,3 +8,4 @@ module CollectionName =
     let ShippingProfile = "ShippingProfile"
     let Product = "Product"
     let ShoppingCart = "ShoppingCart"
+    let PaymentMethod = "PaymentMethod"

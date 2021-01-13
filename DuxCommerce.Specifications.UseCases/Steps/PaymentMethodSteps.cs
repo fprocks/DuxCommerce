@@ -42,7 +42,11 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
         [Then(@"payment method should be created as expected")]
         public void ThenPaymentMethodShouldBeCreatedAsExpected()
-        {            
+        {
+            _methodRequest.Name.Should().Be(_methodCreated.Name);
+            _methodRequest.Type.Should().Be(_methodCreated.Type);
+            _methodRequest.AdditionalDetails.Should().Be(_methodCreated.AdditionalDetails);
+            _methodRequest.PaymentInstructions.Should().Be(_methodCreated.PaymentInstructions);
         }
 
         private async Task<PaymentMethodDto> GetCreatedMethod(HttpResponseMessage apiResult)

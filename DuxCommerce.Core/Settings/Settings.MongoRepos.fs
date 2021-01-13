@@ -2,8 +2,12 @@
 
 open DuxCommerce.Core.Common
 open DuxCommerce.Settings.PublicTypes
-open DuxCommerce.Settings.Ports
 open MongoDB.Driver
+open DuxCommerce.Common
+
+type CreateStoreProfile = StoreProfileDto -> ConfigReader<Result<string , CustomError>>
+type GetStoreProfile = string -> ConfigReader<Result<StoreProfileDto, CustomError>>
+type UpdateStoreProfile = string -> StoreProfileDto -> ConfigReader<Result<unit, CustomError>>
 
 module StoreProfileRepo =
     
@@ -46,6 +50,11 @@ module StoreProfileRepo =
                 addresses.ReplaceOne((fun x -> x.Id = profileDto.AddressId), addressDto) |> ignore
                 
             MongoRepoAdapter.repoAdapter update
+
+type CreateShippingOrigin = AddressDto -> ConfigReader<Result<string, CustomError>>
+type GetShippingOrigins = string seq -> ConfigReader<Result<ShippingOriginDto seq, CustomError>>
+type GetShippingOrigin = string -> ConfigReader<Result<ShippingOriginDto, CustomError>>
+type UpdateShippingOrigin = string -> ShippingOriginDto -> ConfigReader<Result<unit, CustomError>>
 
 module ShippingOriginRepo =
     
@@ -90,6 +99,11 @@ module ShippingOriginRepo =
                 profiles.ReplaceOne((fun x -> x.Id = id), originDto) |> ignore
             
             MongoRepoAdapter.repoAdapter update
+
+type CreateDefaultProfile = AddressDto -> ConfigReader<Result<string, CustomError>>
+type CreateCustomProfile = ShippingProfileDto -> ConfigReader<Result<string, CustomError>>
+type GetDefaultProfile = unit -> ConfigReader<Result<ShippingProfileDto, CustomError>>
+type GetShippingProfile = string -> ConfigReader<Result<ShippingProfileDto, CustomError>>
 
 module ShippingProfileRepo = 
 
@@ -155,4 +169,27 @@ module ShippingProfileRepo =
                 let profiles = db.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile)
                 profiles.Find(fun x -> x.Id = id).FirstOrDefault()
                 
-            MongoRepoAdapter.repoAdapter get     
+            MongoRepoAdapter.repoAdapter get
+
+type CreatePaymentMethod = PaymentMethodDto -> ConfigReader<Result<string, CustomError>>
+type GetPaymentMethod = string -> ConfigReader<Result<PaymentMethodDto, CustomError>>
+
+module PaymentMethodRepo =
+    
+    let createMethod :CreatePaymentMethod =
+        fun methodDto -> 
+            let create (db:IMongoDatabase) =
+                let methods = db.GetCollection<PaymentMethodDto>(CollectionName.PaymentMethod)
+                methods.InsertOne(methodDto)
+
+                methodDto.Id
+
+            MongoRepoAdapter.repoAdapter create
+
+    let getMethod :GetPaymentMethod=
+        fun id ->
+            let get (db:IMongoDatabase) =
+                let methods = db.GetCollection<PaymentMethodDto>(CollectionName.PaymentMethod)
+                methods.Find(fun x -> x.Id = id).FirstOrDefault()
+            
+            MongoRepoAdapter.repoAdapter get
