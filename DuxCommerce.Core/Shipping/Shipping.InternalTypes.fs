@@ -1,7 +1,7 @@
-﻿namespace DuxCommerce.Settings.InternalTypes
+﻿namespace DuxCommerce.Shipping.InternalTypes
 
 open DuxCommerce.Common
-open DuxCommerce.Settings.SimpleTypes
+open DuxCommerce.Shipping.SimpleTypes
 
 type ShippingMethodType = 
     | ByWeight

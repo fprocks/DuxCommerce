@@ -1,9 +1,9 @@
-﻿namespace DuxCommerce.Settings
+﻿namespace DuxCommerce.Shipping
 
-open DuxCommerce.Settings.Dto
-open DuxCommerce.Settings.MongoRepos
+open DuxCommerce.Shipping.Dto
+open DuxCommerce.Shipping.MongoRepos
 open DuxCommerce.Common
-open DuxCommerce.Settings.PublicTypes
+open DuxCommerce.Shipping.PublicTypes
 
 type CreateStoreProfileUseCase = StoreProfileDto -> ConfigReader<Result<StoreProfileDto, CustomError>>
 type GetStoreProfileUseCase = string -> ConfigReader<Result<StoreProfileDto, CustomError>>

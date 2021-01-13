@@ -1,5 +1,5 @@
 ﻿using DuxCommerce.Common;
-using DuxCommerce.Settings.PublicTypes;
+using DuxCommerce.Shipping.PublicTypes;
 using MongoDB.Bson;
 using MongoDB.Driver;
 

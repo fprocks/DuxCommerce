@@ -7,12 +7,18 @@
     <ItemGroup>
       <Compile Include="Common\Common.CollectionNames.fs" />
       <Compile Include="Common\Common.MongoRepoAdapter.fs" />
-      <Compile Include="Settings\Settings.SimpleTypes.fs" />
-      <Compile Include="Settings\Settings.PublicTypes.fs" />
-      <Compile Include="Settings\Settings.InternalTypes.fs" />
-      <Compile Include="Settings\Settings.Dto.fs" />
-      <Compile Include="Settings\Settings.MongoRepos.fs" />
-      <Compile Include="Settings\Settings.UseCases.fs" />
+      <Compile Include="Shipping\Shipping.SimpleTypes.fs" />
+      <Compile Include="Shipping\Shipping.PublicTypes.fs" />
+      <Compile Include="Shipping\Shipping.InternalTypes.fs" />
+      <Compile Include="Shipping\Shipping.Dto.fs" />
+      <Compile Include="Shipping\Shipping.MongoRepos.fs" />
+      <Compile Include="Shipping\Shipping.UseCases.fs" />
+      <Compile Include="Payment\Settings.SimpleTypes.fs" />
+      <Compile Include="Payment\Settings.PublicTypes.fs" />
+      <Compile Include="Payment\Settings.InternalTypes.fs" />
+      <Compile Include="Payment\Settings.Dto.fs" />
+      <Compile Include="Payment\Settings.MongoRepos.fs" />
+      <Compile Include="Payment\Settings.UseCases.fs" />
       <Compile Include="Catalogue\Catalogue.SimpleTypes.fs" />
       <Compile Include="Catalogue\Catalogue.PublicTypes.fs" />
       <Compile Include="Catalogue\Catalogue.InternalTypes.fs" />

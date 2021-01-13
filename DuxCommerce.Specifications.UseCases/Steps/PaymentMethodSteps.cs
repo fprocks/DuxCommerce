@@ -1,4 +1,4 @@
-﻿using DuxCommerce.Settings.PublicTypes;
+﻿using DuxCommerce.Shipping.PublicTypes;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using DuxCommerce.Specifications.UseCases.Models;
 using FluentAssertions;
