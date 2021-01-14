@@ -81,13 +81,13 @@ namespace DuxCommerce.Specs.UseCases.Features.Payment
             this.TestTearDown();
         }
         
-        [Xunit.SkippableTheoryAttribute(DisplayName="Create manual payment methods")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="Create payment methods - green path")]
         [Xunit.TraitAttribute("FeatureTitle", "CreatePaymentMethod")]
-        [Xunit.TraitAttribute("Description", "Create manual payment methods")]
+        [Xunit.TraitAttribute("Description", "Create payment methods - green path")]
         [Xunit.InlineDataAttribute("Cash on Delivery", "CashOnDelivery", "Details1", "Instruction1", new string[0])]
         [Xunit.InlineDataAttribute("Bank Deposit", "BankDeposit", "Details2", "Instruction2", new string[0])]
         [Xunit.InlineDataAttribute("Money Order", "MoneyOrder", "Details3", "Instruction3", new string[0])]
-        public virtual void CreateManualPaymentMethods(string name, string type, string additionalDetails, string paymentInstructions, string[] exampleTags)
+        public virtual void CreatePaymentMethods_GreenPath(string name, string type, string additionalDetails, string paymentInstructions, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
@@ -95,7 +95,7 @@ namespace DuxCommerce.Specs.UseCases.Features.Payment
             argumentsOfScenario.Add("Type", type);
             argumentsOfScenario.Add("AdditionalDetails", additionalDetails);
             argumentsOfScenario.Add("PaymentInstructions", paymentInstructions);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create manual payment methods", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create payment methods - green path", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -137,6 +137,64 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 12
  testRunner.And("payment method should be created as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableTheoryAttribute(DisplayName="Create payment methods - red path")]
+        [Xunit.TraitAttribute("FeatureTitle", "CreatePaymentMethod")]
+        [Xunit.TraitAttribute("Description", "Create payment methods - red path")]
+        [Xunit.InlineDataAttribute("Cash on Delivery", "Cash On Delivery", "Details1", "Instruction1", new string[0])]
+        [Xunit.InlineDataAttribute("Bank Deposit", "Bank Deposit", "Details2", "Instruction2", new string[0])]
+        [Xunit.InlineDataAttribute("Money Order", "Money Order", "Details3", "Instruction3", new string[0])]
+        public virtual void CreatePaymentMethods_RedPath(string name, string type, string additionalDetails, string paymentInstructions, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Name", name);
+            argumentsOfScenario.Add("Type", type);
+            argumentsOfScenario.Add("AdditionalDetails", additionalDetails);
+            argumentsOfScenario.Add("PaymentInstructions", paymentInstructions);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create payment methods - red path", null, tagsOfScenario, argumentsOfScenario);
+#line 19
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Type",
+                            "AdditionalDetails",
+                            "PaymentInstructions"});
+                table9.AddRow(new string[] {
+                            string.Format("{0}", name),
+                            string.Format("{0}", type),
+                            string.Format("{0}", additionalDetails),
+                            string.Format("{0}", paymentInstructions)});
+#line 20
+ testRunner.Given("Tom enters the following payment method information:", ((string)(null)), table9, "Given ");
+#line hidden
+#line 23
+ testRunner.When("Tome saves the payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 24
+ testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

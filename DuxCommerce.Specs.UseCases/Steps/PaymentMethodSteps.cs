@@ -18,7 +18,6 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         private readonly IApiClient _apiClient;
 
         private PaymentMethod _methodRequest;
-        private PaymentMethodDto _methodCreated;
 
         public PaymentMethodSteps(StepsContext context, IApiClient apiClient)
         {
@@ -37,16 +36,17 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         {
             var apiResult = await _apiClient.PostAsync("api/paymentmethods", _methodRequest);
             _context.ApiResult = apiResult;
-            _methodCreated = await GetCreatedMethod(apiResult);
         }
 
         [Then(@"payment method should be created as expected")]
-        public void ThenPaymentMethodShouldBeCreatedAsExpected()
+        public async Task ThenPaymentMethodShouldBeCreatedAsExpectedAsync()
         {
-            _methodRequest.Name.Should().Be(_methodCreated.Name);
-            _methodRequest.Type.Should().Be(_methodCreated.Type);
-            _methodRequest.AdditionalDetails.Should().Be(_methodCreated.AdditionalDetails);
-            _methodRequest.PaymentInstructions.Should().Be(_methodCreated.PaymentInstructions);
+            var methodCreated = await GetCreatedMethod(_context.ApiResult);
+
+            _methodRequest.Name.Should().Be(methodCreated.Name);
+            _methodRequest.Type.Should().Be(methodCreated.Type);
+            _methodRequest.AdditionalDetails.Should().Be(methodCreated.AdditionalDetails);
+            _methodRequest.PaymentInstructions.Should().Be(methodCreated.PaymentInstructions);
         }
 
         private async Task<PaymentMethodDto> GetCreatedMethod(HttpResponseMessage apiResult)

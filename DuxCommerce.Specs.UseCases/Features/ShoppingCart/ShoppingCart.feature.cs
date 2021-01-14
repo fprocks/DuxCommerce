@@ -80,7 +80,7 @@ namespace DuxCommerce.Specs.UseCases.Features.ShoppingCart
         {
 #line 6
 #line hidden
-            TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
                         "Index",
                         "Name",
                         "Description",
@@ -96,7 +96,7 @@ namespace DuxCommerce.Specs.UseCases.Features.ShoppingCart
                         "Barcode",
                         "TrackInventory",
                         "OutOfStockRule"});
-            table34.AddRow(new string[] {
+            table35.AddRow(new string[] {
                         "1",
                         "DDD",
                         "DDD Description",
@@ -112,7 +112,7 @@ namespace DuxCommerce.Specs.UseCases.Features.ShoppingCart
                         "1234567890111",
                         "True",
                         "Remove"});
-            table34.AddRow(new string[] {
+            table35.AddRow(new string[] {
                         "2",
                         "BDD",
                         "BDD Description",
@@ -128,7 +128,7 @@ namespace DuxCommerce.Specs.UseCases.Features.ShoppingCart
                         "1234567890222",
                         "False",
                         "ContinueSelling"});
-            table34.AddRow(new string[] {
+            table35.AddRow(new string[] {
                         "3",
                         "TDD",
                         "TDD Description",
@@ -145,7 +145,7 @@ namespace DuxCommerce.Specs.UseCases.Features.ShoppingCart
                         "True",
                         "StopSelling"});
 #line 7
- testRunner.Given("the following products are already created:", ((string)(null)), table34, "Given ");
+ testRunner.Given("the following products are already created:", ((string)(null)), table35, "Given ");
 #line hidden
         }
         
@@ -185,48 +185,48 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
                             "Name",
                             "Quantity"});
-                table35.AddRow(new string[] {
+                table36.AddRow(new string[] {
                             "1",
                             "DDD",
                             "1"});
-                table35.AddRow(new string[] {
+                table36.AddRow(new string[] {
                             "1",
                             "DDD",
                             "2"});
-                table35.AddRow(new string[] {
+                table36.AddRow(new string[] {
                             "2",
                             "BDD",
                             "8"});
 #line 14
- testRunner.When("Amy adds the following products to her shopping cart:", ((string)(null)), table35, "When ");
+ testRunner.When("Amy adds the following products to her shopping cart:", ((string)(null)), table36, "When ");
 #line hidden
 #line 19
  testRunner.Then("Amy should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
                             "Name",
                             "Price",
                             "Quantity",
                             "ItemTotal"});
-                table36.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             "1",
                             "DDD",
                             "100",
                             "3",
                             "300"});
-                table36.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             "2",
                             "BDD",
                             "50",
                             "8",
                             "400"});
 #line 20
- testRunner.And("her cart details should look as follow:", ((string)(null)), table36, "And ");
+ testRunner.And("her cart details should look as follow:", ((string)(null)), table37, "And ");
 #line hidden
 #line 24
  testRunner.And("the cart total is $700", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -266,21 +266,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Product",
-                            "Name",
-                            "Quantity"});
-                table37.AddRow(new string[] {
-                            "1",
-                            "DDD",
-                            "4"});
-                table37.AddRow(new string[] {
-                            "2",
-                            "BDD",
-                            "8"});
-#line 27
- testRunner.And("Amy adds the following products to her shopping cart:", ((string)(null)), table37, "And ");
-#line hidden
                 TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
                             "Name",
@@ -288,37 +273,52 @@ this.FeatureBackground();
                 table38.AddRow(new string[] {
                             "1",
                             "DDD",
-                            "10"});
+                            "4"});
                 table38.AddRow(new string[] {
+                            "2",
+                            "BDD",
+                            "8"});
+#line 27
+ testRunner.And("Amy adds the following products to her shopping cart:", ((string)(null)), table38, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Product",
+                            "Name",
+                            "Quantity"});
+                table39.AddRow(new string[] {
+                            "1",
+                            "DDD",
+                            "10"});
+                table39.AddRow(new string[] {
                             "2",
                             "BDD",
                             "20"});
 #line 31
- testRunner.When("Amy updates her shopping cart as follow:", ((string)(null)), table38, "When ");
+ testRunner.When("Amy updates her shopping cart as follow:", ((string)(null)), table39, "When ");
 #line hidden
 #line 35
  testRunner.Then("Amy should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
                             "Name",
                             "Price",
                             "Quantity",
                             "ItemTotal"});
-                table39.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "1",
                             "DDD",
                             "100",
                             "10",
                             "1000"});
-                table39.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "2",
                             "BDD",
                             "50",
                             "20",
                             "1000"});
 #line 36
- testRunner.And("her cart details should look as follow:", ((string)(null)), table39, "And ");
+ testRunner.And("her cart details should look as follow:", ((string)(null)), table40, "And ");
 #line hidden
 #line 40
  testRunner.And("the cart total is $2000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -358,54 +358,54 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
                             "Name",
                             "Quantity"});
-                table40.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "1",
                             "DDD",
                             "2"});
-                table40.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "2",
                             "BDD",
                             "4"});
-                table40.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "3",
                             "TDD",
                             "6"});
 #line 43
- testRunner.And("Amy adds the following products to her shopping cart:", ((string)(null)), table40, "And ");
+ testRunner.And("Amy adds the following products to her shopping cart:", ((string)(null)), table41, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
                             "Name"});
-                table41.AddRow(new string[] {
+                table42.AddRow(new string[] {
                             "1",
                             "DDD"});
-                table41.AddRow(new string[] {
+                table42.AddRow(new string[] {
                             "3",
                             "TDD"});
 #line 48
- testRunner.When("Amy deletes the following cart items:", ((string)(null)), table41, "When ");
+ testRunner.When("Amy deletes the following cart items:", ((string)(null)), table42, "When ");
 #line hidden
 #line 52
  testRunner.Then("Amy should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
                             "Name",
                             "Price",
                             "Quantity",
                             "ItemTotal"});
-                table42.AddRow(new string[] {
+                table43.AddRow(new string[] {
                             "2",
                             "BDD",
                             "50",
                             "4",
                             "200"});
 #line 53
- testRunner.And("her cart details should look as follow:", ((string)(null)), table42, "And ");
+ testRunner.And("her cart details should look as follow:", ((string)(null)), table43, "And ");
 #line hidden
 #line 56
  testRunner.And("the cart total is $200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
