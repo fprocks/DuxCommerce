@@ -11,6 +11,10 @@ module PaymentMethodUseCases =
     let createMethod :CreatePaymentMethodUseCase = 
         fun methodDto ->
             readerResult {
+                let! _ = methodDto
+                        |> PaymentMethodDto.toDomain 
+                        |> ConfigReader.retn
+
                 let! methodId = methodDto |> PaymentMethodRepo.createMethod
                 return! PaymentMethodRepo.getMethod methodId
             }
