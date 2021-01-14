@@ -148,6 +148,7 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.InlineDataAttribute("Cash on Delivery", "Cash On Delivery", "Details1", "Instruction1", new string[0])]
         [Xunit.InlineDataAttribute("Bank Deposit", "Bank Deposit", "Details2", "Instruction2", new string[0])]
         [Xunit.InlineDataAttribute("Money Order", "Money Order", "Details3", "Instruction3", new string[0])]
+        [Xunit.InlineDataAttribute("Payment method name that is more than 50 characters long", "MoneyOrder", "Details3", "Instruction3", new string[0])]
         public virtual void CreatePaymentMethods_RedPath(string name, string type, string additionalDetails, string paymentInstructions, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
