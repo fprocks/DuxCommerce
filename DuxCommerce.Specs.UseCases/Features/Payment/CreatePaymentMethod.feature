@@ -23,8 +23,8 @@ Scenario: Create payment methods - red path
 	When Tome saves the payment method
 	Then Tom should receive status codes BadRequest
 Examples: 
-	| Name                                                     | Type             | AdditionalDetails | PaymentInstructions |
-	| Cash on Delivery                                         | Cash On Delivery | Details1          | Instruction1        |
-	| Bank Deposit                                             | Bank Deposit     | Details2          | Instruction2        |
-	| Money Order                                              | Money Order      | Details3          | Instruction3        |
-	| Payment method name that is more than 50 characters long | MoneyOrder       | Details3          | Instruction3        |
+	| Name                                                | Type             | AdditionalDetails | PaymentInstructions | Comment                           |
+	| Cash on Delivery                                    | Cash On Delivery | Details1          | Instruction1        | Invalid method type               |
+	| Bank Deposit                                        | Bank Deposit     | Details2          | Instruction2        | Invalid method type               |
+	| Money Order                                         | Money Order      | Details3          | Instruction3        | Invalid method type               |
+	| Payment method name that is more than 50 characters | MoneyOrder       | Details3          | Instruction3        | Method name exceeds 50 characters |
