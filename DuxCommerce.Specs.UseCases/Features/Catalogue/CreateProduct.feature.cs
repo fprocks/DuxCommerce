@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace DuxCommerce.Specifications.UseCases.Features.Catalogue
+namespace DuxCommerce.Specs.UseCases.Features.Catalogue
 {
     using TechTalk.SpecFlow;
     using System;
@@ -31,7 +31,7 @@ namespace DuxCommerce.Specifications.UseCases.Features.Catalogue
 #line 1 "CreateProduct.feature"
 #line hidden
         
-        public CreateAProductFeature(CreateAProductFeature.FixtureData fixtureData, DuxCommerce_Specifications_UseCases_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CreateAProductFeature(CreateAProductFeature.FixtureData fixtureData, DuxCommerce_Specs_UseCases_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();

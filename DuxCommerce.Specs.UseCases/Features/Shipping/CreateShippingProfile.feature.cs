@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace DuxCommerce.Specifications.UseCases.Features.Shipping
+namespace DuxCommerce.Specs.UseCases.Features.Shipping
 {
     using TechTalk.SpecFlow;
     using System;
@@ -31,7 +31,7 @@ namespace DuxCommerce.Specifications.UseCases.Features.Shipping
 #line 1 "CreateShippingProfile.feature"
 #line hidden
         
-        public CreateShippingProfileFeature(CreateShippingProfileFeature.FixtureData fixtureData, DuxCommerce_Specifications_UseCases_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CreateShippingProfileFeature(CreateShippingProfileFeature.FixtureData fixtureData, DuxCommerce_Specs_UseCases_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();

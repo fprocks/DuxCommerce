@@ -31,7 +31,7 @@
     <Folder Include="Drivers\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DuxCommerce.Adapters.HttpControllers\DuxCommerce.Adapters.Http.fsproj" />
+    <ProjectReference Include="..\DuxCommerce.Adapters.Http\DuxCommerce.Adapters.Http.fsproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Features\Shipping\CreateShippingProfile.feature.cs">
