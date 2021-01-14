@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace DuxCommerce.Specifications.UseCases.Features
+namespace DuxCommerce.Specifications.UseCases.Features.Payment
 {
     using TechTalk.SpecFlow;
     using System;
@@ -40,7 +40,7 @@ namespace DuxCommerce.Specifications.UseCases.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "CreatePaymentMethod", "\tIn order to receive payment from my customers\r\n\tAs a store admin\r\n\tI want to cre" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Payment", "CreatePaymentMethod", "\tIn order to receive payment from my customers\r\n\tAs a store admin\r\n\tI want to cre" +
                     "ate payment method", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -116,18 +116,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Type",
                             "AdditionalDetails",
                             "PaymentInstructions"});
-                table1.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             string.Format("{0}", name),
                             string.Format("{0}", type),
                             string.Format("{0}", additionalDetails),
                             string.Format("{0}", paymentInstructions)});
 #line 7
- testRunner.Given("Tom enters the following payment method information:", ((string)(null)), table1, "Given ");
+ testRunner.Given("Tom enters the following payment method information:", ((string)(null)), table8, "Given ");
 #line hidden
 #line 10
  testRunner.When("Tome saves the payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

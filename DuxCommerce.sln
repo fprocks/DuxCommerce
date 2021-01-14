@@ -7,7 +7,7 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Core", "DuxComm
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Specifications.Functional", "DuxCommerce.Specifications.Functional\DuxCommerce.Specifications.Functional.fsproj", "{958F10FD-27E7-4EE9-A517-5D1C50F4962F}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Adapters.HttpControllers", "DuxCommerce.Adapters.HttpControllers\DuxCommerce.Adapters.HttpControllers.fsproj", "{DFAD685F-F14F-4DA6-82F1-BEB2EE8B3CF9}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Adapters.Http", "DuxCommerce.Adapters.HttpControllers\DuxCommerce.Adapters.Http.fsproj", "{DFAD685F-F14F-4DA6-82F1-BEB2EE8B3CF9}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DuxCommerce.Common", "DuxCommerce.Common\DuxCommerce.Common.fsproj", "{15A9DAD7-A7DD-4358-BC34-4078971DD636}"
 EndProject

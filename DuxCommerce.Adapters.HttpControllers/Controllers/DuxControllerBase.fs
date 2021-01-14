@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.Adapters.HttpControllers
+﻿namespace DuxCommerce.Adapters.Http
 
 open DuxCommerce.Common
 open Microsoft.AspNetCore.Mvc
