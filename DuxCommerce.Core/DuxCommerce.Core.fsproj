@@ -13,12 +13,12 @@
       <Compile Include="Shipping\Shipping.Dto.fs" />
       <Compile Include="Shipping\Shipping.MongoRepos.fs" />
       <Compile Include="Shipping\Shipping.UseCases.fs" />
-      <Compile Include="Payment\Payment.SimpleTypes.fs" />
-      <Compile Include="Payment\Payment.PublicTypes.fs" />
-      <Compile Include="Payment\Payment.InternalTypes.fs" />
-      <Compile Include="Payment\Payment.Dto.fs" />
-      <Compile Include="Payment\Payment.MongoRepos.fs" />
-      <Compile Include="Payment\Payment.UseCases.fs" />
+      <Compile Include="Payments\Payment.SimpleTypes.fs" />
+      <Compile Include="Payments\Payment.PublicTypes.fs" />
+      <Compile Include="Payments\Payment.InternalTypes.fs" />
+      <Compile Include="Payments\Payment.Dto.fs" />
+      <Compile Include="Payments\Payment.MongoRepos.fs" />
+      <Compile Include="Payments\Payment.UseCases.fs" />
       <Compile Include="Catalogue\Catalogue.SimpleTypes.fs" />
       <Compile Include="Catalogue\Catalogue.PublicTypes.fs" />
       <Compile Include="Catalogue\Catalogue.InternalTypes.fs" />
@@ -40,6 +40,10 @@
 
     <ItemGroup>
       <PackageReference Include="MongoDB.Driver" Version="2.11.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Taxes\" />
     </ItemGroup>
 
 </Project>

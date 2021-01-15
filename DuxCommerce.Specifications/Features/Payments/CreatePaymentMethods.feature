@@ -1,7 +1,7 @@
-﻿Feature: CreatePaymentMethod
+﻿Feature: Create Payment Methods
 	In order to receive payment from my customers
 	As a store admin
-	I want to create payment method
+	I want to add payment methods to my store
 
 Scenario: Create payment methods - green path
 	Given Tom enters the following payment method information:

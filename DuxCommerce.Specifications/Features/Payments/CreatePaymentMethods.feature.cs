@@ -19,7 +19,7 @@ namespace DuxCommerce.Specifications.Features.Payments
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class CreatePaymentMethodFeature : object, Xunit.IClassFixture<CreatePaymentMethodFeature.FixtureData>, System.IDisposable
+    public partial class CreatePaymentMethodsFeature : object, Xunit.IClassFixture<CreatePaymentMethodsFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DuxCommerce.Specifications.Features.Payments
 #line 1 "CreatePaymentMethods.feature"
 #line hidden
         
-        public CreatePaymentMethodFeature(CreatePaymentMethodFeature.FixtureData fixtureData, DuxCommerce_Specifications_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CreatePaymentMethodsFeature(CreatePaymentMethodsFeature.FixtureData fixtureData, DuxCommerce_Specifications_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,8 +40,8 @@ namespace DuxCommerce.Specifications.Features.Payments
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Payments", "CreatePaymentMethod", "\tIn order to receive payment from my customers\r\n\tAs a store admin\r\n\tI want to cre" +
-                    "ate payment method", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Payments", "Create Payment Methods", "\tIn order to receive payment from my customers\r\n\tAs a store admin\r\n\tI want to add" +
+                    " payment methods to my store", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -82,7 +82,7 @@ namespace DuxCommerce.Specifications.Features.Payments
         }
         
         [Xunit.SkippableTheoryAttribute(DisplayName="Create payment methods - green path")]
-        [Xunit.TraitAttribute("FeatureTitle", "CreatePaymentMethod")]
+        [Xunit.TraitAttribute("FeatureTitle", "Create Payment Methods")]
         [Xunit.TraitAttribute("Description", "Create payment methods - green path")]
         [Xunit.InlineDataAttribute("Cash on Delivery", "CashOnDelivery", "Details1", "Instruction1", new string[0])]
         [Xunit.InlineDataAttribute("Bank Deposit", "BankDeposit", "Details2", "Instruction2", new string[0])]
@@ -143,7 +143,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableTheoryAttribute(DisplayName="Create payment methods - red path")]
-        [Xunit.TraitAttribute("FeatureTitle", "CreatePaymentMethod")]
+        [Xunit.TraitAttribute("FeatureTitle", "Create Payment Methods")]
         [Xunit.TraitAttribute("Description", "Create payment methods - red path")]
         [Xunit.InlineDataAttribute("Cash on Delivery", "Cash On Delivery", "Details1", "Instruction1", "Invalid method type", new string[0])]
         [Xunit.InlineDataAttribute("Bank Deposit", "Bank Deposit", "Details2", "Instruction2", "Invalid method type", new string[0])]
@@ -209,12 +209,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                CreatePaymentMethodFeature.FeatureSetup();
+                CreatePaymentMethodsFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                CreatePaymentMethodFeature.FeatureTearDown();
+                CreatePaymentMethodsFeature.FeatureTearDown();
             }
         }
     }

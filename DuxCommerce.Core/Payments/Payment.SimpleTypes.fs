@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.Payment.SimpleTypes
+﻿namespace DuxCommerce.Payments.SimpleTypes
 
 open DuxCommerce.Common
 

@@ -1,7 +1,7 @@
-﻿namespace DuxCommerce.Payment.InternalTypes
+﻿namespace DuxCommerce.Payments.InternalTypes
 
 open DuxCommerce.Common
-open DuxCommerce.Payment.SimpleTypes
+open DuxCommerce.Payments.SimpleTypes
 
 type PaymentMethodType =
     | CashOnDelivery

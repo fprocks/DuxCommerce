@@ -1,7 +1,7 @@
-﻿namespace DuxCommerce.Payment.MongoRepos
+﻿namespace DuxCommerce.Payments.MongoRepos
 
 open DuxCommerce.Core.Common
-open DuxCommerce.Payment.PublicTypes
+open DuxCommerce.Payments.PublicTypes
 open MongoDB.Driver
 open DuxCommerce.Common
 

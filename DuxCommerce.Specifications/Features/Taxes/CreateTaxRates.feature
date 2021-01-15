@@ -1,11 +1,18 @@
-﻿Feature: CreateTaxRate
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+﻿Feature: Create Tax Rates
+	In order to charge taxes from customers
+	As a store admin
+	I want to add tax rates to my store
 
-@mytag
-Scenario: Add two numbers
-	Given the first number is 50
-	And the second number is 70
-	When the two numbers are added
-	Then the result should be 120
+Scenario: Create tax rates
+	Given Tom selects country <CountryCode>
+	And Tome selects state <StateName>
+	And Tom enters tax rate <TaxRate>
+	When Tom saves the tax rate
+	Then Tom should receive status code OK
+	And Tax rate should be created as expected
+Examples: 
+	| CountryCode | StateName       | TaxRate |
+	| AU          | New South Wales | 10      |
+	| AU          | Queensland      | 20      |
+	| NZ          | Auckland        | 30      |
+	| NZ          | Wellington      | 40      |

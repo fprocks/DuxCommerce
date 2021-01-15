@@ -19,7 +19,7 @@ namespace DuxCommerce.Specifications.Features.Taxes
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class CreateTaxRateFeature : object, Xunit.IClassFixture<CreateTaxRateFeature.FixtureData>, System.IDisposable
+    public partial class CreateTaxRatesFeature : object, Xunit.IClassFixture<CreateTaxRatesFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DuxCommerce.Specifications.Features.Taxes
 #line 1 "CreateTaxRates.feature"
 #line hidden
         
-        public CreateTaxRateFeature(CreateTaxRateFeature.FixtureData fixtureData, DuxCommerce_Specifications_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CreateTaxRatesFeature(CreateTaxRatesFeature.FixtureData fixtureData, DuxCommerce_Specifications_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,8 +40,8 @@ namespace DuxCommerce.Specifications.Features.Taxes
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Taxes", "CreateTaxRate", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
-                    "f two numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Taxes", "Create Tax Rates", "\tIn order to charge taxes from customers\r\n\tAs a store admin\r\n\tI want to add tax r" +
+                    "ates to my store", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -81,17 +81,22 @@ namespace DuxCommerce.Specifications.Features.Taxes
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Add two numbers")]
-        [Xunit.TraitAttribute("FeatureTitle", "CreateTaxRate")]
-        [Xunit.TraitAttribute("Description", "Add two numbers")]
-        [Xunit.TraitAttribute("Category", "mytag")]
-        public virtual void AddTwoNumbers()
+        [Xunit.SkippableTheoryAttribute(DisplayName="Create tax rates")]
+        [Xunit.TraitAttribute("FeatureTitle", "Create Tax Rates")]
+        [Xunit.TraitAttribute("Description", "Create tax rates")]
+        [Xunit.InlineDataAttribute("AU", "New South Wales", "10", new string[0])]
+        [Xunit.InlineDataAttribute("AU", "Queensland", "20", new string[0])]
+        [Xunit.InlineDataAttribute("NZ", "Auckland", "30", new string[0])]
+        [Xunit.InlineDataAttribute("NZ", "Wellington", "40", new string[0])]
+        public virtual void CreateTaxRates(string countryCode, string stateName, string taxRate, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "mytag"};
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+            argumentsOfScenario.Add("CountryCode", countryCode);
+            argumentsOfScenario.Add("StateName", stateName);
+            argumentsOfScenario.Add("TaxRate", taxRate);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create tax rates", null, tagsOfScenario, argumentsOfScenario);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -111,17 +116,23 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 7
+ testRunner.Given(string.Format("Tom selects country {0}", countryCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 8
- testRunner.Given("the first number is 50", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And(string.Format("Tome selects state {0}", stateName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.And("the second number is 70", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("Tom enters tax rate {0}", taxRate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.When("the two numbers are added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Tom saves the tax rate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.Then("the result should be 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Tom should receive status code OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 12
+ testRunner.And("Tax rate should be created as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -134,12 +145,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                CreateTaxRateFeature.FeatureSetup();
+                CreateTaxRatesFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                CreateTaxRateFeature.FeatureTearDown();
+                CreateTaxRatesFeature.FeatureTearDown();
             }
         }
     }
