@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace DuxCommerce.Specs.UseCases.Features.Payments
+namespace DuxCommerce.Specifications.Features.Payments
 {
     using TechTalk.SpecFlow;
     using System;
@@ -31,7 +31,7 @@ namespace DuxCommerce.Specs.UseCases.Features.Payments
 #line 1 "CreatePaymentMethods.feature"
 #line hidden
         
-        public CreatePaymentMethodFeature(CreatePaymentMethodFeature.FixtureData fixtureData, DuxCommerce_Specs_UseCases_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CreatePaymentMethodFeature(CreatePaymentMethodFeature.FixtureData fixtureData, DuxCommerce_Specifications_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();

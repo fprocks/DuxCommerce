@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace DuxCommerce.Specs.UseCases.Features.Taxes
+namespace DuxCommerce.Specifications.Features.Taxes
 {
     using TechTalk.SpecFlow;
     using System;
@@ -31,7 +31,7 @@ namespace DuxCommerce.Specs.UseCases.Features.Taxes
 #line 1 "CreateTaxRates.feature"
 #line hidden
         
-        public CreateTaxRateFeature(CreateTaxRateFeature.FixtureData fixtureData, DuxCommerce_Specs_UseCases_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CreateTaxRateFeature(CreateTaxRateFeature.FixtureData fixtureData, DuxCommerce_Specifications_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
