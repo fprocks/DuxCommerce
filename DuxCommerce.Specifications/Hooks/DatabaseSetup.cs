@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using System.Threading.Tasks;
+using TechTalk.SpecFlow;
 
 namespace DuxCommerce.Specifications.UseCases.Hooks
 {
@@ -6,9 +7,10 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
     public sealed class DatabaseSetup
     {
         [BeforeTestRun]
-        public static void BeforeScenario()
+        public static async Task BeforeScenarioAsync()
         {
-            DatabaseCleaner.CleanUpAsync();
+            await MongoSetup.ResetAsync();
+            await MongoSetup.InitAsync();
         }
     }
 }

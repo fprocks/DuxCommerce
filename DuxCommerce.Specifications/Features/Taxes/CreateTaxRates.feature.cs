@@ -129,7 +129,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Tom saves the tax rate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.Then("Tom should receive status code OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
  testRunner.And("Tax rate should be created as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

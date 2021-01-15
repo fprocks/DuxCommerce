@@ -9,3 +9,5 @@ module CollectionName =
     let Product = "Product"
     let ShoppingCart = "ShoppingCart"
     let PaymentMethod = "PaymentMethod"
+    let Country = "Country"
+    let State = "State"
