@@ -35,11 +35,6 @@ namespace DuxCommerce.Specifications.Steps
         {
         }
         
-        [Then(@"Tom should receive status code OK")]
-        public void ThenTomShouldReceiveStatusCodeOK()
-        {
-        }
-        
         [Then(@"Tax rate should be created as expected")]
         public void ThenTaxRateShouldBeCreatedAsExpected()
         {

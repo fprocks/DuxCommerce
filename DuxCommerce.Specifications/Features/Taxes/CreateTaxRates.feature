@@ -8,7 +8,7 @@ Scenario: Create tax rates
 	And Tome selects state <StateName>
 	And Tom enters tax rate <TaxRate>
 	When Tom saves the tax rate
-	Then Tom should receive status code OK
+	Then Tom should receive status codes OK
 	And Tax rate should be created as expected
 Examples: 
 	| CountryCode | StateName       | TaxRate |
