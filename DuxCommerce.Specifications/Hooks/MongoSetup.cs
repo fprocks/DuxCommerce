@@ -70,7 +70,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
             return countryStates;
         }
 
-        private static (string CountryCode, List<string> States) GetUsStates()
+        private static (string, List<string>) GetUsStates()
         {
             var states = new List<string>
             {
@@ -141,7 +141,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
             return ("US", states);
         }
 
-        private static (string CountryCode, List<string> States) GetInStates()
+        private static (string, List<string>) GetInStates()
         {
             var states = new List<string>
             {
@@ -187,7 +187,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
             return ("IN", states);
         }
 
-        private static (string CountryCode, List<string> States) GetAuStates()
+        private static (string, List<string>) GetAuStates()
         {
             var states = new List<string>
             {
@@ -204,7 +204,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
             return ("AU", states);
         }
 
-        private static (string CountryCode, List<string> States) GetNzStates()
+        private static (string, List<string>) GetNzStates()
         {
             var states = new List<string>
             {
