@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace DuxCommerce.Specs.UseCases.Features.Payment
+namespace DuxCommerce.Specs.UseCases.Features.Payments
 {
     using TechTalk.SpecFlow;
     using System;
@@ -28,7 +28,7 @@ namespace DuxCommerce.Specs.UseCases.Features.Payment
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "CreatePaymentMethod.feature"
+#line 1 "CreatePaymentMethods.feature"
 #line hidden
         
         public CreatePaymentMethodFeature(CreatePaymentMethodFeature.FixtureData fixtureData, DuxCommerce_Specs_UseCases_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
@@ -40,7 +40,7 @@ namespace DuxCommerce.Specs.UseCases.Features.Payment
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Payment", "CreatePaymentMethod", "\tIn order to receive payment from my customers\r\n\tAs a store admin\r\n\tI want to cre" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Payments", "CreatePaymentMethod", "\tIn order to receive payment from my customers\r\n\tAs a store admin\r\n\tI want to cre" +
                     "ate payment method", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -145,11 +145,11 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.SkippableTheoryAttribute(DisplayName="Create payment methods - red path")]
         [Xunit.TraitAttribute("FeatureTitle", "CreatePaymentMethod")]
         [Xunit.TraitAttribute("Description", "Create payment methods - red path")]
-        [Xunit.InlineDataAttribute("Cash on Delivery", "Cash On Delivery", "Details1", "Instruction1", new string[0])]
-        [Xunit.InlineDataAttribute("Bank Deposit", "Bank Deposit", "Details2", "Instruction2", new string[0])]
-        [Xunit.InlineDataAttribute("Money Order", "Money Order", "Details3", "Instruction3", new string[0])]
-        [Xunit.InlineDataAttribute("Payment method name that is more than 50 characters long", "MoneyOrder", "Details3", "Instruction3", new string[0])]
-        public virtual void CreatePaymentMethods_RedPath(string name, string type, string additionalDetails, string paymentInstructions, string[] exampleTags)
+        [Xunit.InlineDataAttribute("Cash on Delivery", "Cash On Delivery", "Details1", "Instruction1", "Invalid method type", new string[0])]
+        [Xunit.InlineDataAttribute("Bank Deposit", "Bank Deposit", "Details2", "Instruction2", "Invalid method type", new string[0])]
+        [Xunit.InlineDataAttribute("Money Order", "Money Order", "Details3", "Instruction3", "Invalid method type", new string[0])]
+        [Xunit.InlineDataAttribute("Payment method name that is more than 50 characters", "MoneyOrder", "Details3", "Instruction3", "Method name exceeds 50 characters", new string[0])]
+        public virtual void CreatePaymentMethods_RedPath(string name, string type, string additionalDetails, string paymentInstructions, string comment, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
@@ -157,6 +157,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Type", type);
             argumentsOfScenario.Add("AdditionalDetails", additionalDetails);
             argumentsOfScenario.Add("PaymentInstructions", paymentInstructions);
+            argumentsOfScenario.Add("Comment", comment);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create payment methods - red path", null, tagsOfScenario, argumentsOfScenario);
 #line 19
 this.ScenarioInitialize(scenarioInfo);

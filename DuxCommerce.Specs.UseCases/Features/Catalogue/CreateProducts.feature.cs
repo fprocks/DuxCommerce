@@ -28,7 +28,7 @@ namespace DuxCommerce.Specs.UseCases.Features.Catalogue
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "CreateProduct.feature"
+#line 1 "CreateProducts.feature"
 #line hidden
         
         public CreateAProductFeature(CreateAProductFeature.FixtureData fixtureData, DuxCommerce_Specs_UseCases_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)

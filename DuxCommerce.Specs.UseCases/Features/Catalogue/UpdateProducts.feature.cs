@@ -28,7 +28,7 @@ namespace DuxCommerce.Specs.UseCases.Features.Catalogue
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "UpdateProduct.feature"
+#line 1 "UpdateProducts.feature"
 #line hidden
         
         public UpdateAProductFeature(UpdateAProductFeature.FixtureData fixtureData, DuxCommerce_Specs_UseCases_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
