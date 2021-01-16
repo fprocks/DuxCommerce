@@ -10,7 +10,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
         public static async Task BeforeScenarioAsync()
         {
             await MongoSetup.ResetAsync();
-            await MongoSetup.InitAsync();
+            //await MongoSetup.InitAsync();
         }
     }
 }

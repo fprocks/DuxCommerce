@@ -5,6 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Include="Taxes\Taxes.SimpleTypes.fs" />
+      <Compile Include="Taxes\Taxes.PublicTypes.fs" />
+      <Compile Include="Taxes\Taxes.InternalTypes.fs" />
+      <Compile Include="Taxes\Taxes.Dto.fs" />
+      <Compile Include="Taxes\Taxes.MongRepos.fs" />
+      <Compile Include="Taxes\Taxes.UseCases.fs" />
       <Compile Include="Common\Common.CollectionNames.fs" />
       <Compile Include="Common\Common.MongoRepoAdapter.fs" />
       <Compile Include="Shipping\Shipping.SimpleTypes.fs" />
@@ -40,10 +46,6 @@
 
     <ItemGroup>
       <PackageReference Include="MongoDB.Driver" Version="2.11.5" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Taxes\" />
     </ItemGroup>
 
 </Project>
