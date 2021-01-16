@@ -1,6 +1,6 @@
 ﻿namespace DuxCommerce.Core.ShoppingCarts.MongoRepos
 
-open DuxCommerce.Core.Common
+open DuxCommerce.Core.Shared
 open DuxCommerce.Core.ShoppingCarts.PublicTypes
 open MongoDB.Driver
 open DuxCommerce.Common

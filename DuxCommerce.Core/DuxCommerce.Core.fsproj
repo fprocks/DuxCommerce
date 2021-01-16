@@ -11,8 +11,8 @@
       <Compile Include="Taxes\Dto.fs" />
       <Compile Include="Taxes\MongRepos.fs" />
       <Compile Include="Taxes\UseCases.fs" />
-      <Compile Include="Common\CollectionNames.fs" />
-      <Compile Include="Common\MongoRepoAdapter.fs" />
+      <Compile Include="Shared\CollectionNames.fs" />
+      <Compile Include="Shared\MongoRepoAdapter.fs" />
       <Compile Include="Shipping\SimpleTypes.fs" />
       <Compile Include="Shipping\PublicTypes.fs" />
       <Compile Include="Shipping\InternalTypes.fs" />

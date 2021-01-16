@@ -3,7 +3,7 @@
 open DuxCommerce.Common
 open DuxCommerce.Core.Catalogue.PublicTypes
 open MongoDB.Driver
-open DuxCommerce.Core.Common
+open DuxCommerce.Core.Shared
 
 type CreateProduct = ProductDto -> ConfigReader<Result<string, CustomError>>
 type GetProduct = string -> ConfigReader<Result<ProductDto, CustomError>>
