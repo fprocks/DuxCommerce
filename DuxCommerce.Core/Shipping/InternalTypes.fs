@@ -2,6 +2,8 @@
 
 open DuxCommerce.Common
 open DuxCommerce.Core.Shipping.SimpleTypes
+open DuxCommerce.Core.Shared.InternalTypes
+open DuxCommerce.Core.Shared.SimpleTypes
 
 type ShippingMethodType = 
     | ByWeight
@@ -27,18 +29,6 @@ module ShippingMethodType =
         | _ -> 
             let msg = "ShippingRateType must be one of 'ByWeight', 'ByQuantity', 'ByOrderTotal'" 
             Error msg       
-
-type Address = {
-    AddressId : AddressId
-    FirstName : String50
-    LastName : String50
-    AddressLine1 : String255
-    AddressLine2 : String255 option
-    City : String100
-    PostalCode : String50 option
-    StateName : String100
-    CountryCode : CountryCode
-}
 
 type StoreProfile = {
     StoreProfileId : StoreProfileId

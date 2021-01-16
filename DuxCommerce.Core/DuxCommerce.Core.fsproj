@@ -5,12 +5,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Include="Taxes\SimpleTypes.fs" />
-      <Compile Include="Taxes\PublicTypes.fs" />
-      <Compile Include="Taxes\InternalTypes.fs" />
-      <Compile Include="Taxes\Dto.fs" />
-      <Compile Include="Taxes\MongRepos.fs" />
-      <Compile Include="Taxes\UseCases.fs" />
+      <Compile Include="Shared\SimpleTypes.fs" />
+      <Compile Include="Shared\PublicTypes.fs" />
+      <Compile Include="Shared\InternalTypes.fs" />
+      <Compile Include="Shared\Dto.fs" />
       <Compile Include="Shared\CollectionNames.fs" />
       <Compile Include="Shared\MongoRepoAdapter.fs" />
       <Compile Include="Shipping\SimpleTypes.fs" />
@@ -25,6 +23,12 @@
       <Compile Include="Payments\Dto.fs" />
       <Compile Include="Payments\MongoRepos.fs" />
       <Compile Include="Payments\UseCases.fs" />
+      <Compile Include="Taxes\SimpleTypes.fs" />
+      <Compile Include="Taxes\PublicTypes.fs" />
+      <Compile Include="Taxes\InternalTypes.fs" />
+      <Compile Include="Taxes\Dto.fs" />
+      <Compile Include="Taxes\MongRepos.fs" />
+      <Compile Include="Taxes\UseCases.fs" />
       <Compile Include="Catalogue\SimpleTypes.fs" />
       <Compile Include="Catalogue\PublicTypes.fs" />
       <Compile Include="Catalogue\InternalTypes.fs" />

@@ -37,21 +37,6 @@ module TimeZoneId =
             let! zoneId = String50.create field id
             return (TimeZoneId zoneId)
         }
-      
-type AddressId = private AddressId of string
-module AddressId =
-    let value (AddressId id) = id
-    let create id = AddressId id
-    
-    
-type CountryCode = private CountryCode of String2
-module CountryCode =
-    let value (CountryCode code) = code
-    let create field code =
-        result {
-            let! countryCode = String2.create field code
-            return CountryCode countryCode
-        }
 
 type ShippingOriginId = private ShippingOriginId of string
 module ShippingOriginId =

@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using DuxCommerce.Core.Shared.PublicTypes;
 
 namespace DuxCommerce.Specifications.UseCases.Hooks
 {

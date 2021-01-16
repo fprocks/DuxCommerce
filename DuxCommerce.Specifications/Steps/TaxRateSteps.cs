@@ -1,4 +1,5 @@
-﻿using DuxCommerce.Specifications.UseCases.Hooks;
+﻿using DuxCommerce.Core.Taxes.PublicTypes;
+using DuxCommerce.Specifications.UseCases.Hooks;
 using TechTalk.SpecFlow;
 
 namespace DuxCommerce.Specifications.Steps
@@ -8,6 +9,8 @@ namespace DuxCommerce.Specifications.Steps
     {
         private readonly StepsContext _context;
         private readonly IApiClient _apiClient;
+
+        private TaxRateDto _taxRateDto;
 
         public TaxRateSteps(StepsContext context, IApiClient apiClient)
         {

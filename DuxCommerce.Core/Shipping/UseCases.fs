@@ -4,6 +4,8 @@ open DuxCommerce.Core.Shipping.Dto
 open DuxCommerce.Core.Shipping.MongoRepos
 open DuxCommerce.Common
 open DuxCommerce.Core.Shipping.PublicTypes
+open DuxCommerce.Core.Shared
+open DuxCommerce.Core.Shared.PublicTypes
 
 module StoreProfileUseCases =   
 

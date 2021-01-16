@@ -2,23 +2,8 @@
 
 open MongoDB.Bson
 open MongoDB.Bson.Serialization.Attributes
+open DuxCommerce.Core.Shared.PublicTypes
 
-[<CLIMutable>]
-type AddressDto = {
-    [<BsonId>]
-    [<BsonRepresentation(BsonType.ObjectId)>]
-    Id: string
-    FirstName: string
-    LastName: string
-    AddressLine1: string
-    AddressLine2: string
-    City: string
-    PostalCode: string
-    StateId: string
-    StateName: string
-    CountryCode: string
-    IsBillingAddress: bool
-}
 
 [<CLIMutable>]
 type StoreProfileDto = {
@@ -37,24 +22,6 @@ type StoreProfileDto = {
     AddressId: string 
     [<BsonIgnore>]
     Address: AddressDto
-}
-
-[<CLIMutable>]
-type CountryDto = {
-    [<BsonId>]
-    [<BsonRepresentation(BsonType.ObjectId)>]
-    Id: string
-    Name: string
-    ISOCode: string
-} 
-
-[<CLIMutable>]
-type StateDto = {
-    [<BsonId>]
-    [<BsonRepresentation(BsonType.ObjectId)>]
-    Id: string
-    CountryCode: string
-    Name: string
 }
 
 [<CLIMutable>]
