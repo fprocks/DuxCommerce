@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.Shipping.SimpleTypes
+﻿namespace DuxCommerce.Core.Shipping.SimpleTypes
 
 open DuxCommerce.Common
 

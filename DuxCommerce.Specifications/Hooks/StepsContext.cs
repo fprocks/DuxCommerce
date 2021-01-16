@@ -1,4 +1,4 @@
-﻿using DuxCommerce.Catalogue.PublicTypes;
+﻿using DuxCommerce.Core.Catalogue.PublicTypes;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;

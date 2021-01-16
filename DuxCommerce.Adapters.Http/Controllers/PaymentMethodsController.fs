@@ -1,10 +1,10 @@
 ﻿namespace DuxCommerce.Adapters.Http
 
 open DuxCommerce.Common
-open DuxCommerce.Payments
+open DuxCommerce.Core.Payments
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Logging
-open DuxCommerce.Payments.PublicTypes
+open DuxCommerce.Core.Payments.PublicTypes
 
 [<ApiController>]
 [<Route("api/[controller]")>]

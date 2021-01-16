@@ -1,4 +1,4 @@
-﻿using DuxCommerce.Shipping.PublicTypes;
+﻿using DuxCommerce.Core.Shipping.PublicTypes;
 using DuxCommerce.Specifications.UseCases.Extensions;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using DuxCommerce.Specifications.UseCases.Models;

@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.Catalogue.SimpleTypes
+﻿namespace DuxCommerce.Core.Catalogue.SimpleTypes
 
 type ProductId = ProductId of string
 module ProductId =

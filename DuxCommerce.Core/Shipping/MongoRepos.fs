@@ -1,7 +1,7 @@
-﻿namespace DuxCommerce.Shipping.MongoRepos
+﻿namespace DuxCommerce.Core.Shipping.MongoRepos
 
 open DuxCommerce.Core.Common
-open DuxCommerce.Shipping.PublicTypes
+open DuxCommerce.Core.Shipping.PublicTypes
 open MongoDB.Driver
 open DuxCommerce.Common
 

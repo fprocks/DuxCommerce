@@ -1,9 +1,9 @@
-﻿namespace DuxCommerce.Catalogue.Dto
+﻿namespace DuxCommerce.Core.Catalogue.Dto
 
-open DuxCommerce.Catalogue.InternalTypes
+open DuxCommerce.Core.Catalogue.InternalTypes
 open DuxCommerce.Common
-open DuxCommerce.Catalogue.SimpleTypes
-open DuxCommerce.Catalogue.PublicTypes
+open DuxCommerce.Core.Catalogue.SimpleTypes
+open DuxCommerce.Core.Catalogue.PublicTypes
 
 module ProductDto =
 

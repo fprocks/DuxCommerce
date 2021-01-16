@@ -1,7 +1,7 @@
-﻿namespace DuxCommerce.Catalogue.InternalTypes
+﻿namespace DuxCommerce.Core.Catalogue.InternalTypes
 
 open DuxCommerce.Common
-open DuxCommerce.Catalogue.SimpleTypes
+open DuxCommerce.Core.Catalogue.SimpleTypes
 
 type ProductType =
     | PhysicalProduct

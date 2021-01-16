@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.ShoppingCarts.PublicTypes
+﻿namespace DuxCommerce.Core.ShoppingCarts.PublicTypes
 
 open MongoDB.Bson.Serialization.Attributes
 open MongoDB.Bson

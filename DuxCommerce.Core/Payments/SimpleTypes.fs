@@ -1,6 +1,6 @@
-﻿namespace DuxCommerce.Payments.SimpleTypes
+﻿namespace DuxCommerce.Core.Payments.SimpleTypes
 
-open DuxCommerce.Common
+open DuxCommerce.Core.Common
 
 type PaymentMethodId = PaymentMethodId of string
 module PaymentMethodId =

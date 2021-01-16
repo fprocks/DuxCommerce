@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.Shipping.PublicTypes
+﻿namespace DuxCommerce.Core.Shipping.PublicTypes
 
 open MongoDB.Bson
 open MongoDB.Bson.Serialization.Attributes

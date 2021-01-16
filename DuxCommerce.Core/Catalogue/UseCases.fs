@@ -1,9 +1,9 @@
-﻿namespace DuxCommerce.Catalogue
+﻿namespace DuxCommerce.Core.Catalogue
 
-open DuxCommerce.Catalogue.PublicTypes
+open DuxCommerce.Core.Catalogue.PublicTypes
 open DuxCommerce.Common
-open DuxCommerce.Catalogue.Dto
-open DuxCommerce.Catalogue.MongoRepos
+open DuxCommerce.Core.Catalogue.Dto
+open DuxCommerce.Core.Catalogue.MongoRepos
 
 type CreateProductUseCase = ProductDto -> ConfigReader<Result<ProductDto, CustomError>>
 type GetProductUseCase = string -> ConfigReader<Result<ProductDto, CustomError>>

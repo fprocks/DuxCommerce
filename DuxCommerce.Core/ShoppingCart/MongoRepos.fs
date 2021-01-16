@@ -1,7 +1,7 @@
-﻿namespace DuxCommerce.ShoppingCarts.MongoRepos
+﻿namespace DuxCommerce.Core.ShoppingCarts.MongoRepos
 
 open DuxCommerce.Core.Common
-open DuxCommerce.ShoppingCarts.PublicTypes
+open DuxCommerce.Core.ShoppingCarts.PublicTypes
 open MongoDB.Driver
 open DuxCommerce.Common
 

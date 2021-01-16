@@ -1,10 +1,10 @@
-﻿namespace DuxCommerce.ShoppingCarts.InternalTypes
+﻿namespace DuxCommerce.Core.ShoppingCarts.InternalTypes
 
-open DuxCommerce.Catalogue.InternalTypes
+open DuxCommerce.Core.Catalogue.InternalTypes
 open DuxCommerce.Common
-open DuxCommerce.ShoppingCarts.SimpleTypes
-open DuxCommerce.Catalogue.SimpleTypes
-open DuxCommerce.ShoppingCarts.Commands
+open DuxCommerce.Core.ShoppingCarts.SimpleTypes
+open DuxCommerce.Core.Catalogue.SimpleTypes
+open DuxCommerce.Core.ShoppingCarts.Commands
 
 type CartItem = {
     ProductId : ProductId

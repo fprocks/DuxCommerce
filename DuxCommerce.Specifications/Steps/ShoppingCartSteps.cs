@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using DuxCommerce.Specifications.UseCases.Extensions;
 using DuxCommerce.Specifications.UseCases.Forms;
-using DuxCommerce.ShoppingCarts.PublicTypes;
+using DuxCommerce.Core.ShoppingCarts.PublicTypes;
 using System.Net;
 using DuxCommerce.Specifications.UseCases.Models;
 

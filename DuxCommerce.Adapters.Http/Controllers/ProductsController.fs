@@ -1,10 +1,10 @@
 ﻿namespace DuxCommerce.Adapters.Http
 
-open DuxCommerce.Catalogue
+open DuxCommerce.Core.Catalogue
 open DuxCommerce.Common
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Logging
-open DuxCommerce.Catalogue.PublicTypes
+open DuxCommerce.Core.Catalogue.PublicTypes
 
 [<ApiController>]
 [<Route("api/[controller]")>]

@@ -1,9 +1,9 @@
-﻿namespace DuxCommerce.Catalogue.MongoRepos
+﻿namespace DuxCommerce.Core.Catalogue.MongoRepos
 
-open DuxCommerce.Core.Common
-open DuxCommerce.Catalogue.PublicTypes
-open MongoDB.Driver
 open DuxCommerce.Common
+open DuxCommerce.Core.Catalogue.PublicTypes
+open MongoDB.Driver
+open DuxCommerce.Core.Common
 
 type CreateProduct = ProductDto -> ConfigReader<Result<string, CustomError>>
 type GetProduct = string -> ConfigReader<Result<ProductDto, CustomError>>

@@ -1,4 +1,4 @@
-﻿using DuxCommerce.ShoppingCarts.PublicTypes;
+﻿using DuxCommerce.Core.ShoppingCarts.PublicTypes;
 using DuxCommerce.Specifications.UseCases.Models;
 using System.Collections.Generic;
 

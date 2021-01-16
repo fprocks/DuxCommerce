@@ -1,9 +1,9 @@
-﻿namespace DuxCommerce.Shipping
+﻿namespace DuxCommerce.Core.Shipping
 
-open DuxCommerce.Shipping.Dto
-open DuxCommerce.Shipping.MongoRepos
+open DuxCommerce.Core.Shipping.Dto
+open DuxCommerce.Core.Shipping.MongoRepos
 open DuxCommerce.Common
-open DuxCommerce.Shipping.PublicTypes
+open DuxCommerce.Core.Shipping.PublicTypes
 
 module StoreProfileUseCases =   
 

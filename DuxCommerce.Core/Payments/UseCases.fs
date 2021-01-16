@@ -1,9 +1,9 @@
-﻿namespace DuxCommerce.Payments
+﻿namespace DuxCommerce.Core.Payments
 
-open DuxCommerce.Payments.Dto
-open DuxCommerce.Payments.MongoRepos
+open DuxCommerce.Core.Payments.Dto
+open DuxCommerce.Core.Payments.MongoRepos
 open DuxCommerce.Common
-open DuxCommerce.Payments.PublicTypes
+open DuxCommerce.Core.Payments.PublicTypes
 
 module PaymentMethodUseCases =
 

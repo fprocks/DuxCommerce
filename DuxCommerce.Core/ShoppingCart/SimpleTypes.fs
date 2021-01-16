@@ -1,6 +1,6 @@
-﻿namespace DuxCommerce.ShoppingCarts.SimpleTypes
+﻿namespace DuxCommerce.Core.ShoppingCarts.SimpleTypes
 
-open DuxCommerce.Catalogue.SimpleTypes
+open DuxCommerce.Core.Catalogue.SimpleTypes
 
 type ShopperId = private ShopperId of string
 

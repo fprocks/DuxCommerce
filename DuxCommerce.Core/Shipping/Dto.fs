@@ -1,9 +1,9 @@
-﻿namespace DuxCommerce.Shipping.Dto
+﻿namespace DuxCommerce.Core.Shipping.Dto
 
 open DuxCommerce.Common
-open DuxCommerce.Shipping.InternalTypes
-open DuxCommerce.Shipping.SimpleTypes
-open DuxCommerce.Shipping.PublicTypes
+open DuxCommerce.Core.Shipping.InternalTypes
+open DuxCommerce.Core.Shipping.SimpleTypes
+open DuxCommerce.Core.Shipping.PublicTypes
 
 module AddressDto =
     let toDomain (dto: AddressDto) :Result<Address, string> =

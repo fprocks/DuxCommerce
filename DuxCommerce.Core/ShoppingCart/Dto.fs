@@ -1,10 +1,10 @@
-﻿namespace DuxCommerce.ShoppingCart.Dto
+﻿namespace DuxCommerce.Core.ShoppingCart.Dto
 
-open DuxCommerce.Catalogue.SimpleTypes
+open DuxCommerce.Core.Catalogue.SimpleTypes
 open DuxCommerce.Common
-open DuxCommerce.ShoppingCarts.InternalTypes
-open DuxCommerce.ShoppingCarts.PublicTypes
-open DuxCommerce.ShoppingCarts.SimpleTypes
+open DuxCommerce.Core.ShoppingCarts.InternalTypes
+open DuxCommerce.Core.ShoppingCarts.PublicTypes
+open DuxCommerce.Core.ShoppingCarts.SimpleTypes
 
 
 module CartItemDto = 

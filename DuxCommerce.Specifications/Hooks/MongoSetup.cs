@@ -1,6 +1,6 @@
 ﻿using DuxCommerce.Common;
 using DuxCommerce.Core.Common;
-using DuxCommerce.Shipping.PublicTypes;
+using DuxCommerce.Core.Shipping.PublicTypes;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Newtonsoft.Json;

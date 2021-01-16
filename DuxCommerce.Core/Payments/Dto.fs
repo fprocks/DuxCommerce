@@ -1,9 +1,9 @@
-﻿namespace DuxCommerce.Payments.Dto
+﻿namespace DuxCommerce.Core.Payments.Dto
 
 open DuxCommerce.Common
-open DuxCommerce.Payments.InternalTypes
-open DuxCommerce.Payments.SimpleTypes
-open DuxCommerce.Payments.PublicTypes
+open DuxCommerce.Core.Payments.InternalTypes
+open DuxCommerce.Core.Payments.SimpleTypes
+open DuxCommerce.Core.Payments.PublicTypes
 
 module PaymentMethodDto = 
 

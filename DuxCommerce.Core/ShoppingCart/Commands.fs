@@ -1,9 +1,9 @@
-﻿namespace DuxCommerce.ShoppingCarts.Commands
+﻿namespace DuxCommerce.Core.ShoppingCarts.Commands
 
 open DuxCommerce.Common
-open DuxCommerce.ShoppingCarts.PublicTypes
-open DuxCommerce.ShoppingCarts.SimpleTypes
-open DuxCommerce.Catalogue.SimpleTypes
+open DuxCommerce.Core.ShoppingCarts.PublicTypes
+open DuxCommerce.Core.ShoppingCarts.SimpleTypes
+open DuxCommerce.Core.Catalogue.SimpleTypes
 
 type AddCartItemCommand = {
     ProductId : ProductId

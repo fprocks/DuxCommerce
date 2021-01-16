@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.Payments.PublicTypes
+﻿namespace DuxCommerce.Core.Payments.PublicTypes
 
 open MongoDB.Bson
 open MongoDB.Bson.Serialization.Attributes

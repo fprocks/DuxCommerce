@@ -1,4 +1,4 @@
-﻿using DuxCommerce.Catalogue.PublicTypes;
+﻿using DuxCommerce.Core.Catalogue.PublicTypes;
 using System.Collections.Generic;
 
 namespace DuxCommerce.Specifications.UseCases.Extensions
