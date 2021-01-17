@@ -2,7 +2,7 @@
 
 open DuxCommerce.Core.Shared
 
-type PaymentMethodId = PaymentMethodId of string
+type PaymentMethodId = private PaymentMethodId of string
 module PaymentMethodId =
     let value (PaymentMethodId id) = id    
     let create id = PaymentMethodId id

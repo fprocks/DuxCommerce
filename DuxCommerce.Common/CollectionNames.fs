@@ -11,3 +11,4 @@ module CollectionName =
     let PaymentMethod = "PaymentMethod"
     let Country = "Country"
     let State = "State"
+    let TaxRate = "TaxRate"

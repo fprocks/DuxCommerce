@@ -7,7 +7,7 @@ open DuxCommerce.Core.Payments.PublicTypes
 
 module PaymentMethodDto = 
 
-    let toDomain (methodDto:PaymentMethodDto) :Result<PaymentMethod, CustomError> = 
+    let toDomain (methodDto:PaymentMethodDto) :Result<PaymentMethod, string> = 
         result {
             let! name = String50.create "MethodName" methodDto.Name
             let! methodType = PaymentMethodType.create methodDto.Type
@@ -15,13 +15,13 @@ module PaymentMethodDto =
             let! instructions = String255.create "PaymentInstructions" methodDto.PaymentInstructions
 
             return {
-                PaymentMethodId = PaymentMethodId methodDto.Id
+                PaymentMethodId = PaymentMethodId.create methodDto.Id
                 Name = name
                 Type = methodType
                 AdditionalDetails = details
                 PaymentInstructions = instructions
             }
-        } |> CustomError.mapValidation
+        }
 
     let fromDomain (payment:PaymentMethod) :PaymentMethodDto = 
         {

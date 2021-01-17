@@ -13,6 +13,7 @@ module PaymentMethodUseCases =
             readerResult {
                 let! _ = methodDto
                         |> PaymentMethodDto.toDomain 
+                        |> CustomError.mapValidation
                         |> ConfigReader.retn
 
                 let! methodId = methodDto |> PaymentMethodRepo.createMethod

@@ -8,6 +8,7 @@
     <ItemGroup>
         <Compile Include="ComplexDI.fs" />
         <Compile Include="Controllers\DuxControllerBase.fs" />
+        <Compile Include="Controllers\TaxRatesController.fs" />
         <Compile Include="Controllers\ShoppingCartController.fs" />
         <Compile Include="Controllers\ProductsController.fs" />
         <Compile Include="Controllers\StoreProfileController.fs" />

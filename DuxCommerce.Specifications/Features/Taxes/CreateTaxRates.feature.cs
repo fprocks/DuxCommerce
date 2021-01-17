@@ -81,21 +81,14 @@ namespace DuxCommerce.Specifications.Features.Taxes
             this.TestTearDown();
         }
         
-        [Xunit.SkippableTheoryAttribute(DisplayName="Create tax rates")]
+        [Xunit.SkippableFactAttribute(DisplayName="Create tax rate")]
         [Xunit.TraitAttribute("FeatureTitle", "Create Tax Rates")]
-        [Xunit.TraitAttribute("Description", "Create tax rates")]
-        [Xunit.InlineDataAttribute("AU", "New South Wales", "10", new string[0])]
-        [Xunit.InlineDataAttribute("AU", "Queensland", "20", new string[0])]
-        [Xunit.InlineDataAttribute("NZ", "Auckland", "30", new string[0])]
-        [Xunit.InlineDataAttribute("NZ", "Wellington", "40", new string[0])]
-        public virtual void CreateTaxRates(string countryCode, string stateName, string taxRate, string[] exampleTags)
+        [Xunit.TraitAttribute("Description", "Create tax rate")]
+        public virtual void CreateTaxRate()
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("CountryCode", countryCode);
-            argumentsOfScenario.Add("StateName", stateName);
-            argumentsOfScenario.Add("TaxRate", taxRate);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create tax rates", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create tax rate", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -117,21 +110,63 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given(string.Format("Tom selects country {0}", countryCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("Tom enters tax rate name GST", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+                TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
+                            "CountryCode"});
+                table44.AddRow(new string[] {
+                            "AU"});
+                table44.AddRow(new string[] {
+                            "NZ"});
 #line 8
- testRunner.And(string.Format("Tome selects state {0}", stateName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Tom selects the following countries:", ((string)(null)), table44, "And ");
 #line hidden
-#line 9
- testRunner.And(string.Format("Tom enters tax rate {0}", taxRate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
+                            "CountryCode",
+                            "Name"});
+                table45.AddRow(new string[] {
+                            "AU",
+                            "New South Wales"});
+                table45.AddRow(new string[] {
+                            "AU",
+                            "Queensland"});
+                table45.AddRow(new string[] {
+                            "AU",
+                            "Victoria"});
+                table45.AddRow(new string[] {
+                            "NZ",
+                            "Auckland"});
+                table45.AddRow(new string[] {
+                            "NZ",
+                            "Wellington"});
+                table45.AddRow(new string[] {
+                            "NZ",
+                            "Southland"});
+#line 12
+ testRunner.And("Tom selects the following states:", ((string)(null)), table45, "And ");
 #line hidden
-#line 10
+                TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
+                            "CountryCode",
+                            "PostalCodes"});
+                table46.AddRow(new string[] {
+                            "AU",
+                            "2000,2001,4000"});
+                table46.AddRow(new string[] {
+                            "NZ",
+                            "2571,2576,2800"});
+#line 20
+ testRunner.And("Tom enters the following postal codes:", ((string)(null)), table46, "And ");
+#line hidden
+#line 24
+ testRunner.And("Tom enters tax rate amount <TaxRate>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 25
  testRunner.When("Tom saves the tax rate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 26
  testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 27
  testRunner.And("Tax rate should be created as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

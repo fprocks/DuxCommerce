@@ -5,6 +5,18 @@ open DuxCommerce.Core.Shared.InternalTypes
 open DuxCommerce.Common
 open DuxCommerce.Core.Shared.SimpleTypes
 
+module StateDto =
+    let toDomain (dto: StateDto) :Result<State, string> = 
+        result {
+            let! countryCode = CountryCode.create "CountryCode" dto.CountryCode
+            let! name = String50.create "StateName" dto.Name
+            return {
+                StateId = StateId.create ""
+                CountryCode = countryCode
+                Name = name
+            }
+        }
+
 module AddressDto =
     let toDomain (dto: AddressDto) :Result<Address, string> =
         result {

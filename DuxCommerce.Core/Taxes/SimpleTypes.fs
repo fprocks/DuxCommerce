@@ -6,6 +6,6 @@ module TaxRateId =
     let create id = TaxRateId id
 
 type TaxRateAmount = private TaxRateAmount of decimal
-module RateAmount =
+module TaxRateAmount =
     let value (TaxRateAmount amount) = amount
     let create amount = TaxRateAmount amount    
