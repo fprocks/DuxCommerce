@@ -5,14 +5,10 @@ open DuxCommerce.Core.Shared.InternalTypes
 open DuxCommerce.Common
 open DuxCommerce.Core.Taxes.SimpleTypes
 
-type TaxState = {
-    State: State
-    PostalCodes: String50 list
-}
-
 type TaxCountry = {
     CountryCode: CountryCode
-    States: TaxState list
+    States: State list
+    PostalCodes: String50 list
 }
 
 type TaxZone = {
