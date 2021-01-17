@@ -2,6 +2,25 @@
 
 open MongoDB.Bson.Serialization.Attributes
 open MongoDB.Bson
+open DuxCommerce.Core.Shared.PublicTypes
+
+[<CLIMutable>]
+type TaxStateDto = {
+    State: StateDto
+    PostalCodes: string seq
+}
+
+[<CLIMutable>]
+type TaxCountryDto = {
+    CountryCode: string
+    States: TaxStateDto seq
+}
+
+[<CLIMutable>] 
+type TaxZoneDto = {
+    Name: string
+    Countries: TaxCountryDto seq
+}
 
 [<CLIMutable>]
 type TaxRateDto = {
@@ -9,8 +28,6 @@ type TaxRateDto = {
     [<BsonRepresentation(BsonType.ObjectId)>]
     Id: string
     Name: string
-    CountryCode: string
-    StateId: string
-    StateName: string
     Rate: decimal
+    Zone: TaxZoneDto 
 }

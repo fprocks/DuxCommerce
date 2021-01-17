@@ -138,7 +138,7 @@ type ShippingCountry = {
 type ShippingRate = {
     Min: RateCondition
     Max: RateCondition
-    Rate: RateAmount
+    Amount: ShippingRateAmount
 }
 
 type ShippingMethod = {
@@ -152,6 +152,7 @@ type ShippingZone = {
     Methods: ShippingMethod seq
     Countries: ShippingCountry seq
 }
+
 type ShippingProfile = {
     ShippingProfileId: ShippingProfileId
     Name: String50

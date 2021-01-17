@@ -58,7 +58,7 @@ module RateCondition =
     let value (RateCondition cond) = cond
     let create cond = RateCondition cond    
 
-type RateAmount = private RateAmount of decimal
+type ShippingRateAmount = private ShippingRateAmount of decimal
 module RateAmount =
-    let value (RateAmount rate) = rate
-    let create rate = RateAmount rate    
+    let value (ShippingRateAmount amount) = amount
+    let create amount = ShippingRateAmount amount    

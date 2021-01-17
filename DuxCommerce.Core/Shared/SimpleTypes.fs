@@ -2,6 +2,16 @@
 
 open DuxCommerce.Common
 
+type StateId = private StateId of string
+module StateId =
+    let value (StateId id) = id
+    let create id = StateId id
+
+type CountryId = private CountryId of string
+module CountryId =
+    let value (CountryId id) = id
+    let create id = CountryId id
+
 type AddressId = private AddressId of string
 module AddressId =
     let value (AddressId id) = id

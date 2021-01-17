@@ -14,3 +14,15 @@ type Address = {
     StateName : String100
     CountryCode : CountryCode
 }
+
+type State = {
+    StateId : StateId
+    CountryCode: CountryCode
+    Name: String50
+}
+
+type Country = {
+    CountryId : CountryId
+    Name: String50
+    ISOCode: CountryCode
+}

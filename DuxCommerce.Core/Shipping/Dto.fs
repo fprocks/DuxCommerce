@@ -58,7 +58,7 @@ module ShippingRateDto =
         {
             Min = RateCondition.create dto.Min
             Max = RateCondition.create dto.Min
-            Rate = RateAmount.create dto.Rate
+            Amount = RateAmount.create dto.Rate
         }
         
 module ShippingMethodDto =
