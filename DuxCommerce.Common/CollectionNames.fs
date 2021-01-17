@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.Core.Shared
+﻿namespace DuxCommerce.Common
 
 module CollectionName = 
 

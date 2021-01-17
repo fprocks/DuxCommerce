@@ -9,8 +9,6 @@
       <Compile Include="Shared\PublicTypes.fs" />
       <Compile Include="Shared\InternalTypes.fs" />
       <Compile Include="Shared\Dto.fs" />
-      <Compile Include="Shared\CollectionNames.fs" />
-      <Compile Include="Shared\MongoRepoAdapter.fs" />
       <Compile Include="Shipping\SimpleTypes.fs" />
       <Compile Include="Shipping\PublicTypes.fs" />
       <Compile Include="Shipping\InternalTypes.fs" />
