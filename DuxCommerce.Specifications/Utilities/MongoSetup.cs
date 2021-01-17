@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 using System.Linq;
 using DuxCommerce.Core.Shared.PublicTypes;
 
-namespace DuxCommerce.Specifications.UseCases.Hooks
+namespace DuxCommerce.Specifications.Utilities
 {
     public class MongoSetup
     {
         public static async Task ResetAsync()
         {
-            IMongoDatabase mongodb = GetConnection();
+            IMongoDatabase mongodb = MongoConnection.GetConnection();
 
             var storeProfile = mongodb.GetCollection<StoreProfileDto>(CollectionName.StoreProfile);
             var addresses = mongodb.GetCollection<AddressDto>(CollectionName.Address);
@@ -31,7 +31,7 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
 
         public static async Task InitAsync()
         {
-            var mongodb = GetConnection();
+            var mongodb = MongoConnection.GetConnection();
 
             var countries = mongodb.GetCollection<CountryDto>(CollectionName.Country);
             await countries.InsertManyAsync(GetCountries());
@@ -228,13 +228,6 @@ namespace DuxCommerce.Specifications.UseCases.Hooks
             };
 
             return ("NZ", states);
-        }
-
-        private static IMongoDatabase GetConnection()
-        {
-            var mongoSettings = MongoSettingsModule.FromFile("appsettings.json");
-            var mongoClient = new MongoClient(mongoSettings.ConnectionString);
-            return mongoClient.GetDatabase(mongoSettings.DatabaseName);
         }
     }
 }

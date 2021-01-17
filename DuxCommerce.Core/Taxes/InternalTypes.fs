@@ -19,6 +19,6 @@ type TaxZone = {
 type TaxRate = {
     TaxRateId: TaxRateId
     Name: String50
-    Amount:TaxRateAmount
+    Amount: TaxRateAmount
     Zone: TaxZone
 }

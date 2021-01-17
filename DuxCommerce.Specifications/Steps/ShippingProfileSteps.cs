@@ -3,6 +3,7 @@ using DuxCommerce.Core.Shipping.PublicTypes;
 using DuxCommerce.Specifications.UseCases.Extensions;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using DuxCommerce.Specifications.UseCases.Models;
+using DuxCommerce.Specifications.Utilities;
 using FluentAssertions;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -71,14 +72,14 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Then(@"shippig countries should be created as follow:")]
         public void ThenShippigCountriesShouldBeCreatedAsFollow(Table table)
         {
-            var expected = table.CreateSet<ShippingCountry>();
+            var expected = table.CreateSet<ZoneCountry>();
             CompareCountries(expected.ToList(), _profileCreated.Zones.SelectMany(x => x.Countries).ToList());
         }
 
         [Then(@"shippig states should be created as follow:")]
         public void ThenShippigStatesShouldBeCreatedAsFollow(Table table)
         {
-            var expected = table.CreateSet<ShippingState>();
+            var expected = table.CreateSet<ZoneState>();
             var actual = _profileCreated.Zones.SelectMany(x => x.Countries).SelectMany(x => x.StateNames);
             expected.Select(x => x.Name).Should().BeEquivalentTo(actual);
         }
@@ -115,9 +116,9 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Given(@"Tom selects the following shipping countries:")]
         public void GivenTomSelectsTheFollowingShippingCountries(Table table)
         {
-            var countryCodes = table.CreateSet<ShippingCountry>();
+            var zoneCountries = table.CreateSet<ZoneCountry>();
             var zoneRequest = _profileRequest.Zones.FirstOrDefault();
-            zoneRequest.Countries = countryCodes
+            zoneRequest.Countries = zoneCountries
                 .Select(c => new ShippingCountryDto { CountryCode = c.CountryCode })
                 .ToList();
         }
@@ -125,11 +126,11 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Given(@"Tom selects the following shipping states:")]
         public void GivenTomSelectsTheFollowingShippingStates(Table table)
         {
-            var shippingStates = table.CreateSet<ShippingState>();
+            var zoneStates = table.CreateSet<ZoneState>();
             var zoneRequest = _profileRequest.Zones.FirstOrDefault();
             foreach (var country in zoneRequest.Countries)
             {
-                var states = shippingStates
+                var states = zoneStates
                     .Where(s => s.CountryCode == country.CountryCode)
                     .Select(x => x.Name);
 
@@ -196,7 +197,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             }
         }
 
-        private void CompareCountries(List<ShippingCountry> expected, List<ShippingCountryDto> actual)
+        private void CompareCountries(List<ZoneCountry> expected, List<ShippingCountryDto> actual)
         {
             expected.Count().Should().Be(actual.Count());
             for (var index = 0; index < expected.Count(); index++)

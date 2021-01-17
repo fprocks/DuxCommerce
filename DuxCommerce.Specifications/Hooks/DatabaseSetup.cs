@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using DuxCommerce.Specifications.Utilities;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace DuxCommerce.Specifications.UseCases.Hooks

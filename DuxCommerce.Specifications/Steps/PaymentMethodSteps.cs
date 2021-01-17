@@ -1,6 +1,7 @@
 ﻿using DuxCommerce.Core.Shipping.PublicTypes;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using DuxCommerce.Specifications.UseCases.Models;
+using DuxCommerce.Specifications.Utilities;
 using FluentAssertions;
 using Newtonsoft.Json;
 using System.Linq;

@@ -5,6 +5,7 @@
 
 Scenario: Create tax rate
 	And Tom enters tax rate name GST
+	And Tom enters tax zone name ANZ
 	And Tom selects the following countries:
 	| CountryCode |
 	| AU          |
@@ -21,7 +22,7 @@ Scenario: Create tax rate
 	| CountryCode | PostalCodes    |
 	| AU          | 2000,2001,4000 |
 	| NZ          | 2571,2576,2800 |
-	And Tom enters tax rate amount <TaxRate>
+	And Tom enters tax rate amount 0.1
 	When Tom saves the tax rate
 	Then Tom should receive status codes OK
 	And Tax rate should be created as expected

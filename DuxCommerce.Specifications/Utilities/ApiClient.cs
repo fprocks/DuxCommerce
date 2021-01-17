@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DuxCommerce.Specifications.UseCases.Hooks
+namespace DuxCommerce.Specifications.Utilities
 {
     public interface IApiClient
     {

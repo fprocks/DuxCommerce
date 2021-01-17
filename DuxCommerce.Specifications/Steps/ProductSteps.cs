@@ -1,6 +1,7 @@
 ﻿using DuxCommerce.Core.Catalogue.PublicTypes;
 using DuxCommerce.Specifications.UseCases.Extensions;
 using DuxCommerce.Specifications.UseCases.Hooks;
+using DuxCommerce.Specifications.Utilities;
 using FluentAssertions;
 using Newtonsoft.Json;
 using System.Linq;

@@ -1,4 +1,5 @@
 ﻿using BoDi;
+using DuxCommerce.Specifications.Utilities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
