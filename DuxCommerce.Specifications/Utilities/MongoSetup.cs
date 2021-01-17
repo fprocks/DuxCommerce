@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using DuxCommerce.Core.Shared.PublicTypes;
+using DuxCommerce.Core.Taxes.PublicTypes;
 
 namespace DuxCommerce.Specifications.Utilities
 {
@@ -21,12 +22,14 @@ namespace DuxCommerce.Specifications.Utilities
             var addresses = mongodb.GetCollection<AddressDto>(CollectionName.Address);
             var shippingOrigins = mongodb.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin);
             var shippingProfiles = mongodb.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile);
+            var taxRates = mongodb.GetCollection<TaxRateDto>(CollectionName.TaxRate);
 
             // Todo: any better ways to delete all documents in a collection?
             await storeProfile.DeleteManyAsync(new BsonDocument());
             await addresses.DeleteManyAsync(new BsonDocument());
             await shippingOrigins.DeleteManyAsync(new BsonDocument());
             await shippingProfiles.DeleteManyAsync(new BsonDocument());
+            await taxRates.DeleteManyAsync(new BsonDocument());
         }
 
         public static async Task InitAsync()

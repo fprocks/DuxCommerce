@@ -62,28 +62,38 @@ namespace DuxCommerce.Specifications.Steps
             var allStates = await StateRepo.GetAllStatesAsync();
             var zoneStates = table.CreateSet<ZoneState>();
 
-            var zoneCountries = _taxRateRequest.Zone.Countries;
-            foreach (var zoneCountry in zoneCountries)
+            var zoneCountries = _taxRateRequest.Zone.Countries.ToList();
+            for (var index = 0; index <= zoneCountries.Count() - 1; index ++)
             {
                 var stateNames = zoneStates
-                    .Where(x => x.CountryCode == zoneCountry.CountryCode)
+                    .Where(x => x.CountryCode == zoneCountries[index].CountryCode)
                     .Select(x => x.Name);
 
-                var states = allStates.Where(x => stateNames.Contains(x.Name));
-                zoneCountry.States = states;
+                var states = allStates
+                    .Where(x => stateNames.Contains(x.Name))
+                    .ToList();
+
+                zoneCountries[index].States = states;
             }
+
+            _taxRateRequest.Zone.Countries = zoneCountries;
         }
 
         [Given(@"Tom enters the following postal codes:")]
         public void GivenTomEntersTheFollowingPostalCodes(Table table)
         {
             var zonePostalCodes = table.CreateSet<ZonePostalCodes>();
-            foreach (var zoneCountry in _taxRateRequest.Zone.Countries)
+
+            var zoneCountries = _taxRateRequest.Zone.Countries.ToList();
+            for (var index = 0; index <= zoneCountries.Count() - 1; index ++ )
             {
-                var postalCodes = zonePostalCodes.FirstOrDefault(x => x.CountryCode == zoneCountry.CountryCode);
+                var postalCodes = zonePostalCodes.FirstOrDefault(x => x.CountryCode == zoneCountries[index].CountryCode);
                 var codes = postalCodes.PostalCodes.Split(',');
-                zoneCountry.PostalCodes = codes;
+
+                zoneCountries[index].PostalCodes = codes;
             }
+
+            _taxRateRequest.Zone.Countries = zoneCountries;
         }
 
         [Given(@"Tom enters tax rate amount (.*)")]
