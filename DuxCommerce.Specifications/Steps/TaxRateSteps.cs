@@ -4,6 +4,7 @@ using DuxCommerce.Specifications.Models;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using DuxCommerce.Specifications.UseCases.Models;
 using DuxCommerce.Specifications.Utilities;
+using FluentAssertions;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
@@ -103,7 +104,61 @@ namespace DuxCommerce.Specifications.Steps
 
         [Then(@"Tax rate should be created as expected")]
         public void ThenTaxRateShouldBeCreatedAsExpected()
-        {            
+        {
+            CompareRate(_taxRateRequest, _taxRateCreated);
+        }
+
+        private void CompareRate(TaxRateDto expected, TaxRateDto actual)
+        {
+            expected.Name.Should().BeEquivalentTo(actual.Name);
+            expected.Amount.Should().Be(actual.Amount);
+
+            CompareZone(expected.Zone, actual.Zone);
+        }
+
+        private void CompareZone(TaxZoneDto expected, TaxZoneDto actual)
+        {
+            expected.Name.Should().BeEquivalentTo(actual.Name);
+
+            Comparer(expected.Countries, actual.Countries);
+        }
+
+        private void Comparer(IEnumerable<TaxCountryDto> expected, IEnumerable<TaxCountryDto> actual)
+        {
+            expected.Count().Should().Be(actual.Count());
+
+            var expectedCountries = expected.ToList();
+            var actualCountries = actual.ToList();
+            for (var index = 0; index <= expected.Count() - 1; index++)
+            {
+                Compare(expectedCountries[index], actualCountries[index]);
+            }
+        }
+
+        private void Compare(TaxCountryDto expected, TaxCountryDto actual)
+        {
+            expected.CountryCode.Should().BeEquivalentTo(actual.CountryCode);
+
+            var expectedStates = expected.States.ToList();
+            var actualStates = actual.States.ToList();
+            for (var index = 0; index <= expectedStates.Count() - 1; index ++)
+            {
+                Compare(expectedStates[index], actualStates[index]);
+            }
+
+            var expectedPostalCodes = expected.PostalCodes.ToList();
+            var actualPostalCodes = actual.PostalCodes.ToList();
+            for (var index = 0; index <= expectedPostalCodes.Count() - 1; index++)
+            {
+                expectedPostalCodes[index].Should().BeEquivalentTo(actualPostalCodes[index]);
+            }
+        }
+
+        private void Compare(StateDto expected, StateDto actual)
+        {
+            expected.Id.Should().BeEquivalentTo(actual.Id);
+            expected.CountryCode.Should().BeEquivalentTo(actual.CountryCode);
+            expected.Name.Should().BeEquivalentTo(actual.Name);
         }
     }
 }
