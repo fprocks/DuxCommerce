@@ -51,7 +51,7 @@ namespace DuxCommerce.Specifications.Steps
                     CountryCode = x.CountryCode,
                     States = new List<StateDto>(),
                     PostalCodes = new List<string>()
-                });
+                }).ToList(); // Note: this is very important otherwise _taxRateRequest.Zone.Countries cannot be updated afterwards
 
             _taxRateRequest.Zone.Countries = taxCountries;
         }
@@ -59,41 +59,30 @@ namespace DuxCommerce.Specifications.Steps
         [Given(@"Tom selects the following states:")]
         public async Task GivenTomSelectsTheFollowingStatesAsync(Table table)
         {
-            var allStates = await StateRepo.GetAllStatesAsync();
             var zoneStates = table.CreateSet<ZoneState>();
-
-            var zoneCountries = _taxRateRequest.Zone.Countries.ToList();
-            for (var index = 0; index <= zoneCountries.Count() - 1; index ++)
+            var allStates = await StateRepo.GetAllStatesAsync();
+            var countries = _taxRateRequest.Zone.Countries;
+            foreach (var zoneCountry in countries)
             {
                 var stateNames = zoneStates
-                    .Where(x => x.CountryCode == zoneCountries[index].CountryCode)
+                    .Where(x => x.CountryCode == zoneCountry.CountryCode)
                     .Select(x => x.Name);
 
-                var states = allStates
-                    .Where(x => stateNames.Contains(x.Name))
-                    .ToList();
-
-                zoneCountries[index].States = states;
+                var states = allStates.Where(x => stateNames.Contains(x.Name));
+                zoneCountry.States = states;
             }
-
-            _taxRateRequest.Zone.Countries = zoneCountries;
         }
 
         [Given(@"Tom enters the following postal codes:")]
         public void GivenTomEntersTheFollowingPostalCodes(Table table)
         {
             var zonePostalCodes = table.CreateSet<ZonePostalCodes>();
-
-            var zoneCountries = _taxRateRequest.Zone.Countries.ToList();
-            for (var index = 0; index <= zoneCountries.Count() - 1; index ++ )
+            foreach (var zoneCountry in _taxRateRequest.Zone.Countries)
             {
-                var postalCodes = zonePostalCodes.FirstOrDefault(x => x.CountryCode == zoneCountries[index].CountryCode);
+                var postalCodes = zonePostalCodes.FirstOrDefault(x => x.CountryCode == zoneCountry.CountryCode);
                 var codes = postalCodes.PostalCodes.Split(',');
-
-                zoneCountries[index].PostalCodes = codes;
+                zoneCountry.PostalCodes = codes;
             }
-
-            _taxRateRequest.Zone.Countries = zoneCountries;
         }
 
         [Given(@"Tom enters tax rate amount (.*)")]
