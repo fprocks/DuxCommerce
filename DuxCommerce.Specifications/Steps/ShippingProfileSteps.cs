@@ -166,8 +166,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _profileCreated = JsonConvert.DeserializeObject<ShippingProfileDto>(profileStr);
         }
 
-        [Then(@"custom shipping profile should be created")]
-        public void ThenCustomShippingProfileShouldBeCreated()
+        [Then(@"custom shipping profile should be created as expected")]
+        public void ThenCustomShippingProfileShouldBeCreatedAsExpected()
         {
             CompareZones(_profileRequest.Zones.ToList(), _profileCreated.Zones.ToList());
 
