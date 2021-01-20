@@ -5,12 +5,9 @@ open DuxCommerce.Common
 open DuxCommerce.Core.Catalogue.Dto
 open DuxCommerce.Core.Catalogue.MongoRepos
 
-type CreateProductUseCase = ProductDto -> ConfigReader<Result<ProductDto, CustomError>>
-type GetProductUseCase = string -> ConfigReader<Result<ProductDto, CustomError>>
-type UpdateProductUseCase = string -> ProductDto -> ConfigReader<Result<ProductDto, CustomError>>
+module ProductUseCases =    
 
-module ProductUseCases =     
-
+    type CreateProductUseCase = ProductDto -> ConfigReader<Result<ProductDto, CustomError>>
     let createProduct :CreateProductUseCase =            
         fun productDto ->
             readerResult {
@@ -21,14 +18,16 @@ module ProductUseCases =
                 let! id = productDto |> ProductRepo.createProduct
                 return! ProductRepo.getProduct id 
             }
-    
+
+    type GetProductUseCase = string -> ConfigReader<Result<ProductDto, CustomError>>
     let getProduct :GetProductUseCase =
         fun id ->
             readerResult {                
                 // Todo: improve to handle null value
                 return! ProductRepo.getProduct id
             }
-        
+
+    type UpdateProductUseCase = string -> ProductDto -> ConfigReader<Result<ProductDto, CustomError>>    
     let updateProduct :UpdateProductUseCase =
         fun id productDto ->
             readerResult {

@@ -3,14 +3,10 @@
 open DuxCommerce.Common
 open DuxCommerce.Core.Catalogue.PublicTypes
 open MongoDB.Driver
-open DuxCommerce.Core.Shared
-
-type CreateProduct = ProductDto -> ConfigReader<Result<string, CustomError>>
-type GetProduct = string -> ConfigReader<Result<ProductDto, CustomError>>
-type UpdateProduct = string -> ProductDto -> ConfigReader<Result<unit, CustomError>>
 
 module ProductRepo =
-    
+
+    type CreateProduct = ProductDto -> ConfigReader<Result<string, CustomError>>    
     let createProduct :CreateProduct =
         fun productDto ->
             let create (db:IMongoDatabase) = 
@@ -19,15 +15,17 @@ module ProductRepo =
                 productDto.Id
                 
             MongoRepoAdapter.repoAdapter create
-            
+
+    type GetProduct = string -> ConfigReader<Result<ProductDto, CustomError>>            
     let getProduct :GetProduct =
         fun id ->
             let get (db:IMongoDatabase) =
                 let products = db.GetCollection<ProductDto>(CollectionName.Product)
                 products.Find(fun x -> x.Id = id).FirstOrDefault()
                 
-            MongoRepoAdapter.repoAdapter get          
+            MongoRepoAdapter.repoAdapter get
             
+    type UpdateProduct = string -> ProductDto -> ConfigReader<Result<unit, CustomError>>            
     let updateProduct :UpdateProduct =
         fun id productDto ->
             let update (db:IMongoDatabase) =

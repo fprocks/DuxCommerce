@@ -5,12 +5,9 @@ open DuxCommerce.Core.ShoppingCarts.PublicTypes
 open MongoDB.Driver
 open DuxCommerce.Common
 
-type GetShoppingCart = string -> ConfigReader<Result<ShoppingCartDto, CustomError>>
-type SaveShoppingCart = ShoppingCartDto -> ConfigReader<Result<unit, CustomError>>
-type DeleteCartItem = ShoppingCartDto * (CartItemDto seq) -> ConfigReader<Result<uint, CustomError>>
-
 module CartRepo =
-                
+    
+    type SaveShoppingCart = ShoppingCartDto -> ConfigReader<Result<unit, CustomError>>            
     let saveShoppingCart :SaveShoppingCart =
         fun cartDto ->      
 
@@ -19,7 +16,8 @@ module CartRepo =
                 shoppingCarts.ReplaceOne((fun x -> x.Id = cartDto.Id),cartDto) |> ignore
 
             MongoRepoAdapter.repoAdapter save
-            
+
+    type GetShoppingCart = string -> ConfigReader<Result<ShoppingCartDto, CustomError>>            
     let getShoppingCart :GetShoppingCart = 
         fun shopperId ->
             
@@ -34,10 +32,3 @@ module CartRepo =
                 | _ -> cartDto
                 
             MongoRepoAdapter.repoAdapter get
-    
-    let deleteCartItem =
-        fun (cartToUpdate, itemsToDelete: CartItemDto seq) ->
-            
-            let delete (db:IMongoDatabase) = failwith  ""
-                
-            MongoRepoAdapter.repoAdapter delete 
