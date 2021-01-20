@@ -11,7 +11,7 @@ namespace DuxCommerce.Specifications.Utilities
     {
         public static async Task<IEnumerable<StateDto>> GetAllStatesAsync()
         {
-            var connection = MongoConnection.GetConnection();
+            var connection = MongoDatabase.GetConnection();
             var states = connection.GetCollection<StateDto>(CollectionName.State);
             return await states.Find(new BsonDocument()).ToListAsync();
         }

@@ -17,13 +17,13 @@ namespace DuxCommerce.Specifications.Steps
     [Binding]
     public class TaxRateSteps
     {
-        private readonly StepsContext _context;
+        private readonly StepContext _context;
         private readonly IApiClient _apiClient;
 
         private TaxRateDto _taxRateRequest;
         private TaxRateDto _taxRateCreated;
 
-        public TaxRateSteps(StepsContext context, IApiClient apiClient)
+        public TaxRateSteps(StepContext context, IApiClient apiClient)
         {
             _context = context;
             _apiClient = apiClient;

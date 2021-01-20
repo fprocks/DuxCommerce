@@ -15,12 +15,12 @@ namespace DuxCommerce.Specifications.UseCases.Steps
     [Binding]
     public class PaymentMethodSteps
     {
-        private readonly StepsContext _context;
+        private readonly StepContext _context;
         private readonly IApiClient _apiClient;
 
         private PaymentMethod _methodRequest;
 
-        public PaymentMethodSteps(StepsContext context, IApiClient apiClient)
+        public PaymentMethodSteps(StepContext context, IApiClient apiClient)
         {
             _context = context;
             _apiClient = apiClient;

@@ -8,9 +8,9 @@ namespace DuxCommerce.Specifications.UseCases.Steps
     [Binding]
     public class CommonSteps
     {
-        private readonly StepsContext _context;
+        private readonly StepContext _context;
 
-        public CommonSteps(StepsContext context)
+        public CommonSteps(StepContext context)
         {
             _context = context;
         }

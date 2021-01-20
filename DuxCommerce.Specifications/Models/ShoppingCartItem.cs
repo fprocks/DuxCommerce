@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DuxCommerce.Specifications.UseCases.Models
 {
-    public class CartItem
+    public class ShoppingCartItem
     {
         public int Product { get; set; }
         public string ProductId { get; set; }

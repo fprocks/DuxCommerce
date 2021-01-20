@@ -3,7 +3,7 @@ using MongoDB.Driver;
 
 namespace DuxCommerce.Specifications.Utilities
 {
-    public class MongoConnection
+    public class MongoDatabase
     {
         public static IMongoDatabase GetConnection()
         {

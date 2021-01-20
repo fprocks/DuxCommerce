@@ -15,7 +15,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
     [Binding]
     public class StoreProfileSteps
     {
-        private readonly StepsContext _context;
+        private readonly StepContext _context;
         private readonly IApiClient _apiClient;
 
         private StoreProfileDto _profilePreUpdate;
@@ -23,7 +23,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         private StoreProfileDto _profileRequest;
         private StoreProfileDto _profilePostUpdate;
 
-        public StoreProfileSteps(StepsContext context, IApiClient apiClient)
+        public StoreProfileSteps(StepContext context, IApiClient apiClient)
         {
             _context = context;
             _apiClient = apiClient;

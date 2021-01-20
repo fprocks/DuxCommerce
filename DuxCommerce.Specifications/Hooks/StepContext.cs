@@ -5,9 +5,9 @@ using System.Net.Http;
 
 namespace DuxCommerce.Specifications.UseCases.Hooks
 {
-    public class StepsContext
+    public class StepContext
     {
-        public StepsContext()
+        public StepContext()
         {
             CreatedProducts = new List<ProductDto>();
 

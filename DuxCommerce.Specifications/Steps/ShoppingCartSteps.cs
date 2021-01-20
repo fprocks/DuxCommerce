@@ -19,10 +19,10 @@ namespace DuxCommerce.Specifications.UseCases.Steps
     [Binding]
     public class ShoppingCartSteps
     {
-        private readonly StepsContext _context;
+        private readonly StepContext _context;
         private readonly IApiClient _apiClient;
 
-        public ShoppingCartSteps(StepsContext context, IApiClient apiClient)
+        public ShoppingCartSteps(StepContext context, IApiClient apiClient)
         {
             _context = context;
             _apiClient = apiClient;
@@ -58,7 +58,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Then(@"her cart details should look as follow:")]
         public async Task ThenHerCartDetailsShouldLookAsFollowAsync(Table table)
         {
-            var expectedItems = table.CreateSet<CartItem>();
+            var expectedItems = table.CreateSet<ShoppingCartItem>();
             var products = _context.CreatedProducts;
             foreach (var item in expectedItems)
             {
@@ -116,7 +116,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             return lastApiResult;
         }
 
-        private void CompareCartItems(List<CartItem> expectedItems, List<CartItemDto> lineItems)
+        private void CompareCartItems(List<ShoppingCartItem> expectedItems, List<CartItemDto> lineItems)
         {
             expectedItems.Count().Should().Be(lineItems.Count());
             expectedItems.EqualTo(lineItems).Should().BeTrue();

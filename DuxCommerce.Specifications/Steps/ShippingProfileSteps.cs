@@ -17,7 +17,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
     [Binding]
     public class ShippingProfileSteps
     {
-        private readonly StepsContext _context;
+        private readonly StepContext _context;
         private readonly IApiClient _apiClient;
 
         private ShippingOriginDto _originCreated;
@@ -25,7 +25,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         private ShippingProfileDto _profileRequest;
         private ShippingProfileDto _profileCreated;
 
-        public ShippingProfileSteps(StepsContext context, IApiClient apiClient)
+        public ShippingProfileSteps(StepContext context, IApiClient apiClient)
         {
             _context = context;
             _apiClient = apiClient;

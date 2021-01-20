@@ -12,11 +12,11 @@ using DuxCommerce.Core.Taxes.PublicTypes;
 
 namespace DuxCommerce.Specifications.Utilities
 {
-    public class MongoSetup
+    public class MongoDbSetup
     {
         public static async Task ResetAsync()
         {
-            IMongoDatabase mongodb = MongoConnection.GetConnection();
+            IMongoDatabase mongodb = MongoDatabase.GetConnection();
 
             var storeProfile = mongodb.GetCollection<StoreProfileDto>(CollectionName.StoreProfile);
             var addresses = mongodb.GetCollection<AddressDto>(CollectionName.Address);
@@ -34,7 +34,7 @@ namespace DuxCommerce.Specifications.Utilities
 
         public static async Task InitAsync()
         {
-            var mongodb = MongoConnection.GetConnection();
+            var mongodb = MongoDatabase.GetConnection();
 
             var countries = mongodb.GetCollection<CountryDto>(CollectionName.Country);
             await countries.InsertManyAsync(GetCountries());

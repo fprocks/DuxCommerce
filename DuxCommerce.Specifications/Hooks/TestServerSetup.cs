@@ -9,12 +9,12 @@ using TechTalk.SpecFlow;
 namespace DuxCommerce.Specifications.UseCases.Hooks
 {
     [Binding]
-    public class HostSetup
+    public class TestServerSetup
     {
         private readonly IObjectContainer _objectContainer;
         private static HttpClient _httpClient;
 
-        public HostSetup(IObjectContainer objectContainer)
+        public TestServerSetup(IObjectContainer objectContainer)
         {
             _objectContainer = objectContainer;
         }
