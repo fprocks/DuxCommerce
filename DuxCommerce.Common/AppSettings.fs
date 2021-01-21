@@ -2,22 +2,6 @@
 
 open Microsoft.Extensions.Configuration
 
-[<CLIMutable>]
-type SqlServerSettings = {
-    ConnectionString : string
-}
-
-module SqlServerSettings = 
-    let FromFile (configFile:string) = 
-        let mutable settings = {ConnectionString = ""}
-    
-        let config = ConfigurationBuilder()
-                        .AddJsonFile(configFile)
-                        .Build()
-        config.Bind("SqlServerSettings", settings)
-
-        settings
-
 [<CLIMutable>]        
 type MongoSettings = {
     ConnectionString : string
@@ -37,13 +21,7 @@ module MongoSettings =
         settings
 
 type AppSettings () =
-    static let mutable SqlSettings = {ConnectionString = ""}
     static let mutable MongoSettings = {ConnectionString = ""; DatabaseName = ""}
-
-    member this.GetSqlSettings = 
-        SqlSettings
-    member this.SetSqlSettings (value:SqlServerSettings) = 
-        SqlSettings <- value
 
     member this.GetMongoSettings = 
         MongoSettings       
