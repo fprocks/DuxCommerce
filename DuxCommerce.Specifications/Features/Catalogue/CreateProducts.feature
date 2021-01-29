@@ -1,4 +1,4 @@
-﻿Feature: Create a product
+﻿Feature: Create Products
 	In order to sell products online
 	As a store admin
 	I want to add proucts to my store first

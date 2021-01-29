@@ -1,5 +1,7 @@
-﻿Feature: ShippingAddress
-	Simple calculator for adding two numbers
+﻿Feature: Create Shipping Address
+	In order to get my products delivered
+	As an online shopper
+	I want to enter my shipping address during checkout
 
 Background: 
 	Given the following products are already created:
@@ -8,10 +10,15 @@ Background:
 	| 2     | BDD  | BDD Description | 50    | 110    | 70   | 2      | 3     | 4      | 5      | PhysicalProduct | bdd-book | 1234567890222 | False          | ContinueSelling |
 	| 3     | TDD  | TDD Description | 80    | 100    | 60   | 3      | 4     | 5      | 6      | DigitalProduct  | tdd-book | 1234567890333 | True           | StopSelling     |
 
-Scenario: Add two numbers
+Scenario: Create shipping address
 	And Amy adds the following products to her shopping cart:
 	| Product | Name | Quantity |
 	| 1       | DDD  | 4        |
 	| 2       | BDD  | 8        |
-	When the two numbers are added
-	Then the result should be 120
+	And Amy enters the email address amy@gmail.com
+	And Amy enters the following shipping address
+	| FirstName | LastName | AddressLine1 | AddressLine2    | City      | PostalCode | StateName | CountryCode |
+	| James     | Harper   | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
+	When Amy saves the shipping address
+	Then Tom should receive status codes BadRequest
+	Then the shipping address should be created as expected

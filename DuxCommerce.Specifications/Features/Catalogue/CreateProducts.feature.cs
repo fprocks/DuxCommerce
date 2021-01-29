@@ -19,7 +19,7 @@ namespace DuxCommerce.Specifications.Features.Catalogue
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class CreateAProductFeature : object, Xunit.IClassFixture<CreateAProductFeature.FixtureData>, System.IDisposable
+    public partial class CreateProductsFeature : object, Xunit.IClassFixture<CreateProductsFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DuxCommerce.Specifications.Features.Catalogue
 #line 1 "CreateProducts.feature"
 #line hidden
         
-        public CreateAProductFeature(CreateAProductFeature.FixtureData fixtureData, DuxCommerce_Specifications_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CreateProductsFeature(CreateProductsFeature.FixtureData fixtureData, DuxCommerce_Specifications_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,7 @@ namespace DuxCommerce.Specifications.Features.Catalogue
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Catalogue", "Create a product", "\tIn order to sell products online\r\n\tAs a store admin\r\n\tI want to add proucts to m" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Catalogue", "Create Products", "\tIn order to sell products online\r\n\tAs a store admin\r\n\tI want to add proucts to m" +
                     "y store first", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -82,7 +82,7 @@ namespace DuxCommerce.Specifications.Features.Catalogue
         }
         
         [Xunit.SkippableTheoryAttribute(DisplayName="Create products - green path")]
-        [Xunit.TraitAttribute("FeatureTitle", "Create a product")]
+        [Xunit.TraitAttribute("FeatureTitle", "Create Products")]
         [Xunit.TraitAttribute("Description", "Create products - green path")]
         [Xunit.InlineDataAttribute("BDD", "BDD Description", "90", "110", "70", "2", "3", "4", "5", "PhysicalProduct", "bdd-book", "1234567890222", "False", "ContinueSelling", new string[0])]
         [Xunit.InlineDataAttribute("TDD", "TDD Description", "80", "100", "60", "3", "4", "5", "6", "DigitalProduct", "tdd-book", "1234567890333", "True", "StopSelling", new string[0])]
@@ -202,7 +202,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableTheoryAttribute(DisplayName="Create products - red path")]
-        [Xunit.TraitAttribute("FeatureTitle", "Create a product")]
+        [Xunit.TraitAttribute("FeatureTitle", "Create Products")]
         [Xunit.TraitAttribute("Description", "Create products - red path")]
         [Xunit.InlineDataAttribute("DDD", "DDD Description", "100", "120", "80", "1", "2", "3", "4", "Physical Product", "ddd-book", "1234567890111", "Yes", "Remove", "Invalid Product Type", new string[0])]
         [Xunit.InlineDataAttribute("BDD", "BDD Description", "90", "110", "70", "2", "3", "4", "5", "PhysicalProduct", "bdd-book", "1234567890222", "No", "Continue Selling", "Invalid OutOfStock Rule", new string[0])]
@@ -312,12 +312,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                CreateAProductFeature.FeatureSetup();
+                CreateProductsFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                CreateAProductFeature.FeatureTearDown();
+                CreateProductsFeature.FeatureTearDown();
             }
         }
     }

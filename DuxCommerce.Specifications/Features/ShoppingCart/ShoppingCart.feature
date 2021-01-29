@@ -1,4 +1,4 @@
-﻿Feature: ShoppingCart
+﻿Feature: Shopping Cart
 	In order to place an order
 	As a customer
 	I want to add products to my shopping cart

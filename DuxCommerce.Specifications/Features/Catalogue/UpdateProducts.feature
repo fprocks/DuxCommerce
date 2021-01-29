@@ -1,4 +1,4 @@
-﻿Feature: Update a product
+﻿Feature: Update Products
 	In order to keep the product info up to date
 	As a store admin
 	I want to update the proucts

@@ -80,7 +80,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
         {
 #line 6
 #line hidden
-            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                         "OriginId",
                         "FirstName",
                         "LastName",
@@ -90,7 +90,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
                         "PostalCode",
                         "StateName",
                         "CountryCode"});
-            table10.AddRow(new string[] {
+            table13.AddRow(new string[] {
                         "1",
                         "James",
                         "Harper",
@@ -101,7 +101,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
                         "New South Wales",
                         "AU"});
 #line 7
- testRunner.Given("Tom already created the following shipping origins:", ((string)(null)), table10, "Given ");
+ testRunner.Given("Tom already created the following shipping origins:", ((string)(null)), table13, "Given ");
 #line hidden
         }
         
@@ -155,54 +155,54 @@ this.FeatureBackground();
 #line 14
  testRunner.And("Tom enters the zone name ANZ", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                             "CountryCode"});
-                table11.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "AU"});
-                table11.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "NZ"});
 #line 15
- testRunner.And("Tom selects the following shipping countries:", ((string)(null)), table11, "And ");
+ testRunner.And("Tom selects the following shipping countries:", ((string)(null)), table14, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "CountryCode",
                             "Name"});
-                table12.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "AU",
                             "New South Wales"});
-                table12.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "AU",
                             "Queensland"});
-                table12.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "NZ",
                             "Auckland"});
-                table12.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "NZ",
                             "Wellington"});
 #line 19
- testRunner.And("Tom selects the following shipping states:", ((string)(null)), table12, "And ");
+ testRunner.And("Tom selects the following shipping states:", ((string)(null)), table15, "And ");
 #line hidden
 #line 25
  testRunner.And(string.Format("Tom selects shipping method type {0} and enters method name {1}", methodType, methodName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                             "Min",
                             "Max",
                             "Rate"});
-                table13.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "0",
                             "100",
                             "50"});
-                table13.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "100",
                             "200",
                             "100"});
-                table13.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "200",
                             "40000",
                             "200"});
 #line 26
- testRunner.And("Tome enters the following rates:", ((string)(null)), table13, "And ");
+ testRunner.And("Tome enters the following rates:", ((string)(null)), table16, "And ");
 #line hidden
 #line 31
  testRunner.When("Tom saves the shipping profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

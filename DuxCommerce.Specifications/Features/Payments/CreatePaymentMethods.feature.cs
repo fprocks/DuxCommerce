@@ -116,18 +116,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Type",
                             "AdditionalDetails",
                             "PaymentInstructions"});
-                table8.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             string.Format("{0}", name),
                             string.Format("{0}", type),
                             string.Format("{0}", additionalDetails),
                             string.Format("{0}", paymentInstructions)});
 #line 7
- testRunner.Given("Tom enters the following payment method information:", ((string)(null)), table8, "Given ");
+ testRunner.Given("Tom enters the following payment method information:", ((string)(null)), table11, "Given ");
 #line hidden
 #line 10
  testRunner.When("Tome saves the payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -179,18 +179,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Type",
                             "AdditionalDetails",
                             "PaymentInstructions"});
-                table9.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             string.Format("{0}", name),
                             string.Format("{0}", type),
                             string.Format("{0}", additionalDetails),
                             string.Format("{0}", paymentInstructions)});
 #line 20
- testRunner.Given("Tom enters the following payment method information:", ((string)(null)), table9, "Given ");
+ testRunner.Given("Tom enters the following payment method information:", ((string)(null)), table12, "Given ");
 #line hidden
 #line 23
  testRunner.When("Tome saves the payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

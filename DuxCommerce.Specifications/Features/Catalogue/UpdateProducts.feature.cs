@@ -19,7 +19,7 @@ namespace DuxCommerce.Specifications.Features.Catalogue
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class UpdateAProductFeature : object, Xunit.IClassFixture<UpdateAProductFeature.FixtureData>, System.IDisposable
+    public partial class UpdateProductsFeature : object, Xunit.IClassFixture<UpdateProductsFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace DuxCommerce.Specifications.Features.Catalogue
 #line 1 "UpdateProducts.feature"
 #line hidden
         
-        public UpdateAProductFeature(UpdateAProductFeature.FixtureData fixtureData, DuxCommerce_Specifications_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public UpdateProductsFeature(UpdateProductsFeature.FixtureData fixtureData, DuxCommerce_Specifications_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,7 @@ namespace DuxCommerce.Specifications.Features.Catalogue
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Catalogue", "Update a product", "\tIn order to keep the product info up to date\r\n\tAs a store admin\r\n\tI want to upda" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Catalogue", "Update Products", "\tIn order to keep the product info up to date\r\n\tAs a store admin\r\n\tI want to upda" +
                     "te the proucts", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -121,7 +121,7 @@ namespace DuxCommerce.Specifications.Features.Catalogue
         }
         
         [Xunit.SkippableTheoryAttribute(DisplayName="Update products - green path")]
-        [Xunit.TraitAttribute("FeatureTitle", "Update a product")]
+        [Xunit.TraitAttribute("FeatureTitle", "Update Products")]
         [Xunit.TraitAttribute("Description", "Update products - green path")]
         [Xunit.InlineDataAttribute("DDD Lite", "DDD Desc", "90", "110", "70", "4", "3", "2", "1", "DigitalProduct", "ddd-lite", "1234567890123", "True", "StopSelling", new string[0])]
         [Xunit.InlineDataAttribute("TDD Lite", "TDD Desc", "70", "90", "50", "6", "5", "4", "3", "PhysicalProduct", "tdd-lite", "1234567890345", "False", "ContinueSelling", new string[0])]
@@ -244,7 +244,7 @@ this.FeatureBackground();
         }
         
         [Xunit.SkippableTheoryAttribute(DisplayName="Update products - red path")]
-        [Xunit.TraitAttribute("FeatureTitle", "Update a product")]
+        [Xunit.TraitAttribute("FeatureTitle", "Update Products")]
         [Xunit.TraitAttribute("Description", "Update products - red path")]
         [Xunit.InlineDataAttribute("DDD Lite", "DDD Desc", "90", "110", "70", "4", "3", "2", "1", "DigitalProduct", "ddd-lite", "1234567890123", "True", "Stop Selling", "Invalid OutOfStock Rule", new string[0])]
         [Xunit.InlineDataAttribute("BDD Lite", "BDD Desc", "80", "100", "60", "5", "4", "3", "2", "Digital Product", "bdd-lite", "1234567890234", "True", "Remove", "Invalid ProductType", new string[0])]
@@ -357,12 +357,12 @@ this.FeatureBackground();
             
             public FixtureData()
             {
-                UpdateAProductFeature.FeatureSetup();
+                UpdateProductsFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                UpdateAProductFeature.FeatureTearDown();
+                UpdateProductsFeature.FeatureTearDown();
             }
         }
     }
