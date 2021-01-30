@@ -39,3 +39,14 @@ type ShoppingCartDto = {
     LineItems: CartItemDto seq
     CartTotal: decimal
 }
+
+[<CLIMutable>]
+type CustomerDto = {
+    [<BsonId>]
+    [<BsonRepresentation(BsonType.ObjectId)>]
+    Id: string
+    Email: string
+    FirstName: string
+    LastName: string
+    UserId: string
+}

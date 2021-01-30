@@ -37,7 +37,7 @@ module ShoppingCartDto =
             CartTotal = CartTotal.value cart.CartTotal
         }
     
-    let toDomain cartDto :ShoppingCart =
+    let toDomain (cartDto:ShoppingCartDto) :ShoppingCart =
         {
             ShoppingCartId = ShoppingCartId.create cartDto.Id
             ShopperId = ShopperId.create cartDto.ShopperId
