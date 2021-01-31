@@ -40,6 +40,7 @@
       <Compile Include="ShoppingCart\ShoppingCart.Dto.fs" />
       <Compile Include="ShoppingCart\ShoppingCart.MongoRepos.fs" />
       <Compile Include="ShoppingCart\ShoppingCart.UseCases.fs" />
+	  <Compile Include="Checkout\Checkout.PublicTypes.fs" />
     </ItemGroup>
 
     <ItemGroup>
