@@ -9,12 +9,9 @@ open DuxCommerce.Core.ShoppingCarts.MongoRepos
 open DuxCommerce.Core.Catalogue.MongoRepos
 open DuxCommerce.Core.ShoppingCarts.PublicTypes
 
-type AddCartItemUseCase = string -> AddCartItemRequest -> ConfigReader<Result<ShoppingCartDto, CustomError>>
-type UpdateCartUseCase = string -> UpdateCartRequest -> ConfigReader<Result<ShoppingCartDto, CustomError>>
-type DeleteCartItemUseCase = string -> DeleteCartItemRequest -> ConfigReader<Result<ShoppingCartDto, CustomError>>
-
 module ShoppingCartUseCases =
 
+    type AddCartItemUseCase = string -> AddCartItemRequest -> ConfigReader<Result<ShoppingCartDto, CustomError>>
     let addCartItem :AddCartItemUseCase =        
         fun shopperId request ->
             readerResult {
@@ -38,6 +35,7 @@ module ShoppingCartUseCases =
                 return! CartRepo.getShoppingCart shopperId
             }
 
+    type UpdateCartUseCase = string -> UpdateCartRequest -> ConfigReader<Result<ShoppingCartDto, CustomError>>
     let updateCart :UpdateCartUseCase =
         fun shopperId request -> 
             readerResult {
@@ -53,6 +51,7 @@ module ShoppingCartUseCases =
                 return! CartRepo.getShoppingCart shopperId
             }
 
+    type DeleteCartItemUseCase = string -> DeleteCartItemRequest -> ConfigReader<Result<ShoppingCartDto, CustomError>>
     let deleteCartItem :DeleteCartItemUseCase =
         fun shopperId request ->
             readerResult {
