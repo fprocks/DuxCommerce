@@ -9,6 +9,7 @@ namespace DuxCommerce.Specifications.Steps
         [Given(@"Amy enters the email address (.*)")]
         public void GivenAmyEntersTheEmailAddress(string address)
         {
+
         }
         
         [Given(@"Amy enters the following shipping address")]

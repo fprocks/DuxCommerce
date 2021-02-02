@@ -9,6 +9,8 @@ type CustomerDto = {
     [<BsonId>]
     [<BsonRepresentation(BsonType.ObjectId)>]
     Id: string
+    Username: string
+    Password: string
     Email: string
     PhoneNumber: string
     FirstName: string
