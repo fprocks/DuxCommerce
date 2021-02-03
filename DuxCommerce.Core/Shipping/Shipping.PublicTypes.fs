@@ -72,14 +72,3 @@ type ShippingProfileDto = {
     OriginIds: string seq
     Zones: ShippingZoneDto seq
 }
-
-[<CLIMutable>]
-type PaymentMethodDto = {
-    [<BsonId>]
-    [<BsonRepresentation(BsonType.ObjectId)>]
-    Id: string
-    Name: string
-    Type: string
-    AdditionalDetails: string
-    PaymentInstructions: string
-}
