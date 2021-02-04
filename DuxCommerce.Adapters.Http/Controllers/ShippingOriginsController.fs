@@ -4,7 +4,6 @@ open DuxCommerce.Common
 open DuxCommerce.Core.Shipping
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Logging
-open DuxCommerce.Core.Shipping.PublicTypes
 open DuxCommerce.Core.Shared.PublicTypes
 
 [<ApiController>]

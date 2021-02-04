@@ -7,7 +7,7 @@ open DuxCommerce.Common
 
 module CartRepo =
     
-    type SaveShoppingCart = ShoppingCartDto -> ConfigReader<Result<unit, CustomError>>            
+    type SaveShoppingCart = ShoppingCartDto -> ConfigReader<Result<unit, CustomError>>
     let saveShoppingCart :SaveShoppingCart =
         fun cartDto ->      
 

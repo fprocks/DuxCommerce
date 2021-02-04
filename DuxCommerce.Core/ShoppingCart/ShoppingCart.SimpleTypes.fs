@@ -18,7 +18,6 @@ module ShoppingCartId =
 
     let create id = ShoppingCartId id
 
-
 type ItemQuantity = private ItemQuantity of decimal
 
 module ItemQuantity =

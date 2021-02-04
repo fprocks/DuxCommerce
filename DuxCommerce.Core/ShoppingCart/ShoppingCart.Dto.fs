@@ -6,7 +6,6 @@ open DuxCommerce.Core.ShoppingCarts.InternalTypes
 open DuxCommerce.Core.ShoppingCarts.PublicTypes
 open DuxCommerce.Core.ShoppingCarts.SimpleTypes
 
-
 module CartItemDto = 
 
     let fromDomain (cartItem:CartItem) :CartItemDto =
