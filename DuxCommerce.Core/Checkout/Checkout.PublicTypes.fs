@@ -25,8 +25,12 @@ type CheckoutDto = {
     Id: string
     ShoppingCartId: string
     Email: string
+    ShippingAddressId: string
+    [<BsonIgnore>]
     ShippingAddress: AddressDto
     SameAsBilling: bool
+    BillingAddressId: string
+    [<BsonIgnore>]
     BillingAddress: AddressDto
     ShippingMethodId: string
     PaymentMethodId: string
