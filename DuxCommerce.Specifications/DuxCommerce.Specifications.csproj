@@ -3,6 +3,13 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Drivers\**" />
+    <EmbeddedResource Remove="Drivers\**" />
+    <None Remove="Drivers\**" />
+    <SpecFlowFeatureFiles Remove="Drivers\**" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Drivers\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="appsettings.json" />
   </ItemGroup>
   <ItemGroup>
@@ -26,9 +33,6 @@
     <PackageReference Include="SpecFlow.xUnit" Version="3.4.14" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Drivers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DuxCommerce.Adapters.Http\DuxCommerce.Adapters.Http.fsproj" />
