@@ -21,7 +21,6 @@ type CheckoutDto = {
     [<BsonId>]
     [<BsonRepresentation(BsonType.ObjectId)>]
     Id: string
-    ShoppingCartId: string
     Email: string
     ShippingAddressId: string
     [<BsonIgnore>]
@@ -32,4 +31,5 @@ type CheckoutDto = {
     BillingAddress: AddressDto
     ShippingMethodId: string
     PaymentMethodId: string
+    ShopperId: string
 }
