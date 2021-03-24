@@ -23,7 +23,7 @@ module StoreProfileUseCases =
                 let addressDto = {profileDto.Address with Id = ""}
                 // Todo: why the next line never executes ShippingProfileRepo.createProfile
                 //profileDto.Address |> ShippingProfileRepo.createProfile |> ignore
-                let! _ = addressDto |> ShippingProfileRepo.createDefault
+                let! _ = addressDto |> ShippingProfileRepo.createDefaultProfile
 
                 return! StoreProfileRepo.getProfile profileId 
             }
@@ -58,7 +58,7 @@ module ShippingProfileUseCases =
     let getDefaultProfile :GetDefaultProfileUseCase =
         fun () ->
             readerResult {
-                return! ShippingProfileRepo.getDefault ()
+                return! ShippingProfileRepo.getDefaultProfile ()
             }
 
     type CreateShippingProfileUseCase = ShippingProfileDto -> ConfigReader<Result<ShippingProfileDto, CustomError>>
@@ -70,7 +70,7 @@ module ShippingProfileUseCases =
                         |> CustomError.mapValidation
                         |> ConfigReader.retn
 
-                let! profileId = ShippingProfileRepo.createCustom dto
+                let! profileId = ShippingProfileRepo.createCustomProfile dto
                 return! ShippingProfileRepo.getProfile profileId
             }
 

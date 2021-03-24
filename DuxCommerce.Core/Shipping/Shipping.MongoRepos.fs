@@ -122,7 +122,7 @@ module ShippingProfileRepo =
             profileDto
             
     type CreateDefaultProfile = AddressDto -> ConfigReader<Result<string, CustomError>>
-    let createDefault:CreateDefaultProfile =
+    let createDefaultProfile:CreateDefaultProfile =
         fun addressDto -> 
             let create (db:IMongoDatabase) =
                 let addresses = db.GetCollection<AddressDto>(CollectionName.Address)
@@ -141,7 +141,7 @@ module ShippingProfileRepo =
             MongoRepoAdapter.repoAdapter create
 
     type CreateCustomProfile = ShippingProfileDto -> ConfigReader<Result<string, CustomError>>
-    let createCustom :CreateCustomProfile =
+    let createCustomProfile :CreateCustomProfile =
         fun profileDto -> 
             let create (db:IMongoDatabase) =
                 let profiles = db.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile)
@@ -152,7 +152,7 @@ module ShippingProfileRepo =
             MongoRepoAdapter.repoAdapter create
 
     type GetDefaultProfile = unit -> ConfigReader<Result<ShippingProfileDto, CustomError>>
-    let getDefault :GetDefaultProfile =
+    let getDefaultProfile :GetDefaultProfile =
         fun () ->
             let get (db:IMongoDatabase) =
                 let profiles = db.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile)
