@@ -9,7 +9,7 @@ open DuxCommerce.Core.ShoppingCarts.PublicTypes
 [<ApiController>]
 [<Route("api/[controller]")>]
 type ShoppingCartController (logger : ILogger<ShoppingCartController>) =
-    inherit DuxControllerBase()
+    inherit DuxController()
 
     // Note: pass in shopperId from front end before we can read it from ShopperContext
     [<HttpPost("{shopperId}/items")>]

@@ -9,7 +9,7 @@ open DuxCommerce.Core.Taxes
 [<ApiController>]
 [<Route("api/[controller]")>]
 type TaxRatesController (logger : ILogger<TaxRatesController>) =
-    inherit DuxControllerBase()
+    inherit DuxController()
 
     [<HttpPost>]
     member this.Post(request: TaxRateDto) : IActionResult =

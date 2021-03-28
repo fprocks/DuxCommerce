@@ -9,7 +9,7 @@ open DuxCommerce.Core.Catalogue.PublicTypes
 [<ApiController>]
 [<Route("api/[controller]")>]
 type ProductsController (logger : ILogger<ProductsController>) =
-    inherit DuxControllerBase()
+    inherit DuxController()
 
     [<HttpGet("{id}")>]
     member this.Get(id : string) : IActionResult=

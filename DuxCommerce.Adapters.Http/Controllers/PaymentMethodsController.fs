@@ -9,7 +9,7 @@ open DuxCommerce.Core.Payments.PublicTypes
 [<ApiController>]
 [<Route("api/[controller]")>]
 type PaymentMethodsController (logger : ILogger<PaymentMethodsController>) =
-    inherit DuxControllerBase()
+    inherit DuxController()
 
     [<HttpPost>]
     member this.Post(request: PaymentMethodDto) : IActionResult =

@@ -9,7 +9,7 @@ open DuxCommerce.Core.Shared.PublicTypes
 [<ApiController>]
 [<Route("api/[controller]")>]
 type ShippingOriginsController (logger : ILogger<ShippingOriginsController>) =
-    inherit DuxControllerBase()
+    inherit DuxController()
 
     [<HttpGet>]
     member this.Get([<FromQuery>] originIds) : IActionResult=

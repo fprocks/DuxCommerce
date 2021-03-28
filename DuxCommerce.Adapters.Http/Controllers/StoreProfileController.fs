@@ -9,7 +9,7 @@ open DuxCommerce.Core.Shipping.PublicTypes
 [<ApiController>]
 [<Route("api/[controller]")>]
 type StoreProfileController (logger : ILogger<StoreProfileController>) =
-    inherit DuxControllerBase()
+    inherit DuxController()
 
     [<HttpGet("{id}")>]
     member this.Get(id : string) : IActionResult=

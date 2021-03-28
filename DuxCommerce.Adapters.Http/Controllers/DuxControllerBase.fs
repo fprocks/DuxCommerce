@@ -3,7 +3,7 @@
 open DuxCommerce.Common
 open Microsoft.AspNetCore.Mvc
 
-type DuxControllerBase () =
+type DuxController () =
     inherit ControllerBase()
     
     member this.Convert(error: CustomError) : IActionResult =
