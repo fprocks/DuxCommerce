@@ -38,7 +38,7 @@ namespace DuxCommerce.Specifications.Steps
         [When(@"Amy saves the shipping address")]
         public async System.Threading.Tasks.Task WhenAmySavesTheShippingAddressAsync()
         {
-            var url = $"api/checkout/{_context.ShopperId}";
+            var url = $"api/checkout/{_context.ShopperId}/shippingaddress";
             var apiResult = await _apiClient.PostAsync(url, _checkoutRequest);
             _context.ApiResult = apiResult;
         }
