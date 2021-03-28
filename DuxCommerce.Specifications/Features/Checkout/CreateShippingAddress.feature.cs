@@ -228,7 +228,7 @@ this.FeatureBackground();
  testRunner.When("Amy saves the shipping address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 23
- testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 24
  testRunner.Then("the shipping address should be created as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

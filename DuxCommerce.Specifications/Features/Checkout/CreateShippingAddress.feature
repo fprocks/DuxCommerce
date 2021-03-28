@@ -20,5 +20,5 @@ Scenario: Create shipping address
 	| FirstName | LastName | AddressLine1 | AddressLine2    | City      | PostalCode | StateName | CountryCode |
 	| James     | Harper   | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
 	When Amy saves the shipping address
-	Then Tom should receive status codes BadRequest
+	Then Tom should receive status codes OK
 	Then the shipping address should be created as expected

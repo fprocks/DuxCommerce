@@ -4,7 +4,6 @@ open DuxCommerce.Common
 open DuxCommerce.Core.Shipping.InternalTypes
 open DuxCommerce.Core.Shipping.SimpleTypes
 open DuxCommerce.Core.Shipping.PublicTypes
-open DuxCommerce.Core.Shared.PublicTypes
 open DuxCommerce.Core.Shared.Dto
 open DuxCommerce.Core.Shared.SimpleTypes
 
