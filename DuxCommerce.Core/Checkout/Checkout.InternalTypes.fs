@@ -1,2 +1,24 @@
 ﻿namespace DuxCommerce.Core.Checkout.InternalTypes
 
+open DuxCommerce.Core.Checkout.SimpleTypes
+open DuxCommerce.Core.ShoppingCarts.SimpleTypes
+open DuxCommerce.Common
+open DuxCommerce.Core.Shared.InternalTypes
+open DuxCommerce.Core.Payments.SimpleTypes
+open DuxCommerce.Core.Shipping.SimpleTypes
+open DuxCommerce.Core.Checkout.Commands
+
+type Checkout = {
+    CheckoutId : CheckoutId
+    ShopperId : ShopperId
+    Email : EmailAddress
+    ShippingAddress : Address option
+    SameAsBilling : bool
+    BillingAddress : Address option
+    ShippingMethodId : ShippingMethodId
+    PaymentMethodId : PaymentMethodId
+}
+
+module Checkout = 
+    let updateCustomerInfo checkout (cmd:CustomerInfoCommand) :Checkout=
+        {checkout with Email = cmd.Email; ShippingAddress = Some cmd.ShippingAddress }

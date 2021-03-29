@@ -17,7 +17,6 @@ type AddressDto = {
     StateId: string
     StateName: string
     CountryCode: string
-    IsBillingAddress: bool
 }
 
 [<CLIMutable>]

@@ -48,6 +48,11 @@ module ShippingProfileId =
     let value (ShippingProfileId id) = id
     let create id = ShippingProfileId id
 
+type ShippingMethodId = private ShippingMethodId of string
+module ShippingMethodId =
+    let value (ShippingMethodId id) = id
+    let create id = ShippingMethodId id
+
 type StateId = private StateId of string
 module StateId =
     let value (StateId id) = id

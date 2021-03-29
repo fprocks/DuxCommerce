@@ -12,9 +12,9 @@ type CheckoutController (logger : ILogger<ShoppingCartController>) =
     inherit DuxController()
 
     // Note: pass in shopperId from front end before we can read it from ShopperContext
-    [<HttpPost("{shopperId}/shippingaddress")>]
-    member this.Post(shopperId: string, request: CheckoutDto) : IActionResult =
-        let result = ConfigReader.execute (CheckoutUseCases.addShippingAddress shopperId request)
+    [<HttpPost("{shopperId}/customerinfo")>]
+    member this.Post(shopperId: string, request: CustomerInfoRequest) : IActionResult =
+        let result = ConfigReader.execute (CheckoutUseCases.updateCustomerInfo shopperId request)
         match result with
         | Ok c -> base.Ok(c) :> _
         | Error m -> base.Convert(m)

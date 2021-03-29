@@ -14,7 +14,7 @@ namespace DuxCommerce.Specifications.Steps
         private readonly StepContext _context;
         private readonly IApiClient _apiClient;
 
-        private CheckoutDto _checkoutRequest = new CheckoutDto();
+        private CustomerInfoRequest _customerInfo = new CustomerInfoRequest();
 
         public CreateShippingAddressSteps(StepContext context, IApiClient apiClient)
         {
@@ -25,21 +25,21 @@ namespace DuxCommerce.Specifications.Steps
         [Given(@"Amy enters the email address (.*)")]
         public void GivenAmyEntersTheEmailAddress(string email)
         {
-            _checkoutRequest.Email = email;
+            _customerInfo.Email = email;
         }
         
         [Given(@"Amy enters the following shipping address")]
         public void GivenAmyEntersTheFollowingShippingAddress(Table table)
         {
             var address = table.CreateSet<AddressDto>().FirstOrDefault();
-            _checkoutRequest.ShippingAddress = address;
+            _customerInfo.ShippingAddress = address;
         }
         
         [When(@"Amy saves the shipping address")]
         public async System.Threading.Tasks.Task WhenAmySavesTheShippingAddressAsync()
         {
-            var url = $"api/checkout/{_context.ShopperId}/shippingaddress";
-            var apiResult = await _apiClient.PostAsync(url, _checkoutRequest);
+            var url = $"api/checkout/{_context.ShopperId}/customerinfo";
+            var apiResult = await _apiClient.PostAsync(url, _customerInfo);
             _context.ApiResult = apiResult;
         }
         

@@ -12,3 +12,4 @@ module CollectionName =
     let Country = "Country"
     let State = "State"
     let TaxRate = "TaxRate"
+    let Checkout = "Checkout"

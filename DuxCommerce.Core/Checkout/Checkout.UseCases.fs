@@ -2,20 +2,29 @@
 
 open DuxCommerce.Core.Checkout.PublicTypes
 open DuxCommerce.Common
-open DuxCommerce.Core.Shared.Dto
+open DuxCommerce.Core.Checkout.Commands
+open DuxCommerce.Core.Checkout.MongoRepos
+open DuxCommerce.Core.Checkout.Dto
+open DuxCommerce.Core.Checkout.InternalTypes
 
 module CheckoutUseCases = 
 
-    type AddShippingAddress = string -> CheckoutDto -> ConfigReader<Result<CheckoutDto, CustomError>>
-    let addShippingAddress :AddShippingAddress = 
-        fun shopperId checkoutDto ->
+    type UpdateCustomerInfo = string -> CustomerInfoRequest -> ConfigReader<Result<CheckoutDto, CustomError>>
+    let updateCustomerInfo :UpdateCustomerInfo = 
+        fun shopperId request ->
             readerResult {
-                let! _ = EmailAddress.create "" checkoutDto.Email 
-                            |> CustomError.mapValidation
-                            |> ConfigReader.retn
-                let! _ = checkoutDto.ShippingAddress 
-                                |> AddressDto.toDomain 
+                let! dto = CheckoutRepo.getCheckout shopperId
+
+                let! cmd = CustomerInfoCommand.fromRequest request
+                        |> ConfigReader.retn
+                let! checkout = dto
+                                |> CheckoutDto.toDomain
                                 |> CustomError.mapValidation
                                 |> ConfigReader.retn
-                return checkoutDto
+                let _ = cmd 
+                        |> Checkout.updateCustomerInfo checkout
+                        |> CheckoutDto.fromDomain
+                        |> CheckoutRepo.saveCheckout
+
+                return! CheckoutRepo.getCheckout shopperId
             }

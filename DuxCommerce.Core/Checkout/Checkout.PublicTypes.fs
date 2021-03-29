@@ -5,6 +5,12 @@ open MongoDB.Bson
 open DuxCommerce.Core.Shared.PublicTypes
 
 [<CLIMutable>]
+type CustomerInfoRequest = {
+    Email: string
+    ShippingAddress: AddressDto
+}
+
+[<CLIMutable>]
 type CustomerDto = {
     [<BsonId>]
     [<BsonRepresentation(BsonType.ObjectId)>]
@@ -21,15 +27,11 @@ type CheckoutDto = {
     [<BsonId>]
     [<BsonRepresentation(BsonType.ObjectId)>]
     Id: string
+    ShopperId: string
     Email: string
-    ShippingAddressId: string
-    [<BsonIgnore>]
-    ShippingAddress: AddressDto
+    ShippingAddress: AddressDto option
     SameAsBilling: bool
-    BillingAddressId: string
-    [<BsonIgnore>]
-    BillingAddress: AddressDto
+    BillingAddress: AddressDto option
     ShippingMethodId: string
     PaymentMethodId: string
-    ShopperId: string
 }

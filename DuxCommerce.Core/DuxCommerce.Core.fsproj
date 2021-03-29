@@ -42,6 +42,7 @@
       <Compile Include="ShoppingCart\ShoppingCart.UseCases.fs" />
       <Compile Include="Checkout\Checkout.SimpleTypes.fs" />
 	  <Compile Include="Checkout\Checkout.PublicTypes.fs" />
+	  <Compile Include="Checkout\Checkout.Commands.fs" />
 	  <Compile Include="Checkout\Checkout.InternalTypes.fs" />
 	  <Compile Include="Checkout\Checkout.Dto.fs" />
 	  <Compile Include="Checkout\Checkout.MongoRepos.fs" />

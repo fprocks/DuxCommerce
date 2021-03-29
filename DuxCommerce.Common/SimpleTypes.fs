@@ -163,6 +163,11 @@ module String50 =
     
     let create fieldName str = 
         ConstrainedType.createString fieldName String50 50 str
+
+    let valueOption (value : String50 option) = 
+        match value with
+        | Some (String50 str) -> str
+        | None -> ""
         
     let createOption fieldName str = 
         ConstrainedType.createStringOption fieldName String50 50 str
@@ -175,8 +180,14 @@ module String255 =
     let create fieldName str = 
         ConstrainedType.createString fieldName String255 255 str
 
+    let valueOption (value : String255 option) = 
+        match value with
+        | Some (String255 str) -> str
+        | None -> ""
+
     let createOption fieldName str = 
         ConstrainedType.createStringOption fieldName String255 255 str
+
 
 type String100 = String100 of string
 
