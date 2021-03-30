@@ -3,6 +3,7 @@ using DuxCommerce.Core.Shared.PublicTypes;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using DuxCommerce.Specifications.Utilities;
 using System.Linq;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -34,9 +35,9 @@ namespace DuxCommerce.Specifications.Steps
             var address = table.CreateSet<AddressDto>().FirstOrDefault();
             _customerInfo.ShippingAddress = address;
         }
-        
-        [When(@"Amy saves the shipping address")]
-        public async System.Threading.Tasks.Task WhenAmySavesTheShippingAddressAsync()
+
+        [When(@"Amy saves her contact details and shipping address")]
+        public async Task WhenAmySavesHerContactDetailsAndShippingAddressAsync()
         {
             var url = $"api/checkout/{_context.ShopperId}/customerinfo";
             var apiResult = await _apiClient.PostAsync(url, _customerInfo);

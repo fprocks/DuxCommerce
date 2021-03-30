@@ -1,7 +1,7 @@
-﻿Feature: Create Shipping Address
+﻿Feature: Add Customer Information
 	In order to get my products delivered
 	As an online shopper
-	I want to enter my shipping address during checkout
+	I want to enter my contact details and shipping address during checkout
 
 Background: 
 	Given the following products are already created:
@@ -10,7 +10,7 @@ Background:
 	| 2     | BDD  | BDD Description | 50    | 110    | 70   | 2      | 3     | 4      | 5      | PhysicalProduct | bdd-book | 1234567890222 | False          | ContinueSelling |
 	| 3     | TDD  | TDD Description | 80    | 100    | 60   | 3      | 4     | 5      | 6      | DigitalProduct  | tdd-book | 1234567890333 | True           | StopSelling     |
 
-Scenario: Create shipping address
+Scenario: Add Customer Information
 	And Amy adds the following products to her shopping cart:
 	| Product | Name | Quantity |
 	| 1       | DDD  | 4        |
@@ -19,6 +19,6 @@ Scenario: Create shipping address
 	And Amy enters the following shipping address
 	| FirstName | LastName | AddressLine1 | AddressLine2    | City      | PostalCode | StateName | CountryCode |
 	| James     | Harper   | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
-	When Amy saves the shipping address
+	When Amy saves her contact details and shipping address
 	Then Tom should receive status codes OK
 	Then the shipping address should be created as expected

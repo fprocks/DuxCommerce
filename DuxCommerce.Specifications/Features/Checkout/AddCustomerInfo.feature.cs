@@ -19,7 +19,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class CreateShippingAddressFeature : object, Xunit.IClassFixture<CreateShippingAddressFeature.FixtureData>, System.IDisposable
+    public partial class AddCustomerInformationFeature : object, Xunit.IClassFixture<AddCustomerInformationFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace DuxCommerce.Specifications.Features.Checkout
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "CreateShippingAddress.feature"
+#line 1 "AddCustomerInfo.feature"
 #line hidden
         
-        public CreateShippingAddressFeature(CreateShippingAddressFeature.FixtureData fixtureData, DuxCommerce_Specifications_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public AddCustomerInformationFeature(AddCustomerInformationFeature.FixtureData fixtureData, DuxCommerce_Specifications_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,8 +40,8 @@ namespace DuxCommerce.Specifications.Features.Checkout
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Checkout", "Create Shipping Address", "\tIn order to get my products delivered\r\n\tAs an online shopper\r\n\tI want to enter m" +
-                    "y shipping address during checkout", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Checkout", "Add Customer Information", "\tIn order to get my products delivered\r\n\tAs an online shopper\r\n\tI want to enter m" +
+                    "y contact details and shipping address during checkout", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -154,14 +154,14 @@ namespace DuxCommerce.Specifications.Features.Checkout
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Create shipping address")]
-        [Xunit.TraitAttribute("FeatureTitle", "Create Shipping Address")]
-        [Xunit.TraitAttribute("Description", "Create shipping address")]
-        public virtual void CreateShippingAddress()
+        [Xunit.SkippableFactAttribute(DisplayName="Add Customer Information")]
+        [Xunit.TraitAttribute("FeatureTitle", "Add Customer Information")]
+        [Xunit.TraitAttribute("Description", "Add Customer Information")]
+        public virtual void AddCustomerInformation()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create shipping address", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Customer Information", null, tagsOfScenario, argumentsOfScenario);
 #line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -225,7 +225,7 @@ this.FeatureBackground();
  testRunner.And("Amy enters the following shipping address", ((string)(null)), table10, "And ");
 #line hidden
 #line 22
- testRunner.When("Amy saves the shipping address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Amy saves her contact details and shipping address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 23
  testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -244,12 +244,12 @@ this.FeatureBackground();
             
             public FixtureData()
             {
-                CreateShippingAddressFeature.FeatureSetup();
+                AddCustomerInformationFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                CreateShippingAddressFeature.FeatureTearDown();
+                AddCustomerInformationFeature.FeatureTearDown();
             }
         }
     }
