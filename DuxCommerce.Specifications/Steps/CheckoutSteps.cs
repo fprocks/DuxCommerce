@@ -43,9 +43,9 @@ namespace DuxCommerce.Specifications.Steps
             var apiResult = await _apiClient.PostAsync(url, _customerInfo);
             _context.ApiResult = apiResult;
         }
-        
-        [Then(@"the shipping address should be created as expected")]
-        public void ThenTheShippingAddressShouldBeCreatedAsExpected()
+
+        [Then(@"Amy's information should be saved as expected")]
+        public void ThenAmySInformationShouldBeSavedAsExpected()
         {
         }
     }

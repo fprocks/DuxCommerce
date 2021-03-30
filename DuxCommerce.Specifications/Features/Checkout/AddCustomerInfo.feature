@@ -20,5 +20,5 @@ Scenario: Add Customer Information
 	| FirstName | LastName | AddressLine1 | AddressLine2    | City      | PostalCode | StateName | CountryCode |
 	| James     | Harper   | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
 	When Amy saves her contact details and shipping address
-	Then Tom should receive status codes OK
-	Then the shipping address should be created as expected
+	Then Amy should receive status codes OK
+	Then Amy's information should be saved as expected
