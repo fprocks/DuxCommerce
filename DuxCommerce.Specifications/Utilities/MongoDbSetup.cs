@@ -1,5 +1,4 @@
 ﻿using DuxCommerce.Common;
-using DuxCommerce.Core.Shared;
 using DuxCommerce.Core.Shipping.PublicTypes;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -10,6 +9,9 @@ using System.Linq;
 using DuxCommerce.Core.Shared.PublicTypes;
 using DuxCommerce.Core.Taxes.PublicTypes;
 using DuxCommerce.Core.Checkout.PublicTypes;
+using DuxCommerce.Core.ShoppingCarts.PublicTypes;
+using DuxCommerce.Core.Catalogue.PublicTypes;
+using DuxCommerce.Core.Payments.PublicTypes;
 
 namespace DuxCommerce.Specifications.Utilities
 {
@@ -19,20 +21,38 @@ namespace DuxCommerce.Specifications.Utilities
         {
             IMongoDatabase mongodb = MongoDatabase.GetConnection();
 
-            var storeProfile = mongodb.GetCollection<StoreProfileDto>(CollectionName.StoreProfile);
-            var addresses = mongodb.GetCollection<AddressDto>(CollectionName.Address);
-            var shippingOrigins = mongodb.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin);
-            var shippingProfiles = mongodb.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile);
-            var taxRates = mongodb.GetCollection<TaxRateDto>(CollectionName.TaxRate);
-            var checkouts = mongodb.GetCollection<CheckoutDto>(CollectionName.Checkout);
+            var shoppingCarts = mongodb.GetCollection<ShoppingCartDto>(CollectionName.ShoppingCart);
+            await shoppingCarts.DeleteManyAsync(new BsonDocument());
 
-            // Todo: any better ways to delete all documents in a collection?
-            await storeProfile.DeleteManyAsync(new BsonDocument());
+            var products = mongodb.GetCollection<ProductDto>(CollectionName.Product);
+            await products.DeleteManyAsync(new BsonDocument());
+
+            var storeProfiles = mongodb.GetCollection<StoreProfileDto>(CollectionName.StoreProfile);
+            await storeProfiles.DeleteManyAsync(new BsonDocument());
+
+            var addresses = mongodb.GetCollection<AddressDto>(CollectionName.Address);
             await addresses.DeleteManyAsync(new BsonDocument());
+
+            var shippingOrigins = mongodb.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin);
             await shippingOrigins.DeleteManyAsync(new BsonDocument());
+
+            var shippingProfiles = mongodb.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile);
             await shippingProfiles.DeleteManyAsync(new BsonDocument());
+
+            var paymentMethods = mongodb.GetCollection<PaymentMethodDto>(CollectionName.PaymentMethod);
+            await paymentMethods.DeleteManyAsync(new BsonDocument());
+
+            var taxRates = mongodb.GetCollection<TaxRateDto>(CollectionName.TaxRate);
             await taxRates.DeleteManyAsync(new BsonDocument());
+
+            var checkouts = mongodb.GetCollection<CheckoutDto>(CollectionName.Checkout);
             await checkouts.DeleteManyAsync(new BsonDocument());
+
+            var countries = mongodb.GetCollection<CountryDto>(CollectionName.Country);
+            await countries.DeleteManyAsync(new BsonDocument());
+
+            var states = mongodb.GetCollection<StateDto>(CollectionName.State);
+            await states.DeleteManyAsync(new BsonDocument());
         }
 
         public static async Task InitAsync()
