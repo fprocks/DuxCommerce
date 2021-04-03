@@ -4,7 +4,7 @@ open DuxCommerce.Common
 open DuxCommerce.Core.Shared.SimpleTypes
 
 type Address = {
-    AddressId : AddressId
+    AddressId : AddressId option
     FirstName : String50
     LastName : String50
     AddressLine1 : String255

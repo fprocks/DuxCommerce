@@ -1,6 +1,7 @@
 ﻿namespace DuxCommerce.Core.Shared.SimpleTypes
 
 open DuxCommerce.Common
+open System
 
 type StateId = private StateId of string
 module StateId =
@@ -17,6 +18,16 @@ module AddressId =
     let value (AddressId id) = id
     let create id = AddressId id
 
+    let valueOption (value : AddressId option) = 
+        match value with
+        | Some (AddressId id) -> id
+        | None -> ""
+
+    let createOption str = 
+        if String.IsNullOrEmpty(str) then
+            Ok None
+        else
+            Ok (Some (create str))
     
 type CountryCode = private CountryCode of String2
 module CountryCode =

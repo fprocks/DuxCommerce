@@ -22,7 +22,7 @@ module AddressDto =
 
     let toDomain (dto: AddressDto) :Result<Address, string> =
         result {
-            let addressId = AddressId.create dto.Id
+            let! addressId = AddressId.createOption dto.Id
             let! firstName = String50.create "FirstName" dto.FirstName
             let! lastName = String50.create "LastName" dto.LastName
             let! addressLine1 = String255.create "AddressLine1" dto.AddressLine1
@@ -49,7 +49,7 @@ module AddressDto =
 
     let fromDomain (address:Address) :AddressDto = 
         {
-            Id = AddressId.value address.AddressId
+            Id = AddressId.valueOption address.AddressId
             FirstName = String50.value address.FirstName
             LastName = String50.value address.LastName
             AddressLine1 = String255.value address.AddressLine1
