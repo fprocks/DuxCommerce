@@ -9,7 +9,8 @@ module ShopperId =
     let value (ShopperId id) = id
 
     let create id = ShopperId id
-    
+   
+   
 type ShoppingCartId = private ShoppingCartId of string
 
 module ShoppingCartId =
@@ -17,6 +18,7 @@ module ShoppingCartId =
     let value (ShoppingCartId id) = id
 
     let create id = ShoppingCartId id
+
 
 type ItemQuantity = private ItemQuantity of decimal
 
@@ -30,6 +32,7 @@ module ItemQuantity =
         let newQty = qty1 + qty2
         create newQty
 
+
 type ItemTotal = private ItemTotal of decimal
 
 module ItemTotal =
@@ -42,6 +45,7 @@ module ItemTotal =
         let total = price * qty
         create total    
     
+
 type CartTotal = private CartTotal of decimal
 
 module CartTotal =

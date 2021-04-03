@@ -15,16 +15,19 @@ module CheckoutUseCases =
             readerResult {
                 let! dto = CheckoutRepo.getCheckout shopperId
 
-                let! cmd = CustomerInfoCommand.fromRequest request
-                        |> ConfigReader.retn
-                let! checkout = dto
-                                |> CheckoutDto.toDomain
-                                |> CustomError.mapValidation
-                                |> ConfigReader.retn
-                let _ = cmd 
-                        |> Checkout.updateCustomerInfo checkout
-                        |> CheckoutDto.fromDomain
-                        |> CheckoutRepo.saveCheckout
+                let! cmd = 
+                    CustomerInfoCommand.fromRequest request
+                    |> ConfigReader.retn
+                let! checkout = 
+                    dto
+                    |> CheckoutDto.toDomain
+                    |> CustomError.mapValidation
+                    |> ConfigReader.retn
+                let _ = 
+                    cmd 
+                    |> Checkout.updateCustomerInfo checkout
+                    |> CheckoutDto.fromDomain
+                    |> CheckoutRepo.saveCheckout
 
                 return! CheckoutRepo.getCheckout shopperId
             }

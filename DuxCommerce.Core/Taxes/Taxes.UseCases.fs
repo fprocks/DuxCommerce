@@ -11,11 +11,15 @@ module TaxRateUseCases =
     let createRate :CreateTaxRateUseCase = 
         fun rateDto ->
             readerResult {
-                let! _ = rateDto
-                        |> TaxRateDto.toDomain
-                        |> CustomError.mapValidation
-                        |> ConfigReader.retn
+                let! _ = 
+                    rateDto
+                    |> TaxRateDto.toDomain
+                    |> CustomError.mapValidation
+                    |> ConfigReader.retn
 
-                let! rateId = rateDto |> TaxRateRepo.createRate
+                let! rateId = 
+                    rateDto 
+                    |> TaxRateRepo.createRate
+
                 return! TaxRateRepo.getRate rateId
             }

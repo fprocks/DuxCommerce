@@ -58,5 +58,8 @@ module AddressDto =
             PostalCode = String50.valueOption address.PostalCode
             StateId = StateId.value address.StateId
             StateName = String100.value address.StateName
-            CountryCode = address.CountryCode |> CountryCode.value |> String2.value
+            CountryCode = 
+                address.CountryCode 
+                |> CountryCode.value 
+                |> String2.value
         }

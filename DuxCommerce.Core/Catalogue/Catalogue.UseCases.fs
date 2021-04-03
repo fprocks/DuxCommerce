@@ -11,7 +11,7 @@ module ProductUseCases =
     let createProduct :CreateProductUseCase =            
         fun productDto ->
             readerResult {
-                let! product = 
+                let! _ = 
                     productDto 
                     |> ProductDto.toDomain 
                     |> ConfigReader.retn
@@ -31,7 +31,7 @@ module ProductUseCases =
     let updateProduct :UpdateProductUseCase =
         fun id productDto ->
             readerResult {
-                let! product = 
+                let! _ = 
                     productDto 
                     |> ProductDto.toDomain 
                     |> ConfigReader.retn

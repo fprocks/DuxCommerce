@@ -69,10 +69,14 @@ module ShoppingCart =
     let addCartItem cart product (cmd:AddCartItemCommand) =
         let lineItems = 
             let check cartItem = cartItem.ProductId = cmd.ProductId
-            let itemExists = cart.LineItems |> Seq.tryFind check
+            let itemExists = 
+                cart.LineItems 
+                |> Seq.tryFind check
+
             match itemExists with
             | Some _ ->
-                cart.LineItems |> Seq.map (CartItem.addQtyIf cmd)
+                cart.LineItems 
+                |> Seq.map (CartItem.addQtyIf cmd)
             | None ->
                 let newItem = CartItem.createItem cart.ShoppingCartId product cmd.Quantity
                 Seq.append cart.LineItems [newItem]
@@ -90,7 +94,4 @@ module ShoppingCart =
         let check cartItem = cartItem.ProductId <> cmd.ProductId               
         let remainingItems = Seq.filter check cart.LineItems 
         
-        let updatedCart = updateItems cart remainingItems              
-            
-        updatedCart
-        
+        updateItems cart remainingItems        

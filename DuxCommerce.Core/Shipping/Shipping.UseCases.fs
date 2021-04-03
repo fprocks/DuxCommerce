@@ -13,17 +13,22 @@ module StoreProfileUseCases =
     let createProfile :CreateStoreProfileUseCase =            
         fun profileDto ->
             readerResult {
-                let! _ = profileDto 
-                        |> StoreProfileDto.toDomain 
-                        |> CustomError.mapValidation 
-                        |> ConfigReader.retn
+                let! _ = 
+                    profileDto 
+                    |> StoreProfileDto.toDomain 
+                    |> CustomError.mapValidation 
+                    |> ConfigReader.retn
                                
-                let! profileId = profileDto |> StoreProfileRepo.createProfile
+                let! profileId = 
+                    profileDto 
+                    |> StoreProfileRepo.createProfile
 
                 let addressDto = {profileDto.Address with Id = ""}
                 // Todo: why the next line never executes ShippingProfileRepo.createProfile
                 //profileDto.Address |> ShippingProfileRepo.createProfile |> ignore
-                let! _ = addressDto |> ShippingProfileRepo.createDefaultProfile
+                let! _ = 
+                    addressDto 
+                    |> ShippingProfileRepo.createDefaultProfile
 
                 return! StoreProfileRepo.getProfile profileId 
             }
@@ -39,10 +44,11 @@ module StoreProfileUseCases =
     let updateProfile :UpdateStoreProfileUseCase =
         fun id profileDto ->
             readerResult {
-                let! _ = profileDto
-                        |> StoreProfileDto.toDomain
-                        |> CustomError.mapValidation
-                        |> ConfigReader.retn
+                let! _ = 
+                    profileDto
+                    |> StoreProfileDto.toDomain
+                    |> CustomError.mapValidation
+                    |> ConfigReader.retn
 
                 let! profile = StoreProfileRepo.getProfile id
                 let updatedProfile = {profileDto with AddressId = profile.AddressId}                    
@@ -65,10 +71,11 @@ module ShippingProfileUseCases =
     let createProfile :CreateShippingProfileUseCase = 
         fun dto -> 
             readerResult {
-                let! _ = dto
-                        |> ShippingProfileDto.toDomain
-                        |> CustomError.mapValidation
-                        |> ConfigReader.retn
+                let! _ = 
+                    dto
+                    |> ShippingProfileDto.toDomain
+                    |> CustomError.mapValidation
+                    |> ConfigReader.retn
 
                 let! profileId = ShippingProfileRepo.createCustomProfile dto
                 return! ShippingProfileRepo.getProfile profileId
@@ -81,7 +88,10 @@ module ShippingOriginUseCases =
     let createOrigin :CreateShippingOriginUseCase = 
         fun addressDto ->
             readerResult {
-                let! originId = addressDto |> ShippingOriginRepo.createOrigin
+                let! originId = 
+                    addressDto 
+                    |> ShippingOriginRepo.createOrigin
+
                 return! ShippingOriginRepo.getOrigin originId
             }
 

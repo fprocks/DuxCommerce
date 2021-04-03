@@ -14,11 +14,14 @@ module CustomerInfoCommand =
 
     let fromRequest (request:CustomerInfoRequest) :Result<CustomerInfoCommand, CustomError> =
         result {
-            let! email = EmailAddress.create "" request.Email
-                        |> CustomError.mapValidation
-            let! shippingAddress = request.ShippingAddress
-                                    |> AddressDto.toDomain
-                                    |> CustomError.mapValidation
+            let! email = 
+                EmailAddress.create "" request.Email
+                |> CustomError.mapValidation
+
+            let! shippingAddress = 
+                request.ShippingAddress
+                |> AddressDto.toDomain
+                |> CustomError.mapValidation
 
             return {
                 Email = email

@@ -20,9 +20,13 @@ module ShoppingCartUseCases =
                 let! productDto = ProductRepo.getProduct request.ProductId
                 
                 // Non-domain functional code
-                let! cmd = AddCartItemCommand.fromRequest request |> ConfigReader.retn
+                let! cmd = 
+                    AddCartItemCommand.fromRequest request 
+                    |> ConfigReader.retn
                 let cart = ShoppingCartDto.toDomain cartDto
-                let! product = ProductDto.toDomain productDto |> ConfigReader.retn
+                let! product = 
+                    ProductDto.toDomain productDto 
+                    |> ConfigReader.retn
                 
                 // Functional core domain
                 let updatedCart = ShoppingCart.addCartItem cart product cmd
@@ -41,11 +45,14 @@ module ShoppingCartUseCases =
             readerResult {
                 let! cartDto = CartRepo.getShoppingCart shopperId
                 
-                let! cmd = UpdateCartCommand.fromRequest request |> ConfigReader.retn
+                let! cmd = 
+                    UpdateCartCommand.fromRequest request 
+                    |> ConfigReader.retn
                 let cart = ShoppingCartDto.toDomain cartDto
             
-                let updatedCart = ShoppingCart.updateCart cart cmd
-                                  |> ShoppingCartDto.fromDomain
+                let updatedCart = 
+                    ShoppingCart.updateCart cart cmd
+                    |> ShoppingCartDto.fromDomain
 
                 do! CartRepo.saveShoppingCart updatedCart
                 return! CartRepo.getShoppingCart shopperId
@@ -57,12 +64,16 @@ module ShoppingCartUseCases =
             readerResult {
                 let! cartDto = CartRepo.getShoppingCart shopperId
                 
-                let! cmd = DeleteCartItemCommand.fromRequest request |> ConfigReader.retn
+                let! cmd = 
+                    DeleteCartItemCommand.fromRequest request 
+                    |> ConfigReader.retn
                 let cart = ShoppingCartDto.toDomain cartDto
                 
                 let updatedCart = ShoppingCart.deleteCartItem cart cmd
                 
-                let updatedCart = updatedCart |> ShoppingCartDto.fromDomain
+                let updatedCart = 
+                    updatedCart 
+                    |> ShoppingCartDto.fromDomain
                 
                 do! CartRepo.saveShoppingCart updatedCart
                 return! CartRepo.getShoppingCart shopperId

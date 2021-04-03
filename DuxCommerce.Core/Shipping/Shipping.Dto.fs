@@ -41,10 +41,11 @@ module ShippingCountryDto =
     let toDomain (dto:ShippingCountryDto) =
         result {
             let! code = CountryCode.create "CountryCode" dto.CountryCode
-            let! states = dto.StateNames 
-                        |> Seq.map (String50.create "StateNames")
-                        |> Seq.toList
-                        |> Result.sequence
+            let! states = 
+                dto.StateNames 
+                |> Seq.map (String50.create "StateNames")
+                |> Seq.toList
+                |> Result.sequence
 
             return {
                 CountryCode = code
@@ -65,7 +66,9 @@ module ShippingMethodDto =
         result {
             let! name = String50.create "Method.Name" dto.Name
             let! methodType = ShippingMethodType.create dto.MethodType
-            let rates = dto.Rates |> Seq.map ShippingRateDto.toDomain
+            let rates = 
+                dto.Rates 
+                |> Seq.map ShippingRateDto.toDomain
                                     
             return {
                 Name = name
@@ -78,14 +81,19 @@ module ShippingZoneDto =
     let toDomain (dto:ShippingZoneDto) :Result<ShippingZone, string> =
         result {
             let! name = String50.create "Zone.Name" dto.Name
-            let! methods = dto.Methods 
-                            |> Seq.map ShippingMethodDto.toDomain
-                            |> Seq.toList
-                            |> Result.sequence
-            let! countries = dto.Countries 
-                            |> Seq.map ShippingCountryDto.toDomain
-                            |> Seq.toList
-                            |> Result.sequence
+
+            let! methods = 
+                dto.Methods 
+                |> Seq.map ShippingMethodDto.toDomain
+                |> Seq.toList
+                |> Result.sequence
+
+            let! countries = 
+                dto.Countries 
+                |> Seq.map ShippingCountryDto.toDomain
+                |> Seq.toList
+                |> Result.sequence
+
             return {
                 Name = name
                 Methods = methods
@@ -97,11 +105,16 @@ module ShippingProfileDto =
     let toDomain (dto:ShippingProfileDto) :Result<ShippingProfile, string> =
         result {
             let! name = String50.create "Profile.Name" dto.Name
-            let origins = dto.OriginIds |> Seq.map ShippingOriginId.create
-            let! zones = dto.Zones 
-                        |> Seq.map ShippingZoneDto.toDomain
-                        |> Seq.toList
-                        |> Result.sequence
+            let origins = 
+                dto.OriginIds 
+                |> Seq.map ShippingOriginId.create
+
+            let! zones = 
+                dto.Zones 
+                |> Seq.map ShippingZoneDto.toDomain
+                |> Seq.toList
+                |> Result.sequence
+
             return {
                 ShippingProfileId = ShippingProfileId.create ""
                 Name = name

@@ -36,7 +36,9 @@ module UpdateCartCommand =
                 Quantity = ItemQuantity.create request.Quantity
             }
         Ok {
-            UpdateItems = request.CartItems |> Seq.map createItemCmd
+            UpdateItems = 
+                request.CartItems 
+                |> Seq.map createItemCmd
         }
 
 type DeleteCartItemCommand = {
