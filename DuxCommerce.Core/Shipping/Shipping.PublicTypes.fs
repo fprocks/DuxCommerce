@@ -22,7 +22,7 @@ type StoreProfileDto = {
     AddressId: string 
     [<BsonIgnore>]
     Address: AddressDto
-}
+    }
 
 [<CLIMutable>]
 type ShippingOriginDto = {
@@ -32,35 +32,35 @@ type ShippingOriginDto = {
     Name: string
     Address: AddressDto
     IsDefault: bool
-}
+    }
 
 [<CLIMutable>]
 type ShippingCountryDto = {
     CountryCode: string
     // Todo: change this to States: StateDto seq
     StateNames: string seq
-}
+    }
 
 [<CLIMutable>]
 type ShippingRateDto = {
     Min: decimal
     Max: decimal
     Rate: decimal
-}
+    }
 
 [<CLIMutable>]
 type ShippingMethodDto = {
     Name: string
     MethodType: string
     Rates: ShippingRateDto seq
-}
+    }
 
 [<CLIMutable>] 
 type ShippingZoneDto = {
     Name: string
     Methods: ShippingMethodDto seq
     Countries: ShippingCountryDto seq
-}
+    }
 
 [<CLIMutable>]
 type ShippingProfileDto = {
@@ -71,4 +71,4 @@ type ShippingProfileDto = {
     IsDefault: bool
     OriginIds: string seq
     Zones: ShippingZoneDto seq
-}
+    }

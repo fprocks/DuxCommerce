@@ -12,4 +12,4 @@ type PaymentMethodDto = {
     Type: string
     AdditionalDetails: string
     PaymentInstructions: string
-}
+    }

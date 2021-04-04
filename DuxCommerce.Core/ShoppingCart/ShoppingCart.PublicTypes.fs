@@ -6,20 +6,20 @@ open MongoDB.Bson
 type AddCartItemRequest = {
     ProductId: string
     Quantity: decimal
-}
+    }
 
 type UpdateCartItemRequest = {
     ProductId: string
     Quantity: decimal
-}
+    }
 
 type UpdateCartRequest = {
     CartItems: UpdateCartItemRequest seq
-}
+    }
 
 type DeleteCartItemRequest = {
     ProductId: string
-}
+    }
 
 [<CLIMutable>]
 type CartItemDto = {
@@ -28,7 +28,7 @@ type CartItemDto = {
     Price: decimal
     Quantity: decimal
     ItemTotal: decimal
-}
+    }
 
 [<CLIMutable>]
 type ShoppingCartDto = {
@@ -38,4 +38,4 @@ type ShoppingCartDto = {
     ShopperId: string
     LineItems: CartItemDto seq
     CartTotal: decimal
-}
+    }

@@ -22,4 +22,4 @@ module TaxRateUseCases =
                     |> TaxRateRepo.createRate
 
                 return! TaxRateRepo.getRate rateId
-            }
+                }

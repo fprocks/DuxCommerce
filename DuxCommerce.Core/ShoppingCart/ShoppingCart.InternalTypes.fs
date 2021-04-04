@@ -38,21 +38,20 @@ module internal CartItem =
 
         cmds |> Seq.collect (updateQtyIf cartItem)
     
-    let createItem cartId (product:Product) quantity :CartItem=
-        {
+    let createItem cartId (product:Product) quantity :CartItem= {
             ProductId = product.ProductId
             ProductName = product.Name
             Price = product.Price
             Quantity = quantity
             ItemTotal = ItemTotal.calculate product.Price quantity     
-        }
+            }
 
 type ShoppingCart = {
     ShoppingCartId : ShoppingCartId
     ShopperId : ShopperId
     LineItems: CartItem seq
     CartTotal: CartTotal
-}
+    }
 
 module ShoppingCart =
         

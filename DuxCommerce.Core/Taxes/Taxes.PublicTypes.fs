@@ -9,13 +9,13 @@ type TaxCountryDto = {
     CountryCode: string
     States: StateDto seq
     PostalCodes: string seq
-}
+    }
 
 [<CLIMutable>] 
 type TaxZoneDto = {
     Name: string
     Countries: TaxCountryDto seq
-}
+    }
 
 [<CLIMutable>]
 type TaxRateDto = {
@@ -25,4 +25,4 @@ type TaxRateDto = {
     Name: string
     Amount: decimal
     Zone: TaxZoneDto 
-}
+    }

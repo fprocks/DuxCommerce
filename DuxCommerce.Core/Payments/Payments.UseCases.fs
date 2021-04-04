@@ -22,4 +22,4 @@ module PaymentMethodUseCases =
                     |> PaymentMethodRepo.createMethod
 
                 return! PaymentMethodRepo.getMethod methodId
-            }
+                }

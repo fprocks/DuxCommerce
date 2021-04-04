@@ -25,7 +25,7 @@ module CheckoutUseCases =
                     |> CustomError.mapValidation
                     |> ConfigReader.retn
 
-                // Todo: why the commented code does not work
+                // Note: why the commented code does not work
                 //let _ = 
                 //    cmd 
                 //    |> Checkout.updateCustomerInfo checkout

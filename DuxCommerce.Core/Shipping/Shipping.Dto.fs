@@ -34,8 +34,8 @@ module StoreProfileDto =
                 WeightUnit = weightUnit
                 LengthUnit = lengthUnit
                 Address = address
-              } 
-        }
+                } 
+            }
 
 module ShippingCountryDto =
     let toDomain (dto:ShippingCountryDto) =
@@ -50,16 +50,15 @@ module ShippingCountryDto =
             return {
                 CountryCode = code
                 States = states
+                }
             }
-        }
 
 module ShippingRateDto =
-    let toDomain dto :ShippingRate=
-        {
+    let toDomain dto :ShippingRate= {
             Min = RateCondition.create dto.Min
             Max = RateCondition.create dto.Min
             Amount = RateAmount.create dto.Rate
-        }
+            }
         
 module ShippingMethodDto =
     let toDomain (dto:ShippingMethodDto) :Result<ShippingMethod, string> =
@@ -74,8 +73,8 @@ module ShippingMethodDto =
                 Name = name
                 MethodType = methodType
                 Rates = rates
+                }
             }
-        }
 
 module ShippingZoneDto = 
     let toDomain (dto:ShippingZoneDto) :Result<ShippingZone, string> =
@@ -98,8 +97,8 @@ module ShippingZoneDto =
                 Name = name
                 Methods = methods
                 Countries = countries
+                }
             }
-        }
 
 module ShippingProfileDto = 
     let toDomain (dto:ShippingProfileDto) :Result<ShippingProfile, string> =
@@ -120,5 +119,5 @@ module ShippingProfileDto =
                 Name = name
                 Origins = origins
                 Zones = zones
+                }
             }
-        }        

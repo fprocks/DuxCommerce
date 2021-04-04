@@ -17,7 +17,7 @@ module ProductUseCases =
                     |> ConfigReader.retn
                 let! id = productDto |> ProductRepo.createProduct
                 return! ProductRepo.getProduct id 
-            }
+                }
 
     type GetProductUseCase = string -> ConfigReader<Result<ProductDto, CustomError>>
     let getProduct :GetProductUseCase =
@@ -25,7 +25,7 @@ module ProductUseCases =
             readerResult {                
                 // Todo: improve to handle null value
                 return! ProductRepo.getProduct id
-            }
+                }
 
     type UpdateProductUseCase = string -> ProductDto -> ConfigReader<Result<ProductDto, CustomError>>    
     let updateProduct :UpdateProductUseCase =
@@ -35,6 +35,8 @@ module ProductUseCases =
                     productDto 
                     |> ProductDto.toDomain 
                     |> ConfigReader.retn
+
                 do! ProductRepo.updateProduct id productDto
+
                 return! ProductRepo.getProduct id
-            }
+                }

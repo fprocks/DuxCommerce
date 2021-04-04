@@ -28,8 +28,8 @@ module TaxCountryDto =
                 CountryCode = countryCode
                 States = states
                 PostalCodes = postalCodes
+                }
             }
-        }
 
 module TaxZoneDto =
     let toDomain (zoneDto:TaxZoneDto) :Result<TaxZone, string> = 
@@ -45,8 +45,8 @@ module TaxZoneDto =
             return {
                 Name = name
                 Countries = countries
+                }
             }
-        }
 
 module TaxRateDto =
     
@@ -63,5 +63,5 @@ module TaxRateDto =
                 Name = name
                 Amount = amount
                 Zone = zone
+                }
             }
-        }

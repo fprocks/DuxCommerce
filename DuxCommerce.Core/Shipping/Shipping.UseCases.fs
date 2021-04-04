@@ -31,7 +31,7 @@ module StoreProfileUseCases =
                     |> ShippingProfileRepo.createDefaultProfile
 
                 return! StoreProfileRepo.getProfile profileId 
-            }
+                }
 
     type GetStoreProfileUseCase = string -> ConfigReader<Result<StoreProfileDto, CustomError>>  
     let getProfile :GetStoreProfileUseCase =
@@ -55,7 +55,7 @@ module StoreProfileUseCases =
                 do! StoreProfileRepo.updateProfile id updatedProfile
 
                 return! StoreProfileRepo.getProfile id
-            }
+                }
 
 
 module ShippingProfileUseCases =
@@ -65,7 +65,7 @@ module ShippingProfileUseCases =
         fun () ->
             readerResult {
                 return! ShippingProfileRepo.getDefaultProfile ()
-            }
+                }
 
     type CreateShippingProfileUseCase = ShippingProfileDto -> ConfigReader<Result<ShippingProfileDto, CustomError>>
     let createProfile :CreateShippingProfileUseCase = 
@@ -79,7 +79,7 @@ module ShippingProfileUseCases =
 
                 let! profileId = ShippingProfileRepo.createCustomProfile dto
                 return! ShippingProfileRepo.getProfile profileId
-            }
+                }
 
 
 module ShippingOriginUseCases =
@@ -93,11 +93,11 @@ module ShippingOriginUseCases =
                     |> ShippingOriginRepo.createOrigin
 
                 return! ShippingOriginRepo.getOrigin originId
-            }
+                }
 
     type GetShippingOriginsUseCase = string seq -> ConfigReader<Result<ShippingOriginDto seq, CustomError>>
     let getOrigins :GetShippingOriginsUseCase = 
         fun ids ->
             readerResult {
                 return! ShippingOriginRepo.getOrigins ids
-            }
+                }

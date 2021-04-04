@@ -65,4 +65,4 @@ type Product = {
     Barcode : String255
     TrackInventory : bool
     OutOfStockRule : OutOfStockRule
-}
+    }

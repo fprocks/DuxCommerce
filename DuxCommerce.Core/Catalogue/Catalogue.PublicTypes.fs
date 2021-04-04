@@ -22,4 +22,4 @@ type ProductDto = {
     Barcode : string
     TrackInventory : bool
     OutOfStockRule : string
-}
+    }

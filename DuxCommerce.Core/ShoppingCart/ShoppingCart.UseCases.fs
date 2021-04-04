@@ -37,7 +37,7 @@ module ShoppingCartUseCases =
                 // Imperative shell
                 do! CartRepo.saveShoppingCart cartDto
                 return! CartRepo.getShoppingCart shopperId
-            }
+                }
 
     type UpdateCartUseCase = string -> UpdateCartRequest -> ConfigReader<Result<ShoppingCartDto, CustomError>>
     let updateCart :UpdateCartUseCase =
@@ -56,7 +56,7 @@ module ShoppingCartUseCases =
 
                 do! CartRepo.saveShoppingCart updatedCart
                 return! CartRepo.getShoppingCart shopperId
-            }
+                }
 
     type DeleteCartItemUseCase = string -> DeleteCartItemRequest -> ConfigReader<Result<ShoppingCartDto, CustomError>>
     let deleteCartItem :DeleteCartItemUseCase =
@@ -77,4 +77,4 @@ module ShoppingCartUseCases =
                 
                 do! CartRepo.saveShoppingCart updatedCart
                 return! CartRepo.getShoppingCart shopperId
-            }
+                }

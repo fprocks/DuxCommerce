@@ -22,7 +22,7 @@ module CheckoutDto =
         PaymentMethodId = ""
         }
 
-    let fromDomain (checkout:Checkout) :CheckoutDto = {
+    let fromDomain checkout :CheckoutDto = {
         Id = CheckoutId.value checkout.CheckoutId
         ShopperId = ShopperId.value checkout.ShopperId
         Email = EmailAddress.value checkout.Email
@@ -33,7 +33,7 @@ module CheckoutDto =
         PaymentMethodId = PaymentMethodId.value checkout.PaymentMethodId
         }
 
-    let toDomain (dto:CheckoutDto) :Result<Checkout, string> =
+    let toDomain dto :Result<Checkout, string> =
         result {
             let checkoutId = CheckoutId.create dto.Id
             let shopperId = ShopperId.create dto.ShopperId

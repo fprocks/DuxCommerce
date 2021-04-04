@@ -31,4 +31,4 @@ type PaymentMethod = {
     Type : PaymentMethodType
     AdditionalDetails: String255
     PaymentInstructions: String255
-}
+    }

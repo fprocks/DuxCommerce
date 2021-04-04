@@ -31,10 +31,9 @@ module ProductDto =
                 TrackInventory = productDto.TrackInventory
                 OutOfStockRule = outOfStockRule
               }
-        } |> CustomError.mapValidation
+            } |> CustomError.mapValidation
         
-    let fromDomain product :ProductDto =
-        {
+    let fromDomain product :ProductDto = {
             Id = ProductId.value product.ProductId
             Name = String255.value product.Name
             Description = product.Description
@@ -50,5 +49,5 @@ module ProductDto =
             Barcode = String255.value product.Barcode
             TrackInventory = product.TrackInventory
             OutOfStockRule = OutOfStockRule.value product.OutOfStockRule
-        }        
+            }        
  

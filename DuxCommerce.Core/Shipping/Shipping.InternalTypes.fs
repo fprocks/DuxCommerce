@@ -128,34 +128,34 @@ type StoreProfile = {
     WeightUnit : WeightUnit
     LengthUnit : LengthUnit
     Address : Address
-} 
+    } 
  
 type ShippingCountry = {
     CountryCode: CountryCode
     States: String50 seq
-}
+    }
 
 type ShippingRate = {
     Min: RateCondition
     Max: RateCondition
     Amount: ShippingRateAmount
-}
+    }
 
 type ShippingMethod = {
     Name: String50
     MethodType: ShippingMethodType
     Rates: ShippingRate seq
-}
+    }
 
 type ShippingZone = {
     Name: String50
     Methods: ShippingMethod seq
     Countries: ShippingCountry seq
-}
+    }
 
 type ShippingProfile = {
     ShippingProfileId: ShippingProfileId
     Name: String50
     Origins: ShippingOriginId seq
     Zones: ShippingZone seq
-}
+    }

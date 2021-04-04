@@ -18,7 +18,7 @@ module StoreContactEmail =
         result {
             let! email = EmailAddress.create "ContactEmail" contactEmail
             return (StoreContactEmail email)
-        }
+            }
   
   
 type StoreSenderEmail = private StoreSenderEmail of EmailAddress
@@ -31,7 +31,7 @@ module StoreSenderEmail =
         result {
             let! email = EmailAddress.create "SenderEmail" senderEmail
             return (StoreSenderEmail email)
-        }
+            }
    
 
 type TimeZoneId = TimeZoneId of String50
@@ -42,7 +42,7 @@ module TimeZoneId =
         result {
             let! zoneId = String50.create field id
             return (TimeZoneId zoneId)
-        }
+            }
 
 
 type ShippingOriginId = private ShippingOriginId of string

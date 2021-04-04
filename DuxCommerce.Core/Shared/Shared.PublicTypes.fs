@@ -17,7 +17,7 @@ type AddressDto = {
     StateId: string
     StateName: string
     CountryCode: string
-}
+    }
 
 [<CLIMutable>]
 type CountryDto = {
@@ -26,7 +26,7 @@ type CountryDto = {
     Id: string
     Name: string
     ISOCode: string
-} 
+    } 
 
 [<CLIMutable>]
 type StateDto = {
@@ -35,4 +35,4 @@ type StateDto = {
     Id: string
     CountryCode: string
     Name: string
-}
+    }

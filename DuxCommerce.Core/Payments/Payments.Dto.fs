@@ -20,14 +20,13 @@ module PaymentMethodDto =
                 Type = methodType
                 AdditionalDetails = details
                 PaymentInstructions = instructions
+                }
             }
-        }
 
-    let fromDomain (payment:PaymentMethod) :PaymentMethodDto = 
-        {
+    let fromDomain (payment:PaymentMethod) :PaymentMethodDto = {
             Id = PaymentMethodId.value payment.PaymentMethodId
             Name = String50.value payment.Name
             Type = PaymentMethodType.value payment.Type
             AdditionalDetails = String255.value payment.AdditionalDetails
             PaymentInstructions = String255.value payment.PaymentInstructions
-        }
+            }

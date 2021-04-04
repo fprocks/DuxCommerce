@@ -29,7 +29,7 @@ type CheckoutDto = {
     Id: string
     ShopperId: string
     Email: string
-    ShippingAddress: AddressDto
+    ShippingAddress: AddressDto // Todo: how to design ShippingAddress so it can be nullable
     SameAsBilling: bool
     BillingAddress: AddressDto
     ShippingMethodId: string
