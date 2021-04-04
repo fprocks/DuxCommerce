@@ -29,9 +29,9 @@ type CheckoutDto = {
     Id: string
     ShopperId: string
     Email: string
-    ShippingAddress: AddressDto option
+    ShippingAddress: AddressDto
     SameAsBilling: bool
-    BillingAddress: AddressDto option
+    BillingAddress: AddressDto
     ShippingMethodId: string
     PaymentMethodId: string
 }

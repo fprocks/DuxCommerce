@@ -15,10 +15,23 @@ module StateDto =
                 StateId = StateId.create ""
                 CountryCode = countryCode
                 Name = name
+                }
             }
-        }
 
 module AddressDto =
+
+    let create :AddressDto = {
+        Id = null
+        FirstName = "FirstName"
+        LastName = "LastName"
+        AddressLine1 = "Address Line 1"
+        AddressLine2 = ""
+        City = "City"
+        PostalCode = "3000"
+        StateId = ""
+        StateName = "NSW"
+        CountryCode = "AU"
+        }
 
     let toDomain (dto: AddressDto) :Result<Address, string> =
         result {
@@ -44,22 +57,21 @@ module AddressDto =
                 StateId = stateId
                 StateName = stateName
                 CountryCode = country
+                }
             }
-        }
 
-    let fromDomain (address:Address) :AddressDto = 
-        {
-            Id = AddressId.valueOption address.AddressId
-            FirstName = String50.value address.FirstName
-            LastName = String50.value address.LastName
-            AddressLine1 = String255.value address.AddressLine1
-            AddressLine2 = String255.valueOption address.AddressLine2
-            City = String100.value address.City
-            PostalCode = String50.valueOption address.PostalCode
-            StateId = StateId.value address.StateId
-            StateName = String100.value address.StateName
-            CountryCode = 
-                address.CountryCode 
-                |> CountryCode.value 
-                |> String2.value
+    let fromDomain (address:Address) :AddressDto = {
+        Id = AddressId.valueOption address.AddressId
+        FirstName = String50.value address.FirstName
+        LastName = String50.value address.LastName
+        AddressLine1 = String255.value address.AddressLine1
+        AddressLine2 = String255.valueOption address.AddressLine2
+        City = String100.value address.City
+        PostalCode = String50.valueOption address.PostalCode
+        StateId = StateId.value address.StateId
+        StateName = String100.value address.StateName
+        CountryCode = 
+            address.CountryCode 
+            |> CountryCode.value 
+            |> String2.value
         }

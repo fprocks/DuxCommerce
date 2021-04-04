@@ -99,6 +99,16 @@ module ConstrainedType =
             Error msg 
         else
             Ok (ctor str |> Some)
+            
+    let createOption fieldName ctor maxLen (str:string) = 
+        match str with
+        | null -> Ok None
+        | _ -> 
+            if str.Length > maxLen then
+                let msg = sprintf "%s must not be more than %i chars" fieldName maxLen 
+                Error msg 
+            else
+                Ok (ctor str |> Some)
 
     /// Create a constrained integer using the constructor provided
     /// Return Error if input is less than minVal or more than maxVal

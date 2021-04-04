@@ -26,14 +26,10 @@ module AddressId =
     let valueOption (value : AddressId option) = 
         match value with
         | Some (AddressId id) -> id
-        | None -> ""
+        | None -> null
 
     let createOption str = 
-        if String.IsNullOrEmpty(str) then
-            Ok None
-        else
-            Ok (Some (create str))
-    
+        ConstrainedType.createOption "AddressId" AddressId 12 str
 
 type CountryCode = private CountryCode of String2
 
@@ -43,4 +39,4 @@ module CountryCode =
         result {
             let! countryCode = String2.create field code
             return CountryCode countryCode
-        }
+            }

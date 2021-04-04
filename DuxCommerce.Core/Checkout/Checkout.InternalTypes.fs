@@ -12,13 +12,13 @@ type Checkout = {
     CheckoutId : CheckoutId
     ShopperId : ShopperId
     Email : EmailAddress
-    ShippingAddress : Address option
+    ShippingAddress : Address
     SameAsBilling : bool
-    BillingAddress : Address option
+    BillingAddress : Address
     ShippingMethodId : ShippingMethodId
     PaymentMethodId : PaymentMethodId
 }
 
 module Checkout = 
     let updateCustomerInfo checkout (cmd:CustomerInfoCommand) :Checkout=
-        {checkout with Email = cmd.Email; ShippingAddress = Some cmd.ShippingAddress }
+        {checkout with Email = cmd.Email; ShippingAddress = cmd.ShippingAddress }

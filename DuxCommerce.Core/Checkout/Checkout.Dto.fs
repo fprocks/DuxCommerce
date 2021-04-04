@@ -12,26 +12,25 @@ open DuxCommerce.Common
 module CheckoutDto =
 
     let create :CheckoutDto = {
-        Id = ""
+        Id = null
         ShopperId = ""
         Email = "test@test.com"
-        ShippingAddress = None
+        ShippingAddress = AddressDto.create
         SameAsBilling = false
-        BillingAddress = None
+        BillingAddress = AddressDto.create
         ShippingMethodId = ""
         PaymentMethodId = ""
-    }
+        }
 
-    let fromDomain (checkout:Checkout) :CheckoutDto = 
-        {
-            Id = CheckoutId.value checkout.CheckoutId
-            ShopperId = ShopperId.value checkout.ShopperId
-            Email = EmailAddress.value checkout.Email
-            ShippingAddress = Option.map AddressDto.fromDomain checkout.ShippingAddress
-            SameAsBilling = checkout.SameAsBilling
-            BillingAddress = Option.map AddressDto.fromDomain checkout.BillingAddress
-            ShippingMethodId = ShippingMethodId.value checkout.ShippingMethodId
-            PaymentMethodId = PaymentMethodId.value checkout.PaymentMethodId
+    let fromDomain (checkout:Checkout) :CheckoutDto = {
+        Id = CheckoutId.value checkout.CheckoutId
+        ShopperId = ShopperId.value checkout.ShopperId
+        Email = EmailAddress.value checkout.Email
+        ShippingAddress = AddressDto.fromDomain checkout.ShippingAddress
+        SameAsBilling = checkout.SameAsBilling
+        BillingAddress = AddressDto.fromDomain checkout.BillingAddress
+        ShippingMethodId = ShippingMethodId.value checkout.ShippingMethodId
+        PaymentMethodId = PaymentMethodId.value checkout.PaymentMethodId
         }
 
     let toDomain (dto:CheckoutDto) :Result<Checkout, string> =
@@ -39,8 +38,8 @@ module CheckoutDto =
             let checkoutId = CheckoutId.create dto.Id
             let shopperId = ShopperId.create dto.ShopperId
             let! email = EmailAddress.create "EmailAddress" dto.Email
-            let! shippingAddress = Result.bindOption AddressDto.toDomain dto.ShippingAddress
-            let! billingAddress = Result.bindOption AddressDto.toDomain dto.BillingAddress
+            let! shippingAddress = AddressDto.toDomain dto.ShippingAddress
+            let! billingAddress = AddressDto.toDomain dto.BillingAddress
             let shippingMethodId = ShippingMethodId.create dto.ShippingMethodId
             let paymentMethodId = PaymentMethodId.create dto.PaymentMethodId
 
@@ -53,5 +52,5 @@ module CheckoutDto =
                 BillingAddress = billingAddress
                 ShippingMethodId = shippingMethodId
                 PaymentMethodId = paymentMethodId
+                }
             }
-        }
