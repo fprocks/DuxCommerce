@@ -6,6 +6,7 @@ using DuxCommerce.Specifications.UseCases.Models;
 using DuxCommerce.Specifications.Utilities;
 using FluentAssertions;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -142,7 +143,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         public void GivenTomSelectsRateTypeAndEntersRateName(string methodType, string methodName)
         {
             var zoneRequest = _profileRequest.Zones.FirstOrDefault();
-            var method= new ShippingMethodDto { Name = methodName, MethodType = methodType };
+            var method = new ShippingMethodDto { Id = Guid.NewGuid().ToString(),  Name = methodName, MethodType = methodType };
             zoneRequest.Methods = new List<ShippingMethodDto> { method };
         }
 

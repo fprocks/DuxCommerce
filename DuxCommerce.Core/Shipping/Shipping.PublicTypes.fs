@@ -3,6 +3,7 @@
 open MongoDB.Bson
 open MongoDB.Bson.Serialization.Attributes
 open DuxCommerce.Core.Shared.PublicTypes
+open System
 
 
 [<CLIMutable>]
@@ -50,6 +51,7 @@ type ShippingRateDto = {
 
 [<CLIMutable>]
 type ShippingMethodDto = {
+    Id: string
     Name: string
     MethodType: string
     Rates: ShippingRateDto seq
