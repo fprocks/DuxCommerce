@@ -3,7 +3,6 @@
 open MongoDB.Bson
 open MongoDB.Bson.Serialization.Attributes
 open DuxCommerce.Core.Shared.PublicTypes
-open System
 
 
 [<CLIMutable>]

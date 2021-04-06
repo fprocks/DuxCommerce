@@ -1,11 +1,11 @@
 ﻿namespace DuxCommerce.Core.Shared.SimpleTypes
 
 open DuxCommerce.Common
-open System
 
 type StateId = private StateId of string
 
 module StateId =
+
     let value (StateId id) = id
     let create id = StateId id
 
@@ -13,6 +13,7 @@ module StateId =
 type CountryId = private CountryId of string
 
 module CountryId =
+
     let value (CountryId id) = id
     let create id = CountryId id
 
@@ -20,6 +21,7 @@ module CountryId =
 type AddressId = private AddressId of string
 
 module AddressId =
+
     let value (AddressId id) = id
     let create id = AddressId id
 

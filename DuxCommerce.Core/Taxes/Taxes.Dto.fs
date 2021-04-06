@@ -8,6 +8,7 @@ open DuxCommerce.Core.Shared.SimpleTypes
 open DuxCommerce.Core.Shared.Dto
 
 module TaxCountryDto =
+
     let toDomain (dto:TaxCountryDto) :Result<TaxCountry, string> =
         result {
             let! countryCode = CountryCode.create "CountryCode" dto.CountryCode
@@ -32,6 +33,7 @@ module TaxCountryDto =
             }
 
 module TaxZoneDto =
+
     let toDomain (zoneDto:TaxZoneDto) :Result<TaxZone, string> = 
         result {
             let! name = String50.create "ZoneName" zoneDto.Name

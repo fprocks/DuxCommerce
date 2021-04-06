@@ -9,6 +9,7 @@ open DuxCommerce.Core.Shared.SimpleTypes
 
 
 module StoreProfileDto =
+
     let toDomain dto :Result<StoreProfile, string> =
         result {
             let! storeName = String255.create "StoreName" dto.StoreName
@@ -38,6 +39,7 @@ module StoreProfileDto =
             }
 
 module ShippingCountryDto =
+
     let toDomain (dto:ShippingCountryDto) =
         result {
             let! code = CountryCode.create "CountryCode" dto.CountryCode
@@ -54,6 +56,7 @@ module ShippingCountryDto =
             }
 
 module ShippingRateDto =
+
     let toDomain dto :ShippingRate= {
             Min = RateCondition.create dto.Min
             Max = RateCondition.create dto.Min
@@ -61,6 +64,7 @@ module ShippingRateDto =
             }
         
 module ShippingMethodDto =
+
     let toDomain (dto:ShippingMethodDto) :Result<ShippingMethod, string> =
         result {
             let! name = String50.create "Method.Name" dto.Name
@@ -77,6 +81,7 @@ module ShippingMethodDto =
             }
 
 module ShippingZoneDto = 
+
     let toDomain (dto:ShippingZoneDto) :Result<ShippingZone, string> =
         result {
             let! name = String50.create "Zone.Name" dto.Name
@@ -101,6 +106,7 @@ module ShippingZoneDto =
             }
 
 module ShippingProfileDto = 
+
     let toDomain (dto:ShippingProfileDto) :Result<ShippingProfile, string> =
         result {
             let! name = String50.create "Profile.Name" dto.Name
