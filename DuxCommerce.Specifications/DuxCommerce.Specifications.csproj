@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DuxCommerce.Adapters.Http\DuxCommerce.Adapters.Http.fsproj" />
+    <ProjectReference Include="..\DuxCommerce.Common\DuxCommerce.Common.fsproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Features\Shipping\CreateShippingProfile.feature.cs">

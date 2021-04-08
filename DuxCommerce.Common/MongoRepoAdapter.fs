@@ -9,10 +9,9 @@ module MongoRepoAdapter =
     let repoAdapter repoFn=
         try
             let func (appConfig:AppSettings) =
-                let settings = appConfig.GetMongoSettings
 
-                let client = MongoClient(settings.ConnectionString)
-                let database = client.GetDatabase(settings.DatabaseName)
+                let client = MongoClient(appConfig.ConnectionString)
+                let database = client.GetDatabase(appConfig.DatabaseName)
                 
                 Ok (repoFn database)
                 

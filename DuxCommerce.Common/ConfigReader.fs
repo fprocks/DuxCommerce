@@ -32,5 +32,5 @@ module ConfigReader =
         ConfigReader newFunc
 
     let execute configReader =
-        let config = AppSettings()
+        let config = MongoSettings.FromFile "appsettings.json"
         runReader configReader config 

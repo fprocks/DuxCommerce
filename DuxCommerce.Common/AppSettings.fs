@@ -3,7 +3,7 @@
 open Microsoft.Extensions.Configuration
 
 [<CLIMutable>]        
-type MongoSettings = {
+type AppSettings = {
     ConnectionString : string
     DatabaseName : string
 }
@@ -19,12 +19,4 @@ module MongoSettings =
         config.Bind("MongoSettings", settings)
 
         settings
-
-type AppSettings () =
-    static let mutable MongoSettings = {ConnectionString = ""; DatabaseName = ""}
-
-    member this.GetMongoSettings = 
-        MongoSettings       
-    member this.SetMongoSettings (value:MongoSettings) = 
-        MongoSettings <- value
         

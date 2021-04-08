@@ -16,10 +16,7 @@ type Startup private () =
     member this.ConfigureServices(services: IServiceCollection) =
         // Add framework services.
         services.AddAuthorization() |> ignore
-        services.AddControllers().AddNewtonsoftJson() |> ignore        
-
-        let mongoSettings = MongoSettings.FromFile "appsettings.json"
-        AppSettings().SetMongoSettings(mongoSettings)
+        services.AddControllers().AddNewtonsoftJson() |> ignore
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     member this.Configure(app: IApplicationBuilder, env: IWebHostEnvironment) =
