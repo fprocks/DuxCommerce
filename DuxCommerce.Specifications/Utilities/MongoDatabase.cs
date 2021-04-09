@@ -7,7 +7,7 @@ namespace DuxCommerce.Specifications.Utilities
     {
         public static IMongoDatabase GetConnection()
         {
-            var mongoSettings = MongoSettings.FromFile("appsettings.json");
+            var mongoSettings = AppSettingsModule.FromFile("appsettings.json");
             var mongoClient = new MongoClient(mongoSettings.ConnectionString);
             return mongoClient.GetDatabase(mongoSettings.DatabaseName);
         }

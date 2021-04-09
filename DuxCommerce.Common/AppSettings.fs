@@ -8,7 +8,7 @@ type AppSettings = {
     DatabaseName : string
 }
 
-module MongoSettings =
+module AppSettings =
 
     let FromFile (configFile:string) = 
         let mutable settings = {ConnectionString = ""; DatabaseName = ""}
