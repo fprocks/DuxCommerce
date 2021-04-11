@@ -10,13 +10,12 @@ using System.Threading.Tasks;
 using DuxCommerce.Specifications.UseCases.Extensions;
 using DuxCommerce.Specifications.UseCases.Forms;
 using DuxCommerce.Core.ShoppingCarts.PublicTypes;
-using System.Net;
 using DuxCommerce.Specifications.UseCases.Models;
 using DuxCommerce.Specifications.Utilities;
 
 namespace DuxCommerce.Specifications.UseCases.Steps
 {
-    [Binding]
+	[Binding]
     public class ShoppingCartSteps
     {
         private readonly StepContext _context;

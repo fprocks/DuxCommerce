@@ -26,9 +26,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _apiClient = apiClient;
         }
 
-        [Given(@"Tom already created the following product:")]
-        [Given(@"the following products are already created:")]
-        public async Task GivenTomAlreadyCreatedTheFollowingProductsAsync(Table table)
+        [Given(@"Tom creates the following product:")]
+        public async Task GivenTomCreatesTheFollowingProductAsync(Table table)
         {
             var requests = table.CreateSet<ProductDto>();
             foreach (var request in requests)
@@ -40,6 +39,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [Given(@"Tom enters the following product information:")]
+        [When(@"Tom enters the following product information:")]
         public void GivenTomEntersTheFollowingProductInformation(Table table)
         {
             _productRequest = table.CreateSet<ProductDto>().FirstOrDefault();

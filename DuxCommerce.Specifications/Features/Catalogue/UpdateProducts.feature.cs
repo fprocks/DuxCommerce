@@ -111,7 +111,7 @@ namespace DuxCommerce.Specifications.Features.Catalogue
                         "True",
                         "Remove"});
 #line 7
- testRunner.Given("Tom already created the following product:", ((string)(null)), table4, "Given ");
+ testRunner.Given("Tom creates the following product:", ((string)(null)), table4, "Given ");
 #line hidden
         }
         
@@ -198,10 +198,10 @@ this.FeatureBackground();
                             string.Format("{0}", trackInventory),
                             string.Format("{0}", outOfStockRule)});
 #line 12
- testRunner.And("Tom enters the following product information:", ((string)(null)), table5, "And ");
+ testRunner.When("Tom enters the following product information:", ((string)(null)), table5, "When ");
 #line hidden
 #line 15
- testRunner.When("Tom updates the product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Tom updates the product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
  testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -338,10 +338,10 @@ this.FeatureBackground();
                             string.Format("{0}", trackInventory),
                             string.Format("{0}", outOfStockRule)});
 #line 26
- testRunner.And("Tom enters the following product information:", ((string)(null)), table7, "And ");
+ testRunner.When("Tom enters the following product information:", ((string)(null)), table7, "When ");
 #line hidden
 #line 29
- testRunner.When("Tom updates the product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Tom updates the product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 30
  testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

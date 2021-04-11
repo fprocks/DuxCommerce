@@ -145,7 +145,7 @@ namespace DuxCommerce.Specifications.Features.ShoppingCart
                         "True",
                         "StopSelling"});
 #line 7
- testRunner.Given("the following products are already created:", ((string)(null)), table38, "Given ");
+ testRunner.Given("Tom creates the following product:", ((string)(null)), table38, "Given ");
 #line hidden
         }
         
