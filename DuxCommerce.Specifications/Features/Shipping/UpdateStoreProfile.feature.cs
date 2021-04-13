@@ -101,7 +101,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
                         "Gram",
                         "Centimeter"});
 #line 7
- testRunner.Given("Tom already created the following store profile:", ((string)(null)), table30, "Given ");
+ testRunner.Given("Tom creates the following store profile:", ((string)(null)), table30, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
                         "FirstName",
@@ -122,7 +122,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
                         "New South Wales",
                         "AU"});
 #line 10
- testRunner.And("Tom already created the following store address:", ((string)(null)), table31, "And ");
+ testRunner.And("Tom creates the following store address:", ((string)(null)), table31, "And ");
 #line hidden
         }
         
@@ -190,7 +190,7 @@ this.FeatureBackground();
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
 #line 15
- testRunner.And("Tom enters the following store profile:", ((string)(null)), table32, "And ");
+ testRunner.When("Tom enters the following store profile:", ((string)(null)), table32, "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -214,7 +214,7 @@ this.FeatureBackground();
  testRunner.And("Tome enters the following store address:", ((string)(null)), table33, "And ");
 #line hidden
 #line 21
- testRunner.When("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22
  testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -327,7 +327,7 @@ this.FeatureBackground();
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
 #line 37
- testRunner.And("Tom enters the following store profile:", ((string)(null)), table36, "And ");
+ testRunner.When("Tom enters the following store profile:", ((string)(null)), table36, "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -351,7 +351,7 @@ this.FeatureBackground();
  testRunner.And("Tome enters the following store address:", ((string)(null)), table37, "And ");
 #line hidden
 #line 43
- testRunner.When("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 44
  testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

@@ -4,7 +4,7 @@
 	I want to add tax rates to my store
 
 Scenario: Create tax rate
-	And Tom enters tax rate name GST
+	Given Tom enters tax rate name GST
 	And Tom enters tax zone name ANZ
 	And Tom selects the following countries:
 	| CountryCode |

@@ -110,7 +110,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.And("Tom enters tax rate name GST", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("Tom enters tax rate name GST", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
  testRunner.And("Tom enters tax zone name ANZ", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

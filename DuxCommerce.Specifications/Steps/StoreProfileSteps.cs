@@ -29,14 +29,14 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _apiClient = apiClient;
         }
 
-        [Given(@"Tom already created the following store profile:")]
-        public void GivenTomAlreadyCreatedTheFollowingStoreProfile(Table table)
+        [Given(@"Tom creates the following store profile:")]
+        public void GivenTomCreatesTheFollowingStoreProfile(Table table)
         {
             _profileRequest = table.CreateSet<StoreProfileDto>().FirstOrDefault();
         }
 
-        [Given(@"Tom already created the following store address:")]
-        public async Task GivenTomAlreadyCreatedTheFollowingStoreAddressAsync(Table table)
+        [Given(@"Tom creates the following store address:")]
+        public async Task GivenTomCreatesTheFollowingStoreAddressAsync(Table table)
         {
             _profileRequest.Address = table.CreateSet<AddressDto>().FirstOrDefault();
 
@@ -47,12 +47,14 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [Given(@"Tom enters the following store profile:")]
+        [When(@"Tom enters the following store profile:")]
         public void GivenTomEntersTheFollowingStoreProfile(Table table)
         {
             _profileRequest = table.CreateSet<StoreProfileDto>().FirstOrDefault();
         }
-        
+
         [Given(@"Tome enters the following store address:")]
+        [When(@"Tome enters the following store address:")]
         public void GivenTomeEntersTheFollowingStoreAddress(Table table)
         {
             var address = table.CreateSet<AddressDto>().FirstOrDefault();
