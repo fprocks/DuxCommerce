@@ -201,7 +201,7 @@ this.FeatureBackground();
  testRunner.And("Amy adds the following products to her shopping cart:", ((string)(null)), table9, "And ");
 #line hidden
 #line 18
- testRunner.And("Amy enters the email address amy@gmail.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("Amy enters the email address amy@gmail.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -225,7 +225,7 @@ this.FeatureBackground();
  testRunner.And("Amy enters the following shipping address", ((string)(null)), table10, "And ");
 #line hidden
 #line 22
- testRunner.When("Amy saves her contact details and shipping address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Amy saves her contact details and shipping address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 23
  testRunner.Then("Amy should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

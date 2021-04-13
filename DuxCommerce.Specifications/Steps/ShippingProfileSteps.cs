@@ -95,26 +95,26 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _originCreated = JsonConvert.DeserializeObject<ShippingOriginDto>(resultStr);
         }
 
-        [Given(@"Tom enters shipping profile name (.*)")]
+        [When(@"Tom enters shipping profile name (.*)")]
         public void GivenTomEntersShippingProfileNameFragileProducts(string name)
         {
             _profileRequest.Name = name;
         }
 
-        [Given(@"Tom selects shipping origin (.*)")]
+        [When(@"Tom selects shipping origin (.*)")]
         public void GivenTomSelectsShippingOrigin(int originId)
         {
             _profileRequest.OriginIds = new List<string> { _originCreated.Id };
         }
 
-        [Given(@"Tom enters the zone name (.*)")]
+        [When(@"Tom enters the zone name (.*)")]
         public void GivenTomEntersTheZoneNameANZ(string zoneName)
         {
             var zoneRquest = new ShippingZoneDto { Name = zoneName };
             _profileRequest.Zones = new List<ShippingZoneDto> { zoneRquest };
         }
 
-        [Given(@"Tom selects the following shipping countries:")]
+        [When(@"Tom selects the following shipping countries:")]
         public void GivenTomSelectsTheFollowingShippingCountries(Table table)
         {
             var zoneCountries = table.CreateSet<ZoneCountry>();
@@ -124,7 +124,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
                 .ToList();
         }
 
-        [Given(@"Tom selects the following shipping states:")]
+        [When(@"Tom selects the following shipping states:")]
         public void GivenTomSelectsTheFollowingShippingStates(Table table)
         {
             var zoneStates = table.CreateSet<ZoneState>();
@@ -139,7 +139,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             }
         }
 
-        [Given(@"Tom selects shipping method type (.*) and enters method name (.*)")]
+        [When(@"Tom selects shipping method type (.*) and enters method name (.*)")]
         public void GivenTomSelectsRateTypeAndEntersRateName(string methodType, string methodName)
         {
             var zoneRequest = _profileRequest.Zones.FirstOrDefault();
@@ -147,7 +147,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             zoneRequest.Methods = new List<ShippingMethodDto> { method };
         }
 
-        [Given(@"Tome enters the following rates:")]
+        [When(@"Tome enters the following rates:")]
         public void GivenTomeEntersTheFollowingRates(Table table)
         {
             var rates = table.CreateSet<ShippingRateDto>();

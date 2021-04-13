@@ -26,13 +26,13 @@ namespace DuxCommerce.Specifications.Steps
             _apiClient = apiClient;
         }
 
-        [Given(@"Amy enters the email address (.*)")]
+        [When(@"Amy enters the email address (.*)")]
         public void GivenAmyEntersTheEmailAddress(string email)
         {
             _request.Email = email;
         }
         
-        [Given(@"Amy enters the following shipping address")]
+        [When(@"Amy enters the following shipping address")]
         public void GivenAmyEntersTheFollowingShippingAddress(Table table)
         {
             var address = table.CreateSet<AddressDto>().FirstOrDefault();
