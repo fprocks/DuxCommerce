@@ -4,7 +4,7 @@
 	I want to create my shipping profile
 
 Background: 
-	Given Tom already created the following shipping origins:
+	Given Tom creates the following shipping origins:
 	| OriginId | FirstName | LastName | AddressLine1    | AddressLine2 | City   | PostalCode | StateName       | CountryCode |
 	| 1        | James     | Harper   | 1 Market Street |              | Sydney | 2000       | New South Wales | AU          |
 

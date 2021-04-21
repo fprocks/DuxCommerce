@@ -85,8 +85,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             expected.Select(x => x.Name).Should().BeEquivalentTo(actual);
         }
 
-        [Given(@"Tom already created the following shipping origins:")]
-        public async Task GivenTomAlreadyCreatedTheFollowingShippingOriginsAsync(Table table)
+        [Given(@"Tom creates the following shipping origins:")]
+        public async Task GivenTomCreatesTheFollowingShippingOriginsAsync(Table table)
         {
             var addressDto = table.CreateSet<AddressDto>().FirstOrDefault();
             var apiResult = await _apiClient.PostAsync("api/shippingorigins", addressDto);
@@ -94,6 +94,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var resultStr = await apiResult.Content.ReadAsStringAsync();
             _originCreated = JsonConvert.DeserializeObject<ShippingOriginDto>(resultStr);
         }
+
 
         [When(@"Tom enters shipping profile name (.*)")]
         public void GivenTomEntersShippingProfileNameFragileProducts(string name)
