@@ -27,12 +27,14 @@ namespace DuxCommerce.Specifications.Steps
         }
 
         [When(@"Amy enters the email address (.*)")]
+        [Given(@"Amy enters the email address (.*)")]
         public void GivenAmyEntersTheEmailAddress(string email)
         {
             _request.Email = email;
         }
         
         [When(@"Amy enters the following shipping address")]
+        [Given(@"Amy enters the following shipping address")]
         public void GivenAmyEntersTheFollowingShippingAddress(Table table)
         {
             var address = table.CreateSet<AddressDto>().FirstOrDefault();
@@ -40,6 +42,7 @@ namespace DuxCommerce.Specifications.Steps
         }
 
         [When(@"Amy saves her contact details and shipping address")]
+        [Given(@"Amy saves her contact details and shipping address")]
         public async Task WhenAmySavesHerContactDetailsAndShippingAddressAsync()
         {
             var url = $"api/checkout/{_context.ShopperId}/customerinfo";

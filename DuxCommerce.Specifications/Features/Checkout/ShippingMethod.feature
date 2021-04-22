@@ -20,7 +20,7 @@ Background:
 	| AU          | Queensland      |
 	| NZ          | Auckland        |
 	| NZ          | Wellington      |
-	And Tom creates shipping method 1 with <MethodType> and <MethodName>
+	And Tom selects shipping method type ByWeight and enters method name By Weight 
 	And Tome enters the following rates:
 	| Min | Max   | Rate |
 	| 0   | 100   | 50   |
@@ -32,21 +32,14 @@ Background:
 	| 1     | DDD  | DDD Description | 100   | 120    | 80   | 1      | 2     | 3      | 4      | DigitalProduct  | ddd-book | 1234567890111 | True           | Remove          |
 	| 2     | BDD  | BDD Description | 50    | 110    | 70   | 2      | 3     | 4      | 5      | PhysicalProduct | bdd-book | 1234567890222 | False          | ContinueSelling |
 	| 3     | TDD  | TDD Description | 80    | 100    | 60   | 3      | 4     | 5      | 6      | DigitalProduct  | tdd-book | 1234567890333 | True           | StopSelling     |
-	And Amy adds the following products to her shopping cart:
+
+Scenario: Add Customer Information
+	Given Amy adds the following products to her shopping cart:
 	| Product | Name | Quantity |
 	| 1       | DDD  | 4        |
 	| 2       | BDD  | 8        |
-Examples: 
-	| MethodType   | MethodName     |
-	| ByWeight     | By Weight      |
-	| ByQuantity   | By Quantity    |
-	| ByOrderTotal | By Order Total |
-
-#Scenario: Add Customer Information
-#	And Amy enters the email address amy@gmail.com
-#	And Amy enters the following shipping address
-#	| FirstName | LastName | AddressLine1 | AddressLine2    | City      | PostalCode | StateName | CountryCode |
-#	| James     | Harper   | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
-#	When Amy saves her contact details and shipping address
-#	Then Amy should receive status codes OK
-#	Then Amy's information should be saved as expected
+	And Amy enters the email address amy@gmail.com
+	And Amy enters the following shipping address
+	| FirstName | LastName | AddressLine1 | AddressLine2    | City      | PostalCode | StateName | CountryCode |
+	| James     | Harper   | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
+	And Amy saves her contact details and shipping address

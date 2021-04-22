@@ -97,18 +97,21 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
 
         [When(@"Tom enters shipping profile name (.*)")]
+        [Given(@"Tom enters shipping profile name (.*)")]
         public void GivenTomEntersShippingProfileNameFragileProducts(string name)
         {
             _profileRequest.Name = name;
         }
 
         [When(@"Tom selects shipping origin (.*)")]
+        [Given(@"Tom selects shipping origin (.*)")]
         public void GivenTomSelectsShippingOrigin(int originId)
         {
             _profileRequest.OriginIds = new List<string> { _originCreated.Id };
         }
 
         [When(@"Tom enters the zone name (.*)")]
+        [Given(@"Tom enters the zone name (.*)")]
         public void GivenTomEntersTheZoneNameANZ(string zoneName)
         {
             var zoneRquest = new ShippingZoneDto { Name = zoneName };
@@ -116,6 +119,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [When(@"Tom selects the following shipping countries:")]
+        [Given(@"Tom selects the following shipping countries:")]
         public void GivenTomSelectsTheFollowingShippingCountries(Table table)
         {
             var zoneCountries = table.CreateSet<ZoneCountry>();
@@ -126,6 +130,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [When(@"Tom selects the following shipping states:")]
+        [Given(@"Tom selects the following shipping states:")]
         public void GivenTomSelectsTheFollowingShippingStates(Table table)
         {
             var zoneStates = table.CreateSet<ZoneState>();
@@ -141,6 +146,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [When(@"Tom selects shipping method type (.*) and enters method name (.*)")]
+        [Given(@"Tom selects shipping method type (.*) and enters method name (.*)")]
         public void GivenTomSelectsRateTypeAndEntersRateName(string methodType, string methodName)
         {
             var zoneRequest = _profileRequest.Zones.FirstOrDefault();
@@ -149,6 +155,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [When(@"Tome enters the following rates:")]
+        [Given(@"Tome enters the following rates:")]
         public void GivenTomeEntersTheFollowingRates(Table table)
         {
             var rates = table.CreateSet<ShippingRateDto>();
@@ -159,6 +166,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [When(@"Tom saves the shipping profile")]
+        [Given(@"Tom saves the shipping profile")]
         public async Task WhenTomSavesTheShippingProfileAsync()
         {
             var apiResult = await _apiClient.PostAsync("api/ShippingProfiles", _profileRequest);

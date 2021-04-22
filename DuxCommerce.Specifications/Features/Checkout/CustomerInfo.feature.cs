@@ -28,7 +28,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "AddCustomerInfo.feature"
+#line 1 "CustomerInfo.feature"
 #line hidden
         
         public AddCustomerInformationFeature(AddCustomerInformationFeature.FixtureData fixtureData, DuxCommerce_Specifications_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
@@ -231,7 +231,7 @@ this.FeatureBackground();
  testRunner.Then("Amy should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 24
- testRunner.Then("Amy\'s information should be saved as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Amy\'s information should be saved as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
