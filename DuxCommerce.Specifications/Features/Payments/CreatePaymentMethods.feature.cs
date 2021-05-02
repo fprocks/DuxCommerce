@@ -130,7 +130,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Tom enters the following payment method information:", ((string)(null)), table19, "Given ");
 #line hidden
 #line 10
- testRunner.When("Tome saves the payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Tom saves the payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
  testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -193,7 +193,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Tom enters the following payment method information:", ((string)(null)), table20, "Given ");
 #line hidden
 #line 23
- testRunner.When("Tome saves the payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Tom saves the payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 24
  testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

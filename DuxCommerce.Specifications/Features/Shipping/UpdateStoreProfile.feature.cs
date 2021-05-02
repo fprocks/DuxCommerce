@@ -211,7 +211,7 @@ this.FeatureBackground();
                             "Victoria",
                             "AU"});
 #line 18
- testRunner.And("Tome enters the following store address:", ((string)(null)), table42, "And ");
+ testRunner.And("Tom enters the following store address:", ((string)(null)), table42, "And ");
 #line hidden
 #line 21
  testRunner.And("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -348,7 +348,7 @@ this.FeatureBackground();
                             "New South Wales",
                             "AU"});
 #line 40
- testRunner.And("Tome enters the following store address:", ((string)(null)), table46, "And ");
+ testRunner.And("Tom enters the following store address:", ((string)(null)), table46, "And ");
 #line hidden
 #line 43
  testRunner.And("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

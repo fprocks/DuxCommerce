@@ -32,7 +32,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _methodRequest = table.CreateSet<PaymentMethod>().FirstOrDefault();
         }
 
-        [When(@"Tome saves the payment method")]
+        [When(@"Tom saves the payment method")]
         public async Task WhenTomeSavesThePaymentMethodAsync()
         {
             var apiResult = await _apiClient.PostAsync("api/paymentmethods", _methodRequest);

@@ -154,7 +154,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "New South Wales",
                             "AU"});
 #line 10
- testRunner.And("Tome enters the following store address:", ((string)(null)), table27, "And ");
+ testRunner.And("Tom enters the following store address:", ((string)(null)), table27, "And ");
 #line hidden
 #line 13
  testRunner.When("Tom saves the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -280,7 +280,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "New South Wales",
                             "AU"});
 #line 32
- testRunner.And("Tome enters the following store address:", ((string)(null)), table31, "And ");
+ testRunner.And("Tom enters the following store address:", ((string)(null)), table31, "And ");
 #line hidden
 #line 35
  testRunner.When("Tom saves the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -358,7 +358,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "New South Wales",
                             "AU"});
 #line 48
- testRunner.And("Tome enters the following store address:", ((string)(null)), table33, "And ");
+ testRunner.And("Tom enters the following store address:", ((string)(null)), table33, "And ");
 #line hidden
 #line 51
  testRunner.When("Tom saves the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

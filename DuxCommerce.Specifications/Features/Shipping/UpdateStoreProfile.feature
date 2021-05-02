@@ -15,7 +15,7 @@ Scenario: Update store profile - green path
 	When Tom enters the following store profile:
 	| StoreName | ContactEmail      | SenderEmail      | BusinessName | PhoneNumber | TimeZoneId | UnitSystem   | WeightUnit   | LengthUnit   |
 	| Deals360  | contact@gmail.com | sender@gmail.com | Deals360 PTY | 89457688    | UTC+2      | <UnitSystem> | <WeightUnit> | <LengthUnit> |
-	And Tome enters the following store address:
+	And Tom enters the following store address:
 	| FirstName | LastName | AddressLine1 | AddressLine2    | City      | PostalCode | StateName | CountryCode |
 	| James     | Harper   | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
 	And Tom updates the store profile
@@ -37,7 +37,7 @@ Scenario: Update store profile - red path
 	When Tom enters the following store profile:
 	| StoreName | ContactEmail | SenderEmail | BusinessName | PhoneNumber | TimeZoneId | UnitSystem   | WeightUnit   | LengthUnit   |
 	| Deals365  | c@gmail.com  | s@gmail.com | Deals365 PTY | 89457621    | UTC        | <UnitSystem> | <WeightUnit> | <LengthUnit> |
-	And Tome enters the following store address:
+	And Tom enters the following store address:
 	| FirstName | LastName | AddressLine1    | AddressLine2 | City   | PostalCode | StateName       | CountryCode |
 	| James     | Harper   | 1 Market Street |              | Sydney | 2000       | New South Wales | AU          |
 	And Tom updates the store profile

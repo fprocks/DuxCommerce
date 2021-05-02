@@ -7,7 +7,7 @@ Scenario: Create store profile and address
 	Given Tom enters the following store profile:
 	| StoreName | ContactEmail | SenderEmail | BusinessName | PhoneNumber | TimeZoneId | UnitSystem   | WeightUnit   | LengthUnit   |
 	| Deals365  | c@gmail.com  | s@gmail.com | Deals365 PTY | 89457621    | UTC        | <UnitSystem> | <WeightUnit> | <LengthUnit> |
-	And Tome enters the following store address:
+	And Tom enters the following store address:
 	| AddressLine1    | AddressLine2 | City   | PostalCode | StateName       | CountryCode |
 	| 1 Market Street |              | Sydney | 2000       | New South Wales | AU          |
 	When Tom saves the store profile
@@ -29,7 +29,7 @@ Scenario: Create store profile - red path
 	Given Tom enters the following store profile:
 	| StoreName | ContactEmail | SenderEmail | BusinessName | PhoneNumber | TimeZoneId | UnitSystem   | WeightUnit   | LengthUnit   |
 	| Deals365  | c@gmail.com  | s@gmail.com | Deals365 PTY | 89457621    | UTC        | <UnitSystem> | <WeightUnit> | <LengthUnit> |
-	And Tome enters the following store address:
+	And Tom enters the following store address:
 	| AddressLine1    | AddressLine2 | City   | PostalCode | StateName       | CountryCode |
 	| 1 Market Street |              | Sydney | 2000       | New South Wales | AU          |
 	When Tom saves the store profile
@@ -45,7 +45,7 @@ Scenario: Create default shipping profile
 	Given Tom enters the following store profile:
 	| StoreName | ContactEmail | SenderEmail | BusinessName | PhoneNumber | TimeZoneId | UnitSystem   | WeightUnit | LengthUnit |
 	| Deals365  | c@gmail.com  | s@gmail.com | Deals365 PTY | 89457621    | UTC        | MetricSystem | Gram       | Centimeter |
-	And Tome enters the following store address:
+	And Tom enters the following store address:
 	| AddressLine1    | AddressLine2 | City   | PostalCode | StateName       | CountryCode |
 	| 1 Market Street |              | Sydney | 2000       | New South Wales | AU          |
 	When Tom saves the store profile

@@ -7,7 +7,7 @@ Scenario: Create payment methods - green path
 	Given Tom enters the following payment method information:
 	| Name   | Type   | AdditionalDetails   | PaymentInstructions   |
 	| <Name> | <Type> | <AdditionalDetails> | <PaymentInstructions> |
-	When Tome saves the payment method
+	When Tom saves the payment method
 	Then Tom should receive status codes OK
 	And payment method should be created as expected
 Examples: 
@@ -20,7 +20,7 @@ Scenario: Create payment methods - red path
 	Given Tom enters the following payment method information:
 	| Name   | Type   | AdditionalDetails   | PaymentInstructions   |
 	| <Name> | <Type> | <AdditionalDetails> | <PaymentInstructions> |
-	When Tome saves the payment method
+	When Tom saves the payment method
 	Then Tom should receive status codes BadRequest
 Examples: 
 	| Name                                                | Type             | AdditionalDetails | PaymentInstructions | Comment                           |

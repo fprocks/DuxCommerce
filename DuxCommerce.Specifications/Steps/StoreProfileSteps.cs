@@ -53,8 +53,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _profileRequest = table.CreateSet<StoreProfileDto>().FirstOrDefault();
         }
 
-        [Given(@"Tome enters the following store address:")]
-        [When(@"Tome enters the following store address:")]
+        [Given(@"Tom enters the following store address:")]
+        [When(@"Tom enters the following store address:")]
         public void GivenTomeEntersTheFollowingStoreAddress(Table table)
         {
             var address = table.CreateSet<AddressDto>().FirstOrDefault();
