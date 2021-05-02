@@ -22,17 +22,22 @@ Scenario: Create custom shipping profile
 	| AU          | Queensland      |
 	| NZ          | Auckland        |
 	| NZ          | Wellington      |
-	And Tom selects shipping method type <MethodType> and enters method name <MethodName>
-	And Tome enters the following rates:
-	| Min | Max   | Rate |
-	| 0   | 100   | 50   |
-	| 100 | 200   | 100  |
-	| 200 | 40000 | 200  |
+	And Tom enters the following shipping methods:
+	| Index | MethodType   | Name           |
+	| 1     | ByWeight     | By Weight      |
+	| 2     | ByQuantity   | By Quantity    |
+	| 3     | ByOrderTotal | By Order Total |
+	And Tom enters the following shipping rates:
+	| ShippingMethod | Min | Max    | Rate |
+	| 1              | 0   | 100    | 50   |
+	| 1              | 100 | 200    | 100  |
+	| 1              | 200 | 100000 | 200  |
+	| 2              | 0   | 10     | 50   |
+	| 2              | 10  | 20     | 100  |
+	| 2              | 20  | 100000 | 200  |
+	| 3              | 0   | 50     | 50   |
+	| 3              | 50  | 500    | 100  |
+	| 3              | 500 | 100000 | 200  |
 	When Tom saves the shipping profile
 	Then Tom should receive status codes OK
 	And custom shipping profile should be created as expected
-Examples: 
-	| MethodType   | MethodName     |
-	| ByWeight     | By Weight      |
-	| ByQuantity   | By Quantity    |
-	| ByOrderTotal | By Order Total |

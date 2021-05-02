@@ -21,4 +21,4 @@ Scenario: Add Customer Information
 	| James     | Harper   | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
 	And Amy saves her contact details and shipping address
 	Then Amy should receive status codes OK
-	And Amy's information should be saved as expected
+	And checkout information should be saved as expected

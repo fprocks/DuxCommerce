@@ -80,7 +80,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
         {
 #line 6
 #line hidden
-            TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
                         "OriginId",
                         "FirstName",
                         "LastName",
@@ -90,7 +90,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
                         "PostalCode",
                         "StateName",
                         "CountryCode"});
-            table20.AddRow(new string[] {
+            table21.AddRow(new string[] {
                         "1",
                         "James",
                         "Harper",
@@ -101,7 +101,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
                         "New South Wales",
                         "AU"});
 #line 7
- testRunner.Given("Tom creates the following shipping origins:", ((string)(null)), table20, "Given ");
+ testRunner.Given("Tom creates the following shipping origins:", ((string)(null)), table21, "Given ");
 #line hidden
         }
         
@@ -110,18 +110,13 @@ namespace DuxCommerce.Specifications.Features.Shipping
             this.TestTearDown();
         }
         
-        [Xunit.SkippableTheoryAttribute(DisplayName="Create custom shipping profile")]
+        [Xunit.SkippableFactAttribute(DisplayName="Create custom shipping profile")]
         [Xunit.TraitAttribute("FeatureTitle", "Create Shipping Profile")]
         [Xunit.TraitAttribute("Description", "Create custom shipping profile")]
-        [Xunit.InlineDataAttribute("ByWeight", "By Weight", new string[0])]
-        [Xunit.InlineDataAttribute("ByQuantity", "By Quantity", new string[0])]
-        [Xunit.InlineDataAttribute("ByOrderTotal", "By Order Total", new string[0])]
-        public virtual void CreateCustomShippingProfile(string methodType, string methodName, string[] exampleTags)
+        public virtual void CreateCustomShippingProfile()
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("MethodType", methodType);
-            argumentsOfScenario.Add("MethodName", methodName);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create custom shipping profile", null, tagsOfScenario, argumentsOfScenario);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
@@ -155,62 +150,112 @@ this.FeatureBackground();
 #line 14
  testRunner.And("Tom enters the zone name ANZ", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
                             "CountryCode"});
-                table21.AddRow(new string[] {
+                table22.AddRow(new string[] {
                             "AU"});
-                table21.AddRow(new string[] {
+                table22.AddRow(new string[] {
                             "NZ"});
 #line 15
- testRunner.And("Tom selects the following shipping countries:", ((string)(null)), table21, "And ");
+ testRunner.And("Tom selects the following shipping countries:", ((string)(null)), table22, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
                             "CountryCode",
                             "Name"});
-                table22.AddRow(new string[] {
+                table23.AddRow(new string[] {
                             "AU",
                             "New South Wales"});
-                table22.AddRow(new string[] {
+                table23.AddRow(new string[] {
                             "AU",
                             "Queensland"});
-                table22.AddRow(new string[] {
+                table23.AddRow(new string[] {
                             "NZ",
                             "Auckland"});
-                table22.AddRow(new string[] {
+                table23.AddRow(new string[] {
                             "NZ",
                             "Wellington"});
 #line 19
- testRunner.And("Tom selects the following shipping states:", ((string)(null)), table22, "And ");
+ testRunner.And("Tom selects the following shipping states:", ((string)(null)), table23, "And ");
 #line hidden
+                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Index",
+                            "MethodType",
+                            "Name"});
+                table24.AddRow(new string[] {
+                            "1",
+                            "ByWeight",
+                            "By Weight"});
+                table24.AddRow(new string[] {
+                            "2",
+                            "ByQuantity",
+                            "By Quantity"});
+                table24.AddRow(new string[] {
+                            "3",
+                            "ByOrderTotal",
+                            "By Order Total"});
 #line 25
- testRunner.And(string.Format("Tom selects shipping method type {0} and enters method name {1}", methodType, methodName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Tom enters the following shipping methods:", ((string)(null)), table24, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ShippingMethod",
                             "Min",
                             "Max",
                             "Rate"});
-                table23.AddRow(new string[] {
+                table25.AddRow(new string[] {
+                            "1",
                             "0",
                             "100",
                             "50"});
-                table23.AddRow(new string[] {
+                table25.AddRow(new string[] {
+                            "1",
                             "100",
                             "200",
                             "100"});
-                table23.AddRow(new string[] {
+                table25.AddRow(new string[] {
+                            "1",
                             "200",
-                            "40000",
+                            "100000",
                             "200"});
-#line 26
- testRunner.And("Tome enters the following rates:", ((string)(null)), table23, "And ");
+                table25.AddRow(new string[] {
+                            "2",
+                            "0",
+                            "10",
+                            "50"});
+                table25.AddRow(new string[] {
+                            "2",
+                            "10",
+                            "20",
+                            "100"});
+                table25.AddRow(new string[] {
+                            "2",
+                            "20",
+                            "100000",
+                            "200"});
+                table25.AddRow(new string[] {
+                            "3",
+                            "0",
+                            "50",
+                            "50"});
+                table25.AddRow(new string[] {
+                            "3",
+                            "50",
+                            "500",
+                            "100"});
+                table25.AddRow(new string[] {
+                            "3",
+                            "500",
+                            "100000",
+                            "200"});
+#line 30
+ testRunner.And("Tom enters the following shipping rates:", ((string)(null)), table25, "And ");
 #line hidden
-#line 31
+#line 41
  testRunner.When("Tom saves the shipping profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 32
+#line 42
  testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 33
+#line 43
  testRunner.And("custom shipping profile should be created as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

@@ -115,50 +115,50 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.And("Tom enters tax zone name ANZ", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table54 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table56 = new TechTalk.SpecFlow.Table(new string[] {
                             "CountryCode"});
-                table54.AddRow(new string[] {
+                table56.AddRow(new string[] {
                             "AU"});
-                table54.AddRow(new string[] {
+                table56.AddRow(new string[] {
                             "NZ"});
 #line 9
- testRunner.And("Tom selects the following countries:", ((string)(null)), table54, "And ");
+ testRunner.And("Tom selects the following countries:", ((string)(null)), table56, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table55 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table57 = new TechTalk.SpecFlow.Table(new string[] {
                             "CountryCode",
                             "Name"});
-                table55.AddRow(new string[] {
+                table57.AddRow(new string[] {
                             "AU",
                             "New South Wales"});
-                table55.AddRow(new string[] {
+                table57.AddRow(new string[] {
                             "AU",
                             "Queensland"});
-                table55.AddRow(new string[] {
+                table57.AddRow(new string[] {
                             "AU",
                             "Victoria"});
-                table55.AddRow(new string[] {
+                table57.AddRow(new string[] {
                             "NZ",
                             "Auckland"});
-                table55.AddRow(new string[] {
+                table57.AddRow(new string[] {
                             "NZ",
                             "Wellington"});
-                table55.AddRow(new string[] {
+                table57.AddRow(new string[] {
                             "NZ",
                             "Southland"});
 #line 13
- testRunner.And("Tom selects the following states:", ((string)(null)), table55, "And ");
+ testRunner.And("Tom selects the following states:", ((string)(null)), table57, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table56 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table58 = new TechTalk.SpecFlow.Table(new string[] {
                             "CountryCode",
                             "PostalCodes"});
-                table56.AddRow(new string[] {
+                table58.AddRow(new string[] {
                             "AU",
                             "2000,2001,4000"});
-                table56.AddRow(new string[] {
+                table58.AddRow(new string[] {
                             "NZ",
                             "2571,2576,2800"});
 #line 21
- testRunner.And("Tom enters the following postal codes:", ((string)(null)), table56, "And ");
+ testRunner.And("Tom enters the following postal codes:", ((string)(null)), table58, "And ");
 #line hidden
 #line 25
  testRunner.And("Tom enters tax rate amount 0.1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

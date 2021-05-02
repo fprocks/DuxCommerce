@@ -1,5 +1,6 @@
 ﻿using DuxCommerce.Core.Shared.PublicTypes;
 using DuxCommerce.Core.Shipping.PublicTypes;
+using DuxCommerce.Specifications.Forms;
 using DuxCommerce.Specifications.UseCases.Extensions;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using DuxCommerce.Specifications.UseCases.Models;
@@ -145,27 +146,33 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             }
         }
 
-        [When(@"Tom selects shipping method type (.*) and enters method name (.*)")]
-        [Given(@"Tom selects shipping method type (.*) and enters method name (.*)")]
-        public void GivenTomSelectsRateTypeAndEntersRateName(string methodType, string methodName)
+        [When(@"Tom enters the following shipping methods:")]
+        [Given(@"Tom enters the following shipping methods:")]
+        public void GivenTomEntersTheFollowingShippingMethods(Table table)
         {
+            var methods = table.CreateSet<ShippingMethodDto>();
             var zoneRequest = _profileRequest.Zones.FirstOrDefault();
-            var method = new ShippingMethodDto { Id = Guid.NewGuid().ToString(),  Name = methodName, MethodType = methodType };
-            zoneRequest.Methods = new List<ShippingMethodDto> { method };
+            zoneRequest.Methods = methods;
         }
 
-        [When(@"Tome enters the following rates:")]
-        [Given(@"Tome enters the following rates:")]
-        public void GivenTomeEntersTheFollowingRates(Table table)
+        [When(@"Tom enters the following shipping rates:")]
+        [Given(@"Tom enters the following shipping rates:")]
+        public void GivenTomEntersTheFollowingRates(Table table)
         {
-            var rates = table.CreateSet<ShippingRateDto>();
-            var methodRequest = _profileRequest
-                                .Zones.FirstOrDefault()
-                                .Methods.FirstOrDefault();
-            methodRequest.Rates = rates;
+            var rateForms = table.CreateSet<ShippingRateForm>();
+            var zoneRequest = _profileRequest.Zones.FirstOrDefault();
+            var methods = zoneRequest.Methods.ToList();
+            for (var index = 0; index < methods.Count; index++)
+            {
+                var rates = rateForms
+                    .Where(x => x.ShippingMethod == index + 1)
+                    .Select(x => new ShippingRateDto() { Min = x.Min, Max = x.Max, Rate = x.Rate });
+
+                methods[index].Rates = rates;
+            }
         }
 
-        [When(@"Tom saves the shipping profile")]
+		[When(@"Tom saves the shipping profile")]
         [Given(@"Tom saves the shipping profile")]
         public async Task WhenTomSavesTheShippingProfileAsync()
         {

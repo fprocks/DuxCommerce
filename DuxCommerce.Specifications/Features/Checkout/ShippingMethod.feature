@@ -20,12 +20,22 @@ Background:
 	| AU          | Queensland      |
 	| NZ          | Auckland        |
 	| NZ          | Wellington      |
-	And Tom selects shipping method type ByWeight and enters method name By Weight 
-	And Tome enters the following rates:
-	| Min | Max   | Rate |
-	| 0   | 100   | 50   |
-	| 100 | 200   | 100  |
-	| 200 | 40000 | 200  |
+	And Tom enters the following shipping methods:
+	| Index | MethodType   | Name           |
+	| 1     | ByWeight     | By Weight      |
+	| 2     | ByQuantity   | By Quantity    |
+	| 3     | ByOrderTotal | By Order Total |
+	And Tom enters the following shipping rates:
+	| ShippingMethod | Min | Max    | Rate |
+	| 1              | 0   | 100    | 50   |
+	| 1              | 100 | 200    | 100  |
+	| 1              | 200 | 100000 | 200  |
+	| 2              | 0   | 10     | 50   |
+	| 2              | 10  | 20     | 100  |
+	| 2              | 20  | 100000 | 200  |
+	| 3              | 0   | 50     | 50   |
+	| 3              | 50  | 500    | 100  |
+	| 3              | 500 | 100000 | 200  |
 	And Tom saves the shipping profile 
 	And Tom creates the following product:
 	| Index | Name | Description     | Price | Retail | Cost | Length | Width | Height | Weight | ProductType     | Sku      | Barcode       | TrackInventory | OutOfStockRule  |
@@ -33,7 +43,7 @@ Background:
 	| 2     | BDD  | BDD Description | 50    | 110    | 70   | 2      | 3     | 4      | 5      | PhysicalProduct | bdd-book | 1234567890222 | False          | ContinueSelling |
 	| 3     | TDD  | TDD Description | 80    | 100    | 60   | 3      | 4     | 5      | 6      | DigitalProduct  | tdd-book | 1234567890333 | True           | StopSelling     |
 
-Scenario: Add Customer Information
+Scenario: Add Shipping Method
 	Given Amy adds the following products to her shopping cart:
 	| Product | Name | Quantity |
 	| 1       | DDD  | 4        |
@@ -43,3 +53,7 @@ Scenario: Add Customer Information
 	| FirstName | LastName | AddressLine1 | AddressLine2    | City      | PostalCode | StateName | CountryCode |
 	| James     | Harper   | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
 	And Amy saves her contact details and shipping address
+	#When Amy selects shipping method 2
+	#And Amy saves her shipping method
+	#Then Amy should receive status codes OK
+	#And checkout information should be saved as expected

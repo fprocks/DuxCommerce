@@ -139,32 +139,82 @@ namespace DuxCommerce.Specifications.Features.Checkout
 #line 17
  testRunner.And("Tom selects the following shipping states:", ((string)(null)), table13, "And ");
 #line hidden
-#line 23
- testRunner.And("Tom selects shipping method type ByWeight and enters method name By Weight", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
             TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Index",
+                        "MethodType",
+                        "Name"});
+            table14.AddRow(new string[] {
+                        "1",
+                        "ByWeight",
+                        "By Weight"});
+            table14.AddRow(new string[] {
+                        "2",
+                        "ByQuantity",
+                        "By Quantity"});
+            table14.AddRow(new string[] {
+                        "3",
+                        "ByOrderTotal",
+                        "By Order Total"});
+#line 23
+ testRunner.And("Tom enters the following shipping methods:", ((string)(null)), table14, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ShippingMethod",
                         "Min",
                         "Max",
                         "Rate"});
-            table14.AddRow(new string[] {
+            table15.AddRow(new string[] {
+                        "1",
                         "0",
                         "100",
                         "50"});
-            table14.AddRow(new string[] {
+            table15.AddRow(new string[] {
+                        "1",
                         "100",
                         "200",
                         "100"});
-            table14.AddRow(new string[] {
+            table15.AddRow(new string[] {
+                        "1",
                         "200",
-                        "40000",
+                        "100000",
                         "200"});
-#line 24
- testRunner.And("Tome enters the following rates:", ((string)(null)), table14, "And ");
+            table15.AddRow(new string[] {
+                        "2",
+                        "0",
+                        "10",
+                        "50"});
+            table15.AddRow(new string[] {
+                        "2",
+                        "10",
+                        "20",
+                        "100"});
+            table15.AddRow(new string[] {
+                        "2",
+                        "20",
+                        "100000",
+                        "200"});
+            table15.AddRow(new string[] {
+                        "3",
+                        "0",
+                        "50",
+                        "50"});
+            table15.AddRow(new string[] {
+                        "3",
+                        "50",
+                        "500",
+                        "100"});
+            table15.AddRow(new string[] {
+                        "3",
+                        "500",
+                        "100000",
+                        "200"});
+#line 28
+ testRunner.And("Tom enters the following shipping rates:", ((string)(null)), table15, "And ");
 #line hidden
-#line 29
+#line 39
  testRunner.And("Tom saves the shipping profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                         "Index",
                         "Name",
                         "Description",
@@ -180,7 +230,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
                         "Barcode",
                         "TrackInventory",
                         "OutOfStockRule"});
-            table15.AddRow(new string[] {
+            table16.AddRow(new string[] {
                         "1",
                         "DDD",
                         "DDD Description",
@@ -196,7 +246,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
                         "1234567890111",
                         "True",
                         "Remove"});
-            table15.AddRow(new string[] {
+            table16.AddRow(new string[] {
                         "2",
                         "BDD",
                         "BDD Description",
@@ -212,7 +262,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
                         "1234567890222",
                         "False",
                         "ContinueSelling"});
-            table15.AddRow(new string[] {
+            table16.AddRow(new string[] {
                         "3",
                         "TDD",
                         "TDD Description",
@@ -228,8 +278,8 @@ namespace DuxCommerce.Specifications.Features.Checkout
                         "1234567890333",
                         "True",
                         "StopSelling"});
-#line 30
- testRunner.And("Tom creates the following product:", ((string)(null)), table15, "And ");
+#line 40
+ testRunner.And("Tom creates the following product:", ((string)(null)), table16, "And ");
 #line hidden
         }
         
@@ -238,15 +288,15 @@ namespace DuxCommerce.Specifications.Features.Checkout
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Add Customer Information")]
+        [Xunit.SkippableFactAttribute(DisplayName="Add Shipping Method")]
         [Xunit.TraitAttribute("FeatureTitle", "Add Shipping Method")]
-        [Xunit.TraitAttribute("Description", "Add Customer Information")]
-        public virtual void AddCustomerInformation()
+        [Xunit.TraitAttribute("Description", "Add Shipping Method")]
+        public virtual void AddShippingMethod()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Customer Information", null, tagsOfScenario, argumentsOfScenario);
-#line 36
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Shipping Method", null, tagsOfScenario, argumentsOfScenario);
+#line 46
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -269,25 +319,25 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
                             "Name",
                             "Quantity"});
-                table16.AddRow(new string[] {
+                table17.AddRow(new string[] {
                             "1",
                             "DDD",
                             "4"});
-                table16.AddRow(new string[] {
+                table17.AddRow(new string[] {
                             "2",
                             "BDD",
                             "8"});
-#line 37
- testRunner.Given("Amy adds the following products to her shopping cart:", ((string)(null)), table16, "Given ");
+#line 47
+ testRunner.Given("Amy adds the following products to her shopping cart:", ((string)(null)), table17, "Given ");
 #line hidden
-#line 41
+#line 51
  testRunner.And("Amy enters the email address amy@gmail.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "AddressLine1",
@@ -296,7 +346,7 @@ this.FeatureBackground();
                             "PostalCode",
                             "StateName",
                             "CountryCode"});
-                table17.AddRow(new string[] {
+                table18.AddRow(new string[] {
                             "James",
                             "Harper",
                             "Unit 7",
@@ -305,10 +355,10 @@ this.FeatureBackground();
                             "3000",
                             "Victoria",
                             "AU"});
-#line 42
- testRunner.And("Amy enters the following shipping address", ((string)(null)), table17, "And ");
+#line 52
+ testRunner.And("Amy enters the following shipping address", ((string)(null)), table18, "And ");
 #line hidden
-#line 45
+#line 55
  testRunner.And("Amy saves her contact details and shipping address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

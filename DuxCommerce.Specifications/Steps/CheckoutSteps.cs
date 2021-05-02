@@ -50,15 +50,15 @@ namespace DuxCommerce.Specifications.Steps
             _context.ApiResult = apiResult;
         }
 
-        [Then(@"Amy's information should be saved as expected")]
-        public async Task ThenAmySInformationShouldBeSavedAsExpectedAsync()
+        [Then(@"checkout information should be saved as expected")]
+        public async Task ThenCheckoutInformationShouldBeSavedAsExpectedAsync()
         {
             var checkout = await GetCheckout(_context.ApiResult);
             _request.Email.Should().Be(checkout.Email);
             _request.ShippingAddress.Equals(checkout.ShippingAddress);
         }
 
-		private async Task<CheckoutDto> GetCheckout(HttpResponseMessage apiResult)
+        private async Task<CheckoutDto> GetCheckout(HttpResponseMessage apiResult)
 		{
             var resultString = await apiResult.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<CheckoutDto>(resultString);

@@ -80,7 +80,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
         {
 #line 6
 #line hidden
-            TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
                         "StoreName",
                         "ContactEmail",
                         "SenderEmail",
@@ -90,7 +90,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
                         "UnitSystem",
                         "WeightUnit",
                         "LengthUnit"});
-            table37.AddRow(new string[] {
+            table39.AddRow(new string[] {
                         "Deals365",
                         "c@gmail.com",
                         "s@gmail.com",
@@ -101,9 +101,9 @@ namespace DuxCommerce.Specifications.Features.Shipping
                         "Gram",
                         "Centimeter"});
 #line 7
- testRunner.Given("Tom creates the following store profile:", ((string)(null)), table37, "Given ");
+ testRunner.Given("Tom creates the following store profile:", ((string)(null)), table39, "Given ");
 #line hidden
-            TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
                         "FirstName",
                         "LastName",
                         "AddressLine1",
@@ -112,7 +112,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
                         "PostalCode",
                         "StateName",
                         "CountryCode"});
-            table38.AddRow(new string[] {
+            table40.AddRow(new string[] {
                         "James",
                         "Harper",
                         "1 Market Street",
@@ -122,7 +122,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
                         "New South Wales",
                         "AU"});
 #line 10
- testRunner.And("Tom creates the following store address:", ((string)(null)), table38, "And ");
+ testRunner.And("Tom creates the following store address:", ((string)(null)), table40, "And ");
 #line hidden
         }
         
@@ -169,56 +169,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
-                            "StoreName",
-                            "ContactEmail",
-                            "SenderEmail",
-                            "BusinessName",
-                            "PhoneNumber",
-                            "TimeZoneId",
-                            "UnitSystem",
-                            "WeightUnit",
-                            "LengthUnit"});
-                table39.AddRow(new string[] {
-                            "Deals360",
-                            "contact@gmail.com",
-                            "sender@gmail.com",
-                            "Deals360 PTY",
-                            "89457688",
-                            "UTC+2",
-                            string.Format("{0}", unitSystem),
-                            string.Format("{0}", weightUnit),
-                            string.Format("{0}", lengthUnit)});
-#line 15
- testRunner.When("Tom enters the following store profile:", ((string)(null)), table39, "When ");
-#line hidden
-                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
-                            "FirstName",
-                            "LastName",
-                            "AddressLine1",
-                            "AddressLine2",
-                            "City",
-                            "PostalCode",
-                            "StateName",
-                            "CountryCode"});
-                table40.AddRow(new string[] {
-                            "James",
-                            "Harper",
-                            "Unit 7",
-                            "2 Market Street",
-                            "Melbourne",
-                            "3000",
-                            "Victoria",
-                            "AU"});
-#line 18
- testRunner.And("Tome enters the following store address:", ((string)(null)), table40, "And ");
-#line hidden
-#line 21
- testRunner.And("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 22
- testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
                 TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
                             "StoreName",
                             "ContactEmail",
@@ -239,8 +189,8 @@ this.FeatureBackground();
                             string.Format("{0}", unitSystem),
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
-#line 23
- testRunner.And("the store profile should be updated as follow:", ((string)(null)), table41, "And ");
+#line 15
+ testRunner.When("Tom enters the following store profile:", ((string)(null)), table41, "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -260,8 +210,58 @@ this.FeatureBackground();
                             "3000",
                             "Victoria",
                             "AU"});
+#line 18
+ testRunner.And("Tome enters the following store address:", ((string)(null)), table42, "And ");
+#line hidden
+#line 21
+ testRunner.And("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 22
+ testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
+                            "StoreName",
+                            "ContactEmail",
+                            "SenderEmail",
+                            "BusinessName",
+                            "PhoneNumber",
+                            "TimeZoneId",
+                            "UnitSystem",
+                            "WeightUnit",
+                            "LengthUnit"});
+                table43.AddRow(new string[] {
+                            "Deals360",
+                            "contact@gmail.com",
+                            "sender@gmail.com",
+                            "Deals360 PTY",
+                            "89457688",
+                            "UTC+2",
+                            string.Format("{0}", unitSystem),
+                            string.Format("{0}", weightUnit),
+                            string.Format("{0}", lengthUnit)});
+#line 23
+ testRunner.And("the store profile should be updated as follow:", ((string)(null)), table43, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "AddressLine1",
+                            "AddressLine2",
+                            "City",
+                            "PostalCode",
+                            "StateName",
+                            "CountryCode"});
+                table44.AddRow(new string[] {
+                            "James",
+                            "Harper",
+                            "Unit 7",
+                            "2 Market Street",
+                            "Melbourne",
+                            "3000",
+                            "Victoria",
+                            "AU"});
 #line 26
- testRunner.And("the store address should be updated as follow:", ((string)(null)), table42, "And ");
+ testRunner.And("the store address should be updated as follow:", ((string)(null)), table44, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -306,7 +306,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
                             "StoreName",
                             "ContactEmail",
                             "SenderEmail",
@@ -316,7 +316,7 @@ this.FeatureBackground();
                             "UnitSystem",
                             "WeightUnit",
                             "LengthUnit"});
-                table43.AddRow(new string[] {
+                table45.AddRow(new string[] {
                             "Deals365",
                             "c@gmail.com",
                             "s@gmail.com",
@@ -327,9 +327,9 @@ this.FeatureBackground();
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
 #line 37
- testRunner.When("Tom enters the following store profile:", ((string)(null)), table43, "When ");
+ testRunner.When("Tom enters the following store profile:", ((string)(null)), table45, "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "AddressLine1",
@@ -338,7 +338,7 @@ this.FeatureBackground();
                             "PostalCode",
                             "StateName",
                             "CountryCode"});
-                table44.AddRow(new string[] {
+                table46.AddRow(new string[] {
                             "James",
                             "Harper",
                             "1 Market Street",
@@ -348,7 +348,7 @@ this.FeatureBackground();
                             "New South Wales",
                             "AU"});
 #line 40
- testRunner.And("Tome enters the following store address:", ((string)(null)), table44, "And ");
+ testRunner.And("Tome enters the following store address:", ((string)(null)), table46, "And ");
 #line hidden
 #line 43
  testRunner.And("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
