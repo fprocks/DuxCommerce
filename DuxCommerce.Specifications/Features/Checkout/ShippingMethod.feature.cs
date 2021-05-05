@@ -361,6 +361,18 @@ this.FeatureBackground();
 #line 55
  testRunner.And("Amy saves her contact details and shipping address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 56
+ testRunner.When("Amy selects shipping method 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 57
+ testRunner.And("Amy saves her shipping method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 58
+ testRunner.Then("Amy should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 59
+ testRunner.And("checkout information should be saved as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

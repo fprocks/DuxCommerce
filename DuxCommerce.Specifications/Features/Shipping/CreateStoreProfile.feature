@@ -59,9 +59,9 @@ Scenario: Create default shipping profile
 	And shipping zones should be created as follow:
 	| Name |
 	| AU   |
-	And shippig countries should be created as follow:
+	And shipping countries should be created as follow:
 	| CountryCode |
 	| AU          |
-	And shippig states should be created as follow:
+	And shipping states should be created as follow:
 	| CountryCode | Name            |
 	| AU          | New South Wales |

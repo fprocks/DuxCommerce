@@ -408,7 +408,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table37.AddRow(new string[] {
                             "AU"});
 #line 62
- testRunner.And("shippig countries should be created as follow:", ((string)(null)), table37, "And ");
+ testRunner.And("shipping countries should be created as follow:", ((string)(null)), table37, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
                             "CountryCode",
@@ -417,7 +417,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "AU",
                             "New South Wales"});
 #line 65
- testRunner.And("shippig states should be created as follow:", ((string)(null)), table38, "And ");
+ testRunner.And("shipping states should be created as follow:", ((string)(null)), table38, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

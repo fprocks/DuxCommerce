@@ -71,15 +71,15 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             CompareZones(expected.ToList(), _profileCreated.Zones.ToList());
         }
 
-        [Then(@"shippig countries should be created as follow:")]
-        public void ThenShippigCountriesShouldBeCreatedAsFollow(Table table)
+        [Then(@"shipping countries should be created as follow:")]
+        public void ThenShippingCountriesShouldBeCreatedAsFollow(Table table)
         {
             var expected = table.CreateSet<ZoneCountry>();
             CompareCountries(expected.ToList(), _profileCreated.Zones.SelectMany(x => x.Countries).ToList());
         }
 
-        [Then(@"shippig states should be created as follow:")]
-        public void ThenShippigStatesShouldBeCreatedAsFollow(Table table)
+        [Then(@"shipping states should be created as follow:")]
+        public void ThenShippingStatesShouldBeCreatedAsFollow(Table table)
         {
             var expected = table.CreateSet<ZoneState>();
             var actual = _profileCreated.Zones.SelectMany(x => x.Countries).SelectMany(x => x.StateNames);
@@ -115,8 +115,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Given(@"Tom enters the zone name (.*)")]
         public void GivenTomEntersTheZoneNameANZ(string zoneName)
         {
-            var zoneRquest = new ShippingZoneDto { Name = zoneName };
-            _profileRequest.Zones = new List<ShippingZoneDto> { zoneRquest };
+            var zoneRequest = new ShippingZoneDto { Name = zoneName };
+            _profileRequest.Zones = new List<ShippingZoneDto> { zoneRequest };
         }
 
         [When(@"Tom selects the following shipping countries:")]
@@ -172,7 +172,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             }
         }
 
-		[When(@"Tom saves the shipping profile")]
+        [When(@"Tom saves the shipping profile")]
         [Given(@"Tom saves the shipping profile")]
         public async Task WhenTomSavesTheShippingProfileAsync()
         {
