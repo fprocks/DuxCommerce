@@ -1,6 +1,6 @@
 ﻿using DuxCommerce.Core.Shared.PublicTypes;
 using DuxCommerce.Core.Shipping.PublicTypes;
-using DuxCommerce.Specifications.Forms;
+using DuxCommerce.Specifications.Forms.Shipping;
 using DuxCommerce.Specifications.UseCases.Extensions;
 using DuxCommerce.Specifications.UseCases.Hooks;
 using DuxCommerce.Specifications.UseCases.Models;
@@ -16,7 +16,7 @@ using TechTalk.SpecFlow.Assist;
 
 namespace DuxCommerce.Specifications.UseCases.Steps
 {
-    [Binding]
+	[Binding]
     public class ShippingProfileSteps
     {
         private readonly StepContext _context;
@@ -26,6 +26,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
         private ShippingProfileDto _profileRequest;
         private ShippingProfileDto _profileCreated;
+
+        private List<ShippingMethodForm> _methodForms;
 
         public ShippingProfileSteps(StepContext context, IApiClient apiClient)
         {
@@ -150,9 +152,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Given(@"Tom enters the following shipping methods:")]
         public void GivenTomEntersTheFollowingShippingMethods(Table table)
         {
-            var methods = table.CreateSet<ShippingMethodDto>();
-            var zoneRequest = _profileRequest.Zones.FirstOrDefault();
-            zoneRequest.Methods = methods;
+            _methodForms = table.CreateSet<ShippingMethodForm>().ToList();
         }
 
         [When(@"Tom enters the following shipping rates:")]
@@ -160,16 +160,16 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         public void GivenTomEntersTheFollowingRates(Table table)
         {
             var rateForms = table.CreateSet<ShippingRateForm>();
-            var zoneRequest = _profileRequest.Zones.FirstOrDefault();
-            var methods = zoneRequest.Methods.ToList();
-            for (var index = 0; index < methods.Count; index++)
-            {
-                var rates = rateForms
-                    .Where(x => x.ShippingMethod == index + 1)
-                    .Select(x => new ShippingRateDto() { Min = x.Min, Max = x.Max, Rate = x.Rate });
 
-                methods[index].Rates = rates;
+            for (var index = 0; index < _methodForms.Count; index++)
+            {
+                var rates = rateForms.Where(x => x.ShippingMethod == index + 1);
+                _methodForms[index].Rates = rates.ToList();
             }
+
+            var zoneRequest = _profileRequest.Zones.FirstOrDefault();
+            var methods = _methodForms.Select(x => Convert(x));
+            zoneRequest.Methods = methods;
         }
 
         [When(@"Tom saves the shipping profile")]
@@ -254,6 +254,16 @@ namespace DuxCommerce.Specifications.UseCases.Steps
                 expected[index].Max.Should().Be(actual[index].Max);
                 expected[index].Rate.Should().Be(actual[index].Rate);
             }
+        }
+
+        public ShippingMethodDto Convert(ShippingMethodForm form)
+        {
+            return new ShippingMethodDto()
+            {
+                Name = form.Name,
+                MethodType = form.MethodType,
+                Rates = form.Rates.Select(x => new ShippingRateDto { Min = x.Min, Max = x.Max, Rate = x.Rate })
+            };
         }
     }
 }

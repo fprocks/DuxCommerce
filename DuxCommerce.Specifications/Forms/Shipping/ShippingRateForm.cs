@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.Specifications.Forms
+﻿namespace DuxCommerce.Specifications.Forms.Shipping
 {
 	public class ShippingRateForm
 	{
