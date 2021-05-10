@@ -53,7 +53,7 @@ Scenario: Add Shipping Method
 	| FirstName | LastName | AddressLine1 | AddressLine2    | City      | PostalCode | StateName | CountryCode |
 	| James     | Harper   | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
 	And Amy saves her contact details and shipping address
-	When Amy selects shipping method 2
-	And Amy saves her shipping method
+	And Amy selects shipping method 2
+	When Amy saves her shipping method
 	Then Amy should receive status codes OK
 	And checkout information should be saved as expected
