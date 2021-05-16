@@ -279,7 +279,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
                         "True",
                         "StopSelling"});
 #line 40
- testRunner.And("Tom creates the following product:", ((string)(null)), table16, "And ");
+ testRunner.And("Tom creates the following products:", ((string)(null)), table16, "And ");
 #line hidden
         }
         
@@ -362,10 +362,10 @@ this.FeatureBackground();
  testRunner.And("Amy saves her contact details and shipping address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 56
- testRunner.When("Amy selects shipping method 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Amy selects shipping method 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 57
- testRunner.And("Amy saves her shipping method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("Amy saves her shipping method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 58
  testRunner.Then("Amy should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

@@ -51,15 +51,15 @@ namespace DuxCommerce.Specifications.Steps
         }
 
         [Given(@"Amy selects shipping method (.*)")]
-        public void GivenAmySelectsShippingMethod(int p0)
+        public void GivenAmySelectsShippingMethod(int shippingMethod)
         {
-            ScenarioContext.Current.Pending();
+            
         }
 
         [When(@"Amy saves her shipping method")]
         public void WhenAmySavesHerShippingMethod()
         {
-            ScenarioContext.Current.Pending();
+            
         }
 
         [Then(@"checkout information should be saved as expected")]

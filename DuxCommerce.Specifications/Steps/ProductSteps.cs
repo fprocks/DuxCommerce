@@ -27,6 +27,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         }
 
         [Given(@"Tom creates the following product:")]
+        [Given(@"Tom creates the following products:")]
         public async Task GivenTomCreatesTheFollowingProductAsync(Table table)
         {
             var requests = table.CreateSet<ProductDto>();
