@@ -9,10 +9,10 @@ Background:
 	| DDD  | DDD Description | 100   | 120    | 80   | 1      | 2     | 3      | 4      | DigitalProduct | ddd-book | 1234567890111 | True           | Remove         |
 
 Scenario: Update products - green path
-	When Tom enters the following product information:
+	Given Tom updates the following product:
 	| Name   | Description   | Price   | Retail   | Cost   | Length   | Width   | Height   | Weight   | ProductType   | Sku   | Barcode   | TrackInventory   | OutOfStockRule   |
 	| <Name> | <Description> | <Price> | <Retail> | <Cost> | <Length> | <Width> | <Height> | <Weight> | <ProductType> | <Sku> | <Barcode> | <TrackInventory> | <OutOfStockRule> |
-	And Tom updates the product
+	When Tom saves the updated product
 	Then Tom should receive status codes OK
 	And the product should be updated as follow:
 	| Name   | Description   | Price   | Retail   | Cost   | Length   | Width   | Height   | Weight   | ProductType   | Sku   | Barcode   | TrackInventory   | OutOfStockRule   |
@@ -23,10 +23,10 @@ Examples:
 	| TDD Lite | TDD Desc    | 70    | 90     | 50   | 6      | 5     | 4      | 3      | PhysicalProduct | tdd-lite | 1234567890345 | False          | ContinueSelling |
 
 Scenario: Update products - red path
-	When Tom enters the following product information:
+	Given Tom updates the following product:
 	| Name   | Description   | Price   | Retail   | Cost   | Length   | Width   | Height   | Weight   | ProductType   | Sku   | Barcode   | TrackInventory   | OutOfStockRule   |
 	| <Name> | <Description> | <Price> | <Retail> | <Cost> | <Length> | <Width> | <Height> | <Weight> | <ProductType> | <Sku> | <Barcode> | <TrackInventory> | <OutOfStockRule> |
-	And Tom updates the product
+	When Tom saves the updated product
 	Then Tom should receive status codes BadRequest
 Examples: 
 	| Name     | Description | Price | Retail | Cost | Length | Width | Height | Weight | ProductType     | Sku      | Barcode       | TrackInventory | OutOfStockRule | Comment                 |

@@ -39,9 +39,9 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             }
         }
 
-        [Given(@"Tom enters the following product information:")]
-        [When(@"Tom enters the following product information:")]
-        public void GivenTomEntersTheFollowingProductInformation(Table table)
+        [Given(@"Tom updates the following product:")]
+        [When(@"Tom updates the following product:")]
+        public void GivenTomUpdatesTheFollowingProduct(Table table)
         {
             _productRequest = table.CreateSet<ProductDto>().FirstOrDefault();
         }
@@ -53,8 +53,8 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             _context.ApiResult = apiResult;
         }
 
-        [When(@"Tom updates the product")]
-        public async Task WhenTomUpdatesTheProductsAsync()
+        [When(@"Tom saves the updated product")]
+        public async Task WhenTomSavesTheUpdatedProductsAsync()
         {
             var id = _context.CreatedProducts[0].Id;
             var apiResult = await _apiClient.PutAsync($"api/products/{id}", _productRequest);

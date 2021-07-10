@@ -156,7 +156,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", trackInventory),
                             string.Format("{0}", outOfStockRule)});
 #line 7
- testRunner.Given("Tom enters the following product information:", ((string)(null)), table1, "Given ");
+ testRunner.Given("Tom updates the following product:", ((string)(null)), table1, "Given ");
 #line hidden
 #line 10
  testRunner.When("Tom saves the product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -293,7 +293,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", trackInventory),
                             string.Format("{0}", outOfStockRule)});
 #line 21
- testRunner.Given("Tom enters the following product information:", ((string)(null)), table3, "Given ");
+ testRunner.Given("Tom updates the following product:", ((string)(null)), table3, "Given ");
 #line hidden
 #line 24
  testRunner.When("Tom saves the product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

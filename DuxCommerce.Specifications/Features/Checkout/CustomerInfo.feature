@@ -11,7 +11,7 @@ Background:
 	| 3     | TDD  | TDD Description | 80    | 100    | 60   | 3      | 4     | 5      | 6      | DigitalProduct  | tdd-book | 1234567890333 | True           | StopSelling     |
 
 Scenario: Add Customer Information
-	And Amy adds the following products to her shopping cart:
+	Given Amy adds the following products to her shopping cart:
 	| Product | Name | Quantity |
 	| 1       | DDD  | 4        |
 	| 2       | BDD  | 8        |

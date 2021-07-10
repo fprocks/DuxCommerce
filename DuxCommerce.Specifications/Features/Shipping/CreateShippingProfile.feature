@@ -9,7 +9,7 @@ Background:
 	| 1        | James     | Harper   | 1 Market Street |              | Sydney | 2000       | New South Wales | AU          |
 
 Scenario: Create custom shipping profile
-	When Tom enters shipping profile name Heavy Products
+	Given Tom enters shipping profile name Heavy Products
 	And Tom selects shipping origin 1
 	And Tom enters the zone name ANZ
 	And Tom selects the following shipping countries:

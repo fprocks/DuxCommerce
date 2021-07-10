@@ -4,7 +4,7 @@
 	I want to add proucts to my store first
 
 Scenario: Create products - green path
-	Given Tom enters the following product information:
+	Given Tom updates the following product:
 	| Name   | Description   | Price   | Retail   | Cost   | Length   | Width   | Height   | Weight   | ProductType   | Sku   | Barcode   | TrackInventory   | OutOfStockRule   |
 	| <Name> | <Description> | <Price> | <Retail> | <Cost> | <Length> | <Width> | <Height> | <Weigth> | <ProductType> | <Sku> | <Barcode> | <TrackInventory> | <OutOfStockRule> |
 	When Tom saves the product
@@ -18,7 +18,7 @@ Examples:
 	| TDD  | TDD Description | 80    | 100    | 60   | 3      | 4     | 5      | 6      | DigitalProduct  | tdd-book | 1234567890333 | True           | StopSelling     |
 
 Scenario: Create products - red path
-	Given Tom enters the following product information:
+	Given Tom updates the following product:
 	| Name   | Description   | Price   | Retail   | Cost   | Length   | Width   | Height   | Weight   | ProductType   | Sku   | Barcode   | TrackInventory   | OutOfStockRule   |
 	| <Name> | <Description> | <Price> | <Retail> | <Cost> | <Length> | <Width> | <Height> | <Weigth> | <ProductType> | <Sku> | <Barcode> | <TrackInventory> | <OutOfStockRule> |
 	When Tom saves the product

@@ -279,7 +279,7 @@ this.FeatureBackground();
                             "BDD",
                             "8"});
 #line 27
- testRunner.And("Amy adds the following products to her shopping cart:", ((string)(null)), table50, "And ");
+ testRunner.Given("Amy adds the following products to her shopping cart:", ((string)(null)), table50, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table51 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
@@ -375,7 +375,7 @@ this.FeatureBackground();
                             "TDD",
                             "6"});
 #line 43
- testRunner.And("Amy adds the following products to her shopping cart:", ((string)(null)), table53, "And ");
+ testRunner.Given("Amy adds the following products to her shopping cart:", ((string)(null)), table53, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table54 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",

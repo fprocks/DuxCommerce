@@ -198,7 +198,7 @@ this.FeatureBackground();
                             "BDD",
                             "8"});
 #line 14
- testRunner.And("Amy adds the following products to her shopping cart:", ((string)(null)), table9, "And ");
+ testRunner.Given("Amy adds the following products to her shopping cart:", ((string)(null)), table9, "Given ");
 #line hidden
 #line 18
  testRunner.And("Amy enters the email address amy@gmail.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

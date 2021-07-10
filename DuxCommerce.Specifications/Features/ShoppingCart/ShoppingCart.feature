@@ -24,7 +24,7 @@ Scenario: Add to cart
 	And the cart total is $700
 
 Scenario: Update cart
-	And Amy adds the following products to her shopping cart:
+	Given Amy adds the following products to her shopping cart:
 	| Product | Name | Quantity |
 	| 1       | DDD  | 4        |
 	| 2       | BDD  | 8        |
@@ -40,7 +40,7 @@ Scenario: Update cart
 	And the cart total is $2000
 
 Scenario: Delete cart item
-	And Amy adds the following products to her shopping cart:
+	Given Amy adds the following products to her shopping cart:
 	| Product | Name | Quantity |
 	| 1       | DDD  | 2        |
 	| 2       | BDD  | 4        |

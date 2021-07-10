@@ -190,7 +190,7 @@ this.FeatureBackground();
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
 #line 15
- testRunner.When("Tom enters the following store profile:", ((string)(null)), table41, "When ");
+ testRunner.Given("Tom enters the following store profile:", ((string)(null)), table41, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -214,7 +214,7 @@ this.FeatureBackground();
  testRunner.And("Tom enters the following store address:", ((string)(null)), table42, "And ");
 #line hidden
 #line 21
- testRunner.And("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 22
  testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -327,7 +327,7 @@ this.FeatureBackground();
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
 #line 37
- testRunner.When("Tom enters the following store profile:", ((string)(null)), table45, "When ");
+ testRunner.Given("Tom enters the following store profile:", ((string)(null)), table45, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -351,7 +351,7 @@ this.FeatureBackground();
  testRunner.And("Tom enters the following store address:", ((string)(null)), table46, "And ");
 #line hidden
 #line 43
- testRunner.And("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 44
  testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
