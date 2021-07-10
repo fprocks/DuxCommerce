@@ -15,10 +15,10 @@ Scenario: Add Customer Information
 	| Product | Name | Quantity |
 	| 1       | DDD  | 4        |
 	| 2       | BDD  | 8        |
-	When Amy enters the email address amy@gmail.com
-	And Amy enters the following shipping address
+	And Amy enters the email address amy@gmail.com
+	And Amy enters the following shipping address:
 	| FirstName | LastName | AddressLine1 | AddressLine2    | City      | PostalCode | StateName | CountryCode |
 	| James     | Harper   | Unit 7       | 2 Market Street | Melbourne | 3000       | Victoria  | AU          |
-	And Amy saves her contact details and shipping address
+	When Amy saves the contact details and shipping address
 	Then Amy should receive status codes OK
 	And checkout information should be saved as expected

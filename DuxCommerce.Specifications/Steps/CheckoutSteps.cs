@@ -33,17 +33,16 @@ namespace DuxCommerce.Specifications.Steps
             _request.Email = email;
         }
         
-        [When(@"Amy enters the following shipping address")]
-        [Given(@"Amy enters the following shipping address")]
+        [Given(@"Amy enters the following shipping address:")]
         public void GivenAmyEntersTheFollowingShippingAddress(Table table)
         {
             var address = table.CreateSet<AddressDto>().FirstOrDefault();
             _request.ShippingAddress = address;
         }
 
-        [When(@"Amy saves her contact details and shipping address")]
-        [Given(@"Amy saves her contact details and shipping address")]
-        public async Task WhenAmySavesHerContactDetailsAndShippingAddressAsync()
+        [When(@"Amy saves the contact details and shipping address")]
+        [Given(@"Amy saves the contact details and shipping address")]
+        public async Task WhenAmySavesTheContactDetailsAndShippingAddressAsync()
         {
             var url = $"api/checkout/{_context.ShopperId}/customerinfo";
             var apiResult = await _apiClient.PostAsync(url, _request);
@@ -56,8 +55,8 @@ namespace DuxCommerce.Specifications.Steps
             
         }
 
-        [When(@"Amy saves her shipping method")]
-        public void WhenAmySavesHerShippingMethod()
+        [When(@"Amy saves the shipping method")]
+        public void WhenAmySavesTheShippingMethod()
         {
             
         }

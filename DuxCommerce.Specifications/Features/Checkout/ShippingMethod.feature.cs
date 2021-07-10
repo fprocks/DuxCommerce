@@ -356,16 +356,16 @@ this.FeatureBackground();
                             "Victoria",
                             "AU"});
 #line 52
- testRunner.And("Amy enters the following shipping address", ((string)(null)), table18, "And ");
+ testRunner.And("Amy enters the following shipping address:", ((string)(null)), table18, "And ");
 #line hidden
 #line 55
- testRunner.And("Amy saves her contact details and shipping address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Amy saves the contact details and shipping address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 56
  testRunner.And("Amy selects shipping method 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 57
- testRunner.When("Amy saves her shipping method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Amy saves the shipping method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 58
  testRunner.Then("Amy should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
