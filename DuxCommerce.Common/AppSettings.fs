@@ -10,7 +10,7 @@ type AppSettings = {
 
 module AppSettings =
 
-    let FromFile (configFile:string) = 
+    let fromFile (configFile:string) = 
         let mutable settings = {ConnectionString = ""; DatabaseName = ""}
 
         let config = ConfigurationBuilder()

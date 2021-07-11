@@ -32,5 +32,5 @@ module ConfigReader =
         ConfigReader newFunc
 
     let execute configReader =
-        let config = AppSettings.FromFile "appsettings.json"
+        let config = AppSettings.fromFile "appsettings.json"
         runReader configReader config 
