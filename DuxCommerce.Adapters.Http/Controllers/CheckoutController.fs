@@ -14,7 +14,7 @@ type CheckoutController (logger : ILogger<ShoppingCartController>) =
     // Note: pass in shopperId from front end before we can read it from ShopperContext
     [<HttpPost("{shopperId}/customerinfo")>]
     member this.Post(shopperId: string, request: CustomerInfoRequest) : IActionResult =
-        let result = ConfigReader.execute (CheckoutUseCases.updateCustomerInfo shopperId request)
+        let result = ConfigReader.execute (CheckoutUseCases.addCustomerInfo shopperId request)
         match result with
         | Ok c -> base.Ok(c) :> _
         | Error m -> base.Convert(m)

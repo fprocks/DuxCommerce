@@ -20,5 +20,5 @@ type Checkout = {
 }
 
 module Checkout = 
-    let updateCustomerInfo checkout (cmd:CustomerInfoCommand) :Checkout=
+    let addCustomerInfo checkout (cmd:CustomerInfoCommand) :Checkout=
         {checkout with Email = cmd.Email; ShippingAddress = cmd.ShippingAddress }
