@@ -38,7 +38,7 @@ module internal CartItem =
 
         cmds |> Seq.collect (updateQtyIf cartItem)
     
-    let createItem cartId (product:Product) quantity :CartItem= {
+    let createItem (product:Product) quantity :CartItem= {
             ProductId = product.ProductId
             ProductName = product.Name
             Price = product.Price
@@ -77,20 +77,20 @@ module ShoppingCart =
                 cart.LineItems 
                 |> Seq.map (CartItem.addQtyIf cmd)
             | None ->
-                let newItem = CartItem.createItem cart.ShoppingCartId product cmd.Quantity
+                let newItem = CartItem.createItem product cmd.Quantity
                 Seq.append cart.LineItems [newItem]
 
-        updateItems cart lineItems
-
-    let updateCart cart (cmd:UpdateCartCommand) =
-        let lineItems =
-            cart.LineItems
-            |> Seq.collect (CartItem.update cmd.UpdateItems)
-    
         updateItems cart lineItems
             
     let deleteCartItem cart (cmd:DeleteCartItemCommand) =      
         let check cartItem = cartItem.ProductId <> cmd.ProductId               
         let remainingItems = Seq.filter check cart.LineItems 
         
-        updateItems cart remainingItems        
+        updateItems cart remainingItems    
+
+    let updateCart cart (cmd:UpdateCartCommand) =
+        let lineItems =
+            cart.LineItems
+            |> Seq.collect (CartItem.update cmd.UpdateItems)
+    
+        updateItems cart lineItems    
