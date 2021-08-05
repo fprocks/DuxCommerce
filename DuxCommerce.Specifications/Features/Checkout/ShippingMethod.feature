@@ -4,7 +4,12 @@
 	I want to choose a shipping method for my order
 
 Background:
-	Given Tom creates the following shipping origins:
+	Given Tom creates the following products:
+	| ProductId | Name | Description     | Price | Retail | Cost | Length | Width | Height | Weight | ProductType     | Sku      | Barcode       | TrackInventory | OutOfStockRule  |
+	| 1         | DDD  | DDD Description | 100   | 120    | 80   | 1      | 2     | 3      | 4      | DigitalProduct  | ddd-book | 1234567890111 | True           | Remove          |
+	| 2         | BDD  | BDD Description | 50    | 110    | 70   | 2      | 3     | 4      | 5      | PhysicalProduct | bdd-book | 1234567890222 | False          | ContinueSelling |
+	| 3         | TDD  | TDD Description | 80    | 100    | 60   | 3      | 4     | 5      | 6      | DigitalProduct  | tdd-book | 1234567890333 | True           | StopSelling     |
+	And Tom creates the following shipping origins:
 	| OriginId | FirstName | LastName | AddressLine1    | AddressLine2 | City   | PostalCode | StateName       | CountryCode |
 	| 1        | James     | Harper   | 1 Market Street |              | Sydney | 2000       | New South Wales | AU          |
 	And Tom enters shipping profile name Heavy Products
@@ -36,13 +41,8 @@ Background:
 	| 3              | 0   | 50     | 50   |
 	| 3              | 50  | 500    | 100  |
 	| 3              | 500 | 100000 | 200  |
-	And Tom saves the shipping profile 
-	And Tom creates the following products:
-	| Index | Name | Description     | Price | Retail | Cost | Length | Width | Height | Weight | ProductType     | Sku      | Barcode       | TrackInventory | OutOfStockRule  |
-	| 1     | DDD  | DDD Description | 100   | 120    | 80   | 1      | 2     | 3      | 4      | DigitalProduct  | ddd-book | 1234567890111 | True           | Remove          |
-	| 2     | BDD  | BDD Description | 50    | 110    | 70   | 2      | 3     | 4      | 5      | PhysicalProduct | bdd-book | 1234567890222 | False          | ContinueSelling |
-	| 3     | TDD  | TDD Description | 80    | 100    | 60   | 3      | 4     | 5      | 6      | DigitalProduct  | tdd-book | 1234567890333 | True           | StopSelling     |
-
+	And Tom saves the shipping profile
+	
 Scenario: Add Shipping Method
 	Given Amy adds the following products to her shopping cart:
 	| Product | Name | Quantity |

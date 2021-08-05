@@ -178,7 +178,7 @@ this.FeatureBackground();
  testRunner.And("Tom selects the following shipping states:", ((string)(null)), table23, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Index",
+                            "ShippingMethodId",
                             "MethodType",
                             "Name"});
                 table24.AddRow(new string[] {
