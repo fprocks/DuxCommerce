@@ -140,7 +140,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
  testRunner.And("Tom selects the following shipping states:", ((string)(null)), table13, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Index",
+                        "ShippingMethodId",
                         "MethodType",
                         "Name"});
             table14.AddRow(new string[] {

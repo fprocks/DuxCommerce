@@ -188,26 +188,28 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         {
             CompareZones(_profileRequest.Zones.ToList(), _profileCreated.Zones.ToList());
 
-            var zoneRequest = _profileRequest.Zones.FirstOrDefault();
+            var zones = _profileRequest.Zones.ToList();
 
-            var countries = _profileCreated.Zones.FirstOrDefault().Countries;
-            CompareCountries(zoneRequest.Countries.ToList(), countries.ToList());
+            var actualCountries = _profileCreated.Zones.SelectMany(x => x.Countries);
+            var expectedCountries = zones.SelectMany(x => x.Countries);
+            CompareCountries(expectedCountries.ToList(), actualCountries.ToList());
 
-            var methods = _profileCreated.Zones.FirstOrDefault().Methods;
-            CompareMethods(zoneRequest.Methods.ToList(), methods.ToList());
+            var actualMethods = _profileCreated.Zones.SelectMany(x => x.Methods);
+            var expectedMethods = zones.SelectMany(x => x.Methods);
+            CompareMethods(expectedMethods.ToList(), actualMethods.ToList());
 
             _profileRequest.OriginIds.Should().BeEquivalentTo(_profileCreated.OriginIds);
         }
 
         private void CompareOrigins(List<ShippingOrigin> expected, List<ShippingOriginDto> actual)
         {
-            expected.Count().Should().Be(actual.Count());
+            expected.Count.Should().Be(actual.Count);
             expected.EqualTo(actual);
         }
 
         private void CompareZones(List<ShippingZoneDto> expected, List<ShippingZoneDto> actual)
         {
-            expected.Count().Should().Be(actual.Count());
+            expected.Count.Should().Be(actual.Count);
             for(var index = 0; index < expected.Count(); index ++)
             {
                 expected[index].Name.Should().Be(actual[index].Name);
