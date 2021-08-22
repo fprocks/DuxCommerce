@@ -23,10 +23,10 @@ Scenario: Create custom shipping profile
 	| NZ          | Auckland        |
 	| NZ          | Wellington      |
 	And Tom enters the following shipping methods:
-	| Index | MethodType   | Name           |
-	| 1     | ByWeight     | By Weight      |
-	| 2     | ByQuantity   | By Quantity    |
-	| 3     | ByOrderTotal | By Order Total |
+	| ShippingMethodId | MethodType   | Name           |
+	| 1                | ByWeight     | By Weight      |
+	| 2                | ByQuantity   | By Quantity    |
+	| 3                | ByOrderTotal | By Order Total |
 	And Tom enters the following shipping rates:
 	| ShippingMethod | Min | Max    | Rate |
 	| 1              | 0   | 100    | 50   |
