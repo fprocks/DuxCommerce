@@ -9,14 +9,14 @@ open DuxCommerce.Core.Checkout.InternalTypes
 
 module CheckoutUseCases = 
 
-    type AddCustomerInfo = string -> CustomerInfoRequest -> ConfigReader<Result<CheckoutDto, CustomError>>
+    type AddCustomerInfo = string -> CustomerInformationRequest -> ConfigReader<Result<CheckoutDto, CustomError>>
     let addCustomerInfo :AddCustomerInfo = 
         fun shopperId request ->
             readerResult {
                 let! dto = CheckoutRepo.getCheckout shopperId
 
                 let! cmd = 
-                    CustomerInfoCommand.fromRequest request
+                    CustomerInformationCommand.fromRequest request
                     |> ConfigReader.retn
 
                 let! checkout = 

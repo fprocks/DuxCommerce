@@ -18,7 +18,7 @@ namespace DuxCommerce.Specifications.Steps
         private readonly StepContext _context;
         private readonly IApiClient _apiClient;
 
-        private CustomerInfoRequest _request = new CustomerInfoRequest();
+        private CustomerInformationRequest _request = new CustomerInformationRequest();
 
         public CreateShippingAddressSteps(StepContext context, IApiClient apiClient)
         {

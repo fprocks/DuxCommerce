@@ -5,10 +5,22 @@ open MongoDB.Bson
 open DuxCommerce.Core.Shared.PublicTypes
 
 [<CLIMutable>]
-type CustomerInfoRequest = {
+type CustomerInformationRequest = {
     Email: string
     ShippingAddress: AddressDto
-}
+    }
+
+[<CLIMutable>]
+type ShippingMethodRequest = {
+    ShippingMethodId: string
+    }
+
+[<CLIMutable>]
+type PaymentMethodRequest = {
+    PaymentMethodId: string
+    SameAsShipping: bool
+    BillingAddress: AddressDto 
+    }
 
 [<CLIMutable>]
 type CustomerDto = {
@@ -20,7 +32,7 @@ type CustomerDto = {
     FirstName: string
     LastName: string
     UserId: string
-}
+    }
 
 [<CLIMutable>]
 type CheckoutDto = {
@@ -30,8 +42,8 @@ type CheckoutDto = {
     ShopperId: string
     Email: string
     ShippingAddress: AddressDto // Todo: how to design ShippingAddress so it can be nullable
-    SameAsBilling: bool
-    BillingAddress: AddressDto
     ShippingMethodId: string
+    SameAsShipping: bool
+    BillingAddress: AddressDto
     PaymentMethodId: string
-}
+    }

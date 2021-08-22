@@ -5,14 +5,14 @@ open DuxCommerce.Core.Shared.InternalTypes
 open DuxCommerce.Core.Checkout.PublicTypes
 open DuxCommerce.Core.Shared.Dto
 
-type CustomerInfoCommand = {
+type CustomerInformationCommand = {
     Email : EmailAddress
     ShippingAddress: Address
-}
+    }
 
-module CustomerInfoCommand =
+module CustomerInformationCommand =
 
-    let fromRequest (request:CustomerInfoRequest) :Result<CustomerInfoCommand, CustomError> =
+    let fromRequest (request:CustomerInformationRequest) :Result<CustomerInformationCommand, CustomError> =
         result {
             let! email = 
                 EmailAddress.create "" request.Email
