@@ -8,18 +8,17 @@ open DuxCommerce.Core.Payments.PublicTypes
 module PaymentMethodUseCases =
 
     type CreatePaymentMethodUseCase = PaymentMethodDto -> ConfigReader<Result<PaymentMethodDto, CustomError>>
-    let createMethod :CreatePaymentMethodUseCase = 
+
+    let createMethod: CreatePaymentMethodUseCase =
         fun methodDto ->
             readerResult {
-                let! _ = 
+                let! _ =
                     methodDto
-                    |> PaymentMethodDto.toDomain 
+                    |> PaymentMethodDto.toDomain
                     |> CustomError.mapValidation
                     |> ConfigReader.retn
 
-                let! methodId = 
-                    methodDto 
-                    |> PaymentMethodRepo.createMethod
+                let! methodId = methodDto |> PaymentMethodRepo.createMethod
 
                 return! PaymentMethodRepo.getMethod methodId
-                }
+            }

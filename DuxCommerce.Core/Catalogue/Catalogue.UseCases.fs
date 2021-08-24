@@ -5,38 +5,42 @@ open DuxCommerce.Common
 open DuxCommerce.Core.Catalogue.Dto
 open DuxCommerce.Core.Catalogue.MongoRepos
 
-module ProductUseCases =    
+module ProductUseCases =
 
     type CreateProductUseCase = ProductDto -> ConfigReader<Result<ProductDto, CustomError>>
-    let createProduct :CreateProductUseCase =            
+
+    let createProduct: CreateProductUseCase =
         fun productDto ->
             readerResult {
-                let! _ = 
-                    productDto 
-                    |> ProductDto.toDomain 
+                let! _ =
+                    productDto
+                    |> ProductDto.toDomain
                     |> ConfigReader.retn
+
                 let! id = productDto |> ProductRepo.createProduct
-                return! ProductRepo.getProduct id 
-                }
+                return! ProductRepo.getProduct id
+            }
 
     type GetProductUseCase = string -> ConfigReader<Result<ProductDto, CustomError>>
-    let getProduct :GetProductUseCase =
+
+    let getProduct: GetProductUseCase =
         fun id ->
-            readerResult {                
+            readerResult {
                 // Todo: improve to handle null value
                 return! ProductRepo.getProduct id
-                }
+            }
 
-    type UpdateProductUseCase = string -> ProductDto -> ConfigReader<Result<ProductDto, CustomError>>    
-    let updateProduct :UpdateProductUseCase =
+    type UpdateProductUseCase = string -> ProductDto -> ConfigReader<Result<ProductDto, CustomError>>
+
+    let updateProduct: UpdateProductUseCase =
         fun id productDto ->
             readerResult {
-                let! _ = 
-                    productDto 
-                    |> ProductDto.toDomain 
+                let! _ =
+                    productDto
+                    |> ProductDto.toDomain
                     |> ConfigReader.retn
 
                 do! ProductRepo.updateProduct id productDto
 
                 return! ProductRepo.getProduct id
-                }
+            }

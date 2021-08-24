@@ -8,18 +8,17 @@ open DuxCommerce.Core.Taxes.MongoRepos
 module TaxRateUseCases =
 
     type CreateTaxRateUseCase = TaxRateDto -> ConfigReader<Result<TaxRateDto, CustomError>>
-    let createRate :CreateTaxRateUseCase = 
+
+    let createRate: CreateTaxRateUseCase =
         fun rateDto ->
             readerResult {
-                let! _ = 
+                let! _ =
                     rateDto
                     |> TaxRateDto.toDomain
                     |> CustomError.mapValidation
                     |> ConfigReader.retn
 
-                let! rateId = 
-                    rateDto 
-                    |> TaxRateRepo.createRate
+                let! rateId = rateDto |> TaxRateRepo.createRate
 
                 return! TaxRateRepo.getRate rateId
-                }
+            }

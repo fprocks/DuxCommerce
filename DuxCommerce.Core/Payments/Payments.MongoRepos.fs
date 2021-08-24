@@ -6,11 +6,14 @@ open DuxCommerce.Common
 
 module PaymentMethodRepo =
 
-    type CreatePaymentMethod = PaymentMethodDto -> ConfigReader<Result<string, CustomError>>    
-    let createMethod :CreatePaymentMethod =
-        fun methodDto -> 
-            let create (db:IMongoDatabase) =
-                let methods = db.GetCollection<PaymentMethodDto>(CollectionName.PaymentMethod)
+    type CreatePaymentMethod = PaymentMethodDto -> ConfigReader<Result<string, CustomError>>
+
+    let createMethod: CreatePaymentMethod =
+        fun methodDto ->
+            let create (db: IMongoDatabase) =
+                let methods =
+                    db.GetCollection<PaymentMethodDto>(CollectionName.PaymentMethod)
+
                 methods.InsertOne(methodDto)
 
                 methodDto.Id
@@ -18,10 +21,13 @@ module PaymentMethodRepo =
             MongoRepoAdapter.repoAdapter create
 
     type GetPaymentMethod = string -> ConfigReader<Result<PaymentMethodDto, CustomError>>
-    let getMethod :GetPaymentMethod=
+
+    let getMethod: GetPaymentMethod =
         fun id ->
-            let get (db:IMongoDatabase) =
-                let methods = db.GetCollection<PaymentMethodDto>(CollectionName.PaymentMethod)
+            let get (db: IMongoDatabase) =
+                let methods =
+                    db.GetCollection<PaymentMethodDto>(CollectionName.PaymentMethod)
+
                 methods.Find(fun x -> x.Id = id).FirstOrDefault()
-            
+
             MongoRepoAdapter.repoAdapter get

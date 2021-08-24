@@ -1,12 +1,12 @@
-﻿using DuxCommerce.Core.Checkout.PublicTypes;
+﻿using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using DuxCommerce.Core.Checkout.PublicTypes;
 using DuxCommerce.Core.Shared.PublicTypes;
-using DuxCommerce.Specifications.UseCases.Hooks;
+using DuxCommerce.Specifications.Hooks;
 using DuxCommerce.Specifications.Utilities;
 using FluentAssertions;
 using Newtonsoft.Json;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -15,10 +15,10 @@ namespace DuxCommerce.Specifications.Steps
     [Binding]
     public class CreateShippingAddressSteps
     {
-        private readonly StepContext _context;
         private readonly IApiClient _apiClient;
+        private readonly StepContext _context;
 
-        private CustomerInformationRequest _request = new CustomerInformationRequest();
+        private readonly CustomerInformationRequest _request = new CustomerInformationRequest();
 
         public CreateShippingAddressSteps(StepContext context, IApiClient apiClient)
         {
@@ -32,7 +32,7 @@ namespace DuxCommerce.Specifications.Steps
         {
             _request.Email = email;
         }
-        
+
         [Given(@"Amy enters the following shipping address:")]
         public void GivenAmyEntersTheFollowingShippingAddress(Table table)
         {
@@ -52,13 +52,11 @@ namespace DuxCommerce.Specifications.Steps
         [Given(@"Amy selects shipping method (.*)")]
         public void GivenAmySelectsShippingMethod(int shippingMethod)
         {
-            
         }
 
         [When(@"Amy saves the shipping method")]
         public void WhenAmySavesTheShippingMethod()
         {
-            
         }
 
         [Then(@"checkout information should be saved as expected")]
@@ -70,9 +68,9 @@ namespace DuxCommerce.Specifications.Steps
         }
 
         private async Task<CheckoutDto> GetCheckout(HttpResponseMessage apiResult)
-		{
+        {
             var resultString = await apiResult.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<CheckoutDto>(resultString);
         }
-	}
+    }
 }

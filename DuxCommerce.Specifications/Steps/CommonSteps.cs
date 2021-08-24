@@ -1,9 +1,9 @@
-﻿using DuxCommerce.Specifications.UseCases.Hooks;
+﻿using System.Net;
+using DuxCommerce.Specifications.Hooks;
 using FluentAssertions;
-using System.Net;
 using TechTalk.SpecFlow;
 
-namespace DuxCommerce.Specifications.UseCases.Steps
+namespace DuxCommerce.Specifications.Steps
 {
     [Binding]
     public class CommonSteps

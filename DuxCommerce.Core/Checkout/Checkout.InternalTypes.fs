@@ -8,17 +8,18 @@ open DuxCommerce.Core.Payments.SimpleTypes
 open DuxCommerce.Core.Shipping.SimpleTypes
 open DuxCommerce.Core.Checkout.Commands
 
-type Checkout = {
-    CheckoutId : CheckoutId
-    ShopperId : ShopperId
-    Email : EmailAddress
-    ShippingAddress : Address
-    SameAsBilling : bool
-    BillingAddress : Address
-    ShippingMethodId : ShippingMethodId
-    PaymentMethodId : PaymentMethodId
-}
+type Checkout =
+    { CheckoutId: CheckoutId
+      ShopperId: ShopperId
+      Email: EmailAddress
+      ShippingAddress: Address
+      SameAsBilling: bool
+      BillingAddress: Address
+      ShippingMethodId: ShippingMethodId
+      PaymentMethodId: PaymentMethodId }
 
-module Checkout = 
-    let addCustomerInfo checkout (cmd:CustomerInformationCommand) :Checkout=
-        {checkout with Email = cmd.Email; ShippingAddress = cmd.ShippingAddress }
+module Checkout =
+    let addCustomerInfo checkout (cmd: CustomerInformationCommand) : Checkout =
+        { checkout with
+              Email = cmd.Email
+              ShippingAddress = cmd.ShippingAddress }

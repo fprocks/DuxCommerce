@@ -1,33 +1,32 @@
-﻿using DuxCommerce.Core.Shared.PublicTypes;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using DuxCommerce.Core.Shared.PublicTypes;
 using DuxCommerce.Core.Shipping.PublicTypes;
+using DuxCommerce.Specifications.Extensions;
 using DuxCommerce.Specifications.Forms.Shipping;
-using DuxCommerce.Specifications.UseCases.Extensions;
-using DuxCommerce.Specifications.UseCases.Hooks;
-using DuxCommerce.Specifications.UseCases.Models;
+using DuxCommerce.Specifications.Hooks;
+using DuxCommerce.Specifications.Models;
 using DuxCommerce.Specifications.Utilities;
 using FluentAssertions;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
-namespace DuxCommerce.Specifications.UseCases.Steps
+namespace DuxCommerce.Specifications.Steps
 {
-	[Binding]
+    [Binding]
     public class ShippingProfileSteps
     {
-        private readonly StepContext _context;
         private readonly IApiClient _apiClient;
-
-        private ShippingOriginDto _originCreated;
-
-        private ShippingProfileDto _profileRequest;
-        private ShippingProfileDto _profileCreated;
+        private readonly StepContext _context;
 
         private List<ShippingMethodForm> _methodForms;
+
+        private ShippingOriginDto _originCreated;
+        private ShippingProfileDto _profileCreated;
+
+        private readonly ShippingProfileDto _profileRequest;
 
         public ShippingProfileSteps(StepContext context, IApiClient apiClient)
         {
@@ -40,7 +39,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         [Then(@"default shipping profile should be created as follow:")]
         public async Task ThenDefaultShippingProfileShouldBeCreatedAsFollowAsync(Table table)
         {
-            var url = $"api/shippingprofiles/default";
+            var url = "api/shippingprofiles/default";
             var apiResult = await _apiClient.GetAsync(url);
 
             var profileStr = await apiResult.Content.ReadAsStringAsync();
@@ -210,19 +209,14 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         private void CompareZones(List<ShippingZoneDto> expected, List<ShippingZoneDto> actual)
         {
             expected.Count.Should().Be(actual.Count);
-            for(var index = 0; index < expected.Count(); index ++)
-            {
-                expected[index].Name.Should().Be(actual[index].Name);
-            }
+            for (var index = 0; index < expected.Count(); index++) expected[index].Name.Should().Be(actual[index].Name);
         }
 
         private void CompareCountries(List<ZoneCountry> expected, List<ShippingCountryDto> actual)
         {
             expected.Count().Should().Be(actual.Count());
             for (var index = 0; index < expected.Count(); index++)
-            {
                 expected[index].CountryCode.Should().Be(actual[index].CountryCode);
-            }
         }
 
         private void CompareCountries(List<ShippingCountryDto> expected, List<ShippingCountryDto> actual)
@@ -260,7 +254,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
         public ShippingMethodDto Convert(ShippingMethodForm form)
         {
-            return new ShippingMethodDto()
+            return new ShippingMethodDto
             {
                 Name = form.Name,
                 MethodType = form.MethodType,

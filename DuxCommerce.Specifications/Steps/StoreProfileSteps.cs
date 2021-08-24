@@ -1,27 +1,27 @@
-﻿using DuxCommerce.Core.Shared.PublicTypes;
+﻿using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using DuxCommerce.Core.Shared.PublicTypes;
 using DuxCommerce.Core.Shipping.PublicTypes;
-using DuxCommerce.Specifications.UseCases.Hooks;
+using DuxCommerce.Specifications.Hooks;
 using DuxCommerce.Specifications.Utilities;
 using FluentAssertions;
 using Newtonsoft.Json;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
-namespace DuxCommerce.Specifications.UseCases.Steps
+namespace DuxCommerce.Specifications.Steps
 {
     [Binding]
     public class StoreProfileSteps
     {
-        private readonly StepContext _context;
         private readonly IApiClient _apiClient;
+        private readonly StepContext _context;
+        private StoreProfileDto _profilePostUpdate;
 
         private StoreProfileDto _profilePreUpdate;
 
         private StoreProfileDto _profileRequest;
-        private StoreProfileDto _profilePostUpdate;
 
         public StoreProfileSteps(StepContext context, IApiClient apiClient)
         {
@@ -62,7 +62,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             address.LastName = "L";
             _profileRequest.Address = address;
         }
-        
+
         [When(@"Tom saves the store profile")]
         public async Task WhenTomSavesTheStoreProfileAsync()
         {
@@ -96,7 +96,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             CompareStoreAddress(expectedAddress, _profilePostUpdate.Address).Should().BeTrue();
         }
 
-        private async Task<StoreProfileDto> GetCreatedProfile(HttpResponseMessage apiResult) 
+        private async Task<StoreProfileDto> GetCreatedProfile(HttpResponseMessage apiResult)
         {
             var resultStr = await apiResult.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<StoreProfileDto>(resultStr);
@@ -105,24 +105,24 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         private bool CompareStoreProfile(StoreProfileDto expected, StoreProfileDto actual)
         {
             return expected.StoreName == actual.StoreName &&
-                expected.ContactEmail == actual.ContactEmail &&
-                expected.SenderEmail == actual.SenderEmail &&
-                expected.BusinessName == actual.BusinessName &&
-                expected.PhoneNumber == actual.PhoneNumber &&
-                expected.TimeZoneId == actual.TimeZoneId &&
-                expected.UnitSystem == actual.UnitSystem &&
-                expected.WeightUnit == actual.WeightUnit &&
-                expected.LengthUnit == actual.LengthUnit;
+                   expected.ContactEmail == actual.ContactEmail &&
+                   expected.SenderEmail == actual.SenderEmail &&
+                   expected.BusinessName == actual.BusinessName &&
+                   expected.PhoneNumber == actual.PhoneNumber &&
+                   expected.TimeZoneId == actual.TimeZoneId &&
+                   expected.UnitSystem == actual.UnitSystem &&
+                   expected.WeightUnit == actual.WeightUnit &&
+                   expected.LengthUnit == actual.LengthUnit;
         }
 
         private bool CompareStoreAddress(AddressDto expected, AddressDto actual)
         {
             return expected.AddressLine1 == actual.AddressLine1 &&
-                expected.AddressLine2 == actual.AddressLine2 &&
-                expected.City == actual.City &&
-                expected.PostalCode == actual.PostalCode &&
-                expected.StateName == actual.StateName &&
-                expected.CountryCode == actual.CountryCode;
+                   expected.AddressLine2 == actual.AddressLine2 &&
+                   expected.City == actual.City &&
+                   expected.PostalCode == actual.PostalCode &&
+                   expected.StateName == actual.StateName &&
+                   expected.CountryCode == actual.CountryCode;
         }
     }
 }

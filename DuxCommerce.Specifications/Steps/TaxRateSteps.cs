@@ -1,14 +1,13 @@
-﻿using DuxCommerce.Core.Shared.PublicTypes;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using DuxCommerce.Core.Shared.PublicTypes;
 using DuxCommerce.Core.Taxes.PublicTypes;
+using DuxCommerce.Specifications.Hooks;
 using DuxCommerce.Specifications.Models;
-using DuxCommerce.Specifications.UseCases.Hooks;
-using DuxCommerce.Specifications.UseCases.Models;
 using DuxCommerce.Specifications.Utilities;
 using FluentAssertions;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -17,11 +16,11 @@ namespace DuxCommerce.Specifications.Steps
     [Binding]
     public class TaxRateSteps
     {
-        private readonly StepContext _context;
         private readonly IApiClient _apiClient;
-
-        private TaxRateDto _taxRateRequest;
+        private readonly StepContext _context;
         private TaxRateDto _taxRateCreated;
+
+        private readonly TaxRateDto _taxRateRequest;
 
         public TaxRateSteps(StepContext context, IApiClient apiClient)
         {
@@ -130,9 +129,7 @@ namespace DuxCommerce.Specifications.Steps
             var expectedCountries = expected.ToList();
             var actualCountries = actual.ToList();
             for (var index = 0; index <= expected.Count() - 1; index++)
-            {
                 Compare(expectedCountries[index], actualCountries[index]);
-            }
         }
 
         private void Compare(TaxCountryDto expected, TaxCountryDto actual)
@@ -141,17 +138,13 @@ namespace DuxCommerce.Specifications.Steps
 
             var expectedStates = expected.States.ToList();
             var actualStates = actual.States.ToList();
-            for (var index = 0; index <= expectedStates.Count() - 1; index ++)
-            {
+            for (var index = 0; index <= expectedStates.Count() - 1; index++)
                 Compare(expectedStates[index], actualStates[index]);
-            }
 
             var expectedPostalCodes = expected.PostalCodes.ToList();
             var actualPostalCodes = actual.PostalCodes.ToList();
             for (var index = 0; index <= expectedPostalCodes.Count() - 1; index++)
-            {
                 expectedPostalCodes[index].Should().BeEquivalentTo(actualPostalCodes[index]);
-            }
         }
 
         private void Compare(StateDto expected, StateDto actual)

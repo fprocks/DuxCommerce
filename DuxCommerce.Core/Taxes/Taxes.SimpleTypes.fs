@@ -11,4 +11,4 @@ type TaxRateAmount = private TaxRateAmount of decimal
 
 module TaxRateAmount =
     let value (TaxRateAmount amount) = amount
-    let create amount = TaxRateAmount amount    
+    let create amount = TaxRateAmount amount

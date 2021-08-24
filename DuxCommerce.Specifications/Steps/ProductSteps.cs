@@ -1,22 +1,22 @@
-﻿using DuxCommerce.Core.Catalogue.PublicTypes;
-using DuxCommerce.Specifications.UseCases.Extensions;
-using DuxCommerce.Specifications.UseCases.Hooks;
+﻿using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using DuxCommerce.Core.Catalogue.PublicTypes;
+using DuxCommerce.Specifications.Extensions;
+using DuxCommerce.Specifications.Hooks;
 using DuxCommerce.Specifications.Utilities;
 using FluentAssertions;
 using Newtonsoft.Json;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
-namespace DuxCommerce.Specifications.UseCases.Steps
+namespace DuxCommerce.Specifications.Steps
 {
     [Binding]
     public class ProductSteps
     {
-        private readonly StepContext _context;
         private readonly IApiClient _apiClient;
+        private readonly StepContext _context;
 
         private ProductDto _productRequest;
 

@@ -8,14 +8,15 @@ open DuxCommerce.Core.Checkout
 
 [<ApiController>]
 [<Route("api/[controller]")>]
-type CheckoutController (logger : ILogger<ShoppingCartController>) =
+type CheckoutController(logger: ILogger<ShoppingCartController>) =
     inherit DuxController()
 
     // Note: pass in shopperId from front end before we can read it from ShopperContext
     [<HttpPost("{shopperId}/customerinfo")>]
     member this.Post(shopperId: string, request: CustomerInformationRequest) : IActionResult =
-        let result = ConfigReader.execute (CheckoutUseCases.addCustomerInfo shopperId request)
+        let result =
+            ConfigReader.execute (CheckoutUseCases.addCustomerInfo shopperId request)
+
         match result with
         | Ok c -> base.Ok(c) :> _
         | Error m -> base.Convert(m)
-  

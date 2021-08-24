@@ -5,56 +5,56 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Include="Shared\Shared.SimpleTypes.fs" />
-      <Compile Include="Shared\Shared.PublicTypes.fs" />
-      <Compile Include="Shared\Shared.InternalTypes.fs" />
-      <Compile Include="Shared\Shared.Dto.fs" />
-      <Compile Include="Shipping\Shipping.SimpleTypes.fs" />
-      <Compile Include="Shipping\Shipping.PublicTypes.fs" />
-      <Compile Include="Shipping\Shipping.InternalTypes.fs" />
-      <Compile Include="Shipping\Shipping.Dto.fs" />
-      <Compile Include="Shipping\Shipping.MongoRepos.fs" />
-      <Compile Include="Shipping\Shipping.UseCases.fs" />
-      <Compile Include="Payments\Payments.SimpleTypes.fs" />
-      <Compile Include="Payments\Payments.PublicTypes.fs" />
-      <Compile Include="Payments\Payments.InternalTypes.fs" />
-      <Compile Include="Payments\Payments.Dto.fs" />
-      <Compile Include="Payments\Payments.MongoRepos.fs" />
-      <Compile Include="Payments\Payments.UseCases.fs" />
-      <Compile Include="Taxes\Taxes.SimpleTypes.fs" />
-      <Compile Include="Taxes\Taxes.PublicTypes.fs" />
-      <Compile Include="Taxes\Taxes.InternalTypes.fs" />
-      <Compile Include="Taxes\Taxes.Dto.fs" />
-      <Compile Include="Taxes\Taxes.MongRepos.fs" />
-      <Compile Include="Taxes\Taxes.UseCases.fs" />
-      <Compile Include="Catalogue\Catalogue.SimpleTypes.fs" />
-      <Compile Include="Catalogue\Catalogue.PublicTypes.fs" />
-      <Compile Include="Catalogue\Catalogue.InternalTypes.fs" />
-      <Compile Include="Catalogue\Catalogue.Dto.fs" />
-      <Compile Include="Catalogue\Catalogue.MongoRepos.fs" />
-      <Compile Include="Catalogue\Catalogue.UseCases.fs" />
-      <Compile Include="ShoppingCart\ShoppingCart.SimpleTypes.fs" />
-      <Compile Include="ShoppingCart\ShoppingCart.PublicTypes.fs" />
-      <Compile Include="ShoppingCart\ShoppingCart.Commands.fs" />
-      <Compile Include="ShoppingCart\ShoppingCart.InternalTypes.fs" />
-      <Compile Include="ShoppingCart\ShoppingCart.Dto.fs" />
-      <Compile Include="ShoppingCart\ShoppingCart.MongoRepos.fs" />
-      <Compile Include="ShoppingCart\ShoppingCart.UseCases.fs" />
-      <Compile Include="Checkout\Checkout.SimpleTypes.fs" />
-	  <Compile Include="Checkout\Checkout.PublicTypes.fs" />
-	  <Compile Include="Checkout\Checkout.Commands.fs" />
-	  <Compile Include="Checkout\Checkout.InternalTypes.fs" />
-	  <Compile Include="Checkout\Checkout.Dto.fs" />
-	  <Compile Include="Checkout\Checkout.MongoRepos.fs" />
-	  <Compile Include="Checkout\Checkout.UseCases.fs" />
+        <Compile Include="Shared\Shared.SimpleTypes.fs"/>
+        <Compile Include="Shared\Shared.PublicTypes.fs"/>
+        <Compile Include="Shared\Shared.InternalTypes.fs"/>
+        <Compile Include="Shared\Shared.Dto.fs"/>
+        <Compile Include="Shipping\Shipping.SimpleTypes.fs"/>
+        <Compile Include="Shipping\Shipping.PublicTypes.fs"/>
+        <Compile Include="Shipping\Shipping.InternalTypes.fs"/>
+        <Compile Include="Shipping\Shipping.Dto.fs"/>
+        <Compile Include="Shipping\Shipping.MongoRepos.fs"/>
+        <Compile Include="Shipping\Shipping.UseCases.fs"/>
+        <Compile Include="Payments\Payments.SimpleTypes.fs"/>
+        <Compile Include="Payments\Payments.PublicTypes.fs"/>
+        <Compile Include="Payments\Payments.InternalTypes.fs"/>
+        <Compile Include="Payments\Payments.Dto.fs"/>
+        <Compile Include="Payments\Payments.MongoRepos.fs"/>
+        <Compile Include="Payments\Payments.UseCases.fs"/>
+        <Compile Include="Taxes\Taxes.SimpleTypes.fs"/>
+        <Compile Include="Taxes\Taxes.PublicTypes.fs"/>
+        <Compile Include="Taxes\Taxes.InternalTypes.fs"/>
+        <Compile Include="Taxes\Taxes.Dto.fs"/>
+        <Compile Include="Taxes\Taxes.MongRepos.fs"/>
+        <Compile Include="Taxes\Taxes.UseCases.fs"/>
+        <Compile Include="Catalogue\Catalogue.SimpleTypes.fs"/>
+        <Compile Include="Catalogue\Catalogue.PublicTypes.fs"/>
+        <Compile Include="Catalogue\Catalogue.InternalTypes.fs"/>
+        <Compile Include="Catalogue\Catalogue.Dto.fs"/>
+        <Compile Include="Catalogue\Catalogue.MongoRepos.fs"/>
+        <Compile Include="Catalogue\Catalogue.UseCases.fs"/>
+        <Compile Include="ShoppingCart\ShoppingCart.SimpleTypes.fs"/>
+        <Compile Include="ShoppingCart\ShoppingCart.PublicTypes.fs"/>
+        <Compile Include="ShoppingCart\ShoppingCart.Commands.fs"/>
+        <Compile Include="ShoppingCart\ShoppingCart.InternalTypes.fs"/>
+        <Compile Include="ShoppingCart\ShoppingCart.Dto.fs"/>
+        <Compile Include="ShoppingCart\ShoppingCart.MongoRepos.fs"/>
+        <Compile Include="ShoppingCart\ShoppingCart.UseCases.fs"/>
+        <Compile Include="Checkout\Checkout.SimpleTypes.fs"/>
+        <Compile Include="Checkout\Checkout.PublicTypes.fs"/>
+        <Compile Include="Checkout\Checkout.Commands.fs"/>
+        <Compile Include="Checkout\Checkout.InternalTypes.fs"/>
+        <Compile Include="Checkout\Checkout.Dto.fs"/>
+        <Compile Include="Checkout\Checkout.MongoRepos.fs"/>
+        <Compile Include="Checkout\Checkout.UseCases.fs"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DuxCommerce.Common\DuxCommerce.Common.fsproj" />
+        <ProjectReference Include="..\DuxCommerce.Common\DuxCommerce.Common.fsproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="MongoDB.Driver" Version="2.11.5" />
+        <PackageReference Include="MongoDB.Driver" Version="2.11.5"/>
     </ItemGroup>
 
 </Project>

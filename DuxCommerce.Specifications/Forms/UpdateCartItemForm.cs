@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.Specifications.UseCases.Forms
+﻿namespace DuxCommerce.Specifications.Forms
 {
     public class UpdateCartItemForm
     {

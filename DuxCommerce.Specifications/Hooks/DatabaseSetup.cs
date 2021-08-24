@@ -1,8 +1,8 @@
-﻿using DuxCommerce.Specifications.Utilities;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using DuxCommerce.Specifications.Utilities;
 using TechTalk.SpecFlow;
 
-namespace DuxCommerce.Specifications.UseCases.Hooks
+namespace DuxCommerce.Specifications.Hooks
 {
     [Binding]
     public sealed class DatabaseSetup

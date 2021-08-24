@@ -7,33 +7,34 @@ open DuxCommerce.Core.Checkout.MongoRepos
 open DuxCommerce.Core.Checkout.Dto
 open DuxCommerce.Core.Checkout.InternalTypes
 
-module CheckoutUseCases = 
+module CheckoutUseCases =
 
     type AddCustomerInfo = string -> CustomerInformationRequest -> ConfigReader<Result<CheckoutDto, CustomError>>
-    let addCustomerInfo :AddCustomerInfo = 
+
+    let addCustomerInfo: AddCustomerInfo =
         fun shopperId request ->
             readerResult {
                 let! dto = CheckoutRepo.getCheckout shopperId
 
-                let! cmd = 
+                let! cmd =
                     CustomerInformationCommand.fromRequest request
                     |> ConfigReader.retn
 
-                let! checkout = 
+                let! checkout =
                     dto
                     |> CheckoutDto.toDomain
                     |> CustomError.mapValidation
                     |> ConfigReader.retn
 
                 // Todo: why the commented code does not work
-                //let _ = 
-                //    cmd 
+                //let _ =
+                //    cmd
                 //    |> Checkout.updateCustomerInfo checkout
                 //    |> CheckoutDto.fromDomain
                 //    |> CheckoutRepo.saveCheckout
 
-                let updatedDto = 
-                    cmd 
+                let updatedDto =
+                    cmd
                     |> Checkout.addCustomerInfo checkout
                     |> CheckoutDto.fromDomain
 

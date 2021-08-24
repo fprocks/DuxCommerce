@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DuxCommerce.Specifications.Models
+﻿namespace DuxCommerce.Specifications.Models
 {
     public class ZonePostalCodes
     {

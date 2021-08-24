@@ -1,6 +1,6 @@
 ﻿namespace DuxCommerce.Common
 
-module CollectionName = 
+module CollectionName =
 
     let Address = "Address"
     let StoreProfile = "StoreProfile"

@@ -21,14 +21,15 @@ module PaymentMethodType =
         | "CashOnDelivery" -> Ok CashOnDelivery
         | "BankDeposit" -> Ok BankDeposit
         | "MoneyOrder" -> Ok MoneyOrder
-        | _ -> 
-            let msg = "PaymentMethodType must be one of 'CashOnDelivery', 'BankDeposit', 'MoneyOrder'" 
+        | _ ->
+            let msg =
+                "PaymentMethodType must be one of 'CashOnDelivery', 'BankDeposit', 'MoneyOrder'"
+
             Error msg
 
-type PaymentMethod = {
-    PaymentMethodId : PaymentMethodId
-    Name : String50
-    Type : PaymentMethodType
-    AdditionalDetails: String255
-    PaymentInstructions: String255
-    }
+type PaymentMethod =
+    { PaymentMethodId: PaymentMethodId
+      Name: String50
+      Type: PaymentMethodType
+      AdditionalDetails: String255
+      PaymentInstructions: String255 }

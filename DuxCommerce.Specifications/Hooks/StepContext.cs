@@ -1,9 +1,9 @@
-﻿using DuxCommerce.Core.Catalogue.PublicTypes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using DuxCommerce.Core.Catalogue.PublicTypes;
 
-namespace DuxCommerce.Specifications.UseCases.Hooks
+namespace DuxCommerce.Specifications.Hooks
 {
     public class StepContext
     {

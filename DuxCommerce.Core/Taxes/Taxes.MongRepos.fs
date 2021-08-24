@@ -6,11 +6,14 @@ open DuxCommerce.Core.Taxes.PublicTypes
 
 module TaxRateRepo =
 
-    type CreateTaxRate = TaxRateDto -> ConfigReader<Result<string, CustomError>>    
-    let createRate :CreateTaxRate =
-        fun rateDto -> 
-            let create (db:IMongoDatabase) =
-                let rates = db.GetCollection<TaxRateDto>(CollectionName.TaxRate)
+    type CreateTaxRate = TaxRateDto -> ConfigReader<Result<string, CustomError>>
+
+    let createRate: CreateTaxRate =
+        fun rateDto ->
+            let create (db: IMongoDatabase) =
+                let rates =
+                    db.GetCollection<TaxRateDto>(CollectionName.TaxRate)
+
                 rates.InsertOne(rateDto)
 
                 rateDto.Id
@@ -18,10 +21,13 @@ module TaxRateRepo =
             MongoRepoAdapter.repoAdapter create
 
     type GetTaxRate = string -> ConfigReader<Result<TaxRateDto, CustomError>>
-    let getRate :GetTaxRate=
+
+    let getRate: GetTaxRate =
         fun id ->
-            let get (db:IMongoDatabase) =
-                let rates = db.GetCollection<TaxRateDto>(CollectionName.TaxRate)
+            let get (db: IMongoDatabase) =
+                let rates =
+                    db.GetCollection<TaxRateDto>(CollectionName.TaxRate)
+
                 rates.Find(fun x -> x.Id = id).FirstOrDefault()
-            
+
             MongoRepoAdapter.repoAdapter get

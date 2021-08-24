@@ -79,7 +79,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
         public virtual void FeatureBackground()
         {
 #line 6
-#line hidden
+    #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "Index",
                         "Name",
@@ -145,7 +145,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
                         "True",
                         "StopSelling"});
 #line 7
-    testRunner.Given("Tom creates the following products:", ((string)(null)), table8, "Given ");
+        testRunner.Given("Tom creates the following products:", ((string)(null)), table8, "Given ");
 #line hidden
         }
         
@@ -163,7 +163,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Customer Information", null, tagsOfScenario, argumentsOfScenario);
 #line 13
-this.ScenarioInitialize(scenarioInfo);
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -183,7 +183,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
-this.FeatureBackground();
+    this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
@@ -198,10 +198,10 @@ this.FeatureBackground();
                             "BDD",
                             "8"});
 #line 14
-    testRunner.Given("Amy adds the following products to her shopping cart:", ((string)(null)), table9, "Given ");
+        testRunner.Given("Amy adds the following products to her shopping cart:", ((string)(null)), table9, "Given ");
 #line hidden
 #line 18
-    testRunner.And("Amy enters the email address amy@gmail.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("Amy enters the email address amy@gmail.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -222,16 +222,16 @@ this.FeatureBackground();
                             "Victoria",
                             "AU"});
 #line 19
-    testRunner.And("Amy enters the following shipping address:", ((string)(null)), table10, "And ");
+        testRunner.And("Amy enters the following shipping address:", ((string)(null)), table10, "And ");
 #line hidden
 #line 22
-    testRunner.When("Amy saves the contact details and shipping address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("Amy saves the contact details and shipping address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 23
-    testRunner.Then("Amy should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("Amy should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 24
-    testRunner.And("checkout information should be saved as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("checkout information should be saved as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -7,60 +7,98 @@ open DuxCommerce.Common
 
 module StoreProfileRepo =
 
-    type CreateStoreProfile = StoreProfileDto -> ConfigReader<Result<string , CustomError>>
-    let createProfile :CreateStoreProfile =
+    type CreateStoreProfile = StoreProfileDto -> ConfigReader<Result<string, CustomError>>
+
+    let createProfile: CreateStoreProfile =
         fun profileDto ->
-            let create (db:IMongoDatabase) =
-                let addresses = db.GetCollection<AddressDto>(CollectionName.Address)
+            let create (db: IMongoDatabase) =
+                let addresses =
+                    db.GetCollection<AddressDto>(CollectionName.Address)
+
                 addresses.InsertOne(profileDto.Address)
 
-                let profiles = db.GetCollection<StoreProfileDto>(CollectionName.StoreProfile)
-                let profileDto = {profileDto with AddressId = profileDto.Address.Id}
-                profiles.InsertOne(profileDto)      
-                
+                let profiles =
+                    db.GetCollection<StoreProfileDto>(CollectionName.StoreProfile)
+
+                let profileDto =
+                    { profileDto with
+                          AddressId = profileDto.Address.Id }
+
+                profiles.InsertOne(profileDto)
+
                 profileDto.Id
-                
+
             MongoRepoAdapter.repoAdapter create
-            
+
     type GetStoreProfile = string -> ConfigReader<Result<StoreProfileDto, CustomError>>
-    let getProfile :GetStoreProfile =
+
+    let getProfile: GetStoreProfile =
         fun id ->
-            let get (db:IMongoDatabase) =
-                let profiles = db.GetCollection<StoreProfileDto>(CollectionName.StoreProfile)
-                let profileDto = profiles.Find(fun p -> p.Id = id).FirstOrDefault()
+            let get (db: IMongoDatabase) =
+                let profiles =
+                    db.GetCollection<StoreProfileDto>(CollectionName.StoreProfile)
 
-                let addresses = db.GetCollection<AddressDto>(CollectionName.Address)
-                let address = addresses.Find(fun a -> a.Id = profileDto.AddressId).FirstOrDefault()
+                let profileDto =
+                    profiles.Find(fun p -> p.Id = id).FirstOrDefault()
 
-                {profileDto with Address = address}
-                
-            MongoRepoAdapter.repoAdapter get          
-            
-    type UpdateStoreProfile = string -> StoreProfileDto -> ConfigReader<Result<unit, CustomError>>    
-    let updateProfile :UpdateStoreProfile =
+                let addresses =
+                    db.GetCollection<AddressDto>(CollectionName.Address)
+
+                let address =
+                    addresses
+                        .Find(fun a -> a.Id = profileDto.AddressId)
+                        .FirstOrDefault()
+
+                { profileDto with Address = address }
+
+            MongoRepoAdapter.repoAdapter get
+
+    type UpdateStoreProfile = string -> StoreProfileDto -> ConfigReader<Result<unit, CustomError>>
+
+    let updateProfile: UpdateStoreProfile =
         fun id profileDto ->
-            let update (db:IMongoDatabase) =
-                let profiles = db.GetCollection<StoreProfileDto>(CollectionName.StoreProfile)
-                let profileDto = {profileDto with Id = id}
-                profiles.ReplaceOne((fun x -> x.Id = id), profileDto) |> ignore
+            let update (db: IMongoDatabase) =
+                let profiles =
+                    db.GetCollection<StoreProfileDto>(CollectionName.StoreProfile)
 
-                let addresses = db.GetCollection<AddressDto>(CollectionName.Address)
-                let addressDto = {profileDto.Address with Id = profileDto.AddressId}
-                addresses.ReplaceOne((fun x -> x.Id = profileDto.AddressId), addressDto) |> ignore
-                
+                let profileDto = { profileDto with Id = id }
+
+                profiles.ReplaceOne((fun x -> x.Id = id), profileDto)
+                |> ignore
+
+                let addresses =
+                    db.GetCollection<AddressDto>(CollectionName.Address)
+
+                let addressDto =
+                    { profileDto.Address with
+                          Id = profileDto.AddressId }
+
+                addresses.ReplaceOne((fun x -> x.Id = profileDto.AddressId), addressDto)
+                |> ignore
+
             MongoRepoAdapter.repoAdapter update
 
 module ShippingOriginRepo =
 
     type CreateShippingOrigin = AddressDto -> ConfigReader<Result<string, CustomError>>
-    let createOrigin :CreateShippingOrigin =
-        fun addressDto -> 
-            let create (db:IMongoDatabase) =
-                let addresses = db.GetCollection<AddressDto>(CollectionName.Address)
+
+    let createOrigin: CreateShippingOrigin =
+        fun addressDto ->
+            let create (db: IMongoDatabase) =
+                let addresses =
+                    db.GetCollection<AddressDto>(CollectionName.Address)
+
                 addresses.InsertOne(addressDto)
 
-                let profiles = db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
-                let originDto = {Id = ""; Name = addressDto.AddressLine1; Address = addressDto; IsDefault = true}
+                let profiles =
+                    db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
+
+                let originDto =
+                    { Id = ""
+                      Name = addressDto.AddressLine1
+                      Address = addressDto
+                      IsDefault = true }
+
                 profiles.InsertOne(originDto)
 
                 originDto.Id
@@ -68,72 +106,97 @@ module ShippingOriginRepo =
             MongoRepoAdapter.repoAdapter create
 
     type GetShippingOrigins = string seq -> ConfigReader<Result<ShippingOriginDto seq, CustomError>>
-    let getOrigins :GetShippingOrigins =
+
+    let getOrigins: GetShippingOrigins =
         fun ids ->
-            let get (db:IMongoDatabase) =
-                let origins = db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
-                let filter = Builders<ShippingOriginDto>.Filter.In((fun x -> x.Id), ids)
+            let get (db: IMongoDatabase) =
+                let origins =
+                    db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
+
+                let filter =
+                    Builders<ShippingOriginDto>.Filter.In ((fun x -> x.Id), ids)
+
                 origins.Find(filter).ToEnumerable()
 
-                // Todo: the following filter is not supported
-                //origins.Find(fun x -> Seq.exists ((=) x.Id) ids).ToEnumerable()
+            // Todo: the following filter is not supported
+            //origins.Find(fun x -> Seq.exists ((=) x.Id) ids).ToEnumerable()
 
             MongoRepoAdapter.repoAdapter get
-            
+
     type GetShippingOrigin = string -> ConfigReader<Result<ShippingOriginDto, CustomError>>
-    let getOrigin :GetShippingOrigin =
+
+    let getOrigin: GetShippingOrigin =
         fun id ->
-            let get (db:IMongoDatabase) =
-                let origins = db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
+            let get (db: IMongoDatabase) =
+                let origins =
+                    db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
+
                 origins.Find(fun x -> x.Id = id).FirstOrDefault()
 
             MongoRepoAdapter.repoAdapter get
-        
+
     type UpdateShippingOrigin = string -> ShippingOriginDto -> ConfigReader<Result<unit, CustomError>>
-    let updateOrigin :UpdateShippingOrigin =
+
+    let updateOrigin: UpdateShippingOrigin =
         fun id originDto ->
-            let update (db:IMongoDatabase) =
-                let profiles = db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
-                profiles.ReplaceOne((fun x -> x.Id = id), originDto) |> ignore
-            
+            let update (db: IMongoDatabase) =
+                let profiles =
+                    db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
+
+                profiles.ReplaceOne((fun x -> x.Id = id), originDto)
+                |> ignore
+
             MongoRepoAdapter.repoAdapter update
 
 
-module ShippingProfileRepo = 
+module ShippingProfileRepo =
 
     let internal createProfile =
-        fun (originId:string) (addressDto:AddressDto) ->
-            let shippingCountry = {CountryCode = addressDto.CountryCode; StateNames = seq {addressDto.StateName}}
+        fun (originId: string) (addressDto: AddressDto) ->
+            let shippingCountry =
+                { CountryCode = addressDto.CountryCode
+                  StateNames = seq { addressDto.StateName } }
 
-            let zoneDto = {
-                Name = addressDto.CountryCode; 
-                Methods = Seq.empty; 
-                Countries = seq {shippingCountry}
-                }
+            let zoneDto =
+                { Name = addressDto.CountryCode
+                  Methods = Seq.empty
+                  Countries = seq { shippingCountry } }
 
-            let profileDto = {
-                Id = "" 
-                Name = "Default Profile"; 
-                IsDefault = true; 
-                OriginIds = seq {originId}; 
-                Zones = seq {zoneDto}
-                }
+            let profileDto =
+                { Id = ""
+                  Name = "Default Profile"
+                  IsDefault = true
+                  OriginIds = seq { originId }
+                  Zones = seq { zoneDto } }
 
             profileDto
-            
+
     type CreateDefaultProfile = AddressDto -> ConfigReader<Result<string, CustomError>>
-    let createDefaultProfile:CreateDefaultProfile =
-        fun addressDto -> 
-            let create (db:IMongoDatabase) =
-                let addresses = db.GetCollection<AddressDto>(CollectionName.Address)
+
+    let createDefaultProfile: CreateDefaultProfile =
+        fun addressDto ->
+            let create (db: IMongoDatabase) =
+                let addresses =
+                    db.GetCollection<AddressDto>(CollectionName.Address)
+
                 addresses.InsertOne(addressDto)
 
-                let originDto = {Id = ""; Name = addressDto.AddressLine1; Address = addressDto; IsDefault = true}
-                let origins = db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
+                let originDto =
+                    { Id = ""
+                      Name = addressDto.AddressLine1
+                      Address = addressDto
+                      IsDefault = true }
+
+                let origins =
+                    db.GetCollection<ShippingOriginDto>(CollectionName.ShippingOrigin)
+
                 origins.InsertOne(originDto)
 
                 let profileDto = createProfile originDto.Id addressDto
-                let profiles = db.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile)
+
+                let profiles =
+                    db.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile)
+
                 profiles.InsertOne(profileDto)
 
                 profileDto.Id
@@ -141,10 +204,13 @@ module ShippingProfileRepo =
             MongoRepoAdapter.repoAdapter create
 
     type CreateCustomProfile = ShippingProfileDto -> ConfigReader<Result<string, CustomError>>
-    let createCustomProfile :CreateCustomProfile =
-        fun profileDto -> 
-            let create (db:IMongoDatabase) =
-                let profiles = db.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile)
+
+    let createCustomProfile: CreateCustomProfile =
+        fun profileDto ->
+            let create (db: IMongoDatabase) =
+                let profiles =
+                    db.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile)
+
                 profiles.InsertOne(profileDto)
 
                 profileDto.Id
@@ -152,19 +218,27 @@ module ShippingProfileRepo =
             MongoRepoAdapter.repoAdapter create
 
     type GetDefaultProfile = unit -> ConfigReader<Result<ShippingProfileDto, CustomError>>
-    let getDefaultProfile :GetDefaultProfile =
-        fun () ->
-            let get (db:IMongoDatabase) =
-                let profiles = db.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile)
-                profiles.Find(fun x -> x.IsDefault = true).FirstOrDefault()
 
-            MongoRepoAdapter.repoAdapter get       
-            
+    let getDefaultProfile: GetDefaultProfile =
+        fun () ->
+            let get (db: IMongoDatabase) =
+                let profiles =
+                    db.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile)
+
+                profiles
+                    .Find(fun x -> x.IsDefault = true)
+                    .FirstOrDefault()
+
+            MongoRepoAdapter.repoAdapter get
+
     type GetShippingProfile = string -> ConfigReader<Result<ShippingProfileDto, CustomError>>
-    let getProfile :GetShippingProfile=
+
+    let getProfile: GetShippingProfile =
         fun id ->
-            let get (db:IMongoDatabase) =
-                let profiles = db.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile)
+            let get (db: IMongoDatabase) =
+                let profiles =
+                    db.GetCollection<ShippingProfileDto>(CollectionName.ShippingProfile)
+
                 profiles.Find(fun x -> x.Id = id).FirstOrDefault()
-                
+
             MongoRepoAdapter.repoAdapter get

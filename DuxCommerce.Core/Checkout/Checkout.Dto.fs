@@ -11,46 +11,47 @@ open DuxCommerce.Common
 
 module CheckoutDto =
 
-    let create :CheckoutDto = {
-        Id = null
-        ShopperId = ""
-        Email = "test@test.com"
-        ShippingAddress = AddressDto.create
-        SameAsShipping = false
-        BillingAddress = AddressDto.create
-        ShippingMethodId = ""
-        PaymentMethodId = ""
-        }
+    let create: CheckoutDto =
+        { Id = null
+          ShopperId = ""
+          Email = "test@test.com"
+          ShippingAddress = AddressDto.create
+          SameAsShipping = false
+          BillingAddress = AddressDto.create
+          ShippingMethodId = ""
+          PaymentMethodId = "" }
 
-    let fromDomain checkout :CheckoutDto = {
-        Id = CheckoutId.value checkout.CheckoutId
-        ShopperId = ShopperId.value checkout.ShopperId
-        Email = EmailAddress.value checkout.Email
-        ShippingAddress = AddressDto.fromDomain checkout.ShippingAddress
-        SameAsShipping = checkout.SameAsBilling
-        BillingAddress = AddressDto.fromDomain checkout.BillingAddress
-        ShippingMethodId = ShippingMethodId.value checkout.ShippingMethodId
-        PaymentMethodId = PaymentMethodId.value checkout.PaymentMethodId
-        }
+    let fromDomain checkout : CheckoutDto =
+        { Id = CheckoutId.value checkout.CheckoutId
+          ShopperId = ShopperId.value checkout.ShopperId
+          Email = EmailAddress.value checkout.Email
+          ShippingAddress = AddressDto.fromDomain checkout.ShippingAddress
+          SameAsShipping = checkout.SameAsBilling
+          BillingAddress = AddressDto.fromDomain checkout.BillingAddress
+          ShippingMethodId = ShippingMethodId.value checkout.ShippingMethodId
+          PaymentMethodId = PaymentMethodId.value checkout.PaymentMethodId }
 
-    let toDomain dto :Result<Checkout, string> =
+    let toDomain dto : Result<Checkout, string> =
         result {
             let checkoutId = CheckoutId.create dto.Id
             let shopperId = ShopperId.create dto.ShopperId
             let! email = EmailAddress.create "EmailAddress" dto.Email
             let! shippingAddress = AddressDto.toDomain dto.ShippingAddress
             let! billingAddress = AddressDto.toDomain dto.BillingAddress
-            let shippingMethodId = ShippingMethodId.create dto.ShippingMethodId
-            let paymentMethodId = PaymentMethodId.create dto.PaymentMethodId
 
-            return {
-                CheckoutId = checkoutId
-                ShopperId = shopperId
-                Email = email
-                ShippingAddress = shippingAddress
-                SameAsBilling = dto.SameAsShipping
-                BillingAddress = billingAddress
-                ShippingMethodId = shippingMethodId
-                PaymentMethodId = paymentMethodId
-                }
-            }
+            let shippingMethodId =
+                ShippingMethodId.create dto.ShippingMethodId
+
+            let paymentMethodId =
+                PaymentMethodId.create dto.PaymentMethodId
+
+            return
+                { CheckoutId = checkoutId
+                  ShopperId = shopperId
+                  Email = email
+                  ShippingAddress = shippingAddress
+                  SameAsBilling = dto.SameAsShipping
+                  BillingAddress = billingAddress
+                  ShippingMethodId = shippingMethodId
+                  PaymentMethodId = paymentMethodId }
+        }

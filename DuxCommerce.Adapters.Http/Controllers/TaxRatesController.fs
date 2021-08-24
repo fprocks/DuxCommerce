@@ -8,12 +8,14 @@ open DuxCommerce.Core.Taxes
 
 [<ApiController>]
 [<Route("api/[controller]")>]
-type TaxRatesController (logger : ILogger<TaxRatesController>) =
+type TaxRatesController(logger: ILogger<TaxRatesController>) =
     inherit DuxController()
 
     [<HttpPost>]
     member this.Post(request: TaxRateDto) : IActionResult =
-        let result = ConfigReader.execute (TaxRateUseCases.createRate request)
+        let result =
+            ConfigReader.execute (TaxRateUseCases.createRate request)
+
         match result with
         | Ok p -> base.Ok(p) :> _
         | Error m -> base.Convert(m)

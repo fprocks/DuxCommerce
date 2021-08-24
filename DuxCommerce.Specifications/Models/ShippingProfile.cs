@@ -1,4 +1,4 @@
-﻿namespace DuxCommerce.Specifications.UseCases.Models
+﻿namespace DuxCommerce.Specifications.Models
 {
     public class ShippingProfile
     {

@@ -5,21 +5,21 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Include="Result.fs" />
-      <Compile Include="SimpleTypes.fs" />
-      <Compile Include="CustomError.fs" />
-      <Compile Include="AppSettings.fs" />
-      <Compile Include="ConfigReader.fs" />
-      <Compile Include="ReaderResult.fs" />
-      <Compile Include="CollectionNames.fs" />
-      <Compile Include="MongoRepoAdapter.fs" />
+        <Compile Include="Result.fs"/>
+        <Compile Include="SimpleTypes.fs"/>
+        <Compile Include="CustomError.fs"/>
+        <Compile Include="AppSettings.fs"/>
+        <Compile Include="ConfigReader.fs"/>
+        <Compile Include="ReaderResult.fs"/>
+        <Compile Include="CollectionNames.fs"/>
+        <Compile Include="MongoRepoAdapter.fs"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
-      <PackageReference Include="MongoDB.Driver" Version="2.11.5" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0"/>
+        <PackageReference Include="MongoDB.Driver" Version="2.11.5"/>
     </ItemGroup>
 
 </Project>

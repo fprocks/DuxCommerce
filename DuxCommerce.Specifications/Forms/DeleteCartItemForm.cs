@@ -1,6 +1,6 @@
-﻿namespace DuxCommerce.Specifications.UseCases.Forms
+﻿namespace DuxCommerce.Specifications.Forms
 {
-    class DeleteCartItemForm
+    internal class DeleteCartItemForm
     {
         public int Product { get; set; }
     }

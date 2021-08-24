@@ -6,28 +6,28 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="ComplexDI.fs" />
-        <Compile Include="Controllers\DuxControllerBase.fs" />
-        <Compile Include="Controllers\TaxRatesController.fs" />
-        <Compile Include="Controllers\ShoppingCartController.fs" />
-        <Compile Include="Controllers\ProductsController.fs" />
-        <Compile Include="Controllers\StoreProfileController.fs" />
-        <Compile Include="Controllers\ShippingProfilesController.fs" />
-        <Compile Include="Controllers\ShippingOriginsController.fs" />
-        <Compile Include="Controllers\PaymentMethodsController.fs" />
-        <Compile Include="Controllers\CheckoutController.fs" />
-        <Compile Include="Startup.fs" />
-        <Compile Include="Program.fs" />
+        <Compile Include="ComplexDI.fs"/>
+        <Compile Include="Controllers\DuxControllerBase.fs"/>
+        <Compile Include="Controllers\TaxRatesController.fs"/>
+        <Compile Include="Controllers\ShoppingCartController.fs"/>
+        <Compile Include="Controllers\ProductsController.fs"/>
+        <Compile Include="Controllers\StoreProfileController.fs"/>
+        <Compile Include="Controllers\ShippingProfilesController.fs"/>
+        <Compile Include="Controllers\ShippingOriginsController.fs"/>
+        <Compile Include="Controllers\PaymentMethodsController.fs"/>
+        <Compile Include="Controllers\CheckoutController.fs"/>
+        <Compile Include="Startup.fs"/>
+        <Compile Include="Program.fs"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="FluentMigrator.Extensions.SqlServer" Version="3.2.9" />
-      <PackageReference Include="FluentMigrator.Runner" Version="3.2.9" />
-      <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
+        <PackageReference Include="FluentMigrator.Extensions.SqlServer" Version="3.2.9"/>
+        <PackageReference Include="FluentMigrator.Runner" Version="3.2.9"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DuxCommerce.Core\DuxCommerce.Core.fsproj" />
+        <ProjectReference Include="..\DuxCommerce.Core\DuxCommerce.Core.fsproj"/>
     </ItemGroup>
 
 </Project>

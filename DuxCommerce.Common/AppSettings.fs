@@ -2,21 +2,23 @@
 
 open Microsoft.Extensions.Configuration
 
-[<CLIMutable>]        
-type AppSettings = {
-    ConnectionString : string
-    DatabaseName : string
-}
+[<CLIMutable>]
+type AppSettings =
+    { ConnectionString: string
+      DatabaseName: string }
 
 module AppSettings =
 
-    let fromFile (configFile:string) = 
-        let mutable settings = {ConnectionString = ""; DatabaseName = ""}
+    let fromFile (configFile: string) =
+        let mutable settings =
+            { ConnectionString = ""
+              DatabaseName = "" }
 
-        let config = ConfigurationBuilder()
-                        .AddJsonFile(configFile)
-                        .Build()
+        let config =
+            ConfigurationBuilder()
+                .AddJsonFile(configFile)
+                .Build()
+
         config.Bind("MongoSettings", settings)
 
         settings
-        

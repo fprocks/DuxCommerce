@@ -1,25 +1,25 @@
-﻿using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
-using System.Collections.Generic;
-using DuxCommerce.Specifications.UseCases.Hooks;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
-using FluentAssertions;
 using System.Net.Http;
 using System.Threading.Tasks;
-using DuxCommerce.Specifications.UseCases.Extensions;
-using DuxCommerce.Specifications.UseCases.Forms;
 using DuxCommerce.Core.ShoppingCarts.PublicTypes;
-using DuxCommerce.Specifications.UseCases.Models;
+using DuxCommerce.Specifications.Extensions;
+using DuxCommerce.Specifications.Forms;
+using DuxCommerce.Specifications.Hooks;
+using DuxCommerce.Specifications.Models;
 using DuxCommerce.Specifications.Utilities;
+using FluentAssertions;
+using Newtonsoft.Json;
+using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
-namespace DuxCommerce.Specifications.UseCases.Steps
+namespace DuxCommerce.Specifications.Steps
 {
-	[Binding]
+    [Binding]
     public class ShoppingCartSteps
     {
-        private readonly StepContext _context;
         private readonly IApiClient _apiClient;
+        private readonly StepContext _context;
 
         public ShoppingCartSteps(StepContext context, IApiClient apiClient)
         {
@@ -64,6 +64,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
                 var index = item.Product - 1;
                 item.ProductId = products[index].Id;
             }
+
             var shoppingCart = await GetShoppingCart(_context.ApiResult);
             CompareCartItems(expectedItems.ToList(), shoppingCart.LineItems.ToList());
         }
@@ -82,10 +83,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
             HttpResponseMessage lastApiResult = null;
             var url = $"api/shoppingcart/{_context.ShopperId}/items";
-            foreach (var request in requests)
-            {
-                lastApiResult = await _apiClient.PostAsync(url, request);
-            }
+            foreach (var request in requests) lastApiResult = await _apiClient.PostAsync(url, request);
 
             return lastApiResult;
         }
@@ -107,10 +105,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
 
             HttpResponseMessage lastApiResult = null;
             var url = $"api/shoppingcart/{_context.ShopperId}/items";
-            foreach (var request in requests)
-            {
-                lastApiResult = await _apiClient.DeleteAsync(url, request);
-            }
+            foreach (var request in requests) lastApiResult = await _apiClient.DeleteAsync(url, request);
 
             return lastApiResult;
         }
@@ -126,7 +121,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
             var requests = new List<AddCartItemRequest>();
 
             var products = _context.CreatedProducts;
-            for(var index = 0; index < inputs.Count; index ++) 
+            for (var index = 0; index < inputs.Count; index++)
             {
                 var productIndex = inputs[index].Product - 1;
                 var productId = products[productIndex].Id;
@@ -142,7 +137,7 @@ namespace DuxCommerce.Specifications.UseCases.Steps
         {
             var requests = new List<UpdateCartItemRequest>();
             var products = _context.CreatedProducts;
-            for(var index = 0; index < inputs.Count; index ++)
+            for (var index = 0; index < inputs.Count; index++)
             {
                 var productIndex = inputs[index].Product - 1;
                 var productId = products[productIndex].Id;
