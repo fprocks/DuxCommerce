@@ -40,8 +40,8 @@ namespace DuxCommerce.Specifications.Features.Checkout
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Checkout", "Add Shipping Method", "\tIn order to get my order delivered\r\n\tAs an online shopper\r\n\tI want to choose a s" +
-                    "hipping method for my order", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Checkout", "Add Shipping Method", "In order to get my order delivered\r\nAs an online shopper\r\nI want to choose a ship" +
+                    "ping method for my order", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,7 +79,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
         public virtual void FeatureBackground()
         {
 #line 6
-#line hidden
+    #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                         "ProductId",
                         "Name",
@@ -145,7 +145,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
                         "True",
                         "StopSelling"});
 #line 7
- testRunner.Given("Tom creates the following products:", ((string)(null)), table11, "Given ");
+        testRunner.Given("Tom creates the following products:", ((string)(null)), table11, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                         "OriginId",
@@ -168,16 +168,16 @@ namespace DuxCommerce.Specifications.Features.Checkout
                         "New South Wales",
                         "AU"});
 #line 12
- testRunner.And("Tom creates the following shipping origins:", ((string)(null)), table12, "And ");
+        testRunner.And("Tom creates the following shipping origins:", ((string)(null)), table12, "And ");
 #line hidden
 #line 15
- testRunner.And("Tom enters shipping profile name Heavy Products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("Tom enters shipping profile name Heavy Products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
- testRunner.And("Tom selects shipping origin 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("Tom selects shipping origin 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.And("Tom enters the zone name ANZ", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("Tom enters the zone name ANZ", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                         "CountryCode"});
@@ -186,7 +186,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
             table13.AddRow(new string[] {
                         "NZ"});
 #line 18
- testRunner.And("Tom selects the following shipping countries:", ((string)(null)), table13, "And ");
+        testRunner.And("Tom selects the following shipping countries:", ((string)(null)), table13, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                         "CountryCode",
@@ -204,7 +204,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
                         "NZ",
                         "Wellington"});
 #line 22
- testRunner.And("Tom selects the following shipping states:", ((string)(null)), table14, "And ");
+        testRunner.And("Tom selects the following shipping states:", ((string)(null)), table14, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                         "ShippingMethodId",
@@ -223,7 +223,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
                         "ByOrderTotal",
                         "By Order Total"});
 #line 28
- testRunner.And("Tom enters the following shipping methods:", ((string)(null)), table15, "And ");
+        testRunner.And("Tom enters the following shipping methods:", ((string)(null)), table15, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                         "ShippingMethod",
@@ -276,10 +276,10 @@ namespace DuxCommerce.Specifications.Features.Checkout
                         "100000",
                         "200"});
 #line 33
- testRunner.And("Tom enters the following shipping rates:", ((string)(null)), table16, "And ");
+        testRunner.And("Tom enters the following shipping rates:", ((string)(null)), table16, "And ");
 #line hidden
 #line 44
- testRunner.And("Tom saves the shipping profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("Tom saves the shipping profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
@@ -297,7 +297,7 @@ namespace DuxCommerce.Specifications.Features.Checkout
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Shipping Method", null, tagsOfScenario, argumentsOfScenario);
 #line 46
-this.ScenarioInitialize(scenarioInfo);
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -317,7 +317,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
-this.FeatureBackground();
+    this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                             "Product",
@@ -332,10 +332,10 @@ this.FeatureBackground();
                             "BDD",
                             "8"});
 #line 47
- testRunner.Given("Amy adds the following products to her shopping cart:", ((string)(null)), table17, "Given ");
+        testRunner.Given("Amy adds the following products to her shopping cart:", ((string)(null)), table17, "Given ");
 #line hidden
 #line 51
- testRunner.And("Amy enters the email address amy@gmail.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("Amy enters the email address amy@gmail.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -356,22 +356,22 @@ this.FeatureBackground();
                             "Victoria",
                             "AU"});
 #line 52
- testRunner.And("Amy enters the following shipping address:", ((string)(null)), table18, "And ");
+        testRunner.And("Amy enters the following shipping address:", ((string)(null)), table18, "And ");
 #line hidden
 #line 55
- testRunner.And("Amy saves the contact details and shipping address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("Amy saves the contact details and shipping address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 56
- testRunner.And("Amy selects shipping method 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("Amy selects shipping method 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 57
- testRunner.When("Amy saves the shipping method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("Amy saves the shipping method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 58
- testRunner.Then("Amy should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("Amy should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 59
- testRunner.And("checkout information should be saved as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("checkout information should be saved as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

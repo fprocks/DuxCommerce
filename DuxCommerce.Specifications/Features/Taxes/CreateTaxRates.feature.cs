@@ -40,8 +40,8 @@ namespace DuxCommerce.Specifications.Features.Taxes
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Taxes", "Create Tax Rates", "\tIn order to charge taxes from customers\r\n\tAs a store admin\r\n\tI want to add tax r" +
-                    "ates to my store", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Taxes", "Create Tax Rates", "In order to charge taxes from customers\r\nAs a store admin\r\nI want to add tax rate" +
+                    "s to my store", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -90,7 +90,7 @@ namespace DuxCommerce.Specifications.Features.Taxes
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create tax rate", null, tagsOfScenario, argumentsOfScenario);
 #line 6
-this.ScenarioInitialize(scenarioInfo);
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -110,10 +110,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("Tom enters tax rate name GST", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+        testRunner.Given("Tom enters tax rate name GST", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("Tom enters tax zone name ANZ", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("Tom enters tax zone name ANZ", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table56 = new TechTalk.SpecFlow.Table(new string[] {
                             "CountryCode"});
@@ -122,7 +122,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table56.AddRow(new string[] {
                             "NZ"});
 #line 9
- testRunner.And("Tom selects the following countries:", ((string)(null)), table56, "And ");
+        testRunner.And("Tom selects the following countries:", ((string)(null)), table56, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table57 = new TechTalk.SpecFlow.Table(new string[] {
                             "CountryCode",
@@ -146,7 +146,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "NZ",
                             "Southland"});
 #line 13
- testRunner.And("Tom selects the following states:", ((string)(null)), table57, "And ");
+        testRunner.And("Tom selects the following states:", ((string)(null)), table57, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table58 = new TechTalk.SpecFlow.Table(new string[] {
                             "CountryCode",
@@ -158,19 +158,19 @@ this.ScenarioInitialize(scenarioInfo);
                             "NZ",
                             "2571,2576,2800"});
 #line 21
- testRunner.And("Tom enters the following postal codes:", ((string)(null)), table58, "And ");
+        testRunner.And("Tom enters the following postal codes:", ((string)(null)), table58, "And ");
 #line hidden
 #line 25
- testRunner.And("Tom enters tax rate amount 0.1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("Tom enters tax rate amount 0.1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 26
- testRunner.When("Tom saves the tax rate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("Tom saves the tax rate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 27
- testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 28
- testRunner.And("Tax rate should be created as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("Tax rate should be created as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

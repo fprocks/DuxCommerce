@@ -40,8 +40,8 @@ namespace DuxCommerce.Specifications.Features.Payments
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Payments", "Create Payment Methods", "\tIn order to receive payment from my customers\r\n\tAs a store admin\r\n\tI want to add" +
-                    " payment methods to my store", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Payments", "Create Payment Methods", "In order to receive payment from my customers\r\nAs a store admin\r\nI want to add pa" +
+                    "yment methods to my store", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -97,7 +97,7 @@ namespace DuxCommerce.Specifications.Features.Payments
             argumentsOfScenario.Add("PaymentInstructions", paymentInstructions);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create payment methods - green path", null, tagsOfScenario, argumentsOfScenario);
 #line 6
-this.ScenarioInitialize(scenarioInfo);
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -127,16 +127,16 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", additionalDetails),
                             string.Format("{0}", paymentInstructions)});
 #line 7
- testRunner.Given("Tom enters the following payment method information:", ((string)(null)), table19, "Given ");
+        testRunner.Given("Tom enters the following payment method information:", ((string)(null)), table19, "Given ");
 #line hidden
 #line 10
- testRunner.When("Tom saves the payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("Tom saves the payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
- testRunner.And("payment method should be created as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("payment method should be created as expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -159,8 +159,8 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("PaymentInstructions", paymentInstructions);
             argumentsOfScenario.Add("Comment", comment);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create payment methods - red path", null, tagsOfScenario, argumentsOfScenario);
-#line 19
-this.ScenarioInitialize(scenarioInfo);
+#line 20
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -189,14 +189,14 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", type),
                             string.Format("{0}", additionalDetails),
                             string.Format("{0}", paymentInstructions)});
-#line 20
- testRunner.Given("Tom enters the following payment method information:", ((string)(null)), table20, "Given ");
-#line hidden
-#line 23
- testRunner.When("Tom saves the payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 21
+        testRunner.Given("Tom enters the following payment method information:", ((string)(null)), table20, "Given ");
 #line hidden
 #line 24
- testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.When("Tom saves the payment method", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 25
+        testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -40,8 +40,8 @@ namespace DuxCommerce.Specifications.Features.Shipping
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Shipping", "Update Store Profile", "\tIn order to customize my online store\r\n\tAs a store admin\r\n\tI want to update my s" +
-                    "tore profile", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Shipping", "Update Store Profile", "In order to customize my online store\r\nAs a store admin\r\nI want to update my stor" +
+                    "e profile", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,7 +79,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
         public virtual void FeatureBackground()
         {
 #line 6
-#line hidden
+    #line hidden
             TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
                         "StoreName",
                         "ContactEmail",
@@ -101,7 +101,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
                         "Gram",
                         "Centimeter"});
 #line 7
- testRunner.Given("Tom creates the following store profile:", ((string)(null)), table39, "Given ");
+        testRunner.Given("Tom creates the following store profile:", ((string)(null)), table39, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
                         "FirstName",
@@ -122,7 +122,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
                         "New South Wales",
                         "AU"});
 #line 10
- testRunner.And("Tom creates the following store address:", ((string)(null)), table40, "And ");
+        testRunner.And("Tom creates the following store address:", ((string)(null)), table40, "And ");
 #line hidden
         }
         
@@ -147,7 +147,7 @@ namespace DuxCommerce.Specifications.Features.Shipping
             argumentsOfScenario.Add("LengthUnit", lengthUnit);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update store profile - green path", null, tagsOfScenario, argumentsOfScenario);
 #line 14
-this.ScenarioInitialize(scenarioInfo);
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -167,7 +167,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
-this.FeatureBackground();
+    this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
                             "StoreName",
@@ -190,7 +190,7 @@ this.FeatureBackground();
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
 #line 15
- testRunner.Given("Tom enters the following store profile:", ((string)(null)), table41, "Given ");
+        testRunner.Given("Tom enters the following store profile:", ((string)(null)), table41, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -211,13 +211,13 @@ this.FeatureBackground();
                             "Victoria",
                             "AU"});
 #line 18
- testRunner.And("Tom enters the following store address:", ((string)(null)), table42, "And ");
+        testRunner.And("Tom enters the following store address:", ((string)(null)), table42, "And ");
 #line hidden
 #line 21
- testRunner.When("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 22
- testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
                             "StoreName",
@@ -240,7 +240,7 @@ this.FeatureBackground();
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
 #line 23
- testRunner.And("the store profile should be updated as follow:", ((string)(null)), table43, "And ");
+        testRunner.And("the store profile should be updated as follow:", ((string)(null)), table43, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -261,7 +261,7 @@ this.FeatureBackground();
                             "Victoria",
                             "AU"});
 #line 26
- testRunner.And("the store address should be updated as follow:", ((string)(null)), table44, "And ");
+        testRunner.And("the store address should be updated as follow:", ((string)(null)), table44, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -283,8 +283,8 @@ this.FeatureBackground();
             argumentsOfScenario.Add("LengthUnit", lengthUnit);
             argumentsOfScenario.Add("Comment", comment);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update store profile - red path", null, tagsOfScenario, argumentsOfScenario);
-#line 36
-this.ScenarioInitialize(scenarioInfo);
+#line 37
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -304,7 +304,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
-this.FeatureBackground();
+    this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
                             "StoreName",
@@ -326,8 +326,8 @@ this.FeatureBackground();
                             string.Format("{0}", unitSystem),
                             string.Format("{0}", weightUnit),
                             string.Format("{0}", lengthUnit)});
-#line 37
- testRunner.Given("Tom enters the following store profile:", ((string)(null)), table45, "Given ");
+#line 38
+        testRunner.Given("Tom enters the following store profile:", ((string)(null)), table45, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -347,14 +347,14 @@ this.FeatureBackground();
                             "2000",
                             "New South Wales",
                             "AU"});
-#line 40
- testRunner.And("Tom enters the following store address:", ((string)(null)), table46, "And ");
-#line hidden
-#line 43
- testRunner.When("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 41
+        testRunner.And("Tom enters the following store address:", ((string)(null)), table46, "And ");
 #line hidden
 #line 44
- testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.When("Tom updates the store profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 45
+        testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

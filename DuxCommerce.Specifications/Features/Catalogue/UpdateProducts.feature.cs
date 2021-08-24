@@ -40,8 +40,8 @@ namespace DuxCommerce.Specifications.Features.Catalogue
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Catalogue", "Update Products", "\tIn order to keep the product info up to date\r\n\tAs a store admin\r\n\tI want to upda" +
-                    "te the proucts", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Catalogue", "Update Products", "In order to keep the product info up to date\r\nAs a store admin\r\nI want to update " +
+                    "the proucts", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,7 +79,7 @@ namespace DuxCommerce.Specifications.Features.Catalogue
         public virtual void FeatureBackground()
         {
 #line 6
-#line hidden
+    #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",
                         "Description",
@@ -111,7 +111,7 @@ namespace DuxCommerce.Specifications.Features.Catalogue
                         "True",
                         "Remove"});
 #line 7
- testRunner.Given("Tom creates the following product:", ((string)(null)), table4, "Given ");
+        testRunner.Given("Tom creates the following product:", ((string)(null)), table4, "Given ");
 #line hidden
         }
         
@@ -145,7 +145,7 @@ namespace DuxCommerce.Specifications.Features.Catalogue
             argumentsOfScenario.Add("OutOfStockRule", outOfStockRule);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update products - green path", null, tagsOfScenario, argumentsOfScenario);
 #line 11
-this.ScenarioInitialize(scenarioInfo);
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -165,7 +165,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
-this.FeatureBackground();
+    this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -198,13 +198,13 @@ this.FeatureBackground();
                             string.Format("{0}", trackInventory),
                             string.Format("{0}", outOfStockRule)});
 #line 12
- testRunner.Given("Tom updates the following product:", ((string)(null)), table5, "Given ");
+        testRunner.Given("Tom updates the following product:", ((string)(null)), table5, "Given ");
 #line hidden
 #line 15
- testRunner.When("Tom saves the updated product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("Tom saves the updated product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
- testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("Tom should receive status codes OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -237,7 +237,7 @@ this.FeatureBackground();
                             string.Format("{0}", trackInventory),
                             string.Format("{0}", outOfStockRule)});
 #line 17
- testRunner.And("the product should be updated as follow:", ((string)(null)), table6, "And ");
+        testRunner.And("the product should be updated as follow:", ((string)(null)), table6, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -284,8 +284,8 @@ this.FeatureBackground();
             argumentsOfScenario.Add("OutOfStockRule", outOfStockRule);
             argumentsOfScenario.Add("Comment", comment);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update products - red path", null, tagsOfScenario, argumentsOfScenario);
-#line 25
-this.ScenarioInitialize(scenarioInfo);
+#line 26
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -305,7 +305,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
-this.FeatureBackground();
+    this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -337,14 +337,14 @@ this.FeatureBackground();
                             string.Format("{0}", barcode),
                             string.Format("{0}", trackInventory),
                             string.Format("{0}", outOfStockRule)});
-#line 26
- testRunner.Given("Tom updates the following product:", ((string)(null)), table7, "Given ");
-#line hidden
-#line 29
- testRunner.When("Tom saves the updated product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 27
+        testRunner.Given("Tom updates the following product:", ((string)(null)), table7, "Given ");
 #line hidden
 #line 30
- testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.When("Tom saves the updated product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 31
+        testRunner.Then("Tom should receive status codes BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
