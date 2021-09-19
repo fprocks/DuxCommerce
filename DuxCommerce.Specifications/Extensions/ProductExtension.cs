@@ -2,7 +2,7 @@
 
 namespace DuxCommerce.Specifications.Extensions
 {
-    public static class ProductExtensions
+    public static class ProductExtension
     {
         public static bool EqualTo(this ProductDto expected, ProductDto actual)
         {

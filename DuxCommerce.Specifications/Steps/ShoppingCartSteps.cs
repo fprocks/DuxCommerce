@@ -112,7 +112,7 @@ namespace DuxCommerce.Specifications.Steps
 
         private void CompareCartItems(List<ShoppingCartItem> expectedItems, List<CartItemDto> lineItems)
         {
-            expectedItems.Count().Should().Be(lineItems.Count());
+            expectedItems.Count.Should().Be(lineItems.Count);
             expectedItems.EqualTo(lineItems).Should().BeTrue();
         }
 
@@ -121,11 +121,11 @@ namespace DuxCommerce.Specifications.Steps
             var requests = new List<AddCartItemRequest>();
 
             var products = _context.CreatedProducts;
-            for (var index = 0; index < inputs.Count; index++)
+            foreach (var input in inputs)
             {
-                var productIndex = inputs[index].Product - 1;
+                var productIndex = input.Product - 1;
                 var productId = products[productIndex].Id;
-                var quantity = inputs[index].Quantity;
+                var quantity = input.Quantity;
 
                 requests.Add(new AddCartItemRequest(productId, quantity));
             }
@@ -136,12 +136,13 @@ namespace DuxCommerce.Specifications.Steps
         private UpdateCartRequest CreateUpdateCartRequest(List<UpdateCartItemForm> inputs)
         {
             var requests = new List<UpdateCartItemRequest>();
+            
             var products = _context.CreatedProducts;
-            for (var index = 0; index < inputs.Count; index++)
+            foreach (var input in inputs)
             {
-                var productIndex = inputs[index].Product - 1;
+                var productIndex = input.Product - 1;
                 var productId = products[productIndex].Id;
-                var quantity = inputs[index].Quantity;
+                var quantity = input.Quantity;
 
                 requests.Add(new UpdateCartItemRequest(productId, quantity));
             }
@@ -152,11 +153,11 @@ namespace DuxCommerce.Specifications.Steps
         private List<DeleteCartItemRequest> CreateDeleteCartItemRequests(List<DeleteCartItemForm> inputs)
         {
             var requests = new List<DeleteCartItemRequest>();
-
+            
             var products = _context.CreatedProducts;
-            for (var index = 0; index < inputs.Count; index++)
+            foreach (var input in inputs)
             {
-                var productIndex = inputs[index].Product - 1;
+                var productIndex = input.Product - 1;
                 var productId = products[productIndex].Id;
 
                 requests.Add(new DeleteCartItemRequest(productId));

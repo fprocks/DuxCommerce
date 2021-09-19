@@ -4,7 +4,7 @@ using DuxCommerce.Specifications.Models;
 
 namespace DuxCommerce.Specifications.Extensions
 {
-    public static class OriginExtensions
+    public static class OriginExtension
     {
         public static bool EqualTo(this List<ShippingOrigin> expectedOrigins, List<ShippingOriginDto> actualOrigins)
         {

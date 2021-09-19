@@ -3,19 +3,19 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Remove="Drivers\**"/>
-        <EmbeddedResource Remove="Drivers\**"/>
-        <None Remove="Drivers\**"/>
-        <SpecFlowFeatureFiles Remove="Drivers\**"/>
-        <SpecFlowObsoleteCodeBehindFiles Remove="Drivers\**"/>
+        <Compile Remove="Drivers\**" />
+        <EmbeddedResource Remove="Drivers\**" />
+        <None Remove="Drivers\**" />
+        <SpecFlowFeatureFiles Remove="Drivers\**" />
+        <SpecFlowObsoleteCodeBehindFiles Remove="Drivers\**" />
     </ItemGroup>
     <ItemGroup>
-        <None Remove="appsettings.json"/>
+        <None Remove="appsettings.json" />
     </ItemGroup>
     <ItemGroup>
-        <SpecFlowObsoleteCodeBehindFiles Remove="Features\CreateShippingProfile - Copy.feature.cs"/>
-        <SpecFlowObsoleteCodeBehindFiles Remove="Features\CreateStoreDetails - Copy.feature.cs"/>
-        <SpecFlowObsoleteCodeBehindFiles Remove="Features\CreateStoreProfile - Copy.feature.cs"/>
+        <SpecFlowObsoleteCodeBehindFiles Remove="Features\CreateShippingProfile - Copy.feature.cs" />
+        <SpecFlowObsoleteCodeBehindFiles Remove="Features\CreateStoreDetails - Copy.feature.cs" />
+        <SpecFlowObsoleteCodeBehindFiles Remove="Features\CreateStoreProfile - Copy.feature.cs" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="appsettings.json">
@@ -23,20 +23,20 @@
         </Content>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="FluentAssertions" Version="5.10.3"/>
-        <PackageReference Include="FSharp.Core" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7"/>
-        <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.9"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0"/>
-        <PackageReference Include="Respawn" Version="3.3.0"/>
-        <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.4.192"/>
-        <PackageReference Include="SpecFlow.xUnit" Version="3.4.14"/>
-        <PackageReference Include="xunit" Version="2.4.0"/>
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0"/>
+        <PackageReference Include="FluentAssertions" Version="5.10.3" />
+        <PackageReference Include="FSharp.Core" Version="5.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+        <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.9" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+        <PackageReference Include="Respawn" Version="3.3.0" />
+        <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.4.192" />
+        <PackageReference Include="SpecFlow.xUnit" Version="3.4.14" />
+        <PackageReference Include="xunit" Version="2.4.0" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\DuxCommerce.Adapters.Http\DuxCommerce.Adapters.Http.fsproj"/>
-        <ProjectReference Include="..\DuxCommerce.Common\DuxCommerce.Common.fsproj"/>
+        <ProjectReference Include="..\DuxCommerce.Adapters.Http\DuxCommerce.Adapters.Http.fsproj" />
+        <ProjectReference Include="..\DuxCommerce.Common\DuxCommerce.Common.fsproj" />
     </ItemGroup>
     <ItemGroup>
         <Compile Update="Features\Shipping\CreateShippingProfile.feature.cs">

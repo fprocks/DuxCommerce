@@ -4,7 +4,7 @@ using DuxCommerce.Specifications.Models;
 
 namespace DuxCommerce.Specifications.Extensions
 {
-    public static class CartItemExtensions
+    public static class CartItemExtension
     {
         public static bool EqualTo(this List<ShoppingCartItem> expectedItems, List<CartItemDto> actualItems)
         {
